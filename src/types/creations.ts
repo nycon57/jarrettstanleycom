@@ -1,0 +1,1 @@
+export type GenerationType = 'article' | 'post' | 'news' | 'content'; 
