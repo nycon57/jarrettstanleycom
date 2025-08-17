@@ -115,7 +115,7 @@ export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmai
           About Jarrett Stanley
         </h3>
         <p style={{ margin: '0', color: '#856404', fontSize: '14px', lineHeight: '1.5' }}>
-          Jarrett is Chief Marketing Officer at Nationwide Mortgage Bankers and creator of TrueTone AI. 
+          Jarrett is Chief Marketing Officer at Nationwide Mortgage Bankers and AI marketing pioneer. 
           He's a recognized thought leader in AI-powered marketing for the mortgage industry, combining 
           deep industry expertise with cutting-edge technology insights.
         </p>

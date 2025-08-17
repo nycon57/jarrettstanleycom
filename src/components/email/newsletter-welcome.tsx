@@ -34,7 +34,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
           AI-powered marketing in an authentic, results-driven way.
         </p>
         <p style={{ color: '#6d28d9', fontSize: '16px', lineHeight: '1.6', margin: '0' }}>
-          As CMO at Nationwide Mortgage Bankers and creator of TrueTone AI, I've seen firsthand 
+          As CMO at Nationwide Mortgage Bankers and AI marketing innovator, I've seen firsthand 
           how the right AI strategies can transform marketing results while maintaining authentic voice.
         </p>
       </div>
@@ -122,7 +122,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
                 Behind-the-Scenes Case Studies
               </h3>
               <p style={{ margin: '0', fontSize: '14px', color: '#6b7280' }}>
-                Real examples from my work at Nationwide and building TrueTone AI.
+                Real examples from my work at Nationwide and AI marketing innovation.
               </p>
             </div>
           </div>
@@ -332,7 +332,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
               Jarrett Stanley
             </p>
             <p style={{ margin: '0', fontSize: '12px', color: '#6b7280' }}>
-              CMO, Nationwide Mortgage Bankers | Creator, TrueTone AI
+              CMO, Nationwide Mortgage Bankers | AI Marketing Pioneer
             </p>
           </div>
         </div>

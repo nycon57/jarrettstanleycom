@@ -12,15 +12,15 @@ interface ServiceCardProps {
 export function ServiceCard({ title, description, icon, className, href }: ServiceCardProps) {
   const cardContent = (
     <>
-      <div className="absolute inset-0 bg-gradient-to-br from-[#9D7AD6]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-br from-lilac/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <CardHeader className="relative z-10">
-        <div className="mb-4 p-4 rounded-full bg-gradient-to-br from-[#9D7AD6] to-[#4F518C] w-fit">
+        <div className="mb-4 p-4 rounded-full bg-gradient-to-br from-lilac to-orchid w-fit">
           {icon}
         </div>
         <CardTitle className="text-2xl font-signal">{title}</CardTitle>
       </CardHeader>
       <CardContent className="relative z-10">
-        <CardDescription className="text-base text-gray-300">
+        <CardDescription className="text-base text-gray-300 dark:text-gray-300">
           {description}
         </CardDescription>
       </CardContent>

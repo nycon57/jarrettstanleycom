@@ -40,7 +40,7 @@ export function ScrollTracker({ children }: ScrollTrackerProps) {
       for (const milestone of milestones) {
         if (scrollPercent >= milestone && !trackedDepths.has(milestone)) {
           trackScrollDepth(milestone, pathname);
-          setTrackedDepths(prev => new Set([...prev, milestone]));
+          setTrackedDepths(prev => new Set([...Array.from(prev), milestone]));
         }
       }
     }, 100);

@@ -46,7 +46,13 @@ export function UpcomingEvents() {
       if (!data || data.length === 0) {
         setEvents(placeholderEvents)
       } else {
-        setEvents(data)
+        // Transform data to handle null values
+        const transformedData = data.map(event => ({
+          ...event,
+          topics: event.topics || undefined,
+          event_type: event.event_type as "keynote" | "panel" | "workshop" | "webinar" | "podcast" | "conference" || "keynote"
+        }))
+        setEvents(transformedData)
       }
     } catch (error) {
       console.error('Error fetching events:', error)
@@ -79,13 +85,13 @@ export function UpcomingEvents() {
 
   if (loading) {
     return (
-      <section className="py-24 sm:py-32 bg-white">
+      <section className="py-24 sm:py-32 bg-white dark:bg-gray-800">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               Upcoming Speaking Events
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
               Loading events...
             </p>
           </div>
@@ -96,7 +102,7 @@ export function UpcomingEvents() {
 
   if (events.length === 0) {
     return (
-      <section className="py-24 sm:py-32 bg-white">
+      <section className="py-24 sm:py-32 bg-white dark:bg-gray-800">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -105,10 +111,10 @@ export function UpcomingEvents() {
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               Upcoming Speaking Events
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
               Check back soon for upcoming speaking engagements
             </p>
             <div className="mt-8">
@@ -123,7 +129,7 @@ export function UpcomingEvents() {
   }
 
   return (
-    <section className="py-24 sm:py-32 bg-white">
+    <section className="py-24 sm:py-32 bg-white dark:bg-gray-800">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -132,10 +138,10 @@ export function UpcomingEvents() {
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Upcoming Speaking Events
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
             Join Jarrett at these upcoming conferences and events
           </p>
         </motion.div>
@@ -149,21 +155,21 @@ export function UpcomingEvents() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className={`h-full ${event.is_featured ? 'ring-2 ring-purple-600' : ''}`}>
+              <Card className={`h-full ${event.is_featured ? 'ring-2 ring-purple-600 dark:ring-lilac' : ''}`}>
                 <CardHeader>
                   <div className="flex items-center justify-between mb-2">
                     <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-medium ${getEventTypeColor(event.event_type)}`}>
                       {getEventTypeLabel(event.event_type)}
                     </span>
                     {event.is_featured && (
-                      <span className="text-xs font-medium text-purple-600">Featured</span>
+                      <span className="text-xs font-medium text-purple-600 dark:text-lilac">Featured</span>
                     )}
                   </div>
                   <CardTitle className="text-xl font-signal">{event.name}</CardTitle>
-                  <p className="mt-2 text-base font-semibold text-purple-600">{event.topics?.join(', ') || event.organization}</p>
+                  <p className="mt-2 text-base font-semibold text-purple-600 dark:text-lilac">{event.topics?.join(', ') || event.organization}</p>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3 text-sm text-gray-600">
+                  <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
                       <span>{format(new Date(event.event_date), 'MMMM d, yyyy')}</span>
@@ -180,7 +186,7 @@ export function UpcomingEvents() {
                     )}
                   </div>
                   {event.description && (
-                    <p className="mt-4 text-sm text-gray-600">{event.description}</p>
+                    <p className="mt-4 text-sm text-gray-600 dark:text-gray-300">{event.description}</p>
                   )}
                   {event.event_url && (
                     <div className="mt-6">

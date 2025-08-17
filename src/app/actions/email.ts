@@ -1,5 +1,6 @@
 'use server';
 
+import React from 'react';
 import { 
   sendContactConfirmation, 
   sendContactNotification,
@@ -61,7 +62,14 @@ export async function submitContactForm(formData: FormData) {
     }
 
     // Send emails (don't let email failures prevent form submission)
-    const contactData = { name, email, message, type, company, phone };
+    const contactData = { 
+      name, 
+      email, 
+      message, 
+      type: type as 'general' | 'speaking' | 'consulting' | 'media', 
+      company, 
+      phone 
+    };
     
     await safeEmailSend(() => sendContactConfirmation(contactData));
     await safeEmailSend(() => sendContactNotification(contactData));

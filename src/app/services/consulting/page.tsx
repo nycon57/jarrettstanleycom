@@ -147,7 +147,7 @@ export default function ConsultingPage() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="relative py-32 overflow-hidden bg-gradient-to-br from-[#9D7AD6]/10 via-background to-[#4F518C]/10">
+      <section className="relative py-32 pt-40 overflow-hidden bg-gradient-to-br from-[#9D7AD6]/10 via-background to-[#4F518C]/10">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

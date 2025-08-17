@@ -34,11 +34,6 @@ const staticRoutes = [
     priority: 0.7,
   },
   {
-    url: '/truetone-ai',
-    changeFrequency: 'weekly' as const,
-    priority: 0.9,
-  },
-  {
     url: '/insights',
     changeFrequency: 'weekly' as const,
     priority: 0.8,

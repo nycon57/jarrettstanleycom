@@ -41,7 +41,7 @@ export function ReadingProgress({ contentTitle, children }: ReadingProgressProps
       for (const milestone of milestones) {
         if (clampedProgress >= milestone && !trackedMilestones.has(milestone)) {
           trackReadingProgress(contentTitle, milestone);
-          setTrackedMilestones(prev => new Set([...prev, milestone]));
+          setTrackedMilestones(prev => new Set([...Array.from(prev), milestone]));
         }
       }
     }, 100);

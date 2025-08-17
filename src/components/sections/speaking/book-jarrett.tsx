@@ -19,7 +19,7 @@ export function BookJarrett() {
   }
 
   return (
-    <section id="book-jarrett" className="py-24 sm:py-32 bg-white">
+    <section id="book-jarrett" className="py-24 sm:py-32 bg-white dark:bg-gray-800">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -28,10 +28,10 @@ export function BookJarrett() {
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Book Jarrett for Your Event
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
             Ready to inspire your audience with cutting-edge insights on AI and mortgage marketing?
           </p>
         </motion.div>
@@ -46,22 +46,22 @@ export function BookJarrett() {
           <div className="grid lg:grid-cols-2 gap-8">
             {/* Contact Options */}
             <div>
-              <h3 className="text-xl font-signal font-semibold text-gray-900 mb-6">
+              <h3 className="text-xl font-signal font-semibold text-gray-900 dark:text-white mb-6">
                 Get in Touch
               </h3>
               <div className="space-y-4">
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <Calendar className="h-6 w-6 text-purple-600 flex-shrink-0 mt-1" />
+                      <Calendar className="h-6 w-6 text-purple-600 dark:text-lilac flex-shrink-0 mt-1" />
                       <div>
-                        <h4 className="font-semibold text-gray-900">Schedule a Call</h4>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Schedule a Call</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                           Book a 30-minute discovery call to discuss your event needs
                         </p>
                         <Button 
                           variant="link" 
-                          className="mt-2 p-0 h-auto text-purple-600"
+                          className="mt-2 p-0 h-auto text-purple-600 dark:text-lilac"
                           onClick={() => handleCalendlyOpen('schedule_call_card')}
                         >
                           Open Calendar →
@@ -74,10 +74,10 @@ export function BookJarrett() {
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <Mail className="h-6 w-6 text-purple-600 flex-shrink-0 mt-1" />
+                      <Mail className="h-6 w-6 text-purple-600 dark:text-lilac flex-shrink-0 mt-1" />
                       <div>
-                        <h4 className="font-semibold text-gray-900">Email Directly</h4>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Email Directly</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                           Send speaking inquiries and event details
                         </p>
                         <TrackedLink
@@ -86,7 +86,7 @@ export function BookJarrett() {
                             linkText: 'speaking@jarrettstanley.com',
                             linkType: 'external'
                           }}
-                          className="text-purple-600 hover:text-purple-700 text-sm mt-2 inline-block"
+                          className="text-purple-600 hover:text-purple-700 dark:text-lilac dark:hover:text-lavender text-sm mt-2 inline-block"
                           external
                         >
                           speaking@jarrettstanley.com
@@ -99,10 +99,10 @@ export function BookJarrett() {
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <Phone className="h-6 w-6 text-purple-600 flex-shrink-0 mt-1" />
+                      <Phone className="h-6 w-6 text-purple-600 dark:text-lilac flex-shrink-0 mt-1" />
                       <div>
-                        <h4 className="font-semibold text-gray-900">Call Our Team</h4>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Call Our Team</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
                           Speak with our booking coordinator
                         </p>
                         <TrackedLink
@@ -111,7 +111,7 @@ export function BookJarrett() {
                             linkText: '+1 (555) 123-4567',
                             linkType: 'external'
                           }}
-                          className="text-purple-600 hover:text-purple-700 text-sm mt-2 inline-block"
+                          className="text-purple-600 hover:text-purple-700 dark:text-lilac dark:hover:text-lavender text-sm mt-2 inline-block"
                           external
                         >
                           +1 (555) 123-4567
@@ -125,57 +125,57 @@ export function BookJarrett() {
 
             {/* Booking Information */}
             <div>
-              <h3 className="text-xl font-signal font-semibold text-gray-900 mb-6">
+              <h3 className="text-xl font-signal font-semibold text-gray-900 dark:text-white mb-6">
                 Booking Information
               </h3>
               <Card>
                 <CardContent className="p-6 space-y-6">
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Speaking Formats</h4>
-                    <ul className="space-y-2 text-sm text-gray-600">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3">Speaking Formats</h4>
+                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                       <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">•</span>
+                        <span className="text-purple-600 dark:text-lilac mr-2">•</span>
                         <span>Keynote Presentations (45-60 minutes)</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">•</span>
+                        <span className="text-purple-600 dark:text-lilac mr-2">•</span>
                         <span>Workshop Sessions (Half-day or full-day)</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">•</span>
+                        <span className="text-purple-600 dark:text-lilac mr-2">•</span>
                         <span>Panel Discussions & Fireside Chats</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">•</span>
+                        <span className="text-purple-600 dark:text-lilac mr-2">•</span>
                         <span>Virtual Presentations & Webinars</span>
                       </li>
                     </ul>
                   </div>
 
                   <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">What's Included</h4>
-                    <ul className="space-y-2 text-sm text-gray-600">
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3">What's Included</h4>
+                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-300">
                       <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">✓</span>
+                        <span className="text-purple-600 dark:text-lilac mr-2">✓</span>
                         <span>Pre-event consultation call</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">✓</span>
+                        <span className="text-purple-600 dark:text-lilac mr-2">✓</span>
                         <span>Customized presentation for your audience</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">✓</span>
+                        <span className="text-purple-600 dark:text-lilac mr-2">✓</span>
                         <span>Q&A session with attendees</span>
                       </li>
                       <li className="flex items-start">
-                        <span className="text-purple-600 mr-2">✓</span>
+                        <span className="text-purple-600 dark:text-lilac mr-2">✓</span>
                         <span>Post-event resources and takeaways</span>
                       </li>
                     </ul>
                   </div>
 
-                  <div className="pt-4 border-t">
-                    <p className="text-sm text-gray-600">
+                  <div className="pt-4 border-t dark:border-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
                       <strong>Note:</strong> Speaking fees vary based on event type, location, 
                       and customization requirements. Virtual events may have different pricing.
                     </p>

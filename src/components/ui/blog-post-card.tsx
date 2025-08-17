@@ -35,9 +35,23 @@ export function BlogPostCard({ post, featured = false, className }: BlogPostCard
             />
           ) : (
             <div className="bg-gradient-to-br from-purple-500 to-blue-600 w-full h-full flex items-center justify-center">
-              <span className="text-white text-2xl font-signal">
-                {post.title.charAt(0)}
-              </span>
+              <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                <img
+                  src="/assets/images/JS-Logo-white.png"
+                  alt="Jarrett Stanley Logo"
+                  className="w-10 h-10 object-contain"
+                  onError={(e) => {
+                    console.error('Logo failed to load:', e);
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const fallback = document.createElement('span');
+                    fallback.textContent = 'JS';
+                    fallback.className = 'text-white text-lg font-bold';
+                    target.parentNode?.appendChild(fallback);
+                  }}
+                  onLoad={() => console.log('Logo loaded successfully')}
+                />
+              </div>
             </div>
           )}
           {post.is_featured && (

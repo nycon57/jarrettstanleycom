@@ -54,13 +54,13 @@ export function SpeakingTestimonials() {
 
   if (loading) {
     return (
-      <section className="py-24 sm:py-32 bg-gray-50">
+      <section className="py-24 sm:py-32 bg-gray-50 dark:bg-gray-900">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               What Audiences Are Saying
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
               Loading testimonials...
             </p>
           </div>
@@ -70,7 +70,7 @@ export function SpeakingTestimonials() {
   }
 
   return (
-    <section className="py-24 sm:py-32 bg-gray-50">
+    <section className="py-24 sm:py-32 bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -79,10 +79,10 @@ export function SpeakingTestimonials() {
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             What Audiences Are Saying
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
             Real feedback from conference organizers and attendees
           </p>
         </motion.div>
@@ -96,10 +96,10 @@ export function SpeakingTestimonials() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className="h-full bg-white">
+              <Card className="h-full bg-white dark:bg-gray-800">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-4">
-                    <Quote className="h-8 w-8 text-purple-600 flex-shrink-0" />
+                    <Quote className="h-8 w-8 text-purple-600 dark:text-lilac flex-shrink-0" />
                     <div>
                       <div className="flex items-center gap-1 mb-3">
                         {[...Array(5)].map((_, i) => (
@@ -114,15 +114,15 @@ export function SpeakingTestimonials() {
                           </svg>
                         ))}
                       </div>
-                      <p className="text-gray-700 mb-4">{testimonial.quote}</p>
+                      <p className="text-gray-700 dark:text-gray-300 mb-4">{testimonial.quote}</p>
                       {testimonial.event_name && (
-                        <p className="text-sm text-purple-600 font-medium mb-2">
+                        <p className="text-sm text-purple-600 dark:text-lilac font-medium mb-2">
                           {testimonial.event_name}
                         </p>
                       )}
                       <div>
-                        <p className="font-semibold text-gray-900">{testimonial.author_name}</p>
-                        <p className="text-sm text-gray-600">
+                        <p className="font-semibold text-gray-900 dark:text-white">{testimonial.author_name}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-300">
                           {testimonial.author_role ? `${testimonial.author_role}${testimonial.author_company ? ', ' + testimonial.author_company : ''}` : testimonial.author_company || ''}
                         </p>
                       </div>

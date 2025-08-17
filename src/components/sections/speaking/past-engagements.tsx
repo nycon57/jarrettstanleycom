@@ -53,7 +53,7 @@ export function PastEngagements() {
   const [selectedImage, setSelectedImage] = useState<typeof galleryImages[0] | null>(null)
 
   return (
-    <section className="py-24 sm:py-32 bg-white">
+    <section className="py-24 sm:py-32 bg-white dark:bg-gray-800">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,10 +62,10 @@ export function PastEngagements() {
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Past Speaking Engagements
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
             Trusted by leading conferences and organizations in the mortgage industry
           </p>
         </motion.div>
@@ -110,7 +110,7 @@ export function PastEngagements() {
           viewport={{ once: true }}
           className="mt-20"
         >
-          <h3 className="text-xl font-signal font-semibold text-center text-gray-900 mb-8">
+          <h3 className="text-xl font-signal font-semibold text-center text-gray-900 dark:text-white mb-8">
             Event Highlights
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
@@ -121,7 +121,7 @@ export function PastEngagements() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="relative aspect-video cursor-pointer overflow-hidden rounded-lg bg-gray-100 hover:opacity-90 transition-opacity"
+                className="relative aspect-video cursor-pointer overflow-hidden rounded-lg bg-gray-100 dark:bg-gray-700 hover:opacity-90 transition-opacity"
                 onClick={() => setSelectedImage(image)}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent z-10" />
@@ -157,21 +157,21 @@ export function PastEngagements() {
           viewport={{ once: true }}
           className="mt-16 mx-auto max-w-3xl"
         >
-          <h3 className="text-xl font-signal font-semibold text-center text-gray-900 mb-8">
+          <h3 className="text-xl font-signal font-semibold text-center text-gray-900 dark:text-white mb-8">
             Notable Recent Engagements
           </h3>
           <div className="space-y-4">
-            <div className="border-l-4 border-purple-600 pl-4">
-              <h4 className="font-semibold text-gray-900">MBA Annual Conference 2023</h4>
-              <p className="text-gray-600">Keynote: "The AI Revolution in Mortgage Marketing"</p>
+            <div className="border-l-4 border-purple-600 dark:border-lilac pl-4">
+              <h4 className="font-semibold text-gray-900 dark:text-white">MBA Annual Conference 2023</h4>
+              <p className="text-gray-600 dark:text-gray-300">Keynote: "The AI Revolution in Mortgage Marketing"</p>
             </div>
-            <div className="border-l-4 border-purple-600 pl-4">
-              <h4 className="font-semibold text-gray-900">Digital Mortgage Conference 2023</h4>
-              <p className="text-gray-600">Panel Moderator: "Building Compliant Digital Experiences"</p>
+            <div className="border-l-4 border-purple-600 dark:border-lilac pl-4">
+              <h4 className="font-semibold text-gray-900 dark:text-white">Digital Mortgage Conference 2023</h4>
+              <p className="text-gray-600 dark:text-gray-300">Panel Moderator: "Building Compliant Digital Experiences"</p>
             </div>
-            <div className="border-l-4 border-purple-600 pl-4">
-              <h4 className="font-semibold text-gray-900">HousingWire Annual 2023</h4>
-              <p className="text-gray-600">Workshop: "Implementing AI Tools in Your Marketing Stack"</p>
+            <div className="border-l-4 border-purple-600 dark:border-lilac pl-4">
+              <h4 className="font-semibold text-gray-900 dark:text-white">HousingWire Annual 2023</h4>
+              <p className="text-gray-600 dark:text-gray-300">Workshop: "Implementing AI Tools in Your Marketing Stack"</p>
             </div>
           </div>
         </motion.div>

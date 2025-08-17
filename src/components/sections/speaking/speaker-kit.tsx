@@ -45,7 +45,7 @@ export function SpeakerKit() {
   }
 
   return (
-    <section className="py-24 sm:py-32 bg-gradient-to-br from-purple-50 to-indigo-50">
+    <section className="py-24 sm:py-32 bg-gradient-to-br from-purple-50 to-indigo-50 dark:from-gray-900 dark:to-gray-800">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -54,10 +54,10 @@ export function SpeakerKit() {
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Download Speaker Kit
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
             Everything you need to promote Jarrett at your event
           </p>
         </motion.div>
@@ -70,11 +70,11 @@ export function SpeakerKit() {
           className="mx-auto mt-16 max-w-5xl"
         >
           <Card className="overflow-hidden">
-            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 p-8 text-white">
+            <div className="bg-gradient-to-r from-purple-600 to-indigo-600 dark:from-lilac dark:to-orchid p-8 text-white">
               <h3 className="text-2xl font-signal font-bold mb-2">
                 Complete Speaker Kit
               </h3>
-              <p className="text-purple-100">
+              <p className="text-purple-100 dark:text-white/80">
                 Professional materials for event promotion and introduction
               </p>
             </div>
@@ -85,27 +85,27 @@ export function SpeakerKit() {
                   return (
                     <div key={item.title} className="flex gap-4">
                       <div className="flex-shrink-0">
-                        <div className="rounded-lg bg-purple-100 p-3">
-                          <Icon className="h-6 w-6 text-purple-600" />
+                        <div className="rounded-lg bg-purple-100 dark:bg-lilac/20 p-3">
+                          <Icon className="h-6 w-6 text-purple-600 dark:text-lilac" />
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900">{item.title}</h4>
-                        <p className="text-sm text-gray-600 mt-1">{item.description}</p>
-                        <p className="text-xs text-gray-500 mt-1">{item.size}</p>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">{item.title}</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{item.description}</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{item.size}</p>
                       </div>
                     </div>
                   )
                 })}
               </div>
 
-              <div className="border-t pt-6">
+              <div className="border-t dark:border-gray-600 pt-6">
                 <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
                   <div className="text-center sm:text-left">
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
                       Total download size: <span className="font-semibold">13.1 MB</span>
                     </p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                       ZIP file containing all materials
                     </p>
                   </div>
@@ -120,8 +120,8 @@ export function SpeakerKit() {
                 </div>
               </div>
 
-              <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-                <p className="text-sm text-gray-600">
+              <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
+                <p className="text-sm text-gray-600 dark:text-gray-300">
                   <strong>Usage Guidelines:</strong> These materials are provided for event promotion purposes only. 
                   Please do not modify photos or bio content without permission. For custom requirements or 
                   additional materials, please contact us.
@@ -141,24 +141,24 @@ export function SpeakerKit() {
         >
           <Card>
             <CardContent className="p-6">
-              <h3 className="text-lg font-signal font-semibold text-gray-900 mb-4">
+              <h3 className="text-lg font-signal font-semibold text-gray-900 dark:text-white mb-4">
                 Technical Requirements
               </h3>
-              <div className="space-y-3 text-sm text-gray-600">
+              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
                 <div className="flex items-start">
-                  <span className="text-purple-600 mr-2">•</span>
+                  <span className="text-purple-600 dark:text-lilac mr-2">•</span>
                   <span>Wireless lapel microphone preferred (handheld as backup)</span>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-purple-600 mr-2">•</span>
+                  <span className="text-purple-600 dark:text-lilac mr-2">•</span>
                   <span>Confidence monitor for presentations</span>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-purple-600 mr-2">•</span>
+                  <span className="text-purple-600 dark:text-lilac mr-2">•</span>
                   <span>HDMI connection for laptop (adapter provided if needed)</span>
                 </div>
                 <div className="flex items-start">
-                  <span className="text-purple-600 mr-2">•</span>
+                  <span className="text-purple-600 dark:text-lilac mr-2">•</span>
                   <span>Stage lighting suitable for video recording</span>
                 </div>
               </div>

@@ -33,51 +33,73 @@ export default function BlogIndex() {
   const [sortOrder, setSortOrder] = useState<'desc' | 'asc'>('desc')
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [showFilters, setShowFilters] = useState(false)
+  const [isInitialized, setIsInitialized] = useState(false)
 
-  // Initialize state from URL parameters
+  // Initialize state from URL parameters only once
   useEffect(() => {
-    const page = Number(searchParams.get('page')) || 1
-    const search = searchParams.get('search') || ''
-    const category = searchParams.get('category')
-    const sort = searchParams.get('sort') as 'desc' | 'asc' || 'desc'
-    const view = searchParams.get('view') as 'grid' | 'list' || 'grid'
+    console.log('URL Effect triggered:', { isInitialized, searchParams: searchParams.toString() })
+    if (!isInitialized) {
+      const page = Number(searchParams.get('page')) || 1
+      const search = searchParams.get('search') || ''
+      const sort = searchParams.get('sort') as 'desc' | 'asc' || 'desc'
+      const view = searchParams.get('view') as 'grid' | 'list' || 'grid'
 
-    setCurrentPage(page)
-    setSearchQuery(search)
-    setSortOrder(sort)
-    setViewMode(view)
-
-    if (category) {
-      // Find category by slug and set it as selected
-      getCategories().then(cats => {
-        const foundCategory = cats.find(cat => cat.slug === category)
-        if (foundCategory) {
-          setSelectedCategories([foundCategory.id])
-        }
-      })
+      console.log('Setting initial state:', { page, search, sort, view })
+      
+      // Set all state first
+      setCurrentPage(page)
+      setSearchQuery(search)
+      setSortOrder(sort)
+      setViewMode(view)
+      setIsInitialized(true)
     }
-  }, [searchParams])
+  }, [isInitialized])
 
   // Fetch categories on mount
   useEffect(() => {
+    console.log('Categories Effect triggered')
     const fetchCategories = async () => {
       const cats = await getCategories()
+      console.log('Categories loaded:', cats.length)
       setCategories(cats)
     }
     fetchCategories()
   }, [])
 
+  // Handle category from URL after categories are loaded and component is initialized
+  useEffect(() => {
+    if (categories.length > 0 && isInitialized) {
+      const category = searchParams.get('category')
+      if (category) {
+        console.log('Looking for category:', category)
+        const foundCategory = categories.find(cat => cat.slug === category)
+        if (foundCategory) {
+          console.log('Found category, setting:', foundCategory.id)
+          setSelectedCategories([foundCategory.id])
+        }
+      }
+    }
+  }, [categories, isInitialized, searchParams])
+
   // Fetch posts when parameters change
   useEffect(() => {
+    if (!isInitialized) {
+      console.log('Posts Effect blocked - not initialized yet')
+      return
+    }
+    
+    console.log('Posts Effect triggered:', { currentPage, selectedCategories, searchQuery })
     const fetchPosts = async () => {
       setLoading(true)
       try {
+        console.log('Fetching posts with params:', { currentPage, selectedCategories, searchQuery })
         const result = await getBlogPosts({
           page: currentPage,
           limit: POSTS_PER_PAGE,
           categoryIds: selectedCategories,
           search: searchQuery
         })
+        console.log('Posts fetched:', result.posts.length)
         setPosts(result.posts)
         setTotalPages(result.totalPages)
         setTotalCount(result.totalCount)
@@ -92,10 +114,16 @@ export default function BlogIndex() {
     }
 
     fetchPosts()
-  }, [currentPage, selectedCategories, searchQuery])
+  }, [isInitialized, currentPage, selectedCategories, searchQuery])
 
   // Update URL when parameters change
   const updateURL = (params: Record<string, string | number | undefined>) => {
+    console.log('updateURL called:', { params, isInitialized })
+    if (!isInitialized) {
+      console.log('updateURL blocked - not initialized')
+      return // Prevent URL updates during initialization
+    }
+    
     const url = new URLSearchParams(searchParams.toString())
     
     Object.entries(params).forEach(([key, value]) => {
@@ -106,36 +134,57 @@ export default function BlogIndex() {
       }
     })
 
-    router.push(`/insights/blog?${url.toString()}`, { scroll: false })
+    const newUrl = `/insights/blog${url.toString() ? `?${url.toString()}` : ''}`
+    const currentUrl = `/insights/blog${searchParams.toString() ? `?${searchParams.toString()}` : ''}`
+    
+    // Only push if URL actually changed
+    if (newUrl !== currentUrl) {
+      console.log('Pushing new URL:', newUrl)
+      router.push(newUrl, { scroll: false })
+    } else {
+      console.log('URL unchanged, skipping push:', newUrl)
+    }
   }
 
   // Handlers
   const handleSearch = (query: string) => {
     setSearchQuery(query)
     setCurrentPage(1)
-    updateURL({ search: query, page: undefined })
+    if (isInitialized) {
+      updateURL({ search: query, page: undefined })
+    }
   }
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page)
-    updateURL({ page })
+    if (isInitialized) {
+      updateURL({ page })
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const handleCategoryChange = (categoryIds: string[]) => {
     setSelectedCategories(categoryIds)
     setCurrentPage(1)
-    updateURL({ page: undefined })
+    if (isInitialized) {
+      updateURL({ page: undefined })
+    }
   }
 
   const handleSortChange = (sort: 'desc' | 'asc') => {
+    console.log('handleSortChange called:', sort, 'isInitialized:', isInitialized)
     setSortOrder(sort)
-    updateURL({ sort })
+    if (isInitialized) {
+      updateURL({ sort })
+    }
   }
 
   const handleViewModeChange = (view: 'grid' | 'list') => {
+    console.log('handleViewModeChange called:', view, 'isInitialized:', isInitialized)
     setViewMode(view)
-    updateURL({ view })
+    if (isInitialized) {
+      updateURL({ view })
+    }
   }
 
   const clearFilters = () => {
@@ -150,7 +199,7 @@ export default function BlogIndex() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="bg-gradient-to-br from-purple-50 to-blue-50 py-16">
+      <section className="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 py-16 pt-24">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="font-signal font-bold text-4xl md:text-5xl mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">

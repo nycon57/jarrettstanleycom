@@ -172,7 +172,7 @@ const Navbar2 = ({
               </NavigationMenuWithoutViewport>
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="flex gap-2 items-center">
             <Button asChild variant="outline" size="sm">
               <a href={auth.login.url}>{auth.login.title}</a>
             </Button>

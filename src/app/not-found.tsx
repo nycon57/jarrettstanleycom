@@ -66,10 +66,10 @@ export default function NotFound() {
             </Link>
             <span>•</span>
             <Link 
-              href="/truetone-ai" 
+              href="/services" 
               className="hover:text-purple-600 transition-colors"
             >
-              TrueTone AI
+              Services
             </Link>
             <span>•</span>
             <Link 

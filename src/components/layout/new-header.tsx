@@ -44,31 +44,9 @@ export default function NewHeader() {
         },
       ],
     },
-    {
-      title: "Resources",
-      url: "/resources",
-      items: [
-        {
-          title: "Blog & Insights",
-          description: "Latest thoughts on AI in mortgage marketing",
-          icon: <BookOpen className="size-5 shrink-0" />,
-          url: "/insights/blog",
-        },
-        {
-          title: "Downloadable Resources",
-          description: "Free guides, templates, and tools",
-          icon: <FileText className="size-5 shrink-0" />,
-          url: "/insights/resources",
-        },
-      ],
-    },
     { 
       title: "About", 
       url: "/about" 
-    },
-    { 
-      title: "TrueTone AI", 
-      url: "/truetone-ai" 
     },
   ]
 

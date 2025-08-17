@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is JarrettStanley.com - a personal brand website for Jarrett Stanley, Chief Marketing Officer at Nationwide Mortgage Bankers and creator of TrueTone AI. The site establishes Jarrett as a thought leader in AI-powered mortgage marketing, providing pathways for speaking engagements, consulting, and showcasing TrueTone AI.
+This is JarrettStanley.com - a personal brand website for Jarrett Stanley, Chief Marketing Officer at Nationwide Mortgage Bankers. The site establishes Jarrett as a thought leader in AI-powered mortgage marketing, providing pathways for speaking engagements and consulting services.
 
 ## Development Commands
 
@@ -88,15 +88,15 @@ The project uses Supabase with a `waitlist` table for collecting email signups. 
 
 ### Key Features & Pages
 
-1. **Homepage**: Hero with "Where Mortgage Marketing Meets Artificial Intelligence", credibility bar (CMO at Nationwide, Creator of TrueTone AI, Featured Speaker), services overview
+1. **Homepage**: Hero with "Where Mortgage Marketing Meets Artificial Intelligence", credibility bar (CMO at Nationwide, AI Innovation Leader, Featured Speaker), services overview
 2. **Speaking Page**: Topics, past engagements, booking system
 3. **Consulting Page**: Services offered, case studies, inquiry form
 4. **About Page**: Professional journey, achievements, industry expertise
 5. **Resources/Blog**: Thought leadership content on AI in mortgage marketing
-6. **TrueTone AI Showcase**: Dedicated section highlighting the platform
+6. **AI Innovation Showcase**: Dedicated section highlighting proven AI marketing results
 
 ### Design System
-- Leverages TrueTone AI's purple gradient aesthetic
+- Leverages professional purple gradient aesthetic
 - Signal font for headings, Hind for body text  
 - Professional photography throughout
 - Animated gradient backgrounds for key sections
@@ -106,7 +106,7 @@ The site will feature content pillars around:
 - AI Innovation in Mortgage
 - Marketing Excellence
 - Industry Leadership  
-- Personal Insights from building TrueTone AI
+- Personal Insights from AI marketing innovation
 
 ### Integration Points
 - Calendly for speaking engagement booking

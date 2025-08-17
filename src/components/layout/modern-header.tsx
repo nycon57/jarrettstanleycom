@@ -72,17 +72,7 @@ export default function ModernHeader() {
           icon: <BookOpen className="size-5 shrink-0" />,
           url: "/insights/blog",
         },
-        {
-          title: "Resources",
-          description: "Free guides, templates, and tools",
-          icon: <FileText className="size-5 shrink-0" />,
-          url: "/insights/resources",
-        },
       ],
-    },
-    { 
-      title: "TrueTone AI", 
-      url: "/truetone-ai" 
     },
   ];
 

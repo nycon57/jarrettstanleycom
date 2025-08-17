@@ -6,13 +6,8 @@
 // Google Analytics 4 types
 declare global {
   interface Window {
-    gtag: (
-      command: 'config' | 'event' | 'js' | 'set',
-      targetId: string | Date | any,
-      config?: any
-    ) => void;
     dataLayer: any[];
-    clarity: (command: string, ...args: any[]) => void;
+    clarity: any;
   }
 }
 

@@ -345,5 +345,5 @@ export function generateSlug(title: string): string {
 
 // Generate page-specific keywords
 export function generatePageKeywords(baseKeywords: string[], pageSpecific: string[] = []): string[] {
-  return [...new Set([...siteConfig.keywords, ...baseKeywords, ...pageSpecific])]
+  return [...Array.from(new Set([...siteConfig.keywords, ...baseKeywords, ...pageSpecific]))]
 }

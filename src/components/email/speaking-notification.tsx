@@ -154,7 +154,6 @@ export const SpeakingNotificationEmail: React.FC<Readonly<SpeakingNotificationEm
             <div>
               <strong style={{ color: '#6b7280', marginRight: '8px' }}>Budget:</strong>
               <span style={{ 
-                color: '#111827',
                 backgroundColor: priorityColor,
                 color: 'white',
                 padding: '2px 8px',

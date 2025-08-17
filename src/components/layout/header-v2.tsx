@@ -72,22 +72,12 @@ export default function HeaderV2() {
           icon: <BookOpen className="size-5 shrink-0 text-purple-600 dark:text-purple-400" />,
           url: "/insights/blog",
         },
-        {
-          title: "Resources",
-          description: "Free guides, templates, and tools",
-          icon: <FileText className="size-5 shrink-0 text-purple-600 dark:text-purple-400" />,
-          url: "/insights/resources",
-        },
       ],
-    },
-    { 
-      title: "TrueTone AI", 
-      url: "/truetone-ai" 
     },
   ];
 
   // Check if we're on a page with a dark hero section
-  const isDarkHeroPage = pathname === "/" || pathname === "/truetone-ai";
+  const isDarkHeroPage = pathname === "/";
   const shouldUseLightText = isDarkHeroPage && !isScrolled;
 
   return (
@@ -109,13 +99,13 @@ export default function HeaderV2() {
           logo={{
             url: "/",
             component: (
-              <span className={cn(
-                "font-signal text-2xl font-bold transition-colors",
-                "bg-gradient-to-r from-purple-600 to-purple-400 bg-clip-text text-transparent",
-                shouldUseLightText && "from-white to-purple-200"
-              )}>
-                Jarrett Stanley
-              </span>
+              <div className="flex items-center">
+                <img 
+                  src={shouldUseLightText || theme === "dark" ? "/assets/images/JS-Logo-white.png" : "/assets/images/JS-Logo.png"}
+                  alt="Jarrett Stanley Logo"
+                  className="h-8 w-auto transition-opacity duration-300"
+                />
+              </div>
             )
           }}
           menu={menuItems}
@@ -127,6 +117,7 @@ export default function HeaderV2() {
                   size="sm" 
                   asChild
                   className={cn(
+                    "h-9", // Match the dark mode toggle height
                     shouldUseLightText && "hover:bg-white/10 border-white/20"
                   )}
                 >
@@ -148,7 +139,7 @@ export default function HeaderV2() {
                     setTheme(theme === "dark" ? "light" : "dark");
                   }}
                   className={cn(
-                    "ml-2",
+                    "ml-2 h-9 w-9", // Ensure consistent sizing
                     shouldUseLightText && "hover:bg-white/10"
                   )}
                 >

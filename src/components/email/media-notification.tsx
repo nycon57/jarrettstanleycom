@@ -238,7 +238,7 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
         </h3>
         
         <div style={{ display: 'grid', gap: '10px', marginBottom: '20px' }}>
-          <a href={`mailto:${email}?subject=Re: Media Inquiry - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for reaching out to me regarding ${topic}. I'd be happy to contribute to your story for ${outlet}.%0D%0A%0D%0AI'm available for ${interview_type === 'written' ? 'written responses' : interview_type === 'phone' ? 'a phone interview' : interview_type === 'video' ? 'a video interview' : 'an in-person interview'}${deadline ? ` and understand your ${new Date(deadline).toLocaleDateString()} deadline` : ''}.%0D%0A%0D%0AAs CMO at Nationwide Mortgage Bankers and creator of TrueTone AI, I can provide insights on:%0D%0A- AI implementation in financial services marketing%0D%0A- Current trends in mortgage industry technology%0D%0A- The intersection of artificial intelligence and authentic marketing%0D%0A%0D%0AWould ${interview_type === 'written' ? 'receiving your questions via email work best' : 'scheduling a brief call to discuss the interview details work for you'}?%0D%0A%0D%0AI can also provide additional background information, high-resolution photos, or connect you with other industry experts if needed.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley%0D%0ACMO, Nationwide Mortgage Bankers%0D%0ACreator, TrueTone AI%0D%0Ajarrett@jarrettstanley.com`} style={{
+          <a href={`mailto:${email}?subject=Re: Media Inquiry - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for reaching out to me regarding ${topic}. I'd be happy to contribute to your story for ${outlet}.%0D%0A%0D%0AI'm available for ${interview_type === 'written' ? 'written responses' : interview_type === 'phone' ? 'a phone interview' : interview_type === 'video' ? 'a video interview' : 'an in-person interview'}${deadline ? ` and understand your ${new Date(deadline).toLocaleDateString()} deadline` : ''}.%0D%0A%0D%0AAs CMO at Nationwide Mortgage Bankers and AI marketing innovator, I can provide insights on:%0D%0A- AI implementation in financial services marketing%0D%0A- Current trends in mortgage industry technology%0D%0A- The intersection of artificial intelligence and authentic marketing%0D%0A%0D%0AWould ${interview_type === 'written' ? 'receiving your questions via email work best' : 'scheduling a brief call to discuss the interview details work for you'}?%0D%0A%0D%0AI can also provide additional background information, high-resolution photos, or connect you with other industry experts if needed.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley%0D%0ACMO, Nationwide Mortgage Bankers%0D%0AAI Marketing Pioneer%0D%0Ajarrett@jarrettstanley.com`} style={{
             backgroundColor: '#1976d2',
             color: 'white',
             padding: '12px 20px',
@@ -252,7 +252,7 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
           </a>
           
           {interview_type === 'written' && (
-            <a href={`mailto:${email}?subject=Re: Written Interview - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for the interview opportunity. I'm ready to provide written responses for your ${outlet} story on ${topic}.%0D%0A%0D%0APlease send me your questions and I'll provide detailed, quotable responses${deadline ? ` by your ${new Date(deadline).toLocaleDateString()} deadline` : ''}.%0D%0A%0D%0AFor context, here's my background relevant to this topic:%0D%0A- Chief Marketing Officer at Nationwide Mortgage Bankers%0D%0A- Creator of TrueTone AI platform%0D%0A- Expert in AI-powered marketing for financial services%0D%0A%0D%0AIf you need any additional background information or supporting materials, please let me know.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley`} style={{
+            <a href={`mailto:${email}?subject=Re: Written Interview - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for the interview opportunity. I'm ready to provide written responses for your ${outlet} story on ${topic}.%0D%0A%0D%0APlease send me your questions and I'll provide detailed, quotable responses${deadline ? ` by your ${new Date(deadline).toLocaleDateString()} deadline` : ''}.%0D%0A%0D%0AFor context, here's my background relevant to this topic:%0D%0A- Chief Marketing Officer at Nationwide Mortgage Bankers%0D%0A- Pioneer in AI marketing innovation%0D%0A- Expert in AI-powered marketing for financial services%0D%0A%0D%0AIf you need any additional background information or supporting materials, please let me know.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley`} style={{
               backgroundColor: '#16a34a',
               color: 'white',
               padding: '12px 20px',
@@ -348,7 +348,7 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
         <ul style={{ margin: '0', paddingLeft: '20px', color: '#0369a1', fontSize: '13px' }}>
           <li>High-resolution professional photos</li>
           <li>Detailed biography and credentials</li>
-          <li>TrueTone AI platform screenshots and demos</li>
+          <li>AI marketing platform case studies and examples</li>
           <li>Recent speaking topics and presentations</li>
           <li>Company background and statistics</li>
         </ul>

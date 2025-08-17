@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils";
 export const navigationLinks = [
   { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "TrueTone AI", href: "/truetone" },
   { name: "Insights", href: "/insights" },
   { name: "Speaking", href: "/speaking" },
   { name: "Contact", href: "/contact" },

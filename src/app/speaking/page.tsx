@@ -6,7 +6,6 @@ import { SpeakingTestimonials } from '@/components/sections/speaking/speaking-te
 import { UpcomingEvents } from '@/components/sections/speaking/upcoming-events'
 import { SpeakerKit } from '@/components/sections/speaking/speaker-kit'
 import { BookJarrett } from '@/components/sections/speaking/book-jarrett'
-import { PageBreadcrumb, breadcrumbConfigs } from '@/components/ui/page-breadcrumb'
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
 
 export const metadata: Metadata = generateSEOMetadata({
@@ -20,9 +19,6 @@ export const metadata: Metadata = generateSEOMetadata({
 export default function SpeakingPage() {
   return (
     <main className="flex min-h-screen flex-col">
-      <div className="max-w-7xl mx-auto px-4 pt-6">
-        <PageBreadcrumb customBreadcrumbs={breadcrumbConfigs.speaking} />
-      </div>
       <SpeakingHero />
       <SignatureTopics />
       <PastEngagements />

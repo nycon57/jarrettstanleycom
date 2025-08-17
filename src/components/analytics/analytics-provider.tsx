@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
 import { 
@@ -16,7 +16,7 @@ interface AnalyticsProviderProps {
   children: React.ReactNode;
 }
 
-export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
+function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -87,5 +87,13 @@ export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
 
       {children}
     </>
+  );
+}
+
+export function AnalyticsProvider({ children }: AnalyticsProviderProps) {
+  return (
+    <Suspense fallback={<>{children}</>}>
+      <AnalyticsProviderContent>{children}</AnalyticsProviderContent>
+    </Suspense>
   );
 }

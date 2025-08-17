@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { Metadata } from 'next'
 import { ResourceCard } from '@/components/ui/resource-card'
@@ -65,7 +65,7 @@ const resourceTypeLabels = {
   podcast: 'Podcasts',
 }
 
-export default function ResourcesPage() {
+function ResourcesPageContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
 
@@ -593,5 +593,13 @@ export default function ResourcesPage() {
         </DialogContent>
       </Dialog>
     </>
+  )
+}
+
+export default function ResourcesPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ResourcesPageContent />
+    </Suspense>
   )
 }

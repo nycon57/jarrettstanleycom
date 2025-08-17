@@ -317,7 +317,7 @@ export async function trackResourceDownload(
   lastName?: string,
   company?: string
 ): Promise<void> {
-  const headersList = headers()
+  const headersList = await headers()
   const ip = headersList.get('x-forwarded-for') || headersList.get('x-real-ip') || 'unknown'
   const userAgent = headersList.get('user-agent') || 'unknown'
 

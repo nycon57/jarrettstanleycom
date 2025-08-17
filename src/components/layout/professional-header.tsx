@@ -50,12 +50,6 @@ const servicesItems = [
     description: "Strategic guidance for enterprise mortgage companies",
     icon: Briefcase,
   },
-  {
-    title: "TrueTone AI",
-    href: "/truetone",
-    description: "AI-powered compliance and content creation platform",
-    icon: Brain,
-  },
 ];
 
 const insightsItems = [
@@ -64,18 +58,6 @@ const insightsItems = [
     href: "/blog",
     description: "Latest thoughts on AI and mortgage marketing",
     icon: FileText,
-  },
-  {
-    title: "Resources",
-    href: "/resources",
-    description: "Guides, templates, and industry insights",
-    icon: BookOpen,
-  },
-  {
-    title: "Case Studies",
-    href: "/case-studies",
-    description: "Real-world AI implementation success stories",
-    icon: TrendingUp,
   },
 ];
 

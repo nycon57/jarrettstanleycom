@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect } from 'react'
-import { getCLS, getFID, getFCP, getLCP, getTTFB } from 'web-vitals'
+import { onCLS, onFID, onFCP, onLCP, onTTFB } from 'web-vitals'
 
 export function PerformanceMonitor() {
   useEffect(() => {
@@ -9,24 +9,24 @@ export function PerformanceMonitor() {
     if (process.env.NODE_ENV !== 'production') return
 
     // Core Web Vitals monitoring
-    getCLS((metric) => {
+    onCLS((metric) => {
       // Send to analytics service
       sendToAnalytics('CLS', metric)
     })
 
-    getFID((metric) => {
+    onFID((metric) => {
       sendToAnalytics('FID', metric)
     })
 
-    getFCP((metric) => {
+    onFCP((metric) => {
       sendToAnalytics('FCP', metric)
     })
 
-    getLCP((metric) => {
+    onLCP((metric) => {
       sendToAnalytics('LCP', metric)
     })
 
-    getTTFB((metric) => {
+    onTTFB((metric) => {
       sendToAnalytics('TTFB', metric)
     })
 

@@ -7,35 +7,43 @@ import { ArrowRight, Briefcase, Brain, Lightbulb, Users } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Timeline } from './timeline'
 import { ExpertiseCard } from './expertise-card'
-import { AwardsRecognition } from './awards-recognition'
+import { CtaSection } from './cta-section'
 
 const timelineItems = [
   {
     id: '1',
-    date: '2022 - Present',
+    date: 'May 2023 - Present',
     title: 'Chief Marketing Officer',
     company: 'Nationwide Mortgage Bankers',
-    description: 'Leading digital transformation and AI adoption across all marketing channels. Spearheading innovative campaigns that have increased lead generation by 300% while maintaining compliance standards.',
+    description: 'Leading comprehensive marketing transformation and AI innovation strategy. Managing enterprise-wide digital initiatives that have driven 300% increase in qualified leads and established NMB as an industry innovation leader.',
     type: 'position' as const,
   },
   {
     id: '2',
-    date: '2023',
-    title: 'Creator & Founder',
-    company: 'TrueTone AI',
-    description: 'Developed the industry\'s first AI-powered content generation platform specifically designed for mortgage professionals. The platform now serves over 1,000 loan officers nationwide.',
-    type: 'milestone' as const,
-  },
-  {
-    id: '3',
-    date: '2019 - 2022',
-    title: 'VP of Digital Marketing',
-    company: 'Premier Mortgage Group',
-    description: 'Transformed traditional marketing operations into a data-driven powerhouse. Implemented marketing automation that reduced cost per lead by 45%.',
+    date: 'Jun 2021 - May 2023',
+    title: 'EVP & CMO',
+    company: 'Nationwide Mortgage Bankers / Southern Trust Mortgage',
+    description: 'Orchestrated the successful marketing integration during merger, unifying brand strategies and scaling operations across multiple states. Elevated from EVP to CMO while pioneering AI-powered marketing automation that revolutionized lead generation and compliance processes.',
     type: 'position' as const,
   },
   {
+    id: '3',
+    date: '2023',
+    title: 'HousingWire Marketing Leader',
+    company: 'HousingWire',
+    description: 'Recognized for revolutionizing the mortgage industry\'s marketing landscape through data-driven strategies, predictive analytics, and fostering a culture of innovation that allows rapid response to market shifts and emerging trends.',
+    type: 'achievement' as const,
+  },
+  {
     id: '4',
+    date: '2022',
+    title: 'Top 40 Under 40',
+    company: 'National Mortgage Professional',
+    description: 'Honored for leveraging technology to create premium user experiences and championing expanded homeownership opportunities for underserved communities through innovative first-time buyer programs.',
+    type: 'achievement' as const,
+  },
+  {
+    id: '5',
     date: '2020',
     title: 'Digital Innovation Award',
     company: 'Mortgage Bankers Association',
@@ -43,11 +51,27 @@ const timelineItems = [
     type: 'achievement' as const,
   },
   {
-    id: '5',
-    date: '2015 - 2019',
-    title: 'Marketing Director',
-    company: 'Regional Mortgage Solutions',
-    description: 'Built and scaled the marketing department from 3 to 25 team members. Launched the company\'s first digital marketing initiatives.',
+    id: '6',
+    date: 'Sep 2016 - Jun 2021',
+    title: 'VP to SVP of Marketing',
+    company: 'Southern Trust Mortgage',
+    description: 'Set the vision for brand representation, recruiting, and marketing support across all channels. Led agile transformation of marketing operations, managing multi-million dollar budgets and building a high-performance team that delivered consistent quarterly growth through data-driven strategies.',
+    type: 'position' as const,
+  },
+  {
+    id: '7',
+    date: 'Jul 2011 - Sep 2016',
+    title: 'Creative Director',
+    company: 'Atlantic Bay Mortgage Group',
+    description: 'Orchestrated complete company rebrand in 2013 that tripled market share and catalyzed expansion to 40+ new locations nationwide. Led creative vision across all mediums, contributing to record $3B+ in annual production and recognition as a top 100 mortgage company nationally.',
+    type: 'position' as const,
+  },
+  {
+    id: '8',
+    date: 'Jun 2007 - Jul 2011',
+    title: 'Senior Graphic Designer',
+    company: 'Movement Mortgage',
+    description: 'Instrumental in scaling marketing operations during explosive growth from 8 to 500+ employees. Established foundational brand identity and marketing systems that supported multi-state expansion while maintaining consistent brand excellence.',
     type: 'position' as const,
   },
 ]
@@ -79,46 +103,11 @@ const expertiseAreas = [
   },
 ]
 
-const awards = [
-  {
-    id: '1',
-    title: 'Digital Innovation Award',
-    organization: 'Mortgage Bankers Association',
-    year: '2020',
-    description: 'Recognized for pioneering AI applications in mortgage marketing',
-    type: 'award' as const,
-  },
-  {
-    id: '2',
-    title: 'Marketing Excellence Award',
-    organization: 'National Mortgage Professional',
-    year: '2021',
-    description: 'Outstanding achievement in digital marketing transformation',
-    type: 'recognition' as const,
-  },
-  {
-    id: '3',
-    title: 'Top 40 Under 40',
-    organization: 'Mortgage Executive Magazine',
-    year: '2019',
-    description: 'Recognized as one of the industry\'s rising leaders',
-    type: 'achievement' as const,
-  },
-  {
-    id: '4',
-    title: 'AI Implementation Excellence',
-    organization: 'FinTech Breakthrough Awards',
-    year: '2023',
-    description: 'Best use of AI in financial services marketing',
-    type: 'award' as const,
-  },
-]
-
 export function AboutContent() {
   return (
     <main className="relative">
       {/* Hero Section */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
+      <section className="relative py-20 lg:py-32 pt-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-600/5" />
         
         <div className="container relative">
@@ -136,7 +125,7 @@ export function AboutContent() {
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-                Chief Marketing Officer at Nationwide Mortgage Bankers and creator of TrueTone AI. 
+                Chief Marketing Officer at Nationwide Mortgage Bankers. 
                 I'm on a mission to revolutionize mortgage marketing through the power of artificial intelligence.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -154,20 +143,22 @@ export function AboutContent() {
               </div>
             </motion.div>
             
-            {/* Image Placeholder */}
+            {/* Image */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500/20 to-purple-600/20">
-                <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-500/30 to-purple-600/30" />
-                    <p>Professional Photo</p>
-                  </div>
-                </div>
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500/10 to-purple-600/10">
+                <Image
+                  src="/assets/images/Jarrett-Stock-3.png"
+                  alt="Jarrett Stanley"
+                  fill
+                  className="object-cover"
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
+                />
               </div>
             </motion.div>
           </div>
@@ -195,8 +186,8 @@ export function AboutContent() {
               </p>
               <p>
                 As CMO at Nationwide Mortgage Bankers, I lead a team of talented marketers in crafting 
-                campaigns that not only generate leads but build lasting relationships. My creation of 
-                TrueTone AI stems from a belief that technology should empower mortgage professionals, 
+                campaigns that not only generate leads but build lasting relationships. My work in AI innovation 
+                stems from a belief that technology should empower mortgage professionals, 
                 not replace the human touch that defines our industry.
               </p>
               <p>
@@ -255,29 +246,9 @@ export function AboutContent() {
         </div>
       </section>
       
-      {/* Awards & Recognition */}
-      <section className="py-20">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-              Awards & Recognition
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Honored to be recognized by industry leaders and peers
-            </p>
-          </motion.div>
-          
-          <AwardsRecognition items={awards} className="max-w-4xl mx-auto" />
-        </div>
-      </section>
       
       {/* Personal Mission */}
-      <section className="py-20 bg-muted/30">
+      <section className="bg-muted/30 py-20">
         <div className="container">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -292,16 +263,13 @@ export function AboutContent() {
             </div>
             
             <div className="relative rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm p-8 lg:p-12">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-purple-600/5 rounded-2xl" />
-              <div className="relative">
-                <p className="text-xl leading-relaxed mb-6">
-                  "I believe the future of mortgage marketing lies at the intersection of human 
-                  creativity and artificial intelligence. My mission is to empower mortgage professionals 
-                  with the tools and knowledge they need to thrive in this new era."
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  Every day, I work to bridge the gap between cutting-edge technology and practical 
-                  application. Whether it's through TrueTone AI, speaking at industry events, or 
+              <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 to-orchid/5 rounded-2xl" />
+              <div className="relative text-center">
+                <p className="text-xl lg:text-2xl leading-relaxed mb-6">
+                  I believe the future of mortgage marketing lies at the intersection of human 
+                  creativity and artificial intelligence. <span className="bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent font-bold">My mission is to empower mortgage professionals 
+                  with the tools and knowledge they need to thrive in this new era.</span> Every day, I work to bridge the gap between cutting-edge technology and practical 
+                  application. Whether it's through AI innovation, speaking at industry events, or 
                   consulting with forward-thinking companies, I'm committed to elevating our industry's 
                   marketing capabilities while maintaining the trust and integrity that borrowers deserve.
                 </p>
@@ -311,48 +279,8 @@ export function AboutContent() {
         </div>
       </section>
       
-      {/* CTA Section */}
-      <section className="py-20">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-600 to-purple-700" />
-            <div 
-              className="absolute inset-0 opacity-10" 
-              style={{
-                backgroundImage: `url("data:image/svg+xml,%3csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3e%3cg fill='none' fill-rule='evenodd'%3e%3cg fill='white' fill-opacity='1'%3e%3ccircle cx='30' cy='30' r='1.5'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e")`
-              }} 
-            />
-            
-            <div className="relative px-8 py-16 lg:px-16 lg:py-24 text-center text-white">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                Let's Shape the Future Together
-              </h2>
-              <p className="text-xl mb-8 max-w-2xl mx-auto opacity-90">
-                Whether you're looking to transform your marketing, learn about AI implementation, 
-                or book a speaking engagement, I'm here to help.
-              </p>
-              <div className="flex flex-wrap gap-4 justify-center">
-                <Button size="lg" variant="secondary" asChild>
-                  <Link href="/contact">
-                    Book a Consultation
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button size="lg" variant="outline" className="bg-white/10 border-white/20 text-white hover:bg-white/20" asChild>
-                  <Link href="/speaking">
-                    Invite to Speak
-                  </Link>
-                </Button>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Newsletter CTA Section */}
+      <CtaSection />
     </main>
   )
 }
