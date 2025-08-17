@@ -31,7 +31,7 @@ export function SpeakingHero() {
             Captivate your audience with cutting-edge insights on AI-powered mortgage marketing, 
             digital transformation, and leadership strategies that drive measurable results.
           </p>
-          <div className="flex gap-3">
+          <div className="flex gap-3 pb-8">
             <Button 
               size="lg" 
               className="bg-purple-600 text-white hover:bg-purple-700 dark:bg-white dark:text-purple-900 dark:hover:bg-gray-100"

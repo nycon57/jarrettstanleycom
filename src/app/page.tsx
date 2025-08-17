@@ -10,6 +10,7 @@ import { TestimonialsCarousel } from '@/components/sections/testimonials-carouse
 import { CtaSection } from '@/components/sections/cta-section'
 import { ArrowRight, Mic, Brain, Users, Award } from 'lucide-react'
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
+import { getBlogPosts } from '@/app/actions/blog'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Jarrett Stanley | AI Mortgage Marketing Expert & TrueTone AI Creator',
@@ -19,7 +20,13 @@ export const metadata: Metadata = generateSEOMetadata({
   ogImage: '/assets/images/jarrett-stanley-homepage-og.jpg'
 })
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Fetch latest blog posts for the insights section
+  const { posts } = await getBlogPosts({ 
+    limit: 6, 
+    page: 1 
+  })
+
   return (
     <main className="flex min-h-screen flex-col overflow-x-hidden">
       {/* Hero Section with Animated Background */}
@@ -59,7 +66,7 @@ export default function HomePage() {
 
 
       {/* Latest Insights Section */}
-      <LatestInsights />
+      <LatestInsights posts={posts} />
 
       {/* Testimonials Section */}
       <TestimonialsCarousel />
