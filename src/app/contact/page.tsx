@@ -33,6 +33,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Heading, Text } from "@/components/ui/typography";
 import { toast } from "sonner";
 import Link from "next/link";
 import { submitContactForm, submitMediaInquiry } from "@/app/actions/email";
@@ -83,21 +86,6 @@ const contactPathways = [
       "Press Interviews",
       "Thought Leadership"
     ]
-  },
-  {
-    title: "Partnership Opportunities",
-    description: "Strategic partnerships and collaboration opportunities",
-    icon: IconUsers,
-    action: "Discuss Partnership",
-    href: "#contact-form",
-    color: "bg-lavender",
-    type: "partnership",
-    features: [
-      "Strategic Alliances",
-      "Technology Integration",
-      "Co-marketing",
-      "Joint Ventures"
-    ]
   }
 ];
 
@@ -145,7 +133,7 @@ export default function ContactPage() {
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     const type = urlParams.get('type');
-    if (type && ['speaking', 'consulting', 'media', 'partnership'].includes(type)) {
+    if (type && ['speaking', 'consulting', 'media'].includes(type)) {
       setFormData(prev => ({ ...prev, type }));
     }
   }, []);
@@ -212,7 +200,7 @@ export default function ContactPage() {
         if (result.error) {
           toast.error(result.error);
         } else {
-          toast.success("Message sent successfully! I'll get back to you within 24 hours.");
+          toast.success("Message sent successfully! I'll get back to you as soon as possible.");
           resetForm();
         }
       }
@@ -252,29 +240,35 @@ export default function ContactPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mx-auto mb-6 w-fit rounded-full border border-lilac/20 bg-lilac/5 px-6 py-3 text-sm text-foreground backdrop-blur"
+            className="mx-auto mb-6 w-fit"
           >
-            Let's Connect
+            <Badge variant="lilac" size="lg" className="backdrop-blur">
+              Let's Connect
+            </Badge>
           </motion.div>
           
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="mx-auto max-w-4xl text-balance text-4xl font-bold text-foreground lg:text-6xl mb-6"
+            className="mb-6"
           >
-            Ready to Transform Your <span className="text-lilac">Marketing with AI?</span>
-          </motion.h1>
+            <Heading variant="h1" className="mx-auto max-w-4xl text-balance text-center">
+              Ready to Transform Your <span className="text-lilac">Marketing with AI?</span>
+            </Heading>
+          </motion.div>
           
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mx-auto max-w-3xl text-xl text-muted-foreground mb-8"
+            className="mb-8"
           >
-            Whether you need expert speaking, strategic consulting, or media commentary on AI marketing, 
-            I'm here to help. Choose the path that best fits your needs.
-          </motion.p>
+            <Text size="xl" className="mx-auto max-w-3xl text-center text-muted-foreground">
+              Whether you need expert speaking, strategic consulting, or media commentary on AI marketing, 
+              I'm here to help. Choose the path that best fits your needs.
+            </Text>
+          </motion.div>
         </div>
       </section>
 
@@ -282,13 +276,13 @@ export default function ContactPage() {
       <section className="py-16 bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4 text-foreground">How Can I Help You?</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <Heading variant="h2" className="mb-4 text-center">How Can I Help You?</Heading>
+            <Text className="text-muted-foreground max-w-2xl mx-auto text-center">
               Choose the best pathway based on your specific needs and goals
-            </p>
+            </Text>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid md:grid-cols-3 gap-6 mb-16">
             {contactPathways.map((pathway, index) => (
               <motion.div
                 key={index}
@@ -296,12 +290,18 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-card rounded-2xl p-6 shadow-lg border border-lilac/10 hover:shadow-xl transition-all group cursor-pointer"
+                className="group cursor-pointer"
                 onClick={() => handlePathwayClick(pathway.type)}
               >
-                <div className={`w-12 h-12 rounded-full ${pathway.color} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
+                <Card variant="interactive" className="h-full">
+                  <CardContent className="p-6">
+                <motion.div 
+                  className={`w-12 h-12 rounded-full ${pathway.color} flex items-center justify-center mx-auto mb-4`}
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ duration: 0.2 }}
+                >
                   <pathway.icon className="w-6 h-6 text-white" />
-                </div>
+                </motion.div>
                 <h3 className="text-lg font-semibold mb-2 text-foreground text-center">{pathway.title}</h3>
                 <p className="text-sm text-muted-foreground mb-4 text-center">{pathway.description}</p>
                 
@@ -316,11 +316,13 @@ export default function ContactPage() {
                 
                 <Button 
                   size="sm" 
-                  variant="outline" 
-                  className="w-full hover:bg-lilac/10 transition-colors"
+                  variant="lilac" 
+                  className="w-full"
                 >
                   {pathway.action}
                 </Button>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -338,21 +340,21 @@ export default function ContactPage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 }}
               >
-                <h2 className="text-3xl font-bold mb-6 text-foreground">
+                <Heading variant="h2" className="mb-6">
                   {isMediaInquiry ? 'Media Inquiry' : 'Send Me a Message'}
-                </h2>
-                <p className="text-muted-foreground mb-8">
+                </Heading>
+                <Text className="text-muted-foreground mb-8">
                   {isMediaInquiry 
                     ? "Looking for expert commentary on AI marketing, mortgage industry trends, or digital transformation? I'm available for interviews, quotes, and media appearances."
-                    : "Have a question or want to discuss how AI can transform your marketing? Fill out the form and I'll get back to you within 24 hours."
+                    : "Have a question or want to discuss how AI can transform your marketing? Fill out the form and I'll get back to you as soon as possible."
                   }
-                </p>
+                </Text>
                 
                 <div className="space-y-6">
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-lilac" />
                     <span className="text-foreground">
-                      {isMediaInquiry ? 'Response within 4 hours' : 'Personalized response within 24 hours'}
+                      {isMediaInquiry ? 'Response within 4 hours' : 'Quick and Personalized response'}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
@@ -371,8 +373,9 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4 }}
-                className="bg-background rounded-2xl p-8 shadow-lg border border-lilac/10"
               >
+                <Card variant="elevated">
+                  <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name fields */}
                   <div className="grid md:grid-cols-2 gap-4">
@@ -456,7 +459,6 @@ export default function ContactPage() {
                         <SelectItem value="general">General Question</SelectItem>
                         <SelectItem value="consulting">Consulting Interest</SelectItem>
                         <SelectItem value="speaking">Speaking Opportunity</SelectItem>
-                        <SelectItem value="partnership">Partnership</SelectItem>
                         <SelectItem value="media">Media Inquiry</SelectItem>
                       </SelectContent>
                     </Select>
@@ -542,7 +544,8 @@ export default function ContactPage() {
 
                   <Button 
                     type="submit" 
-                    className={`w-full text-white ${isMediaInquiry ? 'bg-skyward hover:bg-skyward/90' : 'bg-lilac hover:bg-lilac/90'}`}
+                    variant={isMediaInquiry ? 'skyward' : 'gradient'}
+                    className="w-full"
                     disabled={loading}
                     size="lg"
                   >
@@ -559,28 +562,30 @@ export default function ContactPage() {
                     )}
                   </Button>
                 </form>
+                  </CardContent>
+                </Card>
               </motion.div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Social Connect & Press Kit */}
-      <section className="py-16 bg-muted/30">
+      {/* Social Connect & Press Kit - Hidden */}
+      {/* <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12">
               {/* Social Media */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 className="text-center lg:text-left"
               >
-                <h3 className="text-2xl font-bold mb-4 text-foreground">Connect on Social Media</h3>
-                <p className="text-muted-foreground mb-6">
+                <Heading variant="h3" className="mb-4">Connect on Social Media</Heading>
+                <Text className="text-muted-foreground mb-6">
                   Follow me for daily insights, industry updates, and behind-the-scenes content from my work in AI marketing innovation.
-                </p>
+                </Text>
                 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   {socialLinks.map((link, index) => (
@@ -601,19 +606,19 @@ export default function ContactPage() {
                     </motion.a>
                   ))}
                 </div>
-              </motion.div>
+              </motion.div> */}
 
               {/* Press Kit */}
-              <motion.div
+              {/* <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 className="text-center lg:text-left"
               >
-                <h3 className="text-2xl font-bold mb-4 text-foreground">Media & Press Kit</h3>
-                <p className="text-muted-foreground mb-6">
+                <Heading variant="h3" className="mb-4">Media & Press Kit</Heading>
+                <Text className="text-muted-foreground mb-6">
                   High-resolution photos, bio, and background materials for journalists and event organizers.
-                </p>
+                </Text>
                 
                 <div className="space-y-3 mb-6">
                   <div className="flex items-center gap-3 justify-center lg:justify-start">
@@ -637,8 +642,7 @@ export default function ContactPage() {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <Button 
                     asChild 
-                    variant="outline" 
-                    className="hover:bg-lilac/10"
+                    variant="lilac"
                   >
                     <Link href="mailto:jarrett@jarrettstanley.com?subject=Press Kit Request">
                       <Download className="mr-2 h-4 w-4" />
@@ -647,8 +651,7 @@ export default function ContactPage() {
                   </Button>
                   <Button 
                     asChild 
-                    variant="outline" 
-                    className="hover:bg-lilac/10"
+                    variant="lilac"
                   >
                     <Link href="/speaking">
                       <Mic className="mr-2 h-4 w-4" />
@@ -656,11 +659,11 @@ export default function ContactPage() {
                     </Link>
                   </Button>
                 </div>
-              </motion.div>
-            </div>
+              </motion.div> */}
+            {/* </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }

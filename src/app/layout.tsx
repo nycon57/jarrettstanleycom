@@ -61,8 +61,8 @@ const hind = localFont({
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Where Mortgage Marketing Meets Artificial Intelligence',
-  description: 'Chief Marketing Officer at Nationwide Mortgage Bankers and creator of TrueTone AI. Thought leader in AI-powered mortgage marketing, available for speaking engagements and consulting.',
-  keywords: ['AI mortgage marketing', 'mortgage marketing consultant', 'AI mortgage technology', 'mortgage marketing speaker', 'TrueTone AI', 'Jarrett Stanley', 'mortgage digital transformation'],
+  description: 'Strategic advisor and AI marketing pioneer who has generated $500M+ in loan originations. Thought leader in AI-powered mortgage marketing, available for speaking engagements and consulting.',
+  keywords: ['AI mortgage marketing', 'mortgage marketing consultant', 'AI mortgage technology', 'mortgage marketing speaker', 'mortgage marketing strategist', 'Jarrett Stanley', 'mortgage digital transformation'],
   canonical: '/',
   ogImage: '/assets/images/og-image.jpg'
 })

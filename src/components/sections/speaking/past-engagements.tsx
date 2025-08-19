@@ -94,13 +94,6 @@ const engagements = [
   }
 ]
 
-const stats = [
-  { label: 'Speaking Engagements', value: '50+', description: 'Industry Events' },
-  { label: 'Professionals Reached', value: '5,000+', description: 'Attendees Impacted' },
-  { label: 'Topics Covered', value: '15+', description: 'AI & Marketing Themes' },
-  { label: 'Years Speaking', value: '10+', description: 'Industry Experience' }
-]
-
 export function PastEngagements() {
   return (
     <section className="py-24 sm:py-32 bg-background">
@@ -113,34 +106,11 @@ export function PastEngagements() {
           className="mx-auto max-w-2xl text-center"
         >
           <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Speaking Experience
+            Speaking Highlights
           </h2>
           <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
             Delivering transformative insights to industry leaders nationwide
           </p>
-        </motion.div>
-
-        {/* Stats Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mx-auto mt-12 grid max-w-5xl grid-cols-2 gap-8 lg:grid-cols-4"
-        >
-          {stats.map((stat, index) => (
-            <div key={stat.label} className="text-center">
-              <p className="text-3xl font-signal font-bold text-lilac">
-                {stat.value}
-              </p>
-              <p className="mt-1 text-sm font-semibold text-gray-900 dark:text-white">
-                {stat.label}
-              </p>
-              <p className="text-xs text-gray-600 dark:text-gray-400">
-                {stat.description}
-              </p>
-            </div>
-          ))}
         </motion.div>
 
         {/* Featured Engagements */}

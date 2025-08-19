@@ -368,7 +368,7 @@ export default function BlogIndex() {
                     <BlogPostCard
                       key={post.id}
                       post={post}
-                      className={viewMode === 'list' ? 'flex flex-col sm:flex-row' : ''}
+                      viewMode={viewMode}
                     />
                   ))}
                 </div>

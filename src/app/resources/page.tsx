@@ -3,6 +3,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Heading, Text } from "@/components/ui/typography";
+import { HOVER_EFFECTS, ANIMATIONS } from "@/lib/animations";
 import { IconBook, IconVideo, IconMicrophone, IconDownload, IconUsers, IconTrendingUp, IconCalendar, IconStar, IconSearch, IconFilter, IconTag } from "@tabler/icons-react";
 import { CheckCircle, ArrowRight, Clock, Eye } from "lucide-react";
 import Link from "next/link";
@@ -188,12 +192,19 @@ export default function ResourcesPage() {
       {/* Hero Section */}
       <section className="relative py-32 overflow-hidden bg-gradient-to-br from-lilac/10 via-background to-orchid/10">
         <motion.div 
-          animate={{ y: [-20, 20, -20] }}
+          animate={{ 
+            y: [-20, 20, -20],
+            opacity: [0.3, 0.6, 0.3]
+          }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           className="absolute top-1/4 left-10 w-32 h-32 bg-lilac/10 rounded-full blur-2xl"
         />
         <motion.div 
-          animate={{ y: [20, -20, 20] }}
+          animate={{ 
+            y: [20, -20, 20],
+            opacity: [0.3, 0.6, 0.3],
+            scale: [1, 1.1, 1]
+          }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
           className="absolute bottom-1/4 right-10 w-40 h-40 bg-orchid/10 rounded-full blur-2xl"
         />
@@ -201,35 +212,41 @@ export default function ResourcesPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mx-auto mb-6 w-fit rounded-full border border-lilac/20 bg-lilac/5 px-6 py-3 text-sm text-foreground backdrop-blur"
+            transition={{ delay: 0.2, duration: 0.5, ease: "easeOut" }}
+            className="mx-auto mb-6 w-fit"
           >
-            Knowledge Hub & Resource Center
+            <Badge variant="lilac" size="lg" className="backdrop-blur">
+              Knowledge Hub & Resource Center
+            </Badge>
           </motion.div>
           
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mx-auto max-w-4xl text-balance text-4xl font-bold text-foreground lg:text-6xl mb-6"
+            transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
+            className="mb-6"
           >
-            Master AI-Powered <span className="text-lilac">Mortgage Marketing</span>
-          </motion.h1>
+            <Heading variant="h1" className="mx-auto max-w-4xl text-balance text-center">
+              Master AI-Powered <span className="text-lilac">Mortgage Marketing</span>
+            </Heading>
+          </motion.div>
           
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mx-auto max-w-3xl text-xl text-muted-foreground mb-8"
+            transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
+            className="mb-8"
           >
-            Comprehensive guides, video tutorials, templates, and webinars to help you succeed with TrueTone AI and transform your mortgage marketing strategy.
-          </motion.p>
+            <Text size="xl" className="mx-auto max-w-3xl text-center text-muted-foreground">
+              Comprehensive guides, video tutorials, templates, and webinars to help you succeed with TrueTone AI and transform your mortgage marketing strategy.
+            </Text>
+          </motion.div>
           
           {/* Search Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
+            transition={{ delay: 0.5, duration: 0.5, ease: "easeOut" }}
             className="max-w-2xl mx-auto mb-8"
           >
             <div className="relative">
@@ -247,7 +264,7 @@ export default function ResourcesPage() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.6, duration: 0.5, ease: "easeOut" }}
             className="flex flex-wrap justify-center gap-4"
           >
             <span className="text-sm text-muted-foreground">Popular tags:</span>

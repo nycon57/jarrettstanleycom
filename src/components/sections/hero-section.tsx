@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Mic, Sparkles } from 'lucide-react'
+import { motion } from 'framer-motion'
 
 export function HeroSection() {
   return (
@@ -22,15 +23,21 @@ export function HeroSection() {
             {/* Left Side - Cutout Image */}
             <div className="relative order-2 lg:order-1 flex items-end justify-center lg:justify-start">
               <div className="relative w-full max-w-md lg:max-w-lg mx-auto lg:mx-0 flex flex-col justify-end">
-                <Image
-                  src="/assets/images/Jarrett-Stock-17-cutout.png"
-                  alt="Jarrett Stanley - Chief Marketing Officer"
-                  width={600}
-                  height={800}
-                  className="w-full h-auto object-contain object-bottom block"
-                  style={{ marginBottom: '0', display: 'block' }}
-                  priority
-                />
+                <motion.div
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                >
+                  <Image
+                    src="/assets/images/Jarrett-Stock-17-cutout.png"
+                    alt="Jarrett Stanley - Chief Marketing Officer"
+                    width={600}
+                    height={800}
+                    className="w-full h-auto object-contain object-bottom block"
+                    style={{ marginBottom: '0', display: 'block' }}
+                    priority
+                  />
+                </motion.div>
                 {/* Subtle glow effect behind image */}
                 <div className="absolute inset-0 bg-gradient-to-t from-lilac/20 to-transparent blur-3xl -z-10 scale-110"></div>
               </div>
@@ -40,21 +47,55 @@ export function HeroSection() {
             <div className="order-1 lg:order-2 text-center lg:text-left flex items-center">
               <div className="w-full">
                 {/* Main heading */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-signal font-bold mb-6 lg:mb-8 text-gray-900 dark:text-white leading-[1.1]">
-                  <span className="block mb-2">WHERE MORTGAGE</span>
-                  <span className="block mb-2">MARKETING MEETS</span>
-                  <span className="block bg-gradient-to-r from-lilac via-lavender to-skyward bg-clip-text text-transparent">
+                <motion.h1 
+                  className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-signal font-bold mb-6 lg:mb-8 text-gray-900 dark:text-white leading-[1.1]"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8 }}
+                >
+                  <motion.span 
+                    className="block mb-2"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2, duration: 0.6 }}
+                  >
+                    WHERE MORTGAGE
+                  </motion.span>
+                  <motion.span 
+                    className="block mb-2"
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.4, duration: 0.6 }}
+                  >
+                    MARKETING MEETS
+                  </motion.span>
+                  <motion.span 
+                    className="block bg-gradient-to-r from-lilac via-lavender to-skyward bg-clip-text text-transparent"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.6, duration: 0.8, ease: "easeOut" }}
+                  >
                     ARTIFICIAL INTELLIGENCE
-                  </span>
-                </h1>
+                  </motion.span>
+                </motion.h1>
                 
                 {/* Subheadline */}
-                <p className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-200 mb-8 lg:mb-10 leading-relaxed font-hind max-w-2xl mx-auto lg:mx-0">
-                  From CMO at Nationwide Mortgage Bankers to creator of TrueTone AI, I've pioneered the AI marketing strategies that generated $500M+ in loan originations. Ready to transform your results?
-                </p>
+                <motion.p 
+                  className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-200 mb-8 lg:mb-10 leading-relaxed font-hind max-w-2xl mx-auto lg:mx-0"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8, duration: 0.6 }}
+                >
+                  Harness the power of artificial intelligence to transform your mortgage marketing and accelerate growth.
+                </motion.p>
                 
                 {/* Action buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <motion.div 
+                  className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1, duration: 0.6 }}
+                >
                   <Button 
                     asChild
                     size="lg"
@@ -76,7 +117,7 @@ export function HeroSection() {
                       Start Transformation
                     </Link>
                   </Button>
-                </div>
+                </motion.div>
               </div>
             </div>
           </div>

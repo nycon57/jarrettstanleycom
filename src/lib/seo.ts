@@ -4,7 +4,7 @@ import { Metadata } from 'next'
 export const siteConfig = {
   name: 'Jarrett Stanley',
   title: 'Where Mortgage Marketing Meets Artificial Intelligence',
-  description: 'Chief Marketing Officer at Nationwide Mortgage Bankers and creator of TrueTone AI. Thought leader in AI-powered mortgage marketing, available for speaking engagements and consulting.',
+  description: 'Strategic advisor and AI marketing pioneer who has generated $500M+ in loan originations. Thought leader in AI-powered mortgage marketing, available for speaking engagements and consulting.',
   url: 'https://jarrettstanley.com',
   ogImage: '/assets/images/og-image.jpg',
   keywords: [
@@ -12,11 +12,11 @@ export const siteConfig = {
     'mortgage marketing consultant', 
     'AI mortgage technology',
     'mortgage marketing speaker',
-    'TrueTone AI',
+    'mortgage marketing strategist',
     'Jarrett Stanley',
     'mortgage digital transformation',
     'mortgage industry AI',
-    'CMO Nationwide Mortgage',
+    'strategic advisor',
     'mortgage marketing automation',
     'AI in lending',
     'mortgage technology speaker'
@@ -29,8 +29,8 @@ export const siteConfig = {
     linkedin: 'https://linkedin.com/in/jarrettstanley'
   },
   organization: {
-    name: 'Nationwide Mortgage Bankers',
-    url: 'https://nationwidemortgagebankers.com'
+    name: 'Jarrett Stanley Strategic Advising',
+    url: 'https://jarrettstanley.com'
   }
 }
 

@@ -111,7 +111,7 @@ export const ConsultingConfirmationEmail: React.FC<Readonly<ConsultingConfirmati
             </div>
             <div>
               <h3 style={{ margin: '0 0 5px 0', fontSize: '16px', color: '#374151' }}>
-                Initial Assessment (24 hours)
+                Initial Assessment
               </h3>
               <p style={{ margin: '0', fontSize: '14px', color: '#6b7280' }}>
                 I'll review your project details and current challenges to prepare a customized approach.

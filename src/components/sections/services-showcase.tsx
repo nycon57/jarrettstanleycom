@@ -47,7 +47,7 @@ const ServicesShowcase = () => {
                   AI-Powered Marketing Integration
                 </h3>
                 <p className="text-muted-foreground/70 mt-2">
-                  Connect your existing marketing tools with cutting-edge AI solutions. Build automated workflows that generate qualified leads while reducing manual effort by 70%.
+                  Connect your existing marketing tools with cutting-edge AI solutions. Build automated workflows that generate qualified leads while dramatically reducing manual effort.
                 </p>
               </CardHeader>
             <CardContent ref={containerRef1} className="relative ml-5">
@@ -119,7 +119,7 @@ const ServicesShowcase = () => {
                   Performance Optimization
                 </h3>
                 <p className="text-muted-foreground/70">
-                  Boost your marketing ROI by 300% with data-driven strategies and continuous optimization
+                  Dramatically boost your marketing ROI with data-driven strategies and continuous optimization
                 </p>
               </CardHeader>
             <CardContent
@@ -167,7 +167,7 @@ const ServicesShowcase = () => {
                   Speaking & Executive Training
                 </h3>
                 <p className="text-muted-foreground/70 text-sm">
-                  Inspire your team with actionable insights from 50+ keynotes delivered to industry leaders
+                  Inspire your team with actionable insights from keynotes delivered to industry leaders
                 </p>
               </CardHeader>
             </Card>
@@ -179,7 +179,7 @@ const ServicesShowcase = () => {
                   Industry-Wide Impact
                 </h3>
                 <p className="text-muted-foreground/70">
-                  Join 100+ mortgage companies already transforming their marketing with AI strategies that have generated over $500M in loan originations
+                  Join leading mortgage companies already transforming their marketing with proven AI strategies that have generated exceptional results
                 </p>
               </CardHeader>
 

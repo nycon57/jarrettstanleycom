@@ -16,15 +16,15 @@ export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmai
       case 'speaking':
         return {
           title: 'Your Speaking Inquiry is Received',
-          description: 'Thank you for your interest in having Jarrett speak at your event. We\'ll review your request and get back to you within 24 hours with next steps.',
-          responseTime: '24 hours',
+          description: 'Thank you for your interest in having Jarrett speak at your event. We\'ll review your request and get back to you as soon as possible with next steps.',
+          responseTime: 'as soon as possible',
           nextSteps: 'Our team will review your event details and reach out to discuss topics, logistics, and availability.'
         };
       case 'consulting':
         return {
           title: 'Your Consulting Inquiry is Received',
           description: 'Thank you for considering Jarrett for your AI marketing consulting needs. We\'ll review your project requirements and schedule a discovery call.',
-          responseTime: '24 hours',
+          responseTime: 'as soon as possible',
           nextSteps: 'We\'ll schedule a discovery call to understand your specific needs and discuss how we can help achieve your goals.'
         };
       case 'media':
@@ -38,7 +38,7 @@ export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmai
         return {
           title: 'Your Message is Received',
           description: 'Thank you for reaching out. We\'ve received your message and will get back to you soon.',
-          responseTime: '24 hours',
+          responseTime: 'as soon as possible',
           nextSteps: 'We\'ll review your message and respond with the information you need or next steps.'
         };
     }

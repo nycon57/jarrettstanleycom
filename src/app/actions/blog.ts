@@ -36,11 +36,26 @@ export async function getBlogPosts(options: {
     query = query.or(`title.ilike.%${search}%,content.ilike.%${search}%,excerpt.ilike.%${search}%`)
   }
 
-  // Get total count
-  const { count } = await supabase
+  // Build count query with same filters
+  let countQuery = supabase
     .from('posts')
     .select('*', { count: 'exact', head: true })
     .or('status.eq.published,is_published.eq.true')
+  
+  if (featured !== undefined) {
+    countQuery = countQuery.eq('is_featured', featured)
+  }
+  
+  if (categoryIds.length > 0) {
+    countQuery = countQuery.contains('categories', categoryIds)
+  }
+  
+  if (search) {
+    countQuery = countQuery.or(`title.ilike.%${search}%,content.ilike.%${search}%,excerpt.ilike.%${search}%`)
+  }
+
+  // Get total count
+  const { count } = await countQuery
 
   // Get paginated results
   const { data: posts, error } = await query
@@ -119,23 +134,44 @@ export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> 
 }
 
 export async function getRelatedPosts(postId: string, categories: string[], limit: number = 3): Promise<BlogPost[]> {
-  if (!categories || categories.length === 0) {
+  let posts = null;
+  
+  // First try to get posts with matching categories if categories exist
+  if (categories && categories.length > 0) {
+    const { data: categoryPosts } = await supabase
+      .from('posts')
+      .select(`*`)
+      .or('status.eq.published,is_published.eq.true')
+      .neq('id', postId)
+      .contains('categories', categories)
+      .limit(limit)
+    
+    if (categoryPosts && categoryPosts.length > 0) {
+      posts = categoryPosts
+    }
+  }
+  
+  // If no category matches or no categories, get recent posts as fallback
+  if (!posts || posts.length === 0) {
+    const { data: recentPosts } = await supabase
+      .from('posts')
+      .select(`*`)
+      .or('status.eq.published,is_published.eq.true')
+      .neq('id', postId)
+      .order('published_at', { ascending: false })
+      .limit(limit)
+    
+    if (recentPosts) {
+      posts = recentPosts
+    }
+  }
+  
+  // If still no posts, return empty array
+  if (!posts) {
     return []
   }
 
-  const { data: posts, error } = await supabase
-    .from('posts')
-    .select(`*`)
-    .or('status.eq.published,is_published.eq.true')
-    .neq('id', postId)
-    .contains('categories', categories)
-    .limit(limit)
-
-  if (error) {
-    return []
-  }
-
-  return posts?.map(post => ({
+  return posts.map(post => ({
     ...post,
     is_published: post.status === 'published' || post.is_published,
     featured_image_url: post.featured_image,
@@ -145,7 +181,7 @@ export async function getRelatedPosts(postId: string, categories: string[], limi
       slug: cat.toLowerCase().replace(/\s+/g, '-'),
       color: '#6B46C1'
     })) || []
-  })) || []
+  }))
 }
 
 export async function trackPostView(postId: string): Promise<void> {

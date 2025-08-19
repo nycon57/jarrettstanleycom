@@ -13,6 +13,7 @@ import { ShareButtons } from '@/components/ui/share-buttons'
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { CtaSection } from "@/components/sections/cta-section"
+import { RecommendedArticles } from "@/components/sections/recommended-articles"
 import { getBlogPostBySlug, getRelatedPosts, trackPostView } from '@/app/actions/blog'
 import { 
   Clock, 
@@ -72,11 +73,16 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   // Track the view
   await trackPostView(post.id)
 
-  // Get related posts
+  // Get related posts for carousel (more posts for carousel)
+  // Handle both category formats (string array or object array)
+  const categoryIds = post.categories?.map(cat => 
+    typeof cat === 'string' ? cat : cat.id
+  ) || []
+  
   const relatedPosts = await getRelatedPosts(
     post.id, 
-    post.categories?.map(cat => cat.id) || [],
-    3
+    categoryIds,
+    8
   )
 
   const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://jarrettstanley.com'}/insights/blog/${post.slug}`
@@ -143,18 +149,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
 
 
-      {/* Related posts section */}
+      {/* Recommended Articles Carousel */}
       {relatedPosts.length > 0 && (
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <h2 className="font-signal font-bold text-3xl mb-8 text-center">You Might Also Like</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {relatedPosts.map((relatedPost) => (
-                <BlogPostCard key={relatedPost.id} post={relatedPost} />
-              ))}
-            </div>
-          </div>
-        </section>
+        <RecommendedArticles posts={relatedPosts} currentPostId={post.id} />
       )}
 
       {/* Newsletter Signup Section */}

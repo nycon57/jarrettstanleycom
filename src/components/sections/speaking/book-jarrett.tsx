@@ -3,20 +3,8 @@
 import { motion } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Calendar, Phone, Mail, MessageCircle } from 'lucide-react'
-import { CalendlyWidget } from '@/components/calendly-widget'
-import { TrackedLink } from '@/components/analytics/tracked-link'
-import { useAnalytics } from '@/hooks/use-analytics'
-import { useState } from 'react'
-
+import { Phone, Mail, MessageCircle } from 'lucide-react'
 export function BookJarrett() {
-  const [showCalendly, setShowCalendly] = useState(false)
-  const { trackSpeakingCalendlyClick } = useAnalytics()
-
-  const handleCalendlyOpen = (source: string) => {
-    setShowCalendly(true);
-    trackSpeakingCalendlyClick('booking_section');
-  }
 
   return (
     <section id="book-jarrett" className="py-24 sm:py-32 bg-muted/30">
@@ -53,44 +41,22 @@ export function BookJarrett() {
                 <Card>
                   <CardContent className="p-6">
                     <div className="flex items-start gap-4">
-                      <Calendar className="h-6 w-6 text-lilac flex-shrink-0 mt-1" />
-                      <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white">Schedule a Call</h4>
-                        <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">
-                          Book a 30-minute discovery call to discuss your event needs
-                        </p>
-                        <Button 
-                          variant="link" 
-                          className="mt-2 p-0 h-auto text-lilac"
-                          onClick={() => handleCalendlyOpen('schedule_call_card')}
-                        >
-                          Open Calendar →
-                        </Button>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card>
-                  <CardContent className="p-6">
-                    <div className="flex items-start gap-4">
                       <Mail className="h-6 w-6 text-lilac flex-shrink-0 mt-1" />
                       <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white">Email Directly</h4>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Email Me</h4>
                         <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">
                           Send speaking inquiries and event details
                         </p>
-                        <TrackedLink
-                          href="mailto:speaking@jarrettstanley.com"
-                          trackingData={{
-                            linkText: 'speaking@jarrettstanley.com',
-                            linkType: 'external'
+                        <button
+                          onClick={() => {
+                            const user = 'jarrett';
+                            const domain = 'jarrettstanley.com';
+                            window.location.href = `mailto:${user}@${domain}`;
                           }}
-                          className="text-lilac hover:text-orchid text-sm mt-2 inline-block"
-                          external
+                          className="text-lilac hover:text-orchid text-sm mt-2 inline-block transition-colors"
                         >
-                          speaking@jarrettstanley.com
-                        </TrackedLink>
+                          Click to reveal email
+                        </button>
                       </div>
                     </div>
                   </CardContent>
@@ -101,21 +67,21 @@ export function BookJarrett() {
                     <div className="flex items-start gap-4">
                       <Phone className="h-6 w-6 text-lilac flex-shrink-0 mt-1" />
                       <div>
-                        <h4 className="font-semibold text-gray-900 dark:text-white">Call Our Team</h4>
+                        <h4 className="font-semibold text-gray-900 dark:text-white">Call Me</h4>
                         <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">
-                          Speak with our booking coordinator
+                          Speak directly about your event needs
                         </p>
-                        <TrackedLink
-                          href="tel:+1-555-123-4567"
-                          trackingData={{
-                            linkText: '+1 (555) 123-4567',
-                            linkType: 'external'
+                        <button
+                          onClick={() => {
+                            const areaCode = '757';
+                            const prefix = '646';
+                            const lineNumber = '7613';
+                            window.location.href = `tel:+1${areaCode}${prefix}${lineNumber}`;
                           }}
-                          className="text-lilac hover:text-orchid text-sm mt-2 inline-block"
-                          external
+                          className="text-lilac hover:text-orchid text-sm mt-2 inline-block transition-colors"
                         >
-                          +1 (555) 123-4567
-                        </TrackedLink>
+                          Click to call
+                        </button>
                       </div>
                     </div>
                   </CardContent>
@@ -196,7 +162,11 @@ export function BookJarrett() {
         >
           <Button 
             size="lg" 
-            onClick={() => handleCalendlyOpen('main_cta')}
+            onClick={() => {
+              const user = 'jarrett';
+              const domain = 'jarrettstanley.com';
+              window.location.href = `mailto:${user}@${domain}?subject=Speaking%20Inquiry`;
+            }}
             className="bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90"
           >
             <MessageCircle className="mr-2 h-5 w-5" />
@@ -205,13 +175,6 @@ export function BookJarrett() {
         </motion.div>
       </div>
 
-      {/* Calendly Widget */}
-      {showCalendly && (
-        <CalendlyWidget 
-          url="https://calendly.com/jarrettstanley/speaking-inquiry"
-          onClose={() => setShowCalendly(false)}
-        />
-      )}
     </section>
   )
 }

@@ -140,7 +140,7 @@ export const SpeakingConfirmationEmail: React.FC<Readonly<SpeakingConfirmationEm
                 Initial Response
               </h3>
               <p style={{ margin: '0', fontSize: '14px', color: '#6b7280' }}>
-                You'll receive an initial response within 24 hours with availability confirmation.
+                You'll receive an initial response as soon as possible with availability confirmation.
               </p>
             </div>
           </div>

@@ -4,7 +4,11 @@ import { motion } from "framer-motion";
 import { ConsultingInquiryForm } from "@/components/consulting-inquiry-form";
 import { CaseStudyCard } from "@/components/sections/case-study-card";
 import { ProcessStep } from "@/components/sections/process-step";
+import { CtaSection } from "@/components/sections/cta-section";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Heading, Text } from "@/components/ui/typography";
 import Link from "next/link";
 import { 
   Target,
@@ -155,24 +159,24 @@ export default function ConsultingPage() {
             transition={{ delay: 0.1 }}
             className="text-center"
           >
-            <div className="mx-auto mb-6 w-fit rounded-full border border-lilac/20 bg-lilac/5 px-6 py-3 text-sm text-foreground backdrop-blur">
+            <Badge variant="lilac" size="lg" className="mx-auto mb-6 backdrop-blur">
               Strategic Consulting
-            </div>
+            </Badge>
             
-            <h1 className="mx-auto max-w-4xl text-balance text-4xl font-bold text-foreground lg:text-6xl mb-6">
+            <Heading variant="h1" className="mx-auto max-w-4xl text-balance text-center mb-6">
               Transform Your Marketing with{" "}
               <span className="text-lilac">AI-Powered Strategies</span>
-            </h1>
+            </Heading>
             
-            <p className="mx-auto max-w-3xl text-xl text-muted-foreground mb-12">
+            <Text size="xl" className="mx-auto max-w-3xl text-center text-muted-foreground mb-12">
               Get hands-on guidance from an industry leader who's built and scaled AI solutions 
               that have transformed mortgage marketing for hundreds of companies.
-            </p>
+            </Text>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button 
                 size="lg" 
-                className="bg-lilac hover:bg-lilac/90"
+                variant="gradient"
                 onClick={() => {
                   document.getElementById('inquiry-form')?.scrollIntoView({ behavior: 'smooth' });
                 }}
@@ -182,8 +186,7 @@ export default function ConsultingPage() {
               </Button>
               <Button 
                 size="lg" 
-                variant="outline"
-                className="border-lilac/50 hover:bg-lilac/10"
+                variant="lilac"
                 asChild
               >
                 <Link href="/contact">
@@ -204,12 +207,12 @@ export default function ConsultingPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <Heading variant="h2" className="mb-6 text-center">
               Consulting <span className="text-lilac">Focus Areas</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            </Heading>
+            <Text size="xl" className="text-muted-foreground max-w-3xl mx-auto text-center">
               Comprehensive expertise across all aspects of AI-powered mortgage marketing
-            </p>
+            </Text>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
@@ -220,13 +223,21 @@ export default function ConsultingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300"
+                className="h-full"
               >
-                <div className="mb-4 p-3 rounded-full bg-gradient-to-br from-lilac to-orchid w-fit">
-                  {area.icon}
-                </div>
-                <h3 className="text-xl font-signal mb-3">{area.title}</h3>
-                <p className="text-gray-700 dark:text-gray-300">{area.description}</p>
+                <Card variant="blur" className="h-full hover:bg-white/10 transition-all duration-300">
+                  <CardContent className="p-6">
+                    <motion.div 
+                      className="mb-4 p-3 rounded-full bg-gradient-to-br from-lilac to-orchid w-fit"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {area.icon}
+                    </motion.div>
+                    <h3 className="text-xl font-signal mb-3">{area.title}</h3>
+                    <p className="text-gray-700 dark:text-gray-300">{area.description}</p>
+                  </CardContent>
+                </Card>
               </motion.div>
             ))}
           </div>
@@ -242,12 +253,12 @@ export default function ConsultingPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <Heading variant="h2" className="mb-6 text-center">
               Flexible <span className="text-lilac">Engagement Models</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            </Heading>
+            <Text size="xl" className="text-muted-foreground max-w-3xl mx-auto text-center">
               Choose the consulting approach that best fits your needs and timeline
-            </p>
+            </Text>
           </motion.div>
 
           <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
@@ -296,12 +307,12 @@ export default function ConsultingPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <Heading variant="h2" className="mb-6 text-center">
               Proven <span className="text-lilac">Results</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            </Heading>
+            <Text size="xl" className="text-muted-foreground max-w-3xl mx-auto text-center">
               Real transformations from mortgage companies that embraced AI-powered marketing
-            </p>
+            </Text>
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -329,12 +340,12 @@ export default function ConsultingPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <Heading variant="h2" className="mb-6 text-center">
               Our Consulting <span className="text-lilac">Process</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            </Heading>
+            <Text size="xl" className="text-muted-foreground max-w-3xl mx-auto text-center">
               A proven methodology for driving transformational results
-            </p>
+            </Text>
           </motion.div>
 
           <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
@@ -428,47 +439,13 @@ export default function ConsultingPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-lilac/10 via-background to-orchid/10">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Ready to Lead the AI Revolution?
-            </h2>
-            <p className="text-xl text-muted-foreground mb-8">
-              Join the mortgage industry leaders who are transforming their marketing with AI.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button 
-                size="lg" 
-                className="bg-lilac hover:bg-lilac/90"
-                onClick={() => {
-                  document.getElementById('inquiry-form')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Get Started Today
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline"
-                className="border-lilac/50 hover:bg-lilac/10"
-                asChild
-              >
-                <Link href="/resources">
-                  Explore Resources
-                </Link>
-              </Button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* Newsletter CTA Section */}
+      <CtaSection 
+        variant="compact"
+        showFeatures={true}
+        showTrustIndicators={true}
+        showBackground={true}
+      />
     </main>
   );
 }

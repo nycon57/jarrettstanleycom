@@ -2,7 +2,6 @@ import { Brain, Target, Trophy, Users } from "lucide-react";
 import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 
 const BridgingGapSection = () => {
   return (
@@ -21,39 +20,13 @@ const BridgingGapSection = () => {
             <h2 className="text-center text-3xl font-semibold lg:text-left lg:text-4xl text-foreground">
               Bridging the Gap Between <span className="text-transparent bg-clip-text bg-gradient-to-r from-lilac to-orchid">Technology and Trust</span>
             </h2>
-            <p className="text-center text-muted-foreground lg:text-left lg:text-lg">
-              As CMO at Nationwide Mortgage Bankers and creator of TrueTone AI, I'm transforming how mortgage companies connect with borrowers through AI-powered marketing strategies that deliver measurable results while maintaining compliance and trust.
-            </p>
-
-            <div className="mt-9 flex w-full flex-col justify-center gap-6 md:flex-row lg:justify-start">
-              <div className="flex justify-between gap-6">
-                <div className="mx-auto">
-                  <p className="mb-1.5 text-3xl font-bold bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent">$500M+</p>
-                  <p className="text-muted-foreground">Loan Volume Generated</p>
-                </div>
-                <Separator orientation="vertical" className="h-auto" />
-                <div className="mx-auto">
-                  <p className="mb-1.5 text-3xl font-bold bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent">300%</p>
-                  <p className="text-muted-foreground">Lead Increase</p>
-                </div>
-              </div>
-              <Separator
-                orientation="vertical"
-                className="hidden h-auto md:block"
-              />
-              <Separator orientation="horizontal" className="block md:hidden" />
-              <div className="flex justify-between gap-6">
-                <div className="mx-auto">
-                  <p className="mb-1.5 text-3xl font-bold bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent">70%</p>
-                  <p className="text-muted-foreground">Cost Reduction</p>
-                </div>
-                <Separator orientation="vertical" className="h-auto" />
-                <div className="mx-auto">
-                  <p className="mb-1.5 text-3xl font-bold bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent">50+</p>
-                  <p className="text-muted-foreground">Speaking Events</p>
-                </div>
-              </div>
-            </div>
+              <p className="text-center text-muted-foreground lg:text-left lg:text-lg">
+                With over two decades of experience pioneering AI-powered mortgage marketing, I've helped industry leaders generate over $500M in loan originations through innovative strategies that balance technology, compliance, and customer trust.
+              </p>
+              
+              <p className="text-center text-muted-foreground lg:text-left lg:text-lg">
+                As an independent strategic advisor, I bring unbiased expertise and proven methodologies to help mortgage companies navigate the AI revolution. My approach combines deep industry knowledge with cutting-edge technology implementation, ensuring every initiative delivers measurable ROI while maintaining regulatory compliance.
+              </p>
           </div>
           <div className="relative ml-auto max-h-[450px] w-full">
             <div className="absolute inset-0 bg-gradient-to-r from-lilac/20 to-orchid/20 rounded-xl blur-3xl"></div>

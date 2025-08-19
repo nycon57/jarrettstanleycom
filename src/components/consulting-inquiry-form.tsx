@@ -57,7 +57,7 @@ export function ConsultingInquiryForm() {
       const result = await submitConsultingInquiry(enrichedData);
 
       if (result.success) {
-        toast.success("Thank you for your inquiry! We'll be in touch within 24 hours.");
+        toast.success("Thank you for your inquiry! We'll be in touch as soon as possible.");
         trackConsultingFormSubmit('general_consulting', {
           company_size: data.company_size,
           budget_range: data.budget_range,
