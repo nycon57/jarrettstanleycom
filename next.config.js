@@ -94,9 +94,6 @@ const nextConfig = {
   // Compress responses
   compress: true,
   
-  // Generate static params at build time
-  output: 'standalone',
-  
   // Webpack optimizations
   webpack: (config, { dev, isServer }) => {
     // Optimize bundle in production
