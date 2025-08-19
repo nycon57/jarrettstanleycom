@@ -1,13 +1,29 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle, Mail, Brain, TrendingUp } from "lucide-react";
+import { ArrowRight, CheckCircle, Mail, Brain, TrendingUp, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { cn } from "@/lib/utils";
 
-const CtaSection = () => {
+interface CtaSectionProps {
+  variant?: "full" | "compact";
+  showFeatures?: boolean;
+  showTrustIndicators?: boolean;
+  showBackground?: boolean;
+  className?: string;
+}
+
+const CtaSection = ({ 
+  variant = "full", 
+  showFeatures = true, 
+  showTrustIndicators = true,
+  showBackground = true,
+  className 
+}: CtaSectionProps = {}) => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,22 +35,31 @@ const CtaSection = () => {
     }, 1000);
   };
 
+  const sectionPadding = variant === "compact" ? "py-16" : "py-32";
+  
   return (
-    <section className="relative py-32 overflow-hidden">
+    <section className={cn("relative overflow-hidden", sectionPadding, className)}>
       {/* Static gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 via-transparent to-orchid/5" />
+      {showBackground && (
+        <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 via-transparent to-orchid/5" />
+      )}
       
       {/* Dynamic Background Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-lilac/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-skyward/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-orchid/3 via-transparent to-lavender/3 rounded-full blur-3xl"></div>
-      </div>
+      {showBackground && (
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-lilac/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-skyward/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-orchid/3 via-transparent to-lavender/3 rounded-full blur-3xl"></div>
+        </div>
+      )}
 
       <div className="container relative">
         <div className="flex flex-col items-center max-w-4xl mx-auto">
           {/* Heading */}
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-signal font-bold text-center tracking-tight">
+          <h2 className={cn(
+            "font-signal font-bold text-center tracking-tight",
+            variant === "compact" ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl lg:text-6xl"
+          )}>
             Stay Ahead of the
             <span className="block mt-2 bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent animate-gradient bg-300% bg-gradient-x">
               AI Revolution
@@ -44,7 +69,7 @@ const CtaSection = () => {
           {/* Description */}
           <p className="mt-6 text-lg md:text-xl text-muted-foreground text-center max-w-2xl leading-relaxed">
             Get exclusive insights on <span className="text-lilac dark:text-lilac font-semibold">AI-powered mortgage marketing</span> delivered to your inbox. 
-            Join <span className="text-orchid dark:text-orchid font-semibold">5,000+ industry leaders</span> who are transforming their business with AI.
+            Join <span className="text-orchid dark:text-orchid font-semibold">industry thought leaders</span> who are transforming their business with AI.
           </p>
 
           {/* Form */}
@@ -82,6 +107,7 @@ const CtaSection = () => {
           </form>
 
           {/* Features */}
+          {showFeatures && (
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 w-full max-w-2xl">
             <div className="flex items-center justify-center sm:justify-start gap-3 group">
               <div className="relative">
@@ -122,8 +148,10 @@ const CtaSection = () => {
               </div>
             </div>
           </div>
+          )}
 
           {/* Trust indicators */}
+          {showTrustIndicators && (
           <div className="mt-8 flex items-center gap-6 text-xs text-muted-foreground">
             <div className="flex items-center gap-1.5">
               <CheckCircle className="h-3.5 w-3.5 text-lilac dark:text-lilac" />
@@ -138,6 +166,7 @@ const CtaSection = () => {
               <span>100% free</span>
             </div>
           </div>
+          )}
         </div>
       </div>
     </section>

@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Brain, TrendingUp, Shield, Users } from 'lucide-react'
+import { Brain, TrendingUp, Users } from 'lucide-react'
 
 const topics = [
   {
@@ -26,17 +26,6 @@ const topics = [
       'Modernizing legacy systems and processes',
       'Enhancing customer experience through technology',
       'Building competitive advantages with digital tools'
-    ]
-  },
-  {
-    icon: Shield,
-    title: 'Compliance & Innovation',
-    description: 'Navigate the balance between innovation and regulatory compliance in mortgage marketing.',
-    keyPoints: [
-      'Understanding RESPA, TILA, and Fair Lending in digital marketing',
-      'Building compliant AI and automation systems',
-      'Creating scalable compliance frameworks',
-      'Future-proofing marketing strategies'
     ]
   },
   {
@@ -89,7 +78,7 @@ export function SignatureTopics() {
           </p>
         </motion.div>
 
-        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-2">
+        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
           {topics.map((topic, index) => {
             const Icon = topic.icon
             return (

@@ -8,17 +8,14 @@ const footerLinks = {
   services: [
     { name: "AI Strategy Consulting", href: "/services#consulting" },
     { name: "Speaking Engagements", href: "/speaking" },
-    { name: "Executive Coaching", href: "/services#coaching" },
     { name: "Marketing Automation", href: "/services#automation" },
   ],
   resources: [
-    { name: "Blog & Insights", href: "/insights" },
-    { name: "Newsletter Archive", href: "/newsletter/archive" },
+    { name: "Blog", href: "/blog" },
   ],
   connect: [
     { name: "Contact", href: "/contact" },
     { name: "Book a Call", href: "/contact#book" },
-    { name: "Media Kit", href: "/media-kit" },
   ],
 };
 

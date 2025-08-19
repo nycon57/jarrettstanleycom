@@ -143,7 +143,7 @@
 
 **Privacy Text:** "I respect your privacy. Unsubscribe anytime."
 
-**CTA Button:** "Join 5,000+ Industry Leaders"
+**CTA Button:** "Join Industry Thought Leaders"
 
 ## About Page Content
 

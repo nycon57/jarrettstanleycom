@@ -22,9 +22,9 @@ export default function SpeakingPage() {
       <SpeakingHero />
       <SignatureTopics />
       <PastEngagements />
-      <SpeakingTestimonials />
-      <UpcomingEvents />
-      <SpeakerKit />
+      {/* <SpeakingTestimonials /> */}
+      {/* <UpcomingEvents /> */}
+      {/* <SpeakerKit /> */}
       <BookJarrett />
     </main>
   )
