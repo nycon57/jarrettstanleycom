@@ -110,7 +110,7 @@ const captionVariants = cva(
 
 // Heading Component
 export interface HeadingProps
-  extends React.HTMLAttributes<HTMLHeadingElement>,
+  extends Omit<React.HTMLAttributes<HTMLHeadingElement>, 'color'>,
     VariantProps<typeof headingVariants> {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 }
@@ -131,7 +131,7 @@ Heading.displayName = "Heading";
 
 // Text Component
 export interface TextProps
-  extends React.HTMLAttributes<HTMLParagraphElement>,
+  extends Omit<React.HTMLAttributes<HTMLParagraphElement>, 'color'>,
     VariantProps<typeof textVariants> {
   as?: "p" | "span" | "div";
 }
@@ -152,7 +152,7 @@ Text.displayName = "Text";
 
 // Label Component
 export interface LabelProps
-  extends React.LabelHTMLAttributes<HTMLLabelElement>,
+  extends Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'color'>,
     VariantProps<typeof labelVariants> {}
 
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
@@ -170,7 +170,7 @@ Label.displayName = "Label";
 
 // Caption Component
 export interface CaptionProps
-  extends React.HTMLAttributes<HTMLParagraphElement>,
+  extends Omit<React.HTMLAttributes<HTMLParagraphElement>, 'color'>,
     VariantProps<typeof captionVariants> {}
 
 const Caption = React.forwardRef<HTMLParagraphElement, CaptionProps>(

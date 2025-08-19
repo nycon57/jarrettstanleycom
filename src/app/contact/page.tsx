@@ -264,7 +264,7 @@ export default function ContactPage() {
             transition={{ delay: 0.4 }}
             className="mb-8"
           >
-            <Text size="xl" className="mx-auto max-w-3xl text-center text-muted-foreground">
+            <Text variant="large" className="mx-auto max-w-3xl text-center text-muted-foreground">
               Whether you need expert speaking, strategic consulting, or media commentary on AI marketing, 
               I'm here to help. Choose the path that best fits your needs.
             </Text>

@@ -141,10 +141,10 @@ export function RecommendedArticles({ posts, currentPostId }: RecommendedArticle
                       <time dateTime={post.published_at}>
                         {format(new Date(post.published_at), "MMM d, yyyy")}
                       </time>
-                      {post.read_time && (
+                      {post.read_time_minutes && (
                         <>
                           <span>•</span>
-                          <span>{post.read_time} min read</span>
+                          <span>{post.read_time_minutes} min read</span>
                         </>
                       )}
                     </div>

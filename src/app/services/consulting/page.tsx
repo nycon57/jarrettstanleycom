@@ -168,7 +168,7 @@ export default function ConsultingPage() {
               <span className="text-lilac">AI-Powered Strategies</span>
             </Heading>
             
-            <Text size="xl" className="mx-auto max-w-3xl text-center text-muted-foreground mb-12">
+            <Text variant="large" className="mx-auto max-w-3xl text-center text-muted-foreground mb-12">
               Get hands-on guidance from an industry leader who's built and scaled AI solutions 
               that have transformed mortgage marketing for hundreds of companies.
             </Text>
@@ -210,7 +210,7 @@ export default function ConsultingPage() {
             <Heading variant="h2" className="mb-6 text-center">
               Consulting <span className="text-lilac">Focus Areas</span>
             </Heading>
-            <Text size="xl" className="text-muted-foreground max-w-3xl mx-auto text-center">
+            <Text variant="large" className="text-muted-foreground max-w-3xl mx-auto text-center">
               Comprehensive expertise across all aspects of AI-powered mortgage marketing
             </Text>
           </motion.div>
@@ -256,7 +256,7 @@ export default function ConsultingPage() {
             <Heading variant="h2" className="mb-6 text-center">
               Flexible <span className="text-lilac">Engagement Models</span>
             </Heading>
-            <Text size="xl" className="text-muted-foreground max-w-3xl mx-auto text-center">
+            <Text variant="large" className="text-muted-foreground max-w-3xl mx-auto text-center">
               Choose the consulting approach that best fits your needs and timeline
             </Text>
           </motion.div>
@@ -310,7 +310,7 @@ export default function ConsultingPage() {
             <Heading variant="h2" className="mb-6 text-center">
               Proven <span className="text-lilac">Results</span>
             </Heading>
-            <Text size="xl" className="text-muted-foreground max-w-3xl mx-auto text-center">
+            <Text variant="large" className="text-muted-foreground max-w-3xl mx-auto text-center">
               Real transformations from mortgage companies that embraced AI-powered marketing
             </Text>
           </motion.div>
@@ -343,7 +343,7 @@ export default function ConsultingPage() {
             <Heading variant="h2" className="mb-6 text-center">
               Our Consulting <span className="text-lilac">Process</span>
             </Heading>
-            <Text size="xl" className="text-muted-foreground max-w-3xl mx-auto text-center">
+            <Text variant="large" className="text-muted-foreground max-w-3xl mx-auto text-center">
               A proven methodology for driving transformational results
             </Text>
           </motion.div>

@@ -237,7 +237,7 @@ export default function ResourcesPage() {
             transition={{ delay: 0.4, duration: 0.5, ease: "easeOut" }}
             className="mb-8"
           >
-            <Text size="xl" className="mx-auto max-w-3xl text-center text-muted-foreground">
+            <Text variant="large" className="mx-auto max-w-3xl text-center text-muted-foreground">
               Comprehensive guides, video tutorials, templates, and webinars to help you succeed with TrueTone AI and transform your mortgage marketing strategy.
             </Text>
           </motion.div>
