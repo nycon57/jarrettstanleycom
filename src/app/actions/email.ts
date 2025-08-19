@@ -13,7 +13,7 @@ import {
   sendResourceDownloadEmail,
   sendNewsletterWelcome,
   safeEmailSend
-} from '@/lib/email';
+} from '@/lib/email-service';
 import { createClient } from '@/lib/supabase-client';
 import { supabase } from '@/lib/supabase';
 
