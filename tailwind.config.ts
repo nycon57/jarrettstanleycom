@@ -51,7 +51,7 @@ const config: Config = {
   				rgb: '79, 81, 140'
   			},
   			lilac: {
-  				DEFAULT: '#9D7AD6',
+  				DEFAULT: '#907AD6',
   				rgb: '144, 122, 214'
   			},
   			lavender: {
@@ -59,7 +59,7 @@ const config: Config = {
   				rgb: '218, 191, 255'
   			},
   			skyward: {
-  				DEFAULT: '#7FEDFF',
+  				DEFAULT: '#7FDEFF',
   				rgb: '127, 222, 255'
   			},
   			border: 'hsl(var(--border))',
@@ -145,6 +145,34 @@ const config: Config = {
   					height: '0'
   				}
   			},
+  			'shimmer': {
+  				'0%': { backgroundPosition: '200% 0' },
+  				'100%': { backgroundPosition: '-200% 0' }
+  			},
+  			'gradient': {
+  				'0%, 100%': { backgroundPosition: '0% 50%' },
+  				'50%': { backgroundPosition: '100% 50%' }
+  			},
+  			'fadeIn': {
+  				'0%': { opacity: '0' },
+  				'100%': { opacity: '1' }
+  			},
+  			'fadeUp': {
+  				'0%': { opacity: '0', transform: 'translateY(10px)' },
+  				'100%': { opacity: '1', transform: 'translateY(0)' }
+  			},
+  			'slideInLeft': {
+  				'0%': { transform: 'translateX(-100%)' },
+  				'100%': { transform: 'translateX(0)' }
+  			},
+  			'slideInRight': {
+  				'0%': { transform: 'translateX(100%)' },
+  				'100%': { transform: 'translateX(0)' }
+  			},
+  			'scaleIn': {
+  				'0%': { transform: 'scale(0.9)', opacity: '0' },
+  				'100%': { transform: 'scale(1)', opacity: '1' }
+  			},
   			'orb-wave': {
   				'0%, 100%': {
   					transform: 'scale(1) translate(0, 0) rotate(0deg)',
@@ -222,6 +250,13 @@ const config: Config = {
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
+  			'shimmer': 'shimmer 2s linear infinite',
+  			'gradient': 'gradient 8s ease infinite',
+  			'fadeIn': 'fadeIn 0.5s ease-out',
+  			'fadeUp': 'fadeUp 0.5s ease-out',
+  			'slideInLeft': 'slideInLeft 0.5s ease-out',
+  			'slideInRight': 'slideInRight 0.5s ease-out',
+  			'scaleIn': 'scaleIn 0.3s ease-out',
   			'orb-wave': 'orb-wave 0.4s ease-in-out infinite',
   			'orb-wave-slow': 'orb-wave-slow 2s ease-in-out infinite',
   			'voice-wave': 'voice-wave 1s ease-in-out infinite',

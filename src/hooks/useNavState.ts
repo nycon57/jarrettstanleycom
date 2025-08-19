@@ -18,9 +18,8 @@ export function useNavState(): NavStateConfig {
   const { scrollDirection, scrollY, isScrolled } = useScrollDirection(10);
   const [isVisible, setIsVisible] = useState(true);
 
-  // Pages with dark hero sections that should use light text when transparent
-  const darkHeroPages = ['/', '/speaking'];
-  const isDarkHeroPage = darkHeroPages.includes(pathname);
+  // All hero sections now have proper light/dark variants, so no special handling needed
+  const isDarkHeroPage = false;
 
   // Determine nav state based on scroll position - ALL pages start transparent
   const getNavState = (): NavState => {

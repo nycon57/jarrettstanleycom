@@ -34,7 +34,7 @@ export function BlogPostCard({ post, featured = false, className }: BlogPostCard
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
-            <div className="bg-gradient-to-br from-purple-500 to-blue-600 w-full h-full flex items-center justify-center">
+            <div className="bg-gradient-to-br from-lilac to-orchid w-full h-full flex items-center justify-center">
               <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
                 <img
                   src="/assets/images/JS-Logo-white.png"
@@ -55,7 +55,7 @@ export function BlogPostCard({ post, featured = false, className }: BlogPostCard
             </div>
           )}
           {post.is_featured && (
-            <Badge className="absolute top-4 left-4 bg-yellow-500 text-yellow-900 hover:bg-yellow-600">
+            <Badge className="absolute top-4 left-4 bg-skyward text-shadow hover:bg-skyward/90">
               Featured
             </Badge>
           )}
@@ -78,7 +78,7 @@ export function BlogPostCard({ post, featured = false, className }: BlogPostCard
         
         <Link href={`/insights/blog/${post.slug}`}>
           <h3 className={cn(
-            "font-signal font-bold leading-tight transition-colors group-hover:text-purple-600",
+            "font-signal font-bold leading-tight transition-colors group-hover:text-lilac",
             featured ? "text-2xl" : "text-xl"
           )}>
             {post.title}

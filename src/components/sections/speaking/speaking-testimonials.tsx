@@ -60,7 +60,7 @@ export function SpeakingTestimonials() {
             <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               What Audiences Are Saying
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
               Loading testimonials...
             </p>
           </div>
@@ -82,7 +82,7 @@ export function SpeakingTestimonials() {
           <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             What Audiences Are Saying
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
             Real feedback from conference organizers and attendees
           </p>
         </motion.div>
@@ -106,7 +106,7 @@ export function SpeakingTestimonials() {
                           <svg
                             key={i}
                             className={`h-4 w-4 ${
-                              i < (testimonial.rating || 0) ? 'text-yellow-400 fill-current' : 'text-gray-300'
+                              i < (testimonial.rating || 0) ? 'text-yellow-400 fill-current' : 'text-gray-400 dark:text-gray-300'
                             }`}
                             viewBox="0 0 20 20"
                           >
@@ -122,7 +122,7 @@ export function SpeakingTestimonials() {
                       )}
                       <div>
                         <p className="font-semibold text-gray-900 dark:text-white">{testimonial.author_name}</p>
-                        <p className="text-sm text-gray-600 dark:text-gray-300">
+                        <p className="text-sm text-gray-700 dark:text-gray-300">
                           {testimonial.author_role ? `${testimonial.author_role}${testimonial.author_company ? ', ' + testimonial.author_company : ''}` : testimonial.author_company || ''}
                         </p>
                       </div>

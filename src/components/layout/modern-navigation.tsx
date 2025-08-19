@@ -79,7 +79,7 @@ const SubmenuItem = ({ item, onClose }: SubmenuItemProps) => {
           </p>
           <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-lilac group-hover:translate-x-1 transition-all duration-300" />
         </div>
-        <p className="text-sm text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+        <p className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
           {item.description}
         </p>
       </div>
@@ -191,7 +191,14 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
               alt="Jarrett Stanley"
               width={160}
               height={48}
-              className="h-5 sm:h-6 w-auto"
+              className="h-5 sm:h-6 w-auto dark:hidden"
+            />
+            <Image
+              src="/assets/images/JS-Logo-white.png"
+              alt="Jarrett Stanley"
+              width={160}
+              height={48}
+              className="h-5 sm:h-6 w-auto hidden dark:block"
             />
             <Button
               variant="ghost"
@@ -312,8 +319,15 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
 export function ModernNavigation() {
   const { navState, isCompact, shouldUseLightText, isVisible } = useNavState();
   const pathname = usePathname();
+  const { theme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  // Check if component is mounted (for theme)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Close mobile menu when pathname changes
   useEffect(() => {
@@ -371,7 +385,7 @@ export function ModernNavigation() {
               href="/" 
               className="relative hover:scale-105 transition-transform duration-300"
             >
-              {shouldUseLightText ? (
+              {mounted && theme === 'dark' ? (
                 <Image
                   src="/assets/images/JS-Logo-white.png"
                   alt="Jarrett Stanley"

@@ -199,10 +199,10 @@ export default function BlogIndex() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <section className="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 py-16 pt-24">
+      <section className="bg-gradient-to-br from-lilac/10 to-orchid/10 py-16 pt-24">
         <div className="container mx-auto px-4">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-signal font-bold text-4xl md:text-5xl mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <h1 className="font-signal font-bold text-4xl md:text-5xl mb-6 bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent">
               Blog & Articles
             </h1>
             <p className="text-lg text-muted-foreground mb-8">

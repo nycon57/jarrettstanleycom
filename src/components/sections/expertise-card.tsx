@@ -34,12 +34,12 @@ export function ExpertiseCard({
       )}
     >
       {/* Background gradient on hover */}
-      <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-purple-600/5 opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 to-orchid/5 opacity-0 transition-opacity group-hover:opacity-100" />
       
       {/* Icon */}
       <div className="relative mb-4">
-        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-purple-500/10 to-purple-600/10 transition-transform group-hover:scale-110">
-          <Icon className="h-7 w-7 text-purple-600" />
+        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-lilac/10 to-orchid/10 transition-transform group-hover:scale-110">
+          <Icon className="h-7 w-7 text-lilac" />
         </div>
       </div>
       
@@ -54,7 +54,7 @@ export function ExpertiseCard({
         {skills.map((skill) => (
           <span
             key={skill}
-            className="rounded-full bg-purple-500/10 px-3 py-1 text-xs font-medium text-purple-600"
+            className="rounded-full bg-lilac/10 px-3 py-1 text-xs font-medium text-lilac"
           >
             {skill}
           </span>

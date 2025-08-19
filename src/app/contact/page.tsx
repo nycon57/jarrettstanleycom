@@ -45,7 +45,7 @@ const contactPathways = [
     icon: IconMicrophone,
     action: "Request Speaking",
     href: "#contact-form",
-    color: "bg-green-500 dark:bg-green-600",
+    color: "bg-lilac",
     type: "speaking",
     features: [
       "AI Marketing Strategy",
@@ -60,7 +60,7 @@ const contactPathways = [
     icon: IconBriefcase,
     action: "Explore Consulting",
     href: "#contact-form",
-    color: "bg-blue-500 dark:bg-blue-600",
+    color: "bg-orchid",
     type: "consulting",
     features: [
       "AI Implementation",
@@ -75,7 +75,7 @@ const contactPathways = [
     icon: IconCamera,
     action: "Media Inquiry",
     href: "#contact-form",
-    color: "bg-orange-500 dark:bg-orange-600",
+    color: "bg-skyward",
     type: "media",
     features: [
       "Expert Commentary",
@@ -90,7 +90,7 @@ const contactPathways = [
     icon: IconUsers,
     action: "Discuss Partnership",
     href: "#contact-form",
-    color: "bg-purple-500 dark:bg-purple-600",
+    color: "bg-lavender",
     type: "partnership",
     features: [
       "Strategic Alliances",
@@ -189,7 +189,7 @@ export default function ContactPage() {
         if (result.error) {
           toast.error(result.error);
         } else {
-          toast.success("Media inquiry submitted! We'll respond within 4 hours.");
+          toast.success("Media inquiry submitted! We'll respond as soon as possible.");
           resetForm();
         }
       } else {
@@ -542,7 +542,7 @@ export default function ContactPage() {
 
                   <Button 
                     type="submit" 
-                    className={`w-full ${isMediaInquiry ? 'bg-orange-500 hover:bg-orange-600' : 'bg-lilac hover:bg-lilac/90'}`}
+                    className={`w-full text-white ${isMediaInquiry ? 'bg-skyward hover:bg-skyward/90' : 'bg-lilac hover:bg-lilac/90'}`}
                     disabled={loading}
                     size="lg"
                   >

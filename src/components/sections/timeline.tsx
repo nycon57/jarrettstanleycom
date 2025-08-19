@@ -36,7 +36,7 @@ export function Timeline({ items, className }: TimelineProps) {
   return (
     <div className={cn('relative', className)}>
       {/* Vertical line */}
-      <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500/20 via-purple-500/50 to-purple-500/20" />
+      <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-lilac/20 via-lilac/50 to-lilac/20" />
       
       <div className="space-y-12">
         {items.map((item, index) => (
@@ -49,8 +49,8 @@ export function Timeline({ items, className }: TimelineProps) {
             className="relative flex gap-6"
           >
             {/* Icon circle */}
-            <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-background border-2 border-purple-500/20 shadow-lg">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-purple-500 to-purple-600 text-white">
+            <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-background border-2 border-lilac/20 shadow-lg">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-lilac to-orchid text-white">
                 {item.icon || getIcon(item.type)}
               </div>
             </div>
@@ -69,7 +69,7 @@ export function Timeline({ items, className }: TimelineProps) {
                 </div>
                 <h3 className="text-xl font-semibold mb-1">{item.title}</h3>
                 {item.company && (
-                  <div className="text-purple-600 font-medium mb-3">
+                  <div className="text-lilac font-medium mb-3">
                     {item.company}
                   </div>
                 )}

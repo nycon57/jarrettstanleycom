@@ -69,7 +69,7 @@ export function StatsBlock({ value, label, suffix = "", prefix = "", className }
       <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#9D7AD6] to-[#7FEDFF] bg-clip-text text-transparent">
         {prefix}{displayValue}{suffix}
       </div>
-      <div className="text-gray-400 mt-2">{label}</div>
+      <div className="text-gray-600 dark:text-gray-400 mt-2">{label}</div>
     </div>
   )
 }

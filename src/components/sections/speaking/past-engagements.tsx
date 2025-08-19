@@ -103,7 +103,7 @@ const stats = [
 
 export function PastEngagements() {
   return (
-    <section className="py-24 sm:py-32 bg-white dark:bg-gray-800">
+    <section className="py-24 sm:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -115,7 +115,7 @@ export function PastEngagements() {
           <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Speaking Experience
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
             Delivering transformative insights to industry leaders nationwide
           </p>
         </motion.div>
@@ -130,13 +130,13 @@ export function PastEngagements() {
         >
           {stats.map((stat, index) => (
             <div key={stat.label} className="text-center">
-              <p className="text-3xl font-signal font-bold text-purple-600 dark:text-lilac">
+              <p className="text-3xl font-signal font-bold text-lilac">
                 {stat.value}
               </p>
               <p className="mt-1 text-sm font-semibold text-gray-900 dark:text-white">
                 {stat.label}
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
+              <p className="text-xs text-gray-600 dark:text-gray-400">
                 {stat.description}
               </p>
             </div>
@@ -153,7 +153,7 @@ export function PastEngagements() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
             >
-              <Card className={`overflow-hidden ${engagement.featured ? 'border-purple-200 dark:border-purple-800 bg-gradient-to-br from-purple-50/50 to-transparent dark:from-purple-900/20' : ''}`}>
+              <Card className={`overflow-hidden ${engagement.featured ? 'border-lilac/30 bg-gradient-to-br from-lilac/5 to-transparent' : ''}`}>
                 <CardHeader>
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
                     <div className="space-y-2">
@@ -162,7 +162,7 @@ export function PastEngagements() {
                           {engagement.title}
                         </CardTitle>
                         {engagement.featured && (
-                          <Badge variant="default" className="bg-purple-600 dark:bg-lilac">
+                          <Badge variant="default" className="bg-lilac">
                             <Sparkles className="w-3 h-3 mr-1" />
                             Featured
                           </Badge>
@@ -171,7 +171,7 @@ export function PastEngagements() {
                       <CardDescription className="text-base">
                         {engagement.organization}
                       </CardDescription>
-                      <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+                      <div className="flex flex-wrap gap-4 text-sm text-gray-700 dark:text-gray-400">
                         <span className="flex items-center gap-1">
                           <Calendar className="w-4 h-4" />
                           {engagement.date}
@@ -193,10 +193,10 @@ export function PastEngagements() {
                 </CardHeader>
                 <CardContent className="space-y-4">
                   <div>
-                    <p className="font-semibold text-purple-600 dark:text-lilac mb-1">
+                    <p className="font-semibold text-lilac mb-1">
                       Topic: {engagement.topic}
                     </p>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className="text-gray-700 dark:text-gray-300">
                       {engagement.description}
                     </p>
                   </div>
@@ -208,8 +208,8 @@ export function PastEngagements() {
                     <ul className="grid sm:grid-cols-2 gap-2">
                       {engagement.highlights.map((highlight) => (
                         <li key={highlight} className="flex items-start">
-                          <span className="text-purple-600 dark:text-lilac mr-2">•</span>
-                          <span className="text-sm text-gray-600 dark:text-gray-300">{highlight}</span>
+                          <span className="text-lilac mr-2">•</span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">{highlight}</span>
                         </li>
                       ))}
                     </ul>
@@ -234,18 +234,18 @@ export function PastEngagements() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
-          className="mt-16 text-center bg-gradient-to-r from-purple-100 to-indigo-100 dark:from-purple-900/20 dark:to-indigo-900/20 rounded-2xl p-8"
+          className="mt-16 text-center bg-gradient-to-r from-lilac/10 to-orchid/10 rounded-2xl p-8"
         >
           <h3 className="text-xl font-signal font-semibold text-gray-900 dark:text-white mb-3">
             Looking for an Engaging Speaker?
           </h3>
-          <p className="text-gray-600 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+          <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
             Jarrett brings energy, expertise, and actionable insights to every presentation. 
             Whether it's a keynote, workshop, or panel discussion, he delivers content that resonates and drives results.
           </p>
           <a
             href="/contact"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-purple-600 hover:bg-purple-700 dark:bg-lilac dark:hover:bg-purple-500 transition-colors"
+            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 transition-colors"
           >
             Book Jarrett for Your Event
           </a>

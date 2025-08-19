@@ -2,7 +2,7 @@ export default function TestPage() {
   return (
     <div className="container mx-auto px-6 py-20">
       <h1 className="text-4xl font-signal font-bold mb-4">Test Page</h1>
-      <p className="text-lg text-gray-600 dark:text-gray-300">
+      <p className="text-lg text-gray-700 dark:text-gray-300">
         This is a test page to verify the header and footer components are working correctly.
       </p>
       <div className="mt-8 p-6 bg-gray-100 dark:bg-gray-800 rounded-lg">

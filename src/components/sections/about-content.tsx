@@ -108,7 +108,7 @@ export function AboutContent() {
     <main className="relative">
       {/* Hero Section */}
       <section className="relative py-20 lg:py-32 pt-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-purple-600/5" />
+        <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 via-transparent to-orchid/5" />
         
         <div className="container relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -120,7 +120,7 @@ export function AboutContent() {
             >
               <h1 className="text-4xl lg:text-6xl font-bold mb-6">
                 Hi, I'm{' '}
-                <span className="bg-gradient-to-r from-purple-600 to-purple-500 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent">
                   Jarrett Stanley
                 </span>
               </h1>
@@ -150,7 +150,7 @@ export function AboutContent() {
               transition={{ duration: 0.5, delay: 0.2 }}
               className="relative"
             >
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-purple-500/10 to-purple-600/10">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden bg-gradient-to-br from-lilac/10 to-orchid/10">
                 <Image
                   src="/assets/images/Jarrett-Stock-3.png"
                   alt="Jarrett Stanley"

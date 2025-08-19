@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { toast } from "sonner";
 import { ConsultingFormData, consultingFormSchema } from "@/lib/validations/consulting";
 import { submitConsultingInquiry } from "@/app/actions/email";
@@ -252,30 +251,23 @@ export function ConsultingInquiryForm() {
       </div>
 
       <div className="space-y-2">
-        <Label>Preferred Contact Method</Label>
-        <RadioGroup
+        <Label htmlFor="preferred_contact_method">Preferred Contact Method</Label>
+        <Select 
           defaultValue="email"
           onValueChange={(value) => setValue("preferred_contact_method", value as any)}
         >
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="email" id="contact-email" />
-            <Label htmlFor="contact-email" className="font-normal cursor-pointer">
-              Email
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="phone" id="contact-phone" />
-            <Label htmlFor="contact-phone" className="font-normal cursor-pointer">
-              Phone
-            </Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="both" id="contact-both" />
-            <Label htmlFor="contact-both" className="font-normal cursor-pointer">
-              Either Email or Phone
-            </Label>
-          </div>
-        </RadioGroup>
+          <SelectTrigger className="bg-background">
+            <SelectValue placeholder="Select preferred contact method" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="email">Email</SelectItem>
+            <SelectItem value="phone">Phone</SelectItem>
+            <SelectItem value="both">Either Email or Phone</SelectItem>
+          </SelectContent>
+        </Select>
+        {errors.preferred_contact_method && (
+          <p className="text-sm text-red-500">{errors.preferred_contact_method.message}</p>
+        )}
       </div>
 
       <Button 

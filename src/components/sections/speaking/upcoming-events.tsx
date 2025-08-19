@@ -91,7 +91,7 @@ export function UpcomingEvents() {
             <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               Upcoming Speaking Events
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
               Loading events...
             </p>
           </div>
@@ -114,7 +114,7 @@ export function UpcomingEvents() {
             <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
               Upcoming Speaking Events
             </h2>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+            <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
               Check back soon for upcoming speaking engagements
             </p>
             <div className="mt-8">
@@ -141,7 +141,7 @@ export function UpcomingEvents() {
           <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Upcoming Speaking Events
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
             Join Jarrett at these upcoming conferences and events
           </p>
         </motion.div>
@@ -169,7 +169,7 @@ export function UpcomingEvents() {
                   <p className="mt-2 text-base font-semibold text-purple-600 dark:text-lilac">{event.topics?.join(', ') || event.organization}</p>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+                  <div className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
                     <div className="flex items-center gap-2">
                       <Calendar className="h-4 w-4" />
                       <span>{format(new Date(event.event_date), 'MMMM d, yyyy')}</span>
@@ -186,7 +186,7 @@ export function UpcomingEvents() {
                     )}
                   </div>
                   {event.description && (
-                    <p className="mt-4 text-sm text-gray-600 dark:text-gray-300">{event.description}</p>
+                    <p className="mt-4 text-sm text-gray-700 dark:text-gray-300">{event.description}</p>
                   )}
                   {event.event_url && (
                     <div className="mt-6">

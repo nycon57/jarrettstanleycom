@@ -81,7 +81,7 @@ const ServicesShowcase = () => {
                 fromRef={div1Ref}
                 curvature={40}
                 toRef={div4Ref}
-                gradientStartColor="#9D7AD6"
+                gradientStartColor="#907AD6"
                 gradientStopColor="#4F518C"
               />
               <AnimatedBeam
@@ -89,7 +89,7 @@ const ServicesShowcase = () => {
                 containerRef={containerRef1}
                 fromRef={div2Ref}
                 toRef={div4Ref}
-                gradientStartColor="#9D7AD6"
+                gradientStartColor="#907AD6"
                 gradientStopColor="#4F518C"
               />
               <AnimatedBeam
@@ -98,7 +98,7 @@ const ServicesShowcase = () => {
                 fromRef={div3Ref}
                 curvature={-40}
                 toRef={div4Ref}
-                gradientStartColor="#9D7AD6"
+                gradientStartColor="#907AD6"
                 gradientStopColor="#4F518C"
               />
               <AnimatedBeam
@@ -106,8 +106,8 @@ const ServicesShowcase = () => {
                 containerRef={containerRef1}
                 fromRef={div4Ref}
                 toRef={div5Ref}
-                gradientStartColor="#9D7AD6"
-                gradientStopColor="#7FEDFF"
+                gradientStartColor="#907AD6"
+                gradientStopColor="#7FDEFF"
               />
             </CardContent>
           </Card>
@@ -145,8 +145,8 @@ const ServicesShowcase = () => {
                 direction="vertical"
                 curvature={40}
                 toRef={div7Ref as React.RefObject<HTMLDivElement>}
-                gradientStartColor="#9D7AD6"
-                gradientStopColor="#7FEDFF"
+                gradientStartColor="#907AD6"
+                gradientStopColor="#7FDEFF"
               />
             </CardContent>
           </Card>
@@ -302,7 +302,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   pathColor = "gray",
   pathWidth = 2,
   pathOpacity = 0.2,
-  gradientStartColor = "#9D7AD6",
+  gradientStartColor = "#907AD6",
   gradientStopColor = "#4F518C",
   startXOffset = 0,
   startYOffset = 0,

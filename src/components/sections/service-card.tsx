@@ -20,7 +20,7 @@ export function ServiceCard({ title, description, icon, className, href }: Servi
         <CardTitle className="text-2xl font-signal">{title}</CardTitle>
       </CardHeader>
       <CardContent className="relative z-10">
-        <CardDescription className="text-base text-gray-300 dark:text-gray-300">
+        <CardDescription className="text-base text-gray-700 dark:text-gray-300">
           {description}
         </CardDescription>
       </CardContent>

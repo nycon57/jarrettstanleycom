@@ -147,7 +147,7 @@ export default function ConsultingPage() {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
-      <section className="relative py-32 pt-40 overflow-hidden bg-gradient-to-br from-[#9D7AD6]/10 via-background to-[#4F518C]/10">
+      <section className="relative py-32 pt-40 overflow-hidden bg-gradient-to-br from-lilac/10 via-background to-orchid/10">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -155,13 +155,13 @@ export default function ConsultingPage() {
             transition={{ delay: 0.1 }}
             className="text-center"
           >
-            <div className="mx-auto mb-6 w-fit rounded-full border border-[#9D7AD6]/20 bg-[#9D7AD6]/5 px-6 py-3 text-sm text-foreground backdrop-blur">
+            <div className="mx-auto mb-6 w-fit rounded-full border border-lilac/20 bg-lilac/5 px-6 py-3 text-sm text-foreground backdrop-blur">
               Strategic Consulting
             </div>
             
             <h1 className="mx-auto max-w-4xl text-balance text-4xl font-bold text-foreground lg:text-6xl mb-6">
               Transform Your Marketing with{" "}
-              <span className="text-[#9D7AD6]">AI-Powered Strategies</span>
+              <span className="text-lilac">AI-Powered Strategies</span>
             </h1>
             
             <p className="mx-auto max-w-3xl text-xl text-muted-foreground mb-12">
@@ -172,7 +172,7 @@ export default function ConsultingPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button 
                 size="lg" 
-                className="bg-[#9D7AD6] hover:bg-[#9D7AD6]/90"
+                className="bg-lilac hover:bg-lilac/90"
                 onClick={() => {
                   document.getElementById('inquiry-form')?.scrollIntoView({ behavior: 'smooth' });
                 }}
@@ -183,7 +183,7 @@ export default function ConsultingPage() {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="border-[#9D7AD6]/50 hover:bg-[#9D7AD6]/10"
+                className="border-lilac/50 hover:bg-lilac/10"
                 asChild
               >
                 <Link href="/contact">
@@ -205,7 +205,7 @@ export default function ConsultingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Consulting <span className="text-[#9D7AD6]">Focus Areas</span>
+              Consulting <span className="text-lilac">Focus Areas</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Comprehensive expertise across all aspects of AI-powered mortgage marketing
@@ -222,11 +222,11 @@ export default function ConsultingPage() {
                 transition={{ delay: index * 0.1 }}
                 className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300"
               >
-                <div className="mb-4 p-3 rounded-full bg-gradient-to-br from-[#9D7AD6] to-[#4F518C] w-fit">
+                <div className="mb-4 p-3 rounded-full bg-gradient-to-br from-lilac to-orchid w-fit">
                   {area.icon}
                 </div>
                 <h3 className="text-xl font-signal mb-3">{area.title}</h3>
-                <p className="text-gray-300">{area.description}</p>
+                <p className="text-gray-700 dark:text-gray-300">{area.description}</p>
               </motion.div>
             ))}
           </div>
@@ -243,7 +243,7 @@ export default function ConsultingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Flexible <span className="text-[#9D7AD6]">Engagement Models</span>
+              Flexible <span className="text-lilac">Engagement Models</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Choose the consulting approach that best fits your needs and timeline
@@ -258,20 +258,20 @@ export default function ConsultingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-background rounded-2xl p-8 border border-white/10 hover:border-[#9D7AD6]/50 transition-all duration-300"
+                className="bg-background rounded-2xl p-8 border border-white/10 hover:border-lilac/50 transition-all duration-300"
               >
                 <div className="flex items-center justify-between mb-6">
                   <h3 className="text-2xl font-signal">{model.title}</h3>
-                  <span className="text-sm text-[#9D7AD6] font-medium">{model.duration}</span>
+                  <span className="text-sm text-lilac font-medium">{model.duration}</span>
                 </div>
                 
-                <p className="text-gray-300 mb-6">{model.description}</p>
+                <p className="text-gray-700 dark:text-gray-300 mb-6">{model.description}</p>
                 
                 <ul className="space-y-3 mb-6">
                   {model.features.map((feature, i) => (
                     <li key={i} className="flex items-start gap-3">
-                      <CheckCircle className="w-5 h-5 text-[#9D7AD6] mt-0.5" />
-                      <span className="text-gray-300">{feature}</span>
+                      <CheckCircle className="w-5 h-5 text-lilac mt-0.5" />
+                      <span className="text-gray-700 dark:text-gray-300">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -287,8 +287,8 @@ export default function ConsultingPage() {
         </div>
       </section>
 
-      {/* Case Studies */}
-      <section className="py-24 bg-background">
+      {/* Case Studies - Hidden */}
+      {/* <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -297,7 +297,7 @@ export default function ConsultingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Proven <span className="text-[#9D7AD6]">Results</span>
+              Proven <span className="text-lilac">Results</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Real transformations from mortgage companies that embraced AI-powered marketing
@@ -318,7 +318,7 @@ export default function ConsultingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Process */}
       <section className="py-24 bg-muted/30">
@@ -330,7 +330,7 @@ export default function ConsultingPage() {
             className="text-center mb-16"
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
-              Our Consulting <span className="text-[#9D7AD6]">Process</span>
+              Our Consulting <span className="text-lilac">Process</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               A proven methodology for driving transformational results
@@ -368,17 +368,17 @@ export default function ConsultingPage() {
                 transition={{ delay: 0.2 }}
               >
                 <h2 className="text-3xl font-bold mb-6">
-                  Start Your <span className="text-[#9D7AD6]">Transformation</span>
+                  Start Your <span className="text-lilac">Transformation</span>
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  Tell us about your challenges and goals. We'll respond within 24 hours with 
+                  Tell us about your challenges and goals. We'll respond as soon as possible with 
                   insights and next steps for your AI journey.
                 </p>
                 
                 <div className="space-y-6">
                   <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-[#9D7AD6]/10">
-                      <Briefcase className="w-5 h-5 text-[#9D7AD6]" />
+                    <div className="p-2 rounded-full bg-lilac/10">
+                      <Briefcase className="w-5 h-5 text-lilac" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1">Custom Solutions</h4>
@@ -389,8 +389,8 @@ export default function ConsultingPage() {
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-[#9D7AD6]/10">
-                      <Calendar className="w-5 h-5 text-[#9D7AD6]" />
+                    <div className="p-2 rounded-full bg-lilac/10">
+                      <Calendar className="w-5 h-5 text-lilac" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1">Flexible Timeline</h4>
@@ -401,13 +401,13 @@ export default function ConsultingPage() {
                   </div>
                   
                   <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-[#9D7AD6]/10">
-                      <CheckCircle className="w-5 h-5 text-[#9D7AD6]" />
+                    <div className="p-2 rounded-full bg-lilac/10">
+                      <CheckCircle className="w-5 h-5 text-lilac" />
                     </div>
                     <div>
                       <h4 className="font-medium mb-1">Proven Results</h4>
                       <p className="text-sm text-muted-foreground">
-                        Track record of 300%+ ROI for clients
+                        More than 20 years of marketing and AI experience for clients
                       </p>
                     </div>
                   </div>
@@ -429,7 +429,7 @@ export default function ConsultingPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-[#9D7AD6]/10 via-background to-[#4F518C]/10">
+      <section className="py-24 bg-gradient-to-br from-lilac/10 via-background to-orchid/10">
         <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -447,7 +447,7 @@ export default function ConsultingPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button 
                 size="lg" 
-                className="bg-[#9D7AD6] hover:bg-[#9D7AD6]/90"
+                className="bg-lilac hover:bg-lilac/90"
                 onClick={() => {
                   document.getElementById('inquiry-form')?.scrollIntoView({ behavior: 'smooth' });
                 }}
@@ -458,7 +458,7 @@ export default function ConsultingPage() {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="border-[#9D7AD6]/50 hover:bg-[#9D7AD6]/10"
+                className="border-lilac/50 hover:bg-lilac/10"
                 asChild
               >
                 <Link href="/resources">

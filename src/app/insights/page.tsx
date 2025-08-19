@@ -48,7 +48,7 @@ export default async function InsightsHub() {
               Access exclusive resources and thought leadership content to stay ahead of the curve.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button asChild size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700">
+              <Button asChild size="lg" className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white">
                 <Link href="/insights/blog">
                   <BookOpen className="w-5 h-5 mr-2" />
                   Browse All Articles

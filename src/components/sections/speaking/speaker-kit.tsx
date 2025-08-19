@@ -57,7 +57,7 @@ export function SpeakerKit() {
           <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Download Speaker Kit
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
+          <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
             Everything you need to promote Jarrett at your event
           </p>
         </motion.div>
@@ -91,8 +91,8 @@ export function SpeakerKit() {
                       </div>
                       <div>
                         <h4 className="font-semibold text-gray-900 dark:text-white">{item.title}</h4>
-                        <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">{item.description}</p>
-                        <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">{item.size}</p>
+                        <p className="text-sm text-gray-700 dark:text-gray-300 mt-1">{item.description}</p>
+                        <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">{item.size}</p>
                       </div>
                     </div>
                   )
@@ -102,10 +102,10 @@ export function SpeakerKit() {
               <div className="border-t dark:border-gray-600 pt-6">
                 <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
                   <div className="text-center sm:text-left">
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                    <p className="text-sm text-gray-700 dark:text-gray-300">
                       Total download size: <span className="font-semibold">13.1 MB</span>
                     </p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mt-1">
                       ZIP file containing all materials
                     </p>
                   </div>
@@ -121,7 +121,7 @@ export function SpeakerKit() {
               </div>
 
               <div className="mt-8 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   <strong>Usage Guidelines:</strong> These materials are provided for event promotion purposes only. 
                   Please do not modify photos or bio content without permission. For custom requirements or 
                   additional materials, please contact us.
@@ -144,7 +144,7 @@ export function SpeakerKit() {
               <h3 className="text-lg font-signal font-semibold text-gray-900 dark:text-white mb-4">
                 Technical Requirements
               </h3>
-              <div className="space-y-3 text-sm text-gray-600 dark:text-gray-300">
+              <div className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
                 <div className="flex items-start">
                   <span className="text-purple-600 dark:text-lilac mr-2">•</span>
                   <span>Wireless lapel microphone preferred (handheld as backup)</span>

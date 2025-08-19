@@ -8,10 +8,10 @@ import { Mic, Sparkles } from 'lucide-react'
 export function HeroSection() {
   return (
     <section className="relative h-[900px] max-h-[900px] overflow-hidden">
-      {/* Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#131321] via-[#2C2A4A] to-[#4F518C]">
+      {/* Theme-aware gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-lilac/5 dark:from-shadow dark:via-indigo dark:to-orchid">
         {/* Additional gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#131321]/80 via-transparent to-[#9D7AD6]/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-100/50 via-transparent to-lilac/10 dark:from-shadow/80 dark:via-transparent dark:to-lilac/20"></div>
       </div>
       
       {/* Main Content Container - Add top padding for navigation */}
@@ -32,7 +32,7 @@ export function HeroSection() {
                   priority
                 />
                 {/* Subtle glow effect behind image */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#9D7AD6]/20 to-transparent blur-3xl -z-10 scale-110"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-lilac/20 to-transparent blur-3xl -z-10 scale-110"></div>
               </div>
             </div>
 
@@ -40,16 +40,16 @@ export function HeroSection() {
             <div className="order-1 lg:order-2 text-center lg:text-left flex items-center">
               <div className="w-full">
                 {/* Main heading */}
-                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-signal font-bold mb-6 lg:mb-8 text-white leading-[1.1]">
+                <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-signal font-bold mb-6 lg:mb-8 text-gray-900 dark:text-white leading-[1.1]">
                   <span className="block mb-2">WHERE MORTGAGE</span>
                   <span className="block mb-2">MARKETING MEETS</span>
-                  <span className="block bg-gradient-to-r from-[#9D7AD6] via-[#DABFFF] to-[#7FEDFF] bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-lilac via-lavender to-skyward bg-clip-text text-transparent">
                     ARTIFICIAL INTELLIGENCE
                   </span>
                 </h1>
                 
                 {/* Subheadline */}
-                <p className="text-base md:text-lg lg:text-xl text-gray-200 mb-8 lg:mb-10 leading-relaxed font-hind max-w-2xl mx-auto lg:mx-0">
+                <p className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-200 mb-8 lg:mb-10 leading-relaxed font-hind max-w-2xl mx-auto lg:mx-0">
                   From CMO at Nationwide Mortgage Bankers to creator of TrueTone AI, I've pioneered the AI marketing strategies that generated $500M+ in loan originations. Ready to transform your results?
                 </p>
                 
@@ -58,7 +58,7 @@ export function HeroSection() {
                   <Button 
                     asChild
                     size="lg"
-                    className="bg-gradient-to-r from-[#9D7AD6] to-[#4F518C] hover:from-[#9D7AD6]/90 hover:to-[#4F518C]/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-base px-8 py-4 h-auto"
+                    className="bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-base px-8 py-4 h-auto"
                   >
                     <Link href="/speaking">
                       <Mic className="mr-2 h-5 w-5" />
@@ -69,7 +69,7 @@ export function HeroSection() {
                     asChild
                     size="lg"
                     variant="outline"
-                    className="border-2 border-white/40 text-white hover:bg-white/10 hover:border-white/60 backdrop-blur-sm transition-all duration-300 text-base px-8 py-4 h-auto"
+                    className="border-2 border-gray-300 dark:border-white/40 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/60 backdrop-blur-sm transition-all duration-300 text-base px-8 py-4 h-auto"
                   >
                     <Link href="/services">
                       <Sparkles className="mr-2 h-5 w-5" />
@@ -85,8 +85,8 @@ export function HeroSection() {
 
       {/* Animated background elements for visual interest */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-[#9D7AD6]/10 to-[#7FEDFF]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-[#4F518C]/10 to-[#DABFFF]/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-lilac/5 to-skyward/5 dark:from-lilac/10 dark:to-skyward/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-orchid/5 to-lavender/5 dark:from-orchid/10 dark:to-lavender/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
       </div>
     </section>
   )

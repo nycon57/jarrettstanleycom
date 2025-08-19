@@ -21,23 +21,23 @@ export function ProcessStep({
     <div className={cn("relative", className)}>
       {/* Connection line */}
       {!isLast && (
-        <div className="hidden md:block absolute top-16 left-1/2 w-full h-px bg-gradient-to-r from-[#9D7AD6]/50 to-transparent" />
+        <div className="hidden md:block absolute top-20 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-px bg-gradient-to-r from-lilac/50 to-lilac/20" />
       )}
       
       <div className="relative z-10 text-center">
+        {/* Number badge above icon */}
+        <div className="mx-auto mb-4 w-8 h-8 rounded-full border-2 border-lilac/50 bg-background flex items-center justify-center">
+          <span className="text-sm font-bold text-lilac">{number}</span>
+        </div>
+        
         {/* Icon Circle */}
-        <div className="mx-auto mb-6 relative">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-[#9D7AD6] to-[#4F518C] flex items-center justify-center">
-            {icon}
-          </div>
-          <div className="absolute -top-2 -right-2 w-8 h-8 rounded-full bg-background border-2 border-[#9D7AD6] flex items-center justify-center">
-            <span className="text-sm font-bold text-[#9D7AD6]">{number}</span>
-          </div>
+        <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-gradient-to-br from-lilac/80 to-orchid/80 flex items-center justify-center shadow-lg">
+          {icon}
         </div>
         
         {/* Content */}
-        <h3 className="text-xl font-signal mb-3">{title}</h3>
-        <p className="text-gray-300 max-w-xs mx-auto">{description}</p>
+        <h3 className="text-xl font-signal mb-3 uppercase tracking-wide">{title}</h3>
+        <p className="text-gray-700 dark:text-gray-300 text-sm max-w-xs mx-auto">{description}</p>
       </div>
     </div>
   );
