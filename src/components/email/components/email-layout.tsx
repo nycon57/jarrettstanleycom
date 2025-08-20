@@ -184,7 +184,7 @@ export const EmailLayout: React.FC<EmailLayoutProps> = ({
               </Link>
               {' | '}
               <Link 
-                href="https://twitter.com/jarrettstanley" 
+                href="https://x.com/IAmJarrettS" 
                 style={{ color: colors.primary, textDecoration: 'none' }}
               >
                 Twitter

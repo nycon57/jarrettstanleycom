@@ -137,7 +137,7 @@ export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmai
           }}>
             LinkedIn
           </a>
-          <a href="https://twitter.com/jarrettstanley" style={{ 
+          <a href="https://x.com/IAmJarrettS" style={{ 
             backgroundColor: '#1da1f2', 
             color: 'white', 
             padding: '8px 16px', 

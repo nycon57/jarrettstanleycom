@@ -103,7 +103,7 @@ const socialLinks = [
   {
     name: "Twitter",
     icon: IconBrandTwitter,
-    href: "https://twitter.com/jarrettstanley",
+    href: "https://x.com/IAmJarrettS",
     color: "bg-[#1da1f2] dark:bg-[#1da1f2]",
     description: "Quick thoughts and real-time commentary"
   }

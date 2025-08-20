@@ -27,7 +27,7 @@ const socialLinks = [
   },
   {
     name: "Twitter",
-    href: "https://twitter.com/jarrettstanley",
+    href: "https://x.com/IAmJarrettS",
     icon: Twitter,
   },
   {

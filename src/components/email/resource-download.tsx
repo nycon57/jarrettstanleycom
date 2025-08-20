@@ -186,7 +186,7 @@ export const ResourceDownloadEmail: React.FC<Readonly<ResourceDownloadEmailProps
           }}>
             Share on LinkedIn
           </a>
-          <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Just downloaded this valuable AI marketing resource: ' + resourceTitle)}&url=${encodeURIComponent('https://jarrettstanley.com/resources')}&via=jarrettstanley`} style={{
+          <a href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('Just downloaded this valuable AI marketing resource: ' + resourceTitle)}&url=${encodeURIComponent('https://jarrettstanley.com/resources')}&via=IAmJarrettS`} style={{
             backgroundColor: '#1da1f2',
             color: 'white',
             padding: '8px 16px',
