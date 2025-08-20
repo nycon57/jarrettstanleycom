@@ -302,7 +302,7 @@ export const NewsletterWelcomeEmail: React.FC<NewsletterWelcomeEmailProps> = ({
           margin: '0',
           fontStyle: 'italic',
         }}>
-          <strong>P.S.</strong> I send these insights every Tuesday at 8 AM CT. If you ever want to chat about 
+          <strong>P.S.</strong> If you ever want to chat about 
           AI marketing strategy, speaking opportunities, or consulting for your organization, 
           just reply to any email. I read every single one personally.
         </Text>

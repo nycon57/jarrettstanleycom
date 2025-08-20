@@ -39,6 +39,8 @@ import { Heading, Text } from "@/components/ui/typography";
 import { toast } from "sonner";
 import Link from "next/link";
 import { submitContactForm, submitMediaInquiry } from "@/app/actions/email";
+import { useFormSuccess } from "@/hooks/use-form-success";
+import { ContactFormSuccess } from "@/components/ui/form-success-components";
 
 // Contact pathway configurations
 const contactPathways = [
@@ -128,6 +130,7 @@ export default function ContactPage() {
   });
   
   const [loading, setLoading] = useState(false);
+  const { isOpen, data, showSuccess, hideSuccess } = useFormSuccess();
 
   // Handle URL parameters to pre-select inquiry type
   useEffect(() => {
@@ -199,8 +202,9 @@ export default function ContactPage() {
         
         if (result.error) {
           toast.error(result.error);
-        } else {
-          toast.success("Message sent successfully! I'll get back to you as soon as possible.");
+        } else if (result.success) {
+          const fullName = `${formData.firstName} ${formData.lastName}`.trim();
+          showSuccess({ name: fullName });
           resetForm();
         }
       }
@@ -232,7 +236,13 @@ export default function ContactPage() {
   const isMediaInquiry = formData.type === 'media';
 
   return (
-    <main className="flex min-h-screen flex-col">
+    <>
+      <ContactFormSuccess
+        isOpen={isOpen}
+        onClose={hideSuccess}
+        name={data.name}
+      />
+      <main className="flex min-h-screen flex-col">
       {/* Hero Section */}
       <section className="relative py-32 pt-40 overflow-hidden bg-gradient-to-br from-lilac/10 via-background to-orchid/10">
         <div className="container mx-auto px-4 text-center">
@@ -664,6 +674,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section> */}
-    </main>
+      </main>
+    </>
   );
 }

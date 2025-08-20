@@ -12,6 +12,7 @@ import {
   sendMediaNotification,
   sendResourceDownloadEmail,
   sendNewsletterWelcome,
+  sendNewsletterNotification,
   safeEmailSend
 } from '@/lib/email-service';
 import { createClient } from '@/lib/supabase-client';
@@ -19,6 +20,12 @@ import { supabase } from '@/lib/supabase';
 
 // Contact form submission action
 export async function submitContactForm(formData: FormData) {
+  console.log('🟡 Contact form submission started');
+  console.log('📝 Form data received:', {
+    keys: Array.from(formData.keys()),
+    values: Object.fromEntries(formData.entries())
+  });
+
   try {
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
@@ -27,17 +34,30 @@ export async function submitContactForm(formData: FormData) {
     const company = formData.get('company') as string;
     const phone = formData.get('phone') as string;
 
+    console.log('📧 Extracted contact data:', { name, email, type, company, phone, messageLength: message?.length });
+
     if (!name || !email || !message) {
+      console.log('❌ Validation failed: missing required fields', { name: !!name, email: !!email, message: !!message });
       return { error: 'Missing required fields' };
     }
 
     // Get tracking data
     const userAgent = formData.get('userAgent') as string;
     const referrer = formData.get('referrer') as string;
-    const urlParams = JSON.parse((formData.get('urlParams') as string) || '{}');
+    const urlParamsString = (formData.get('urlParams') as string) || '{}';
 
-    // Save to database
-    const { error: dbError } = await supabase.from('contacts').insert({
+    console.log('🔍 Raw tracking data:', { userAgent, referrer, urlParamsString });
+
+    let urlParams;
+    try {
+      urlParams = JSON.parse(urlParamsString);
+      console.log('📊 Parsed URL params:', urlParams);
+    } catch (parseError) {
+      console.log('⚠️ Failed to parse URL params:', parseError);
+      urlParams = {};
+    }
+
+    const insertData = {
       first_name: name.split(' ')[0],
       last_name: name.split(' ').slice(1).join(' ') || null,
       email,
@@ -54,12 +74,21 @@ export async function submitContactForm(formData: FormData) {
       utm_campaign: urlParams.utm_campaign || null,
       utm_term: urlParams.utm_term || null,
       utm_content: urlParams.utm_content || null,
-    });
+    };
+
+    console.log('💾 About to insert to Supabase contacts table:', insertData);
+
+    // Save to database
+    const { data: insertResult, error: dbError } = await supabase.from('contacts').insert(insertData).select();
 
     if (dbError) {
-      console.error('Database error:', dbError);
+      console.error('❌ Database error:', dbError);
+      console.error('❌ Database error details:', JSON.stringify(dbError, null, 2));
       return { error: 'Failed to save contact information' };
     }
+
+    console.log('✅ Database insert successful:', insertResult);
+    console.log('📧 Starting email sending process...');
 
     // Send emails (don't let email failures prevent form submission)
     const contactData = { 
@@ -71,12 +100,19 @@ export async function submitContactForm(formData: FormData) {
       phone 
     };
     
-    await safeEmailSend(() => sendContactConfirmation(contactData));
-    await safeEmailSend(() => sendContactNotification(contactData));
+    console.log('📤 Sending confirmation email to user...');
+    const confirmationResult = await safeEmailSend(() => sendContactConfirmation(contactData));
+    console.log('📧 Confirmation email result:', confirmationResult ? 'SUCCESS' : 'FAILED');
 
+    console.log('📤 Sending notification email to admin...');
+    const notificationResult = await safeEmailSend(() => sendContactNotification(contactData));
+    console.log('📧 Admin notification email result:', notificationResult ? 'SUCCESS' : 'FAILED');
+
+    console.log('🟢 Contact form submission completed successfully');
     return { success: true };
   } catch (error) {
-    console.error('Contact form error:', error);
+    console.error('💥 Contact form error:', error);
+    console.error('💥 Error stack:', error instanceof Error ? error.stack : 'No stack available');
     return { error: 'Failed to submit contact form' };
   }
 }
@@ -156,25 +192,46 @@ export async function submitMediaInquiry(formData: FormData) {
 
 // Newsletter subscription action
 export async function subscribeToNewsletter(formData: FormData) {
+  console.log('🟡 Newsletter signup started');
+  console.log('📝 Form data received:', {
+    keys: Array.from(formData.keys()),
+    values: Object.fromEntries(formData.entries())
+  });
+  
   try {
     const email = formData.get('email') as string;
     const firstName = formData.get('firstName') as string;
+    const lastName = formData.get('lastName') as string;
 
-    if (!email || !firstName) {
-      return { error: 'Email and first name are required' };
+    console.log('📧 Extracted data:', { email, firstName, lastName });
+
+    if (!email || !firstName || !lastName) {
+      console.log('❌ Validation failed: missing required fields', { email: !!email, firstName: !!firstName, lastName: !!lastName });
+      return { error: 'Email, first name, and last name are required' };
     }
 
     // Get tracking data
     const userAgent = formData.get('userAgent') as string;
     const referrer = formData.get('referrer') as string;
-    const urlParams = JSON.parse((formData.get('urlParams') as string) || '{}');
+    const urlParamsString = (formData.get('urlParams') as string) || '{}';
+    
+    console.log('🔍 Raw tracking data:', { userAgent, referrer, urlParamsString });
+    
+    let urlParams;
+    try {
+      urlParams = JSON.parse(urlParamsString);
+      console.log('📊 Parsed URL params:', urlParams);
+    } catch (parseError) {
+      console.log('⚠️ Failed to parse URL params:', parseError);
+      urlParams = {};
+    }
 
-    // Save to database
-    const { error: dbError } = await supabase.from('newsletter_subscribers').insert({
+    const insertData = {
       email,
       first_name: firstName,
-      status: 'subscribed',
-      source: 'website',
+      last_name: lastName,
+      status: 'active',
+      source: 'website_newsletter',
       referrer,
       user_agent: userAgent,
       utm_source: urlParams.utm_source || null,
@@ -182,19 +239,38 @@ export async function subscribeToNewsletter(formData: FormData) {
       utm_campaign: urlParams.utm_campaign || null,
       utm_term: urlParams.utm_term || null,
       utm_content: urlParams.utm_content || null,
-    });
+    };
+
+    console.log('💾 About to insert to Supabase subscribers table:', insertData);
+
+    // Save to database
+    const { data: insertResult, error: dbError } = await supabase.from('subscribers').insert(insertData).select();
 
     if (dbError) {
-      console.error('Database error:', dbError);
+      console.error('❌ Database error:', dbError);
+      console.error('❌ Database error details:', JSON.stringify(dbError, null, 2));
       return { error: 'Failed to subscribe to newsletter' };
     }
 
-    // Send welcome email
-    await safeEmailSend(() => sendNewsletterWelcome(email, firstName));
+    console.log('✅ Database insert successful:', insertResult);
 
+    console.log('📧 Starting email sending process...');
+
+    // Send welcome email and admin notification
+    const fullName = `${firstName} ${lastName}`.trim();
+    console.log('📤 Sending welcome email to subscriber...');
+    const welcomeResult = await safeEmailSend(() => sendNewsletterWelcome(email, fullName));
+    console.log('📧 Welcome email result:', welcomeResult ? 'SUCCESS' : 'FAILED');
+
+    console.log('📤 Sending notification email to admin...');
+    const notificationResult = await safeEmailSend(() => sendNewsletterNotification(email, fullName, 'website_newsletter'));
+    console.log('📧 Admin notification email result:', notificationResult ? 'SUCCESS' : 'FAILED');
+
+    console.log('🟢 Newsletter signup completed successfully');
     return { success: true };
   } catch (error) {
-    console.error('Newsletter subscription error:', error);
+    console.error('💥 Newsletter subscription error:', error);
+    console.error('💥 Error stack:', error instanceof Error ? error.stack : 'No stack available');
     return { error: 'Failed to subscribe to newsletter' };
   }
 }

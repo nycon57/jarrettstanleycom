@@ -5,6 +5,10 @@ import { ArrowRight, CheckCircle, Mail, Brain, TrendingUp, Loader2 } from "lucid
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
+import { subscribeToNewsletter } from "@/app/actions/email";
+import { useFormSuccess } from "@/hooks/use-form-success";
+import { NewsletterSignupSuccess } from "@/components/ui/form-success-components";
+import { toast } from "sonner";
 
 interface CtaSectionProps {
   variant?: "full" | "compact";
@@ -22,23 +26,55 @@ const CtaSection = ({
   className 
 }: CtaSectionProps = {}) => {
   const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
+  const { isOpen, data, showSuccess, hideSuccess } = useFormSuccess();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // TODO: Implement newsletter signup
-    setTimeout(() => {
+
+    try {
+      const formData = new FormData();
+      formData.append('email', email);
+      formData.append('firstName', firstName);
+      formData.append('lastName', lastName);
+      
+      // Add tracking data
+      formData.append('userAgent', navigator.userAgent);
+      formData.append('referrer', document.referrer);
+      formData.append('urlParams', JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search))));
+
+      const result = await subscribeToNewsletter(formData);
+
+      if (result.error) {
+        toast.error(result.error);
+      } else if (result.success) {
+        showSuccess({ email, variant: "modal" });
+        setEmail("");
+        setFirstName("");
+        setLastName("");
+      }
+    } catch (error) {
+      console.error("Error subscribing to newsletter:", error);
+      toast.error("Failed to subscribe. Please try again.");
+    } finally {
       setIsSubmitting(false);
-      setEmail("");
-    }, 1000);
+    }
   };
 
   const sectionPadding = variant === "compact" ? "py-16" : "py-32";
   
   return (
-    <section className={cn("relative overflow-hidden", sectionPadding, className)}>
+    <>
+      <NewsletterSignupSuccess
+        isOpen={isOpen}
+        onClose={hideSuccess}
+        email={data.email}
+        variant="modal"
+      />
+      <section className={cn("relative overflow-hidden", sectionPadding, className)}>
       {/* Static gradient overlay */}
       {showBackground && (
         <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 via-transparent to-orchid/5" />
@@ -73,35 +109,70 @@ const CtaSection = ({
           </p>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="mt-8 w-full max-w-md">
-            <div className="relative group">
-              {/* Gradient border effect on hover */}
-              <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
+          <form onSubmit={handleSubmit} className="mt-8 w-full max-w-lg">
+            <div className="space-y-4">
+              {/* Name Fields */}
+              <div className="grid grid-cols-2 gap-4">
+                {/* First Name Input */}
+                <div className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-30 dark:group-hover:opacity-50 transition duration-300"></div>
+                  <div className="relative bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
+                    <Input
+                      type="text"
+                      required
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="First name"
+                      className="border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
+                    />
+                  </div>
+                </div>
+                
+                {/* Last Name Input */}
+                <div className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-30 dark:group-hover:opacity-50 transition duration-300"></div>
+                  <div className="relative bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
+                    <Input
+                      type="text"
+                      required
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Last name"
+                      className="border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
+                    />
+                  </div>
+                </div>
+              </div>
               
-              <div className="relative flex items-center gap-2 bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
-                <Input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email..."
-                  className="flex-1 border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
-                />
-                <Button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="h-11 px-6 bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 text-white font-medium rounded-lg transition-all duration-300 disabled:opacity-50"
-                  aria-label="Subscribe to newsletter"
-                >
-                  {isSubmitting ? (
-                    "Subscribing..."
-                  ) : (
-                    <>
-                      Subscribe
-                      <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                    </>
-                  )}
-                </Button>
+              {/* Email Input with Submit Button */}
+              <div className="relative group">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
+                
+                <div className="relative flex items-center gap-2 bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
+                  <Input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email..."
+                    className="flex-1 border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
+                  />
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="h-11 px-6 bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 text-white font-medium rounded-lg transition-all duration-300 disabled:opacity-50"
+                    aria-label="Subscribe to newsletter"
+                  >
+                    {isSubmitting ? (
+                      "Subscribing..."
+                    ) : (
+                      <>
+                        Subscribe
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                      </>
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
           </form>
@@ -169,7 +240,8 @@ const CtaSection = ({
           )}
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 };
 

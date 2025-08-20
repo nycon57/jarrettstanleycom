@@ -12,12 +12,15 @@ import { toast } from "sonner";
 import { ConsultingFormData, consultingFormSchema } from "@/lib/validations/consulting";
 import { submitConsultingInquiry } from "@/app/actions/email";
 import { useAnalytics } from "@/hooks/use-analytics";
+import { useFormSuccess } from "@/hooks/use-form-success";
+import { ConsultingInquirySuccess } from "@/components/ui/form-success-components";
 import { Loader2 } from "lucide-react";
 
 export function ConsultingInquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const { trackConsultingFormStart, trackConsultingFormSubmit, trackApplicationError } = useAnalytics();
+  const { isOpen, data, showSuccess, hideSuccess } = useFormSuccess();
   
   const {
     register,
@@ -57,7 +60,10 @@ export function ConsultingInquiryForm() {
       const result = await submitConsultingInquiry(enrichedData);
 
       if (result.success) {
-        toast.success("Thank you for your inquiry! We'll be in touch as soon as possible.");
+        showSuccess({ 
+          name: `${data.first_name} ${data.last_name}`, 
+          company: data.company 
+        });
         trackConsultingFormSubmit('general_consulting', {
           company_size: data.company_size,
           budget_range: data.budget_range,
@@ -81,7 +87,14 @@ export function ConsultingInquiryForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <>
+      <ConsultingInquirySuccess
+        isOpen={isOpen}
+        onClose={hideSuccess}
+        name={data.name}
+        company={data.company}
+      />
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="first_name">First Name *</Label>
@@ -285,6 +298,7 @@ export function ConsultingInquiryForm() {
           "Submit Inquiry"
         )}
       </Button>
-    </form>
+      </form>
+    </>
   );
 }

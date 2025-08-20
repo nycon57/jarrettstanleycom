@@ -10,6 +10,8 @@ import { toast } from "sonner";
 import { NewsletterData, newsletterSchema } from "@/lib/validations/contact";
 import { subscribeToNewsletter } from "@/app/actions/email";
 import { useAnalytics } from "@/hooks/use-analytics";
+import { useFormSuccess } from "@/hooks/use-form-success";
+import { NewsletterSignupSuccess } from "@/components/ui/form-success-components";
 import { Mail, Loader2 } from "lucide-react";
 
 interface NewsletterSignupFormProps {
@@ -21,6 +23,7 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const { trackNewsletterStart, trackNewsletterSubmit, trackApplicationError } = useAnalytics();
+  const { isOpen, data, showSuccess, hideSuccess } = useFormSuccess();
   
   const {
     register,
@@ -56,8 +59,8 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
       if (result.error) {
         toast.error(result.error);
         trackApplicationError('newsletter_subscription_error', result.error, `newsletter_form_${variant}`);
-      } else {
-        toast.success("Welcome to the newsletter! Check your email for a welcome message.");
+      } else if (result.success) {
+        showSuccess({ email: data.email, variant });
         trackNewsletterSubmit(variant, 'ai_marketing_insights');
         reset();
         setHasStarted(false);
@@ -73,7 +76,14 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
 
   if (variant === "inline") {
     return (
-      <div className={`bg-gradient-to-r from-lilac/10 to-orchid/10 rounded-2xl p-6 ${className}`}>
+      <>
+        <NewsletterSignupSuccess
+          isOpen={isOpen}
+          onClose={hideSuccess}
+          email={data.email}
+          variant="inline"
+        />
+        <div className={`bg-gradient-to-r from-lilac/10 to-orchid/10 rounded-2xl p-6 ${className}`}>
         <div className="text-center mb-6">
           <h3 className="text-xl font-bold text-foreground mb-2">Stay Ahead with AI Marketing Insights</h3>
           <p className="text-muted-foreground text-sm">
@@ -130,13 +140,21 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
             )}
           </Button>
         </form>
-      </div>
+        </div>
+      </>
     );
   }
 
   if (variant === "footer") {
     return (
-      <div className={className}>
+      <>
+        <NewsletterSignupSuccess
+          isOpen={isOpen}
+          onClose={hideSuccess}
+          email={data.email}
+          variant="modal"
+        />
+        <div className={className}>
         <h4 className="font-semibold mb-4">AI Marketing Newsletter</h4>
         <p className="text-sm text-muted-foreground mb-4">
           Weekly insights on AI-powered marketing strategies
@@ -178,13 +196,21 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
             )}
           </Button>
         </form>
-      </div>
+        </div>
+      </>
     );
   }
 
   // Modal variant
   return (
-    <div className={className}>
+    <>
+      <NewsletterSignupSuccess
+        isOpen={isOpen}
+        onClose={hideSuccess}
+        email={data.email}
+        variant="modal"
+      />
+      <div className={className}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div className="space-y-2">
           <Label htmlFor="firstName">First Name</Label>
@@ -231,6 +257,7 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
           )}
         </Button>
       </form>
-    </div>
+      </div>
+    </>
   );
 }

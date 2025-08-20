@@ -1,6 +1,16 @@
 import { Resend } from 'resend';
 import React from 'react';
 import { supabase } from '@/lib/supabase';
+import { ContactConfirmationEmail } from '@/components/email/enhanced/contact-confirmation';
+import { ContactNotificationEmail } from '@/components/email/enhanced/contact-notification';
+import { NewsletterWelcomeEmail } from '@/components/email/enhanced/newsletter-welcome';
+import { SpeakingConfirmationEmail } from '@/components/email/speaking-confirmation';
+import { SpeakingNotificationEmail } from '@/components/email/speaking-notification';
+import { ConsultingConfirmationEmail } from '@/components/email/consulting-confirmation';
+import { ConsultingNotificationEmail } from '@/components/email/consulting-notification';
+import { MediaConfirmationEmail } from '@/components/email/media-confirmation';
+import { MediaNotificationEmail } from '@/components/email/media-notification';
+import { ResourceDownloadEmail } from '@/components/email/resource-download';
 
 if (!process.env.RESEND_API_KEY) {
   throw new Error('RESEND_API_KEY is required');
@@ -237,7 +247,7 @@ export const sendContactConfirmation = async (data: ContactFormData) => {
       has_phone: !!data.phone
     },
     react: React.createElement(
-      require('@/components/email/enhanced/contact-confirmation').ContactConfirmationEmail,
+      ContactConfirmationEmail,
       { 
         name: data.name, 
         type: data.type || 'general',
@@ -264,7 +274,7 @@ export const sendContactNotification = async (data: ContactFormData) => {
       message_length: data.message.length
     },
     react: React.createElement(
-      require('@/components/email/enhanced/contact-notification').ContactNotificationEmail,
+      ContactNotificationEmail,
       data
     ),
   });
@@ -284,7 +294,7 @@ export const sendSpeakingConfirmation = async (data: SpeakingInquiryData) => {
       has_topic_preferences: !!data.topic_preferences?.length
     },
     react: React.createElement(
-      require('@/components/email/speaking-confirmation').SpeakingConfirmationEmail,
+      SpeakingConfirmationEmail,
       { firstName: data.first_name, data }
     ),
   });
@@ -307,7 +317,7 @@ export const sendSpeakingNotification = async (data: SpeakingInquiryData) => {
       topic_count: data.topic_preferences?.length || 0
     },
     react: React.createElement(
-      require('@/components/email/speaking-notification').SpeakingNotificationEmail,
+      SpeakingNotificationEmail,
       data
     ),
   });
@@ -327,7 +337,7 @@ export const sendConsultingConfirmation = async (data: any) => {
       role: data.role
     },
     react: React.createElement(
-      require('@/components/email/consulting-confirmation').ConsultingConfirmationEmail,
+      ConsultingConfirmationEmail,
       { firstName: data.first_name, data }
     ),
   });
@@ -351,7 +361,7 @@ export const sendConsultingNotification = async (data: any) => {
       challenges_length: data.current_challenges?.length || 0
     },
     react: React.createElement(
-      require('@/components/email/consulting-notification').ConsultingNotificationEmail,
+      ConsultingNotificationEmail,
       data
     ),
   });
@@ -371,7 +381,7 @@ export const sendMediaConfirmation = async (data: MediaInquiryData) => {
       role: data.role
     },
     react: React.createElement(
-      require('@/components/email/media-confirmation').MediaConfirmationEmail,
+      MediaConfirmationEmail,
       { firstName: data.first_name, data }
     ),
   });
@@ -395,7 +405,7 @@ export const sendMediaNotification = async (data: MediaInquiryData) => {
       message_length: data.message?.length || 0
     },
     react: React.createElement(
-      require('@/components/email/media-notification').MediaNotificationEmail,
+      MediaNotificationEmail,
       data
     ),
   });
@@ -412,7 +422,7 @@ export const sendResourceDownloadEmail = async (email: string, firstName: string
       download_url: downloadUrl
     },
     react: React.createElement(
-      require('@/components/email/resource-download').ResourceDownloadEmail,
+      ResourceDownloadEmail,
       { firstName, resourceTitle, downloadUrl }
     ),
   });
@@ -429,9 +439,48 @@ export const sendNewsletterWelcome = async (email: string, firstName: string) =>
       first_name: firstName
     },
     react: React.createElement(
-      require('@/components/email/enhanced/newsletter-welcome').NewsletterWelcomeEmail,
+      NewsletterWelcomeEmail,
       { firstName }
     ),
+  });
+};
+
+// Send newsletter subscription notification to admin
+export const sendNewsletterNotification = async (email: string, firstName: string, source?: string) => {
+  return sendEmail({
+    to: NOTIFICATION_EMAIL,
+    subject: `New newsletter subscriber: ${firstName} (${email})`,
+    templateName: 'newsletter-notification',
+    replyTo: email,
+    metadata: {
+      subscriber_email: email,
+      first_name: firstName,
+      source: source || 'website'
+    },
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2 style="color: #8B5CF6;">🎉 New Newsletter Subscriber</h2>
+        
+        <div style="background-color: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+          <h3 style="margin-top: 0;">Subscriber Details</h3>
+          <p><strong>Name:</strong> ${firstName}</p>
+          <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+          <p><strong>Source:</strong> ${source || 'Website newsletter form'}</p>
+          <p><strong>Time:</strong> ${new Date().toLocaleString()}</p>
+        </div>
+
+        <div style="background-color: #fef3c7; padding: 15px; border-left: 4px solid #f59e0b; margin: 20px 0;">
+          <p style="margin: 0;"><strong>💡 Tip:</strong> Consider sending a personalized welcome message or follow-up within 24 hours!</p>
+        </div>
+
+        <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
+        
+        <p style="color: #6b7280; font-size: 14px;">
+          This notification was sent from your JarrettStanley.com website.<br>
+          <a href="mailto:${email}?subject=Welcome%20to%20the%20newsletter!">Reply directly to the subscriber</a>
+        </p>
+      </div>
+    `,
   });
 };
 

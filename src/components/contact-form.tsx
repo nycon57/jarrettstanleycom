@@ -8,11 +8,14 @@ import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import { submitContactForm } from "@/app/actions/email";
 import { useAnalytics } from "@/hooks/use-analytics";
+import { useFormSuccess } from "@/hooks/use-form-success";
+import { ContactFormSuccess } from "@/components/ui/form-success-components";
 
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const { trackContactFormStart, trackContactFormSubmit, trackApplicationError } = useAnalytics();
+  const { isOpen, data, showSuccess, hideSuccess } = useFormSuccess();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,8 +53,8 @@ export function ContactForm() {
       if (result.error) {
         toast.error(result.error);
         trackApplicationError('form_submission_error', result.error, 'contact_form');
-      } else {
-        toast.success("Message sent successfully! We'll get back to you soon.");
+      } else if (result.success) {
+        showSuccess({ name: formData.name });
         trackContactFormSubmit({
           inquiry_type: formData.type,
           has_company: !!formData.company,
@@ -78,7 +81,13 @@ export function ContactForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <>
+      <ContactFormSuccess
+        isOpen={isOpen}
+        onClose={hideSuccess}
+        name={data.name}
+      />
+      <form onSubmit={handleSubmit} className="space-y-6">
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input
@@ -128,6 +137,7 @@ export function ContactForm() {
       <Button type="submit" className="w-full" disabled={loading}>
         {loading ? "Sending..." : "Send Message"}
       </Button>
-    </form>
+      </form>
+    </>
   );
 }
