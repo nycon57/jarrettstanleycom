@@ -93,19 +93,9 @@ const nextConfig = {
   
   // Compress responses
   compress: true,
-  
-  // Webpack optimizations
-  webpack: (config, { dev, isServer }) => {
-    // Optimize bundle in production
-    if (!dev && !isServer) {
-      config.resolve.alias = {
-        ...config.resolve.alias,
-        '@': require('path').resolve(__dirname, 'src'),
-      };
-    }
-    
-    return config;
-  },
+
+  // Enable Turbopack (default in Next.js 16)
+  turbopack: {},
 };
 
 module.exports = nextConfig;
