@@ -1,8 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { checkBotId } from 'botid/server';
 import { sendEmail, EmailConfig } from '@/lib/email-service';
 
 export async function POST(req: NextRequest) {
   try {
+    // Bot ID verification
+    const verification = await checkBotId();
+    if (verification.isBot) {
+      return NextResponse.json(
+        { error: 'Access denied' },
+        { status: 403 }
+      );
+    }
+
     // Verify the request is from the same origin (basic security)
     const origin = req.headers.get('origin');
     const host = req.headers.get('host');

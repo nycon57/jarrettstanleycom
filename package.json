@@ -48,6 +48,7 @@
     "@react-email/text": "^0.1.5",
     "@supabase/supabase-js": "^2.49.8",
     "@tabler/icons-react": "^3.29.0",
+    "botid": "^1.5.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.0.4",
