@@ -14,6 +14,8 @@ import { ContactFormSuccess } from "@/components/ui/form-success-components";
 export function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [formStartTime] = useState(() => Date.now());
   const { trackContactFormStart, trackContactFormSubmit, trackApplicationError } = useAnalytics();
   const { isOpen, data, showSuccess, hideSuccess } = useFormSuccess();
   const [formData, setFormData] = useState({
@@ -47,6 +49,10 @@ export function ContactForm() {
       form.append('userAgent', navigator.userAgent);
       form.append('referrer', document.referrer);
       form.append('urlParams', JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search))));
+
+      // Add spam protection fields
+      form.append('website', honeypot); // Honeypot
+      form.append('_formStartTime', formStartTime.toString());
 
       const result = await submitContactForm(form);
       
@@ -88,6 +94,23 @@ export function ContactForm() {
         name={data.name}
       />
       <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Honeypot field - hidden from real users */}
+      <div
+        aria-hidden="true"
+        style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
+      >
+        <label htmlFor="website-contact">Website</label>
+        <input
+          type="text"
+          id="website-contact"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input

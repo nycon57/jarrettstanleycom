@@ -26,6 +26,8 @@ export function ResourceDownloadForm({
 }: ResourceDownloadFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isDownloaded, setIsDownloaded] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [formStartTime] = useState(() => Date.now());
   
   const {
     register,
@@ -54,6 +56,10 @@ export function ResourceDownloadForm({
       formData.append('userAgent', navigator.userAgent);
       formData.append('referrer', document.referrer);
       formData.append('urlParams', JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search))));
+
+      // Add spam protection fields
+      formData.append('website', honeypot); // Honeypot
+      formData.append('_formStartTime', formStartTime.toString());
 
       const result = await downloadResource(formData);
 
@@ -112,6 +118,23 @@ export function ResourceDownloadForm({
       </div>
       
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Honeypot field - hidden from real users */}
+        <div
+          aria-hidden="true"
+          style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
+        >
+          <label htmlFor="website-resource">Website</label>
+          <input
+            type="text"
+            id="website-resource"
+            name="website"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+        </div>
+
         <div className="grid md:grid-cols-2 gap-4">
           <div className="space-y-2">
             <Label htmlFor="firstName">First Name *</Label>

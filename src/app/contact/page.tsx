@@ -120,17 +120,23 @@ export default function ContactPage() {
     company: "",
     type: "general",
     message: "",
-    
+
     // Media-specific fields
     outlet: "",
     role: "",
     deadline: "",
     topic: "",
-    interviewType: "written"
+    interviewType: "written",
+
+    // Honeypot field (should remain empty - bots fill this)
+    website: ""
   });
-  
+
   const [loading, setLoading] = useState(false);
   const { isOpen, data, showSuccess, hideSuccess } = useFormSuccess();
+
+  // Track when form was first rendered (for timing-based bot detection)
+  const [formStartTime] = useState(() => Date.now());
 
   // Handle URL parameters to pre-select inquiry type
   useEffect(() => {
@@ -157,6 +163,10 @@ export default function ContactPage() {
     try {
       const formDataToSubmit = new FormData();
       
+      // Add honeypot and timing fields for spam protection
+      formDataToSubmit.append('website', formData.website); // Honeypot
+      formDataToSubmit.append('_formStartTime', formStartTime.toString());
+
       if (formData.type === 'media') {
         // Prepare media inquiry data
         formDataToSubmit.append('first_name', formData.firstName);
@@ -169,7 +179,7 @@ export default function ContactPage() {
         formDataToSubmit.append('topic', formData.topic);
         formDataToSubmit.append('interview_type', formData.interviewType);
         formDataToSubmit.append('message', formData.message);
-        
+
         // Add tracking data
         formDataToSubmit.append('userAgent', navigator.userAgent);
         formDataToSubmit.append('referrer', document.referrer);
@@ -229,7 +239,8 @@ export default function ContactPage() {
       role: "",
       deadline: "",
       topic: "",
-      interviewType: "written"
+      interviewType: "written",
+      website: ""
     });
   };
 
@@ -387,6 +398,29 @@ export default function ContactPage() {
                 <Card variant="elevated">
                   <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Honeypot field - hidden from real users, bots will fill this */}
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: 'absolute',
+                      left: '-9999px',
+                      top: '-9999px',
+                      opacity: 0,
+                      pointerEvents: 'none'
+                    }}
+                  >
+                    <label htmlFor="website">Website (leave blank)</label>
+                    <input
+                      type="text"
+                      id="website"
+                      name="website"
+                      value={formData.website}
+                      onChange={(e) => setFormData(prev => ({ ...prev, website: e.target.value }))}
+                      tabIndex={-1}
+                      autoComplete="off"
+                    />
+                  </div>
+
                   {/* Name fields */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">

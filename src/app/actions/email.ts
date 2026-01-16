@@ -1,8 +1,9 @@
 'use server';
 
 import React from 'react';
-import { 
-  sendContactConfirmation, 
+import { headers } from 'next/headers';
+import {
+  sendContactConfirmation,
   sendContactNotification,
   sendSpeakingConfirmation,
   sendSpeakingNotification,
@@ -17,6 +18,15 @@ import {
 } from '@/lib/email-service';
 import { createClient } from '@/lib/supabase-client';
 import { supabase } from '@/lib/supabase';
+import { checkForSpam, isSubmittedTooFast } from '@/lib/spam-protection';
+
+// Helper to get client IP for rate limiting
+async function getClientIP(): Promise<string> {
+  const headersList = await headers();
+  return headersList.get('x-forwarded-for')?.split(',')[0].trim() ||
+         headersList.get('x-real-ip') ||
+         'unknown';
+}
 
 // Contact form submission action
 export async function submitContactForm(formData: FormData) {
@@ -34,11 +44,39 @@ export async function submitContactForm(formData: FormData) {
     const company = formData.get('company') as string;
     const phone = formData.get('phone') as string;
 
+    // Honeypot field - should be empty
+    const honeypot = formData.get('website') as string;
+    // Form timing - should have taken at least 3 seconds
+    const formStartTime = formData.get('_formStartTime') as string;
+
     console.log('📧 Extracted contact data:', { name, email, type, company, phone, messageLength: message?.length });
 
     if (!name || !email || !message) {
       console.log('❌ Validation failed: missing required fields', { name: !!name, email: !!email, message: !!message });
       return { error: 'Missing required fields' };
+    }
+
+    // SPAM PROTECTION CHECK
+    const clientIP = await getClientIP();
+    const spamCheck = checkForSpam({
+      name,
+      email,
+      message,
+      company,
+      honeypot,
+      identifier: clientIP
+    });
+
+    if (spamCheck.isSpam) {
+      console.log('🚫 SPAM DETECTED:', { reason: spamCheck.reason, score: spamCheck.score, name, email });
+      // Return success to not reveal detection to bots, but don't actually process
+      return { success: true };
+    }
+
+    // Check form submission timing
+    if (formStartTime && isSubmittedTooFast(parseInt(formStartTime, 10))) {
+      console.log('🚫 Form submitted too fast - likely bot');
+      return { success: true };
     }
 
     // Get tracking data
@@ -120,19 +158,45 @@ export async function submitContactForm(formData: FormData) {
 // Media inquiry submission action
 export async function submitMediaInquiry(formData: FormData) {
   try {
-    const firstName = formData.get('firstName') as string;
-    const lastName = formData.get('lastName') as string;
+    const firstName = formData.get('first_name') as string || formData.get('firstName') as string;
+    const lastName = formData.get('last_name') as string || formData.get('lastName') as string;
     const email = formData.get('email') as string;
     const phone = formData.get('phone') as string;
     const outlet = formData.get('outlet') as string;
     const role = formData.get('role') as string;
     const deadline = formData.get('deadline') as string;
     const topic = formData.get('topic') as string;
-    const interviewType = formData.get('interviewType') as 'written' | 'phone' | 'video' | 'in-person';
+    const interviewType = formData.get('interview_type') as 'written' | 'phone' | 'video' | 'in-person' || formData.get('interviewType') as 'written' | 'phone' | 'video' | 'in-person';
     const message = formData.get('message') as string;
+
+    // Honeypot field - should be empty
+    const honeypot = formData.get('website') as string;
+    const formStartTime = formData.get('_formStartTime') as string;
 
     if (!firstName || !lastName || !email || !outlet || !role || !topic || !interviewType) {
       return { error: 'Missing required fields' };
+    }
+
+    // SPAM PROTECTION CHECK
+    const clientIP = await getClientIP();
+    const spamCheck = checkForSpam({
+      firstName,
+      lastName,
+      email,
+      message,
+      company: outlet,
+      honeypot,
+      identifier: clientIP
+    });
+
+    if (spamCheck.isSpam) {
+      console.log('🚫 SPAM DETECTED in media inquiry:', { reason: spamCheck.reason, score: spamCheck.score, firstName, lastName, email });
+      return { success: true };
+    }
+
+    if (formStartTime && isSubmittedTooFast(parseInt(formStartTime, 10))) {
+      console.log('🚫 Media form submitted too fast - likely bot');
+      return { success: true };
     }
 
     // Get tracking data
@@ -197,17 +261,41 @@ export async function subscribeToNewsletter(formData: FormData) {
     keys: Array.from(formData.keys()),
     values: Object.fromEntries(formData.entries())
   });
-  
+
   try {
     const email = formData.get('email') as string;
     const firstName = formData.get('firstName') as string;
     const lastName = formData.get('lastName') as string;
+
+    // Honeypot field - should be empty
+    const honeypot = formData.get('website') as string;
+    const formStartTime = formData.get('_formStartTime') as string;
 
     console.log('📧 Extracted data:', { email, firstName, lastName });
 
     if (!email || !firstName || !lastName) {
       console.log('❌ Validation failed: missing required fields', { email: !!email, firstName: !!firstName, lastName: !!lastName });
       return { error: 'Email, first name, and last name are required' };
+    }
+
+    // SPAM PROTECTION CHECK
+    const clientIP = await getClientIP();
+    const spamCheck = checkForSpam({
+      firstName,
+      lastName,
+      email,
+      honeypot,
+      identifier: clientIP
+    });
+
+    if (spamCheck.isSpam) {
+      console.log('🚫 SPAM DETECTED in newsletter signup:', { reason: spamCheck.reason, score: spamCheck.score, firstName, lastName, email });
+      return { success: true };
+    }
+
+    if (formStartTime && isSubmittedTooFast(parseInt(formStartTime, 10))) {
+      console.log('🚫 Newsletter form submitted too fast - likely bot');
+      return { success: true };
     }
 
     // Get tracking data
@@ -284,6 +372,38 @@ export async function downloadResource(formData: FormData) {
     const company = formData.get('company') as string;
     const resourceId = formData.get('resourceId') as string;
 
+    // Get spam protection fields
+    const honeypot = formData.get('website') as string;
+    const formStartTime = formData.get('_formStartTime') as string;
+
+    // Check for spam
+    const clientIP = await getClientIP();
+    const spamCheck = checkForSpam({
+      firstName,
+      lastName,
+      email,
+      company,
+      honeypot,
+      identifier: clientIP
+    });
+
+    if (spamCheck.isSpam) {
+      console.log('🚫 SPAM DETECTED (resource download):', {
+        reason: spamCheck.reason,
+        score: spamCheck.score,
+        email,
+        firstName
+      });
+      // Silent success to not reveal detection to bots
+      return { success: true, downloadUrl: '#' };
+    }
+
+    // Check timing (bots submit too fast)
+    if (formStartTime && isSubmittedTooFast(parseInt(formStartTime, 10))) {
+      console.log('🚫 SPAM DETECTED (resource download): Form submitted too fast');
+      return { success: true, downloadUrl: '#' };
+    }
+
     if (!email || !firstName || !resourceId) {
       return { error: 'Email, first name, and resource ID are required' };
     }
@@ -346,6 +466,28 @@ export async function downloadResource(formData: FormData) {
 // Update existing consulting form to use email integration
 export async function submitConsultingInquiry(data: any) {
   try {
+    // SPAM PROTECTION CHECK
+    const clientIP = await getClientIP();
+    const spamCheck = checkForSpam({
+      firstName: data.first_name,
+      lastName: data.last_name,
+      email: data.email,
+      message: data.project_description,
+      company: data.company,
+      honeypot: data.website,
+      identifier: clientIP
+    });
+
+    if (spamCheck.isSpam) {
+      console.log('🚫 SPAM DETECTED in consulting inquiry:', { reason: spamCheck.reason, score: spamCheck.score, email: data.email });
+      return { success: true };
+    }
+
+    if (data._formStartTime && isSubmittedTooFast(parseInt(data._formStartTime, 10))) {
+      console.log('🚫 Consulting form submitted too fast - likely bot');
+      return { success: true };
+    }
+
     // Get tracking data from the form
     const referrer = data.referrer || null;
     const userAgent = data.userAgent;
@@ -397,6 +539,28 @@ export async function submitConsultingInquiry(data: any) {
 // Update speaking inquiry to use email integration
 export async function submitSpeakingInquiry(data: any) {
   try {
+    // SPAM PROTECTION CHECK
+    const clientIP = await getClientIP();
+    const spamCheck = checkForSpam({
+      firstName: data.first_name,
+      lastName: data.last_name,
+      email: data.email,
+      message: data.message,
+      company: data.company,
+      honeypot: data.website,
+      identifier: clientIP
+    });
+
+    if (spamCheck.isSpam) {
+      console.log('🚫 SPAM DETECTED in speaking inquiry:', { reason: spamCheck.reason, score: spamCheck.score, email: data.email });
+      return { success: true };
+    }
+
+    if (data._formStartTime && isSubmittedTooFast(parseInt(data._formStartTime, 10))) {
+      console.log('🚫 Speaking form submitted too fast - likely bot');
+      return { success: true };
+    }
+
     // Get tracking data from the form
     const referrer = data.referrer || null;
     const userAgent = data.userAgent;

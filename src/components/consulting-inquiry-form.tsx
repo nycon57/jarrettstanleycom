@@ -19,6 +19,8 @@ import { Loader2 } from "lucide-react";
 export function ConsultingInquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [formStartTime] = useState(() => Date.now());
   const { trackConsultingFormStart, trackConsultingFormSubmit, trackApplicationError } = useAnalytics();
   const { isOpen, data, showSuccess, hideSuccess } = useFormSuccess();
   
@@ -49,12 +51,14 @@ export function ConsultingInquiryForm() {
       const userAgent = navigator.userAgent;
       const urlParams = Object.fromEntries(new URLSearchParams(window.location.search));
       
-      // Add tracking data to the form data
+      // Add tracking data and spam protection to the form data
       const enrichedData = {
         ...data,
         referrer,
         userAgent,
         urlParams,
+        website: honeypot, // Honeypot field
+        _formStartTime: formStartTime.toString(),
       };
 
       const result = await submitConsultingInquiry(enrichedData);
@@ -95,6 +99,23 @@ export function ConsultingInquiryForm() {
         company={data.company}
       />
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {/* Honeypot field - hidden from real users */}
+      <div
+        aria-hidden="true"
+        style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
+      >
+        <label htmlFor="website-consulting">Website</label>
+        <input
+          type="text"
+          id="website-consulting"
+          name="website"
+          value={honeypot}
+          onChange={(e) => setHoneypot(e.target.value)}
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="first_name">First Name *</Label>

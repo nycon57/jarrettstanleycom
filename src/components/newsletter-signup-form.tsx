@@ -22,6 +22,8 @@ interface NewsletterSignupFormProps {
 export function NewsletterSignupForm({ className = "", variant = "inline" }: NewsletterSignupFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
+  const [formStartTime] = useState(() => Date.now());
   const { trackNewsletterStart, trackNewsletterSubmit, trackApplicationError } = useAnalytics();
   const { isOpen, data, showSuccess, hideSuccess } = useFormSuccess();
   
@@ -43,12 +45,16 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
 
   const onSubmit = async (data: NewsletterData) => {
     setIsSubmitting(true);
-    
+
     try {
       const formData = new FormData();
       formData.append('email', data.email);
       formData.append('firstName', data.firstName);
-      
+
+      // Add spam protection fields
+      formData.append('website', honeypot); // Honeypot
+      formData.append('_formStartTime', formStartTime.toString());
+
       // Add tracking data
       formData.append('userAgent', navigator.userAgent);
       formData.append('referrer', document.referrer);
@@ -92,6 +98,23 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
         </div>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Honeypot field - hidden from real users */}
+          <div
+            aria-hidden="true"
+            style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
+          >
+            <label htmlFor="website-inline">Website</label>
+            <input
+              type="text"
+              id="website-inline"
+              name="website"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           <div className="grid md:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="firstName" className="sr-only">First Name</Label>
@@ -161,6 +184,11 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
         </p>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+          {/* Honeypot field - hidden from real users */}
+          <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+            <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
+          </div>
+
           <Input
             {...register("firstName")}
             placeholder="First name"
@@ -169,7 +197,7 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
           {errors.firstName && (
             <p className="text-xs text-red-500">{errors.firstName.message}</p>
           )}
-          
+
           <Input
             type="email"
             {...register("email")}
@@ -212,6 +240,11 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
       />
       <div className={className}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Honeypot field - hidden from real users */}
+        <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
+          <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
+        </div>
+
         <div className="space-y-2">
           <Label htmlFor="firstName">First Name</Label>
           <Input
