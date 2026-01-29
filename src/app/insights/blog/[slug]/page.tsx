@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { format } from 'date-fns'
-import ReactMarkdown from 'react-markdown'
+import { PortableTextContent } from '@/components/ui/portable-text'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
@@ -142,7 +142,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       <div className="container">
         <div className="prose dark:prose-invert mx-auto max-w-3xl">
           <ReadingProgress contentTitle={post.title}>
-            <ReactMarkdown>{post.content}</ReactMarkdown>
+            <PortableTextContent content={post.content} />
           </ReadingProgress>
         </div>
       </div>

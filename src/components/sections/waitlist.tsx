@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -10,6 +10,7 @@ import { submitWaitlistForm } from "@/app/actions/waitlist";
 import { toast } from "sonner";
 
 export function WaitlistSignup() {
+  const shouldReduceMotion = useReducedMotion()
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -51,9 +52,9 @@ export function WaitlistSignup() {
       <section className="py-20 bg-gradient-to-b from-orchid/10 to-background" data-section="waitlist">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.5 }}
             className="max-w-2xl mx-auto text-center"
           >
             <div className="inline-flex items-center justify-center w-16 h-16 bg-green-500/10 rounded-full mb-6">
@@ -79,10 +80,10 @@ export function WaitlistSignup() {
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.2 }}
             className="text-center mb-12"
           >
             <div className="inline-flex items-center gap-2 bg-lilac/10 text-lilac px-4 py-2 rounded-full text-sm font-medium mb-6">
@@ -99,14 +100,19 @@ export function WaitlistSignup() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
             className="max-w-2xl mx-auto"
           >
             <div className="bg-background/50 backdrop-blur-sm border border-lilac/20 rounded-2xl p-8 shadow-lg">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Screen reader announcements for form state */}
+                <div aria-live="polite" aria-atomic="true" className="sr-only">
+                  {isSubmitting && <span>Submitting your information to join the waitlist...</span>}
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-2">
@@ -119,6 +125,7 @@ export function WaitlistSignup() {
                       onChange={(e) => setFirstName(e.target.value)}
                       placeholder="Enter your first name"
                       required
+                      autoComplete="given-name"
                       className="w-full"
                     />
                   </div>
@@ -132,6 +139,7 @@ export function WaitlistSignup() {
                       value={lastName}
                       onChange={(e) => setLastName(e.target.value)}
                       placeholder="Enter your last name"
+                      autoComplete="family-name"
                       className="w-full"
                     />
                   </div>
@@ -148,6 +156,7 @@ export function WaitlistSignup() {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter your email address"
                     required
+                    autoComplete="email"
                     className="w-full"
                   />
                 </div>
@@ -162,6 +171,7 @@ export function WaitlistSignup() {
                     value={company}
                     onChange={(e) => setCompany(e.target.value)}
                     placeholder="Enter your company name"
+                    autoComplete="organization"
                     className="w-full"
                   />
                 </div>
@@ -211,10 +221,10 @@ export function WaitlistSignup() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.6 }}
             className="text-center mt-12"
           >
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">

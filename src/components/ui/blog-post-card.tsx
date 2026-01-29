@@ -6,7 +6,7 @@ import { formatDistanceToNow } from 'date-fns'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
 import { Clock, Eye } from 'lucide-react'
-import { BlogPost } from '@/lib/supabase'
+import { TransformedPost as BlogPost } from '@/lib/sanity/types'
 import { cn } from '@/lib/utils'
 
 interface BlogPostCardProps {

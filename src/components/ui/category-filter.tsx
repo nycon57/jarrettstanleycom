@@ -2,12 +2,12 @@
 
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Category } from '@/lib/supabase'
+import type { TransformedCategory } from '@/lib/sanity/types'
 import { cn } from '@/lib/utils'
 import { X } from 'lucide-react'
 
 interface CategoryFilterProps {
-  categories: Category[]
+  categories: TransformedCategory[]
   selectedCategories: string[]
   onCategoryChange: (categoryIds: string[]) => void
   className?: string

@@ -1,7 +1,57 @@
 'use server'
 
-import { supabase, BlogPost, Category, Resource, PostView, ResourceDownload } from '@/lib/supabase'
-import { headers } from 'next/headers'
+import { client, urlFor } from '@/lib/sanity'
+import {
+  filteredPostsQuery,
+  postBySlugQuery,
+  relatedPostsQuery,
+  recentPostsQuery,
+  categoriesQuery,
+} from '@/lib/sanity/queries'
+import type { SanityPost, SanityCategory, TransformedPost, TransformedCategory } from '@/lib/sanity/types'
+
+// Helper to transform Sanity post to the format expected by UI components
+function transformPost(post: SanityPost): TransformedPost {
+  return {
+    id: post._id,
+    title: post.title,
+    slug: post.slug.current,
+    excerpt: post.excerpt,
+    content: post.content,
+    featured_image_url: post.featuredImage
+      ? urlFor(post.featuredImage).width(1200).height(630).url()
+      : undefined,
+    published_at: post.publishedAt,
+    read_time_minutes: post.readTimeMinutes || 5,
+    is_featured: post.isFeatured || false,
+    meta_title: post.metaTitle,
+    meta_description: post.metaDescription,
+    author_name: post.author?.name || 'Jarrett Stanley',
+    author_image_url: post.author?.image
+      ? urlFor(post.author.image).width(100).height(100).url()
+      : undefined,
+    categories: post.categories?.map(cat => ({
+      id: cat._id,
+      name: cat.name,
+      slug: cat.slug.current,
+      description: cat.description,
+      color: cat.color || '#6B46C1',
+    })) || [],
+  }
+}
+
+// Helper to transform Sanity category
+function transformCategory(category: SanityCategory): TransformedCategory {
+  return {
+    id: category._id,
+    name: category.name,
+    slug: category.slug.current,
+    description: category.description,
+    color: category.color || '#6B46C1',
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  }
+}
 
 // Blog post actions
 export async function getBlogPosts(options: {
@@ -10,244 +60,144 @@ export async function getBlogPosts(options: {
   categoryIds?: string[]
   search?: string
   featured?: boolean
-}): Promise<{ posts: BlogPost[], totalCount: number, totalPages: number }> {
-  const { page = 1, limit = 9, categoryIds = [], search = '', featured } = options
-  const offset = (page - 1) * limit
+}): Promise<{ posts: TransformedPost[], totalCount: number, totalPages: number }> {
+  const { page = 1, limit = 9 } = options
 
-  let query = supabase
-    .from('posts')
-    .select(`*`)
-    .or('status.eq.published,is_published.eq.true')
-    .order('published_at', { ascending: false })
+  // Debug: Log environment variables (redacted for security)
+  console.log('=== getBlogPosts SERVER ACTION CALLED ===')
+  console.log('Options received:', JSON.stringify(options))
+  console.log('Project ID:', process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'NOT SET')
+  console.log('Dataset:', process.env.NEXT_PUBLIC_SANITY_DATASET || 'production')
 
-  // Apply featured filter
-  if (featured !== undefined) {
-    query = query.eq('is_featured', featured)
-  }
+  try {
+    // Simple direct query to debug
+    const posts = await client.fetch<SanityPost[]>(
+      `*[_type == "post"] | order(publishedAt desc) [0...${limit}] {
+        _id,
+        title,
+        slug,
+        excerpt,
+        featuredImage,
+        publishedAt,
+        readTimeMinutes,
+        isFeatured,
+        "author": author->{
+          _id,
+          name,
+          image,
+          title,
+          company
+        },
+        "categories": categories[]->{
+          _id,
+          name,
+          slug,
+          color
+        }
+      }`
+    )
 
-  // Apply category filter - since categories is an array field
-  if (categoryIds.length > 0) {
-    // Filter posts that have any of the specified categories
-    query = query.contains('categories', categoryIds)
-  }
+    const totalCount = await client.fetch<number>(`count(*[_type == "post"])`)
 
-  // Apply search filter
-  if (search) {
-    query = query.or(`title.ilike.%${search}%,content.ilike.%${search}%,excerpt.ilike.%${search}%`)
-  }
+    console.log('Sanity fetch result:', { postsCount: posts?.length, totalCount, firstPost: posts?.[0]?.title })
 
-  // Build count query with same filters
-  let countQuery = supabase
-    .from('posts')
-    .select('*', { count: 'exact', head: true })
-    .or('status.eq.published,is_published.eq.true')
-  
-  if (featured !== undefined) {
-    countQuery = countQuery.eq('is_featured', featured)
-  }
-  
-  if (categoryIds.length > 0) {
-    countQuery = countQuery.contains('categories', categoryIds)
-  }
-  
-  if (search) {
-    countQuery = countQuery.or(`title.ilike.%${search}%,content.ilike.%${search}%,excerpt.ilike.%${search}%`)
-  }
+    if (!posts) {
+      console.log('No posts returned from Sanity')
+      return { posts: [], totalCount: 0, totalPages: 0 }
+    }
 
-  // Get total count
-  const { count } = await countQuery
+    console.log('Transforming posts...')
+    const transformedPosts = posts.map((post, i) => {
+      console.log(`Transforming post ${i}:`, post.title)
+      return transformPost(post)
+    })
+    const totalPages = Math.ceil(totalCount / limit)
 
-  // Get paginated results
-  const { data: posts, error } = await query
-    .range(offset, offset + limit - 1)
-
-  if (error) {
+    console.log('Returning result:', { postsCount: transformedPosts.length, totalCount, totalPages })
+    return {
+      posts: transformedPosts,
+      totalCount,
+      totalPages,
+    }
+  } catch (error) {
     console.error('Error fetching blog posts:', error)
     return { posts: [], totalCount: 0, totalPages: 0 }
   }
-
-  // Transform data to match the expected interface
-  const transformedPosts: BlogPost[] = posts?.map(post => ({
-    ...post,
-    is_published: post.status === 'published' || post.is_published,
-    featured_image_url: post.featured_image,
-    // Map categories array to Category objects if needed
-    categories: post.categories?.map((cat: string) => ({
-      id: cat,
-      name: cat,
-      slug: cat.toLowerCase().replace(/\s+/g, '-'),
-      color: '#6B46C1' // Default purple color
-    })) || []
-  })) || []
-
-  // Get view counts for posts
-  const postsWithViews = await Promise.all(
-    transformedPosts.map(async (post) => {
-      const { count: viewCount } = await supabase
-        .from('post_views')
-        .select('*', { count: 'exact', head: true })
-        .eq('post_id', post.id)
-      
-      return {
-        ...post,
-        view_count: viewCount || 0
-      }
-    })
-  )
-
-  const totalCount = count || 0
-  const totalPages = Math.ceil(totalCount / limit)
-
-  return { posts: postsWithViews, totalCount, totalPages }
 }
 
-export async function getBlogPostBySlug(slug: string): Promise<BlogPost | null> {
-  const { data: post, error } = await supabase
-    .from('posts')
-    .select(`*`)
-    .eq('slug', slug)
-    .or('status.eq.published,is_published.eq.true')
-    .single()
+export async function getBlogPostBySlug(slug: string): Promise<TransformedPost | null> {
+  try {
+    const post = await client.fetch<SanityPost | null>(postBySlugQuery, { slug })
 
-  if (error || !post) {
+    if (!post) {
+      return null
+    }
+
+    return transformPost(post)
+  } catch (error) {
+    console.error('Error fetching blog post by slug:', error)
     return null
   }
-
-  // Get view count
-  const { count: viewCount } = await supabase
-    .from('post_views')
-    .select('*', { count: 'exact', head: true })
-    .eq('post_id', post.id)
-
-  return {
-    ...post,
-    is_published: post.status === 'published' || post.is_published,
-    featured_image_url: post.featured_image,
-    categories: post.categories?.map((cat: string) => ({
-      id: cat,
-      name: cat,
-      slug: cat.toLowerCase().replace(/\s+/g, '-'),
-      color: '#6B46C1'
-    })) || [],
-    view_count: viewCount || 0
-  }
 }
 
-export async function getRelatedPosts(postId: string, categories: string[], limit: number = 3): Promise<BlogPost[]> {
-  let posts = null;
-  
-  // First try to get posts with matching categories if categories exist
-  if (categories && categories.length > 0) {
-    const { data: categoryPosts } = await supabase
-      .from('posts')
-      .select(`*`)
-      .or('status.eq.published,is_published.eq.true')
-      .neq('id', postId)
-      .contains('categories', categories)
-      .limit(limit)
-    
-    if (categoryPosts && categoryPosts.length > 0) {
-      posts = categoryPosts
+export async function getRelatedPosts(postId: string, categories: string[], limit: number = 3): Promise<TransformedPost[]> {
+  try {
+    // First try to get posts with matching categories
+    if (categories && categories.length > 0) {
+      const categoryPosts = await client.fetch<SanityPost[]>(
+        relatedPostsQuery,
+        {
+          currentPostId: postId,
+          categoryIds: categories,
+          limit,
+        }
+      )
+
+      if (categoryPosts && categoryPosts.length > 0) {
+        return categoryPosts.map(transformPost)
+      }
     }
-  }
-  
-  // If no category matches or no categories, get recent posts as fallback
-  if (!posts || posts.length === 0) {
-    const { data: recentPosts } = await supabase
-      .from('posts')
-      .select(`*`)
-      .or('status.eq.published,is_published.eq.true')
-      .neq('id', postId)
-      .order('published_at', { ascending: false })
-      .limit(limit)
-    
-    if (recentPosts) {
-      posts = recentPosts
-    }
-  }
-  
-  // If still no posts, return empty array
-  if (!posts) {
+
+    // Fallback to recent posts
+    const recentPosts = await client.fetch<SanityPost[]>(
+      recentPostsQuery,
+      {
+        currentPostId: postId,
+        limit,
+      }
+    )
+
+    return recentPosts.map(transformPost)
+  } catch (error) {
+    console.error('Error fetching related posts:', error)
     return []
   }
-
-  return posts.map(post => ({
-    ...post,
-    is_published: post.status === 'published' || post.is_published,
-    featured_image_url: post.featured_image,
-    categories: post.categories?.map((cat: string) => ({
-      id: cat,
-      name: cat,
-      slug: cat.toLowerCase().replace(/\s+/g, '-'),
-      color: '#6B46C1'
-    })) || []
-  }))
 }
 
+// Placeholder for view tracking (Sanity doesn't have this built-in)
+// You could implement this with a separate analytics service or Supabase
 export async function trackPostView(postId: string): Promise<void> {
-  const headersList = await headers()
-  const ip = headersList.get('x-forwarded-for') || headersList.get('x-real-ip') || 'unknown'
-  const userAgent = headersList.get('user-agent') || 'unknown'
-  const referrer = headersList.get('referer') || null
-
-  try {
-    await supabase
-      .from('post_views')
-      .insert({
-        post_id: postId,
-        ip_address: ip,
-        user_agent: userAgent,
-        referrer: referrer
-      })
-  } catch (error) {
-    console.error('Error tracking post view:', error)
-  }
+  // View tracking would need to be implemented with an external service
+  // For now, this is a no-op
+  console.log('View tracked for post:', postId)
 }
 
-// Category actions - return unique categories from posts and resources
-export async function getCategories(): Promise<Category[]> {
+// Category actions
+export async function getCategories(): Promise<TransformedCategory[]> {
   try {
-    // Get all unique categories from posts
-    const { data: posts } = await supabase
-      .from('posts')
-      .select('categories')
-      .or('status.eq.published,is_published.eq.true')
-
-    // Get all unique categories from resources
-    const { data: resources } = await supabase
-      .from('resources')
-      .select('category')
-      .or('is_active.eq.true,is_published.eq.true')
-
-    // Extract and deduplicate categories
-    const allCategories = new Set<string>()
-    
-    posts?.forEach(post => {
-      post.categories?.forEach((cat: string) => allCategories.add(cat))
-    })
-    
-    resources?.forEach(resource => {
-      if (resource.category) {
-        allCategories.add(resource.category)
-      }
-    })
-
-    // Convert to Category objects
-    const categories: Category[] = Array.from(allCategories).map(cat => ({
-      id: cat,
-      name: cat,
-      slug: cat.toLowerCase().replace(/\s+/g, '-'),
-      color: '#6B46C1', // Default purple color
-      created_at: new Date().toISOString(),
-      updated_at: new Date().toISOString()
-    }))
-
-    return categories.sort((a, b) => a.name.localeCompare(b.name))
+    const categories = await client.fetch<SanityCategory[]>(categoriesQuery)
+    return categories.map(transformCategory)
   } catch (error) {
     console.error('Error fetching categories:', error)
     return []
   }
 }
+
+// ===== RESOURCE ACTIONS (keeping Supabase for resources) =====
+// Resources will continue using Supabase until migrated to Sanity
+
+import { supabase, Resource, ResourceDownload } from '@/lib/supabase'
+import { headers } from 'next/headers'
 
 // Resource actions
 export async function getResources(options: {
@@ -391,30 +341,14 @@ export async function trackResourceDownload(
 
 // Search action
 export async function searchContent(query: string, type: 'posts' | 'resources' | 'all' = 'all') {
-  const results: { posts: BlogPost[], resources: Resource[] } = {
+  const results: { posts: TransformedPost[], resources: Resource[] } = {
     posts: [],
     resources: []
   }
 
   if (type === 'posts' || type === 'all') {
-    const { data: posts } = await supabase
-      .from('posts')
-      .select(`*`)
-      .or('status.eq.published,is_published.eq.true')
-      .or(`title.ilike.%${query}%,content.ilike.%${query}%,excerpt.ilike.%${query}%`)
-      .limit(10)
-
-    results.posts = posts?.map(post => ({
-      ...post,
-      is_published: post.status === 'published' || post.is_published,
-      featured_image_url: post.featured_image,
-      categories: post.categories?.map((cat: string) => ({
-        id: cat,
-        name: cat,
-        slug: cat.toLowerCase().replace(/\s+/g, '-'),
-        color: '#6B46C1'
-      })) || []
-    })) || []
+    const { posts } = await getBlogPosts({ search: query, limit: 10 })
+    results.posts = posts
   }
 
   if (type === 'resources' || type === 'all') {

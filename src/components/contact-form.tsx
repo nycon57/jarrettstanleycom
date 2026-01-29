@@ -94,6 +94,11 @@ export function ContactForm() {
         name={data.name}
       />
       <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Screen reader announcements for form state */}
+      <div aria-live="polite" aria-atomic="true" className="sr-only">
+        {loading && <span>Sending your message...</span>}
+      </div>
+
       {/* Honeypot field - hidden from real users */}
       <div
         aria-hidden="true"
@@ -122,6 +127,7 @@ export function ContactForm() {
           }}
           required
           placeholder="Your name"
+          autoComplete="name"
           className="bg-background"
         />
       </div>
@@ -138,6 +144,7 @@ export function ContactForm() {
           }}
           required
           placeholder="you@example.com"
+          autoComplete="email"
           className="bg-background"
         />
       </div>

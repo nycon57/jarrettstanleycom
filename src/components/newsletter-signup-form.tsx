@@ -98,6 +98,11 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
         </div>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          {/* Screen reader announcements for form state */}
+          <div aria-live="polite" aria-atomic="true" className="sr-only">
+            {isSubmitting && <span>Subscribing to the newsletter...</span>}
+          </div>
+
           {/* Honeypot field - hidden from real users */}
           <div
             aria-hidden="true"
@@ -122,6 +127,7 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
                 id="firstName"
                 {...register("firstName")}
                 placeholder="First name"
+                autoComplete="given-name"
                 className="bg-background"
                 onFocus={handleFormStart}
               />
@@ -136,6 +142,7 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
                 type="email"
                 {...register("email")}
                 placeholder="your@email.com"
+                autoComplete="email"
                 className="bg-background"
                 onFocus={handleFormStart}
               />
@@ -184,6 +191,11 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
         </p>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">
+          {/* Screen reader announcements for form state */}
+          <div aria-live="polite" aria-atomic="true" className="sr-only">
+            {isSubmitting && <span>Subscribing to the newsletter...</span>}
+          </div>
+
           {/* Honeypot field - hidden from real users */}
           <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
             <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
@@ -192,6 +204,7 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
           <Input
             {...register("firstName")}
             placeholder="First name"
+            autoComplete="given-name"
             className="bg-background"
           />
           {errors.firstName && (
@@ -202,6 +215,7 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
             type="email"
             {...register("email")}
             placeholder="Email address"
+            autoComplete="email"
             className="bg-background"
           />
           {errors.email && (
@@ -240,6 +254,11 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
       />
       <div className={className}>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        {/* Screen reader announcements for form state */}
+        <div aria-live="polite" aria-atomic="true" className="sr-only">
+          {isSubmitting && <span>Subscribing to the newsletter...</span>}
+        </div>
+
         {/* Honeypot field - hidden from real users */}
         <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', opacity: 0, pointerEvents: 'none' }}>
           <input type="text" name="website" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} tabIndex={-1} autoComplete="off" />
@@ -251,13 +270,14 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
             id="firstName"
             {...register("firstName")}
             placeholder="Your first name"
+            autoComplete="given-name"
             className="bg-background"
           />
           {errors.firstName && (
             <p className="text-sm text-red-500">{errors.firstName.message}</p>
           )}
         </div>
-        
+
         <div className="space-y-2">
           <Label htmlFor="email">Email Address</Label>
           <Input
@@ -265,6 +285,7 @@ export function NewsletterSignupForm({ className = "", variant = "inline" }: New
             type="email"
             {...register("email")}
             placeholder="your@email.com"
+            autoComplete="email"
             className="bg-background"
           />
           {errors.email && (

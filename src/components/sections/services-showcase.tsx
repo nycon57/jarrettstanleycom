@@ -4,10 +4,18 @@ import { motion } from "motion/react";
 import React, { useRef } from "react";
 import { RefObject, useEffect, useId, useState } from "react";
 import { Mic, Brain, TrendingUp, Users, Sparkles, BarChart, MessageSquare, Rocket } from "lucide-react";
+import dynamic from "next/dynamic";
 
 import { cn } from "@/lib/utils";
 
-import { Globe } from "@/components/magicui/globe";
+// Dynamic import for heavy 3D globe component (cobe library)
+const Globe = dynamic(() => import("@/components/magicui/globe").then(mod => ({ default: mod.Globe })), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute -bottom-20 right-0 mx-auto aspect-[1/1] w-full max-w-[600px] animate-pulse bg-gradient-to-br from-lilac/10 to-orchid/10 rounded-full" />
+  ),
+});
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 const ServicesShowcase = () => {

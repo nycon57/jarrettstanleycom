@@ -9,7 +9,7 @@ import { Pagination } from '@/components/ui/pagination'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { BlogPost, Category } from '@/lib/supabase'
+import { TransformedPost as BlogPost, TransformedCategory as Category } from '@/lib/sanity/types'
 import { getBlogPosts, getCategories } from '@/app/actions/blog'
 import { Filter, Grid, List, SortAsc, SortDesc } from 'lucide-react'
 

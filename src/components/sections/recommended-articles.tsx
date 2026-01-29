@@ -14,10 +14,10 @@ import {
   CarouselContent,
   CarouselItem,
 } from "@/components/ui/carousel";
-import { BlogPost } from "@/lib/supabase";
+import type { TransformedPost } from "@/lib/sanity/types";
 
 interface RecommendedArticlesProps {
-  posts: BlogPost[];
+  posts: TransformedPost[];
   currentPostId?: string;
 }
 

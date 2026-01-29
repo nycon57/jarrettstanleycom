@@ -13,7 +13,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { Resource, Category } from '@/lib/supabase'
+import { Resource } from '@/lib/supabase'
+import type { TransformedCategory } from '@/lib/sanity/types'
 import { getResources, getCategories, trackResourceDownload } from '@/app/actions/blog'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -71,7 +72,7 @@ function ResourcesPageContent() {
 
   // State
   const [resources, setResources] = useState<Resource[]>([])
-  const [categories, setCategories] = useState<Category[]>([])
+  const [categories, setCategories] = useState<TransformedCategory[]>([])
   const [loading, setLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(0)
   const [totalCount, setTotalCount] = useState(0)

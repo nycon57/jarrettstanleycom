@@ -183,3 +183,75 @@
 .animate-fifth {
   animation: fifth 10s ease-in-out infinite;
 }
+
+/* ==============================================
+   Performance & Accessibility Improvements
+   ============================================== */
+
+/* Tabular numbers for aligned numeric displays */
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Touch optimizations - prevent double-tap zoom delay */
+@layer base {
+  button,
+  a,
+  [role="button"],
+  [type="button"],
+  [type="submit"],
+  [type="reset"] {
+    touch-action: manipulation;
+  }
+}
+
+/* Typography improvements */
+@layer base {
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+}
+
+/* Content visibility for list items - improves rendering performance */
+@layer components {
+  .blog-card,
+  .resource-card,
+  .testimonial-card {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 300px;
+  }
+}
+
+/* Scroll containment for modals/sheets */
+@layer components {
+  .sheet-content,
+  .modal-content,
+  .dialog-content,
+  [role="dialog"] > div {
+    overscroll-behavior: contain;
+  }
+}
+
+/* Respect reduced motion preferences for CSS animations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-first,
+  .animate-second,
+  .animate-third,
+  .animate-fourth,
+  .animate-fifth,
+  .animate-pulse,
+  .animate-spin {
+    animation: none !important;
+  }
+}

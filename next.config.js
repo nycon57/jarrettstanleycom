@@ -12,7 +12,18 @@ const nextConfig = {
   // Experimental features for performance
   experimental: {
     optimizeCss: true,
-    optimizePackageImports: ['@radix-ui/react-icons', 'lucide-react', '@tabler/icons-react'],
+    optimizePackageImports: [
+      '@radix-ui/react-icons',
+      'lucide-react',
+      '@tabler/icons-react',
+      'framer-motion',
+      'react-markdown',
+      'embla-carousel-react',
+      'date-fns',
+      'zod',
+      'react-hook-form',
+      '@portabletext/react',
+    ],
   },
   
   // Image optimization
@@ -27,6 +38,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'i.pravatar.cc',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
       },
     ],
     formats: ['image/webp', 'image/avif'],
