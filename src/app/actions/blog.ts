@@ -70,6 +70,8 @@ export async function getBlogPosts(options: {
   console.log('Dataset:', process.env.NEXT_PUBLIC_SANITY_DATASET || 'production')
 
   try {
+    if (!client) return { posts: [], totalCount: 0, totalPages: 0 }
+
     // Simple direct query to debug
     const posts = await client.fetch<SanityPost[]>(
       `*[_type == "post"] | order(publishedAt desc) [0...${limit}] {
@@ -127,6 +129,7 @@ export async function getBlogPosts(options: {
 
 export async function getBlogPostBySlug(slug: string): Promise<TransformedPost | null> {
   try {
+    if (!client) return null
     const post = await client.fetch<SanityPost | null>(postBySlugQuery, { slug })
 
     if (!post) {
@@ -142,6 +145,8 @@ export async function getBlogPostBySlug(slug: string): Promise<TransformedPost |
 
 export async function getRelatedPosts(postId: string, categories: string[], limit: number = 3): Promise<TransformedPost[]> {
   try {
+    if (!client) return []
+
     // First try to get posts with matching categories
     if (categories && categories.length > 0) {
       const categoryPosts = await client.fetch<SanityPost[]>(
@@ -185,6 +190,7 @@ export async function trackPostView(postId: string): Promise<void> {
 // Category actions
 export async function getCategories(): Promise<TransformedCategory[]> {
   try {
+    if (!client) return []
     const categories = await client.fetch<SanityCategory[]>(categoriesQuery)
     return categories.map(transformCategory)
   } catch (error) {
