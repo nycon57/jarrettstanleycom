@@ -1,0 +1,74 @@
+{
+  "slug": "mortgage-social-media-marketing",
+  "term": "Mortgage Social Media Marketing",
+  "shortDefinition": "Mortgage social media marketing uses platforms like Instagram, Facebook, LinkedIn, TikTok, and YouTube to build brand awareness, educate potential borrowers, and generate leads through organic content and paid advertising.",
+  "detailedExplanation": "Mortgage social media marketing leverages social platforms to reach borrowers where they spend hours daily, building brand recognition, establishing expertise, and generating leads through both organic content and targeted paid advertising. In an industry where trust is the primary purchase driver, social media provides the ideal medium for humanizing your brand and demonstrating expertise before a borrower ever contacts you.\n\nEach social platform serves a distinct role in the mortgage marketing mix. Instagram and TikTok excel at short-form educational video content: rate updates, homebuying tips, myth-busting, and behind-the-scenes looks at the lending process. These platforms reach younger first-time homebuyers and have the highest organic reach potential. Facebook remains the workhorse for targeted paid advertising, offering unmatched audience targeting capabilities including homeownership status, life events (recently engaged, new job), and financial demographics. LinkedIn targets commercial lending and referral partner relationships. YouTube hosts long-form educational content that ranks in both YouTube and Google search results.\n\nOrganic social media strategy for mortgage companies centers on educational content that provides genuine value. The most successful mortgage social media accounts follow the 80/20 rule: 80% educational and entertaining content, 20% promotional. This ratio builds trust and following, creating an audience that is receptive when you do share promotional content like rate specials or program announcements.\n\nPaid social media advertising in mortgage requires careful compliance management. Mortgage lending is a special ad category on Facebook and Instagram, limiting certain targeting options to prevent discriminatory lending practices. Successful paid strategies work within these constraints by focusing on broad educational content for top-of-funnel awareness and retargeting warm audiences with conversion-oriented messaging.\n\nAI transforms mortgage social media marketing in several ways. Content generation tools help create consistent posting schedules without consuming hours of loan officer time. Audience analysis algorithms identify which content resonates with specific borrower segments. Automated scheduling optimizes post timing based on when your audience is most engaged. And predictive analytics help allocate paid social budgets across platforms and campaigns for maximum ROI.",
+  "industryContext": "In my experience leading marketing at Nationwide Mortgage Bankers, social media marketing generates 22% of our qualified leads and has the highest brand awareness impact of any channel. Our Instagram account reaches 50,000+ accounts monthly with educational content, and our paid Facebook campaigns deliver purchase leads at $42 per lead, well below the industry average of $65-80.\n\nThe mortgage industry was slow to adopt social media marketing, which creates opportunity for early movers. Many established lenders still treat social media as an afterthought, posting occasional rate updates to small followings. Meanwhile, forward-thinking loan officers and lenders are building massive organic audiences and generating significant volume through social platforms. This gap between laggards and leaders is widening as social algorithms increasingly favor consistent, engaging content creators.\n\nCompliance concerns have historically held mortgage companies back from social media, but the industry has developed clear frameworks for compliant social media marketing. The key is working with your compliance team to develop pre-approved content templates and review processes that enable speed without sacrificing regulatory adherence. Lenders who solve the compliance workflow unlock a channel that their more cautious competitors are ignoring.",
+  "examples": [
+    {
+      "title": "TikTok Educational Series",
+      "description": "A loan officer creates a 'Mortgage in 60 Seconds' TikTok series explaining one mortgage concept per video. Topics like 'What is PMI and how to avoid it' and 'The secret to getting the lowest rate' consistently generate 50,000-200,000 views. The series builds a 40,000-follower audience and generates 80+ direct messages monthly from potential borrowers."
+    },
+    {
+      "title": "Facebook Retargeting for Mortgage Calculators",
+      "description": "A lender retargets website visitors who used their mortgage calculator but did not submit a lead form. Facebook ads showing personalized messaging like 'Still exploring homes in the $350K range? Let's get you pre-approved' deliver a 5.2% click-through rate and $28 cost per lead, a 60% improvement over cold audience campaigns."
+    },
+    {
+      "title": "LinkedIn Realtor Partnership Campaign",
+      "description": "A mortgage branch manager uses LinkedIn to connect with and nurture relationships with 500+ real estate agents in their market. Through a combination of engagement on agents' posts, sharing co-branded market reports, and direct messaging with relevant loan product updates, the manager builds 30 active referral partnerships generating 45+ referred leads monthly."
+    }
+  ],
+  "relatedTerms": [
+    "digital-mortgage-marketing",
+    "loan-officer-marketing",
+    "mortgage-content-marketing",
+    "borrower-engagement",
+    "conversion-rate-optimization"
+  ],
+  "relatedContent": [
+    {
+      "title": "AI Marketing Consulting Services",
+      "slug": "consulting",
+      "type": "service"
+    },
+    {
+      "title": "Loan Officer Marketing",
+      "slug": "loan-officer-marketing",
+      "type": "glossary"
+    },
+    {
+      "title": "Digital Mortgage Marketing",
+      "slug": "digital-mortgage-marketing",
+      "type": "glossary"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Which social media platform is best for mortgage marketing?",
+      "answer": "It depends on your target audience and strengths. For first-time homebuyers, Instagram and TikTok deliver the highest organic reach through short-form video content. For paid lead generation, Facebook offers the most sophisticated targeting despite special ad category restrictions. For B2B relationships with realtors and builders, LinkedIn is unmatched. For long-form educational content, YouTube provides both social engagement and search engine visibility. Start with one platform, master it, then expand."
+    },
+    {
+      "question": "What results can I expect from mortgage social media marketing?",
+      "answer": "Organic social media takes 3-6 months of consistent posting to build meaningful audience and lead flow. Expect 500-5,000 followers within 6 months of consistent daily posting. Paid social media can generate leads immediately, with typical mortgage lead costs of $30-80 depending on market and targeting. Conversion rates from social leads to application range from 5-15%. A combined organic and paid strategy typically produces 20-100 leads monthly for a single loan officer or small branch."
+    },
+    {
+      "question": "How do I stay compliant with mortgage social media marketing?",
+      "answer": "Develop a social media compliance policy with your legal and compliance teams. Create pre-approved content templates for common topics like rate announcements, program highlights, and educational posts. Include required disclosures (NMLS number, Equal Housing Lender logo) on all posts. Avoid making guarantees or promises about approval or rates. Archive all social media posts for regulatory record-keeping. Many mortgage compliance platforms now include social media monitoring and archival features."
+    }
+  ],
+  "category": "mortgage-marketing",
+  "seo": {
+    "title": "Mortgage Social Media Marketing Guide | Jarrett Stanley",
+    "description": "Master mortgage social media marketing across Instagram, Facebook, TikTok, and LinkedIn to build brand authority and generate qualified leads at scale.",
+    "keywords": [
+      "mortgage social media marketing",
+      "social media for mortgage companies",
+      "mortgage Instagram marketing",
+      "Facebook ads mortgage",
+      "loan officer social media",
+      "mortgage TikTok marketing",
+      "social media lead generation mortgage"
+    ]
+  },
+  "lastUpdated": "2026-02-07"
+}

@@ -1,0 +1,176 @@
+{
+  "slug": "bad-data-is-a-leadership-problem",
+  "title": "Bad Data Is a Leadership Problem",
+  "excerpt": "37% of CRM users report lost revenue from poor data quality -- but bad data isn't a software issue. It's the operating cost of ambiguity, and fixing it starts with leadership, not technology.",
+  "content": [
+    { "type": "paragraph", "text": "Bad data has a way of disguising itself as a tool problem." },
+    { "type": "paragraph", "text": "The CRM \"doesn't work.\" The automation \"is buggy.\" The dashboard \"can't be trusted.\" The AI rollout \"is underwhelming.\"" },
+    { "type": "paragraph", "text": "Then you look closer and it's the same pattern underneath: duplicates, missing fields, inconsistent statuses, free-text chaos, and definitions that change depending on who's talking." },
+    { "type": "paragraph", "text": "Validity's 2025 State of CRM Data Management report put hard numbers on what most teams feel: **37% of CRM users reported losing revenue as a direct consequence of poor data quality**, and 76% said less than half of their organization's CRM data is accurate and complete." },
+    { "type": "paragraph", "text": "That's not a software issue. That's an operating issue." },
+    { "type": "heading", "text": "The moment data stops being \"admin work\"", "level": 2 },
+    { "type": "paragraph", "text": "Here's when this gets real." },
+    { "type": "paragraph", "text": "Someone wants cleaner reporting, so the team builds a dashboard. The dashboard immediately creates arguments because the same metric is defined three different ways." },
+    { "type": "paragraph", "text": "Then someone suggests AI." },
+    { "type": "paragraph", "text": "Salesforce's 2026 data and analytics trends point to the same friction: leaders feel pressure to drive value with data, but the biggest hurdle remains incomplete, out-of-date, or poor-quality data." },
+    { "type": "paragraph", "text": "Now the cost compounds, because AI doesn't quietly tolerate bad inputs. **It amplifies them.**" },
+    { "type": "paragraph", "text": "That sentiment isn't coming from analysts only. It shows up in operator conversations everywhere. A recent thread in r/salesforce summed it up plainly: most \"CRM problems\" are really data problems wearing a different label. Another thread pushes back on the fantasy directly: AI doesn't fix bad data, it scales it." },
+    { "type": "paragraph", "text": "So the question isn't \"How do we clean data?\" The question is **\"Why is the organization producing bad data in the first place?\"**" },
+    { "type": "heading", "text": "Bad data is produced by incentives and ambiguity", "level": 2 },
+    { "type": "callout", "text": "Bad data is rarely malicious. It's usually rational.", "variant": "insight" },
+    { "type": "paragraph", "text": "If the fastest way to get through the day is to skip fields, people skip fields. If the status definitions are unclear, people pick whatever keeps the workflow moving. If nobody ever uses the data downstream, people stop caring whether it's clean. If there's no consequence for junk records, junk records multiply." },
+    { "type": "paragraph", "text": "This is why blaming the front line never works. You don't fix bad data with lectures. You fix it by designing the system so clean data is the path of least resistance." },
+    { "type": "paragraph", "text": "**That design is leadership.**" },
+    { "type": "heading", "text": "The practical shift: treat data like a product", "level": 2 },
+    { "type": "paragraph", "text": "Most organizations treat data like exhaust. Something that happens while work gets done." },
+    { "type": "paragraph", "text": "High-performing organizations treat data like a product. A shared asset with standards, owners, and quality checks." },
+    { "type": "paragraph", "text": "That doesn't mean perfection. It means clarity." },
+    { "type": "paragraph", "text": "Here's what \"data as a product\" looks like in practice:" },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "A small set of critical fields are non-negotiable",
+        "Statuses mean the same thing everywhere",
+        "There's a defined owner for data quality",
+        "There's a feedback loop when data breaks something downstream",
+        "\"Fixing data\" is part of operating cadence, not a random cleanup day"
+      ]
+    },
+    { "type": "heading", "text": "The three levers that fix data without turning it into a crusade", "level": 2 },
+    { "type": "heading", "text": "1. Stop the bleeding at the point of entry", "level": 3 },
+    { "type": "paragraph", "text": "Most teams try to clean data downstream. That's always more expensive." },
+    { "type": "paragraph", "text": "Instead, tighten creation." },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "Replace free-text with picklists wherever possible",
+        "Normalize formatting automatically (phone numbers, states, capitalization)",
+        "Validate what matters (email format, required fields based on lead source, uniqueness rules where appropriate)",
+        "Make \"unknown\" an explicit option instead of letting blank mean ten different things"
+      ]
+    },
+    { "type": "paragraph", "text": "This isn't about being strict. It's about making data consistent enough to be usable." },
+    { "type": "heading", "text": "2. Create a \"definition of done\" for records", "level": 3 },
+    { "type": "paragraph", "text": "Most organizations have a definition of done for projects. Almost none have it for records." },
+    { "type": "paragraph", "text": "Pick the record types that drive revenue and execution (lead, contact, loan file, partner, whatever your world calls it) and define what must be true before the record is considered real." },
+    { "type": "paragraph", "text": "Example definition of done for a lead:" },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "Source is selected from an approved list",
+        "Contact method is valid and reachable",
+        "Intent stage is chosen from defined stages",
+        "Owner is assigned",
+        "Next action is logged"
+      ]
+    },
+    { "type": "paragraph", "text": "If the record is missing these, it's not \"a lead.\" It's a placeholder." },
+    { "type": "paragraph", "text": "This single concept reduces junk records fast because it reframes the behavior. People stop thinking \"I filled out a form.\" They start thinking **\"I created a usable asset.\"**" },
+    { "type": "heading", "text": "3. Make data quality visible and owned", "level": 3 },
+    { "type": "paragraph", "text": "When data quality is everyone's job, it becomes nobody's job." },
+    { "type": "paragraph", "text": "Give it an owner and give that owner a scoreboard that leadership actually looks at." },
+    { "type": "paragraph", "text": "Not a big dashboard. A tight weekly snapshot:" },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "Duplicate rate (by record type)",
+        "Missing critical fields",
+        "Bounce and undeliverable rates",
+        "Routing exceptions",
+        "Records created without next action"
+      ]
+    },
+    { "type": "paragraph", "text": "Tie this to outcomes. When routing breaks, speed-to-lead slows. When emails bounce, deliverability suffers. When statuses are unreliable, reporting becomes theater." },
+    { "type": "paragraph", "text": "This is also where leadership earns credibility. If leadership treats data quality as optional, the organization will too." },
+    { "type": "heading", "text": "A note on AI", "level": 2 },
+    { "type": "paragraph", "text": "There's a popular story circulating that AI will clean up the mess." },
+    { "type": "paragraph", "text": "It won't." },
+    { "type": "paragraph", "text": "AI can help with enrichment, normalization, summarization, and classification, but it can't fix a system that produces ambiguity. If you have no clear definitions and no clear ownership, AI becomes a new layer of uncertainty." },
+    { "type": "callout", "text": "The teams who win with AI won't be the ones with the fanciest prompts. They'll be the ones who made their inputs trustworthy.", "variant": "insight" },
+    { "type": "heading", "text": "Signals to watch", "level": 2 },
+    { "type": "paragraph", "text": "If you want proof you're improving, track these:" },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "Fewer internal debates about \"what the number really is\"",
+        "Fewer routing exceptions and manual hand-fixes",
+        "Fewer duplicates created per week",
+        "Higher contactability (deliverability, fewer bounces)",
+        "Faster reporting cycles because definitions are stable",
+        "AI outputs that feel grounded instead of guessy"
+      ]
+    },
+    { "type": "paragraph", "text": "When these improve, the entire organization moves with more confidence." },
+    { "type": "heading", "text": "One-week action", "level": 2 },
+    { "type": "paragraph", "text": "Do this in the next seven days:" },
+    {
+      "type": "list",
+      "style": "bullet",
+      "items": [
+        "Identify the five fields that must be reliable for your most important workflow.",
+        "Write a one-page definition of done for the record type that feeds that workflow.",
+        "Add one constraint at creation (picklist, validation rule, required field logic) for each of the five fields.",
+        "Assign a single owner to review a weekly data quality snapshot for the next four weeks."
+      ]
+    },
+    { "type": "paragraph", "text": "No big cleanup. No dramatic overhaul. Just foundations that hold." },
+    { "type": "paragraph", "text": "**Bad data isn't a nuisance. It's the operating cost of ambiguity.**" },
+    { "type": "paragraph", "text": "Fixing it isn't about being stricter. It's about being clearer." }
+  ],
+  "publishedAt": "2025-02-03T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["data-analytics", "leadership"],
+  "series": {
+    "name": "The Signal",
+    "slug": "the-signal",
+    "issueNumber": 7
+  },
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/the-signal.jpg",
+  "seo": {
+    "title": "Bad Data Is a Leadership Problem | Jarrett Stanley",
+    "description": "37% of CRM users report lost revenue from bad data. Learn why data quality is a leadership issue and three practical levers to fix it without a crusade.",
+    "keywords": [
+      "data quality",
+      "CRM data management",
+      "data governance",
+      "data hygiene",
+      "definition of done",
+      "data as a product",
+      "bad data",
+      "data quality management"
+    ]
+  },
+  "relatedContent": [
+    { "title": "CRM Integration", "slug": "crm-integration", "type": "glossary" },
+    { "title": "Data-Driven Marketing", "slug": "data-driven-marketing", "type": "glossary" },
+    { "title": "Workflow Automation", "slug": "workflow-automation", "type": "glossary" },
+    { "title": "The Mess Beneath the Dashboard", "slug": "the-mess-beneath-the-dashboard", "type": "blog" },
+    { "title": "The Cost of Noise", "slug": "the-cost-of-noise", "type": "blog" }
+  ],
+  "faqs": [
+    {
+      "question": "Why is bad data a leadership problem, not a technology problem?",
+      "answer": "Bad data is produced by incentives and ambiguity, not software bugs. When the fastest way to get through the day is to skip fields, people skip fields. When there are no consequences for junk records, junk records multiply. Leaders set the system design, the incentives, and the standards -- making data quality fundamentally a leadership responsibility."
+    },
+    {
+      "question": "What is a \"definition of done\" for data records?",
+      "answer": "A definition of done for records specifies what must be true before a record is considered real and usable. For example, a lead might require a source from an approved list, a valid contact method, a defined intent stage, an assigned owner, and a logged next action. This reframes data entry from filling out a form to creating a usable asset."
+    },
+    {
+      "question": "Can AI fix bad data quality?",
+      "answer": "AI can help with enrichment, normalization, summarization, and classification, but it cannot fix a system that produces ambiguity. Without clear definitions and clear ownership, AI amplifies bad data rather than correcting it. The teams that succeed with AI are the ones who first make their data inputs trustworthy."
+    }
+  ],
+  "lastUpdated": "2025-02-03"
+}

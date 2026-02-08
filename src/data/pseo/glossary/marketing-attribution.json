@@ -1,0 +1,74 @@
+{
+  "slug": "marketing-attribution",
+  "term": "Marketing Attribution",
+  "shortDefinition": "Marketing attribution identifies which marketing channels, campaigns, and touchpoints contribute to mortgage lead generation and funded loans, enabling data-driven budget allocation and performance optimization.",
+  "detailedExplanation": "Marketing attribution is the analytical discipline of connecting funded loans and revenue back to the specific marketing activities that influenced them. In mortgage marketing, where a borrower typically interacts with 8-15 touchpoints across multiple channels before submitting an application, attribution answers the essential question: what is actually driving our business, and where should we invest more?\n\nAttribution models vary in complexity and accuracy. First-touch attribution credits the initial interaction, whether that was a Google search click, a Facebook ad view, or a realtor referral. Last-touch attribution credits the final touchpoint before conversion. Both are simple to implement but paint an incomplete picture. In mortgage, where the journey spans months and many interactions, crediting only the first or last touch ignores the contribution of everything in between.\n\nMulti-touch attribution distributes credit across all touchpoints in the borrower's journey. Linear models give equal credit to each touchpoint. Time-decay models weight recent touchpoints more heavily. Position-based models emphasize the first and last touches while distributing remaining credit across middle interactions. Data-driven attribution uses machine learning to analyze thousands of conversion paths and assign credit based on actual impact, not arbitrary rules.\n\nImplementing attribution in mortgage requires connecting data across systems that often do not naturally communicate. The marketing platform knows about ad clicks and email engagement. The CRM knows about sales interactions. The LOS knows about applications and funded loans. Attribution requires linking these data sources through consistent lead tracking, UTM parameters, CRM integration, and closed-loop reporting. When a loan funds, you should be able to trace the borrower's complete journey back to their first interaction with your marketing.\n\nThe practical value of attribution goes beyond reporting. It directly informs budget allocation decisions worth hundreds of thousands of dollars. Without attribution, marketing budgets are allocated based on assumptions, industry benchmarks, or gut feelings. With attribution, you can quantify the ROI of every channel, campaign, and content piece, shifting investment from underperforming activities to those that actually produce funded loans.\n\nAI-powered attribution models process the complexity that rule-based models cannot handle. They account for cross-channel interactions, consider the sequence and timing of touchpoints, and identify synergies between channels, such as the finding that borrowers who see a Facebook ad and then search your brand name on Google convert at 5x the rate of either channel alone.",
+  "industryContext": "In my experience leading marketing at Nationwide Mortgage Bankers, implementing multi-touch attribution changed how we allocated a $1.5M annual marketing budget. Before attribution, we assumed Google Ads was our top performer because it generated the most tracked leads. After implementing full-funnel attribution, we discovered that content marketing actually influenced 65% of our funded loans, even though most of those borrowers eventually converted through a branded search or direct visit. This insight shifted $200K annually toward content creation and SEO.\n\nThe mortgage industry faces unique attribution challenges. Long buying cycles mean touchpoints span months. Multiple household members research independently. Offline interactions (phone calls, in-person meetings) occur alongside digital touches. And the high-stakes nature of the purchase means borrowers often engage with marketing from multiple lenders simultaneously. These complexities make attribution harder but also more valuable because the insight it provides directly impacts significant budget decisions.\n\nAttribution also helps mortgage marketers defend their budgets during tight markets. When a CFO asks why the company spends $30K monthly on content marketing that 'only generates 20 leads,' attribution data showing that content influences 200 funded loans through assisted conversions tells the complete story. This shifts the conversation from cost-per-lead to revenue contribution.",
+  "examples": [
+    {
+      "title": "Multi-Touch Attribution Revealing Hidden Value",
+      "description": "A lender implements data-driven attribution and discovers that their blog content, which appeared to generate only 5% of leads on a last-touch basis, actually influences 45% of funded loans through assisted conversions. Borrowers who read blog content before converting through paid search have a 60% higher close rate. The finding triggers a doubling of content marketing investment."
+    },
+    {
+      "title": "Channel Synergy Discovery",
+      "description": "Attribution analysis reveals that borrowers exposed to both Facebook awareness ads and Google Search convert at 4.8x the rate of Google Search alone. The Facebook ads are not generating direct leads but are creating brand familiarity that boosts search conversion. The lender increases Facebook awareness spending by 40%, and overall cost per funded loan decreases by 22%."
+    },
+    {
+      "title": "Realtor Referral Attribution",
+      "description": "A lender implements CRM-based attribution that tracks the full journey of realtor-referred leads. The data reveals that referred leads who are also exposed to the lender's email nurture content close at 78% versus 52% for referred leads without marketing exposure. This insight leads to automatic enrollment of all referral leads in a tailored nurture sequence."
+    }
+  ],
+  "relatedTerms": [
+    "data-driven-marketing",
+    "conversion-rate-optimization",
+    "customer-lifetime-value",
+    "crm-integration",
+    "a-b-testing-mortgage"
+  ],
+  "relatedContent": [
+    {
+      "title": "AI Marketing Consulting Services",
+      "slug": "consulting",
+      "type": "service"
+    },
+    {
+      "title": "Data-Driven Marketing",
+      "slug": "data-driven-marketing",
+      "type": "glossary"
+    },
+    {
+      "title": "CRM Integration",
+      "slug": "crm-integration",
+      "type": "glossary"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do I implement marketing attribution for mortgage?",
+      "answer": "Start with the basics: ensure every marketing campaign uses consistent UTM parameters, every lead source is tracked in your CRM, and you have a process for connecting funded loans back to their original marketing source. Implement a simple first-touch/last-touch report first to establish baselines. Then work toward multi-touch attribution by integrating your marketing platform, CRM, and LOS data. Tools like Google Analytics 4, HubSpot, and Ruler Analytics offer attribution capabilities. For mortgage-specific attribution, consider working with a consultant who understands the industry's unique data flows."
+    },
+    {
+      "question": "What results can I expect from marketing attribution?",
+      "answer": "Lenders who implement attribution typically find that 30-50% of their marketing budget is misallocated based on incomplete data. Reallocation based on attribution insights typically improves overall marketing ROI by 20-40% within 6 months. The most common finding is that content marketing and SEO are undervalued while paid search is overvalued on a last-touch basis. Attribution also enables confident budget defense and growth requests based on revenue contribution data."
+    },
+    {
+      "question": "Which attribution model is best for mortgage marketing?",
+      "answer": "For most mortgage lenders, a position-based model (40% first touch, 40% last touch, 20% distributed) provides a good balance of simplicity and accuracy. It recognizes the importance of both lead generation and conversion while acknowledging mid-funnel influence. As your data matures, transition to a data-driven model that uses machine learning to assign credit based on actual conversion patterns in your data. Avoid relying solely on last-touch attribution, which consistently undervalues awareness and nurture activities critical to mortgage marketing."
+    }
+  ],
+  "category": "data-analytics",
+  "seo": {
+    "title": "Marketing Attribution for Mortgage Lenders | Jarrett Stanley",
+    "description": "Implement marketing attribution to discover which channels actually drive funded loans and optimize your mortgage marketing budget for 20-40% better ROI.",
+    "keywords": [
+      "marketing attribution mortgage",
+      "mortgage marketing attribution",
+      "multi-touch attribution mortgage",
+      "mortgage marketing ROI",
+      "campaign attribution mortgage",
+      "marketing analytics mortgage",
+      "mortgage channel attribution"
+    ]
+  },
+  "lastUpdated": "2026-02-07"
+}

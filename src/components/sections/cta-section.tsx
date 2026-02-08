@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, CheckCircle, Mail, Brain, TrendingUp, Loader2 } from "lucide-react";
+import { ArrowRight, Mail, Brain, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -12,19 +12,13 @@ import { toast } from "sonner";
 
 interface CtaSectionProps {
   variant?: "full" | "compact";
-  showFeatures?: boolean;
-  showTrustIndicators?: boolean;
-  showBackground?: boolean;
   className?: string;
 }
 
-const CtaSection = ({ 
-  variant = "full", 
-  showFeatures = true, 
-  showTrustIndicators = true,
-  showBackground = true,
-  className 
-}: CtaSectionProps = {}) => {
+const CtaSection = ({
+  variant = "full",
+  className,
+}: CtaSectionProps) => {
   const [email, setEmail] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -40,7 +34,7 @@ const CtaSection = ({
       formData.append('email', email);
       formData.append('firstName', firstName);
       formData.append('lastName', lastName);
-      
+
       // Add tracking data
       formData.append('userAgent', navigator.userAgent);
       formData.append('referrer', document.referrer);
@@ -65,7 +59,7 @@ const CtaSection = ({
   };
 
   const sectionPadding = variant === "compact" ? "py-16" : "py-32";
-  
+
   return (
     <>
       <NewsletterSignupSuccess
@@ -75,19 +69,13 @@ const CtaSection = ({
         variant="modal"
       />
       <section className={cn("relative overflow-hidden", sectionPadding, className)}>
-      {/* Static gradient overlay */}
-      {showBackground && (
-        <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 via-transparent to-orchid/5" />
-      )}
-      
-      {/* Dynamic Background Elements */}
-      {showBackground && (
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-lilac/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-skyward/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-orchid/3 via-transparent to-lavender/3 rounded-full blur-3xl"></div>
-        </div>
-      )}
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 via-transparent to-orchid/5" />
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-lilac/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-skyward/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-orchid/3 via-transparent to-lavender/3 rounded-full blur-3xl"></div>
+      </div>
 
       <div className="container relative">
         <div className="flex flex-col items-center max-w-4xl mx-auto">
@@ -102,83 +90,7 @@ const CtaSection = ({
             </span>
           </h2>
 
-          {/* Description */}
-          <p className="mt-6 text-lg md:text-xl text-muted-foreground text-center max-w-2xl leading-relaxed">
-            Get exclusive insights on <span className="text-lilac dark:text-lilac font-semibold">AI-powered mortgage marketing</span> delivered to your inbox. 
-            Join <span className="text-orchid dark:text-orchid font-semibold">industry thought leaders</span> who are transforming their business with AI.
-          </p>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="mt-8 w-full max-w-lg">
-            <div className="space-y-4">
-              {/* Name Fields */}
-              <div className="grid grid-cols-2 gap-4">
-                {/* First Name Input */}
-                <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-30 dark:group-hover:opacity-50 transition duration-300"></div>
-                  <div className="relative bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
-                    <Input
-                      type="text"
-                      required
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                      placeholder="First name"
-                      className="border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
-                    />
-                  </div>
-                </div>
-                
-                {/* Last Name Input */}
-                <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-30 dark:group-hover:opacity-50 transition duration-300"></div>
-                  <div className="relative bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
-                    <Input
-                      type="text"
-                      required
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      placeholder="Last name"
-                      className="border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              {/* Email Input with Submit Button */}
-              <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
-                
-                <div className="relative flex items-center gap-2 bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
-                  <Input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email..."
-                    className="flex-1 border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
-                  />
-                  <Button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className="h-11 px-6 bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 text-white font-medium rounded-lg transition-all duration-300 disabled:opacity-50"
-                    aria-label="Subscribe to newsletter"
-                  >
-                    {isSubmitting ? (
-                      "Subscribing..."
-                    ) : (
-                      <>
-                        Subscribe
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </form>
-
           {/* Features */}
-          {showFeatures && (
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 w-full max-w-2xl">
             <div className="flex items-center justify-center sm:justify-start gap-3 group">
               <div className="relative">
@@ -219,25 +131,81 @@ const CtaSection = ({
               </div>
             </div>
           </div>
-          )}
 
-          {/* Trust indicators */}
-          {showTrustIndicators && (
-          <div className="mt-8 flex items-center gap-6 text-xs text-muted-foreground">
-            <div className="flex items-center gap-1.5">
-              <CheckCircle className="h-3.5 w-3.5 text-lilac dark:text-lilac" />
-              <span>No spam, ever</span>
+          {/* Description */}
+          <p className="mt-6 text-lg md:text-xl text-muted-foreground text-center max-w-2xl leading-relaxed">
+            Get exclusive insights on <span className="text-lilac dark:text-lilac font-semibold">AI-powered mortgage marketing</span> delivered to your inbox.
+            Join <span className="text-orchid dark:text-orchid font-semibold">industry thought leaders</span> who are transforming their business with AI.
+          </p>
+
+          {/* Form */}
+          <form onSubmit={handleSubmit} className="mt-8 w-full max-w-lg">
+            <div className="space-y-4">
+              {/* Name Fields */}
+              <div className="grid grid-cols-2 gap-4">
+                {/* First Name Input */}
+                <div className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-30 dark:group-hover:opacity-50 transition duration-300"></div>
+                  <div className="relative bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
+                    <Input
+                      type="text"
+                      required
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
+                      placeholder="First name"
+                      className="border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
+                    />
+                  </div>
+                </div>
+
+                {/* Last Name Input */}
+                <div className="relative group">
+                  <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-30 dark:group-hover:opacity-50 transition duration-300"></div>
+                  <div className="relative bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
+                    <Input
+                      type="text"
+                      required
+                      value={lastName}
+                      onChange={(e) => setLastName(e.target.value)}
+                      placeholder="Last name"
+                      className="border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Email Input with Submit Button */}
+              <div className="relative group">
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
+
+                <div className="relative flex items-center gap-2 bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
+                  <Input
+                    type="email"
+                    required
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email..."
+                    className="flex-1 border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
+                  />
+                  <Button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="h-11 px-6 bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 text-white font-medium rounded-lg transition-all duration-300 disabled:opacity-50"
+                    aria-label="Subscribe to newsletter"
+                  >
+                    {isSubmitting ? (
+                      "Subscribing..."
+                    ) : (
+                      <>
+                        Subscribe
+                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                      </>
+                    )}
+                  </Button>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle className="h-3.5 w-3.5 text-orchid dark:text-orchid" />
-              <span>Unsubscribe anytime</span>
-            </div>
-            <div className="flex items-center gap-1.5">
-              <CheckCircle className="h-3.5 w-3.5 text-skyward dark:text-skyward" />
-              <span>100% free</span>
-            </div>
-          </div>
-          )}
+          </form>
         </div>
       </div>
       </section>

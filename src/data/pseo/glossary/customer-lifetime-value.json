@@ -1,0 +1,74 @@
+{
+  "slug": "customer-lifetime-value",
+  "term": "Customer Lifetime Value",
+  "shortDefinition": "Customer lifetime value (CLV) in mortgage measures the total revenue a borrower generates over their entire relationship with a lender, including the original loan, refinances, additional products, and referrals they send.",
+  "detailedExplanation": "Customer lifetime value quantifies the complete economic worth of a borrower relationship beyond the initial loan transaction. In mortgage, CLV extends far beyond the origination fee and servicing income from a single loan. It encompasses future refinance opportunities as rates shift and equity builds, home equity products when the borrower needs to access their equity, purchase loans when the borrower moves, and the value of referrals the borrower sends to friends and family.\n\nCalculating mortgage CLV requires modeling several revenue streams. The initial transaction generates origination fees, typically 0.5-1% of loan amount, plus potential servicing income if the loan is retained. Refinance probability varies by rate environment but averages once every 4-7 years for active homeowners. Home equity lines of credit provide additional origination and interest income. Purchase loans from move-up buyers generate new origination revenue. And referrals, while harder to quantify, represent zero-cost lead generation from satisfied customers.\n\nA practical CLV calculation for a $350,000 conventional loan might look like this: initial origination revenue of $3,500, projected refinance within 5 years generating $2,800, a home equity line generating $800 in fees, and two referrals generating $7,000 in total origination revenue. The 10-year CLV of this single borrower exceeds $14,000, dramatically higher than the $3,500 initial transaction value.\n\nUnderstanding CLV fundamentally changes marketing strategy and budget allocation. When you know a customer is worth $14,000 over their lifetime rather than $3,500 on the first transaction, you can justify spending more to acquire them, invest more in the post-close experience, and maintain longer-term nurture programs. A cost per acquisition of $500 looks expensive against a $3,500 origination fee but trivial against a $14,000 lifetime value.\n\nAI enhances CLV modeling by incorporating behavioral data that predicts which borrowers have the highest future value. Factors like credit trajectory, income growth indicators, property appreciation in their zip code, family status, and engagement with your content all signal future loan activity. These predictions enable differentiated service levels where high-CLV borrowers receive premium attention and resources.",
+  "industryContext": "In my experience leading marketing at Nationwide Mortgage Bankers, shifting from a cost-per-lead mindset to a CLV-based approach transformed our marketing budget allocation. We discovered that referral leads, which cost us essentially nothing to acquire, had a 40% higher CLV than paid search leads because referral borrowers were more loyal, more likely to refinance with us, and more likely to refer others in turn. This insight led us to invest heavily in post-close experience and referral programs.\n\nThe mortgage industry has traditionally focused on transaction metrics: volume, pull-through rate, and cost per funded loan. CLV thinking shifts the focus to relationship metrics: retention rate, repeat business rate, and referral rate. This shift is especially important in low-rate environments when refinance volume drops, the lenders with strong customer relationships generate purchase and referral business that sustains them through down markets.\n\nCLV analysis also reveals which customer segments deserve premium service investment. We found that borrowers who purchased homes in appreciating zip codes and had growing incomes had 3x the CLV of average borrowers. These high-value customers received personal annual reviews, priority access to new products, and dedicated relationship managers, an investment that paid for itself many times over through retention and referral revenue.",
+  "examples": [
+    {
+      "title": "CLV-Based Marketing Budget Allocation",
+      "description": "A lender calculates CLV by acquisition channel and discovers that real estate agent referral leads have a 10-year CLV of $18,000 compared to $9,500 for Zillow leads and $7,200 for Google Ads leads. This insight shifts $5,000 in monthly marketing budget from paid digital to realtor relationship programs and co-marketing initiatives, increasing overall marketing ROI by 35%."
+    },
+    {
+      "title": "Predictive CLV Scoring for Service Tiers",
+      "description": "An AI model assigns each new borrower a predicted CLV score based on loan amount, property location, income level, and engagement behavior. High-CLV borrowers (top 20%) receive a premium post-close experience: personal annual mortgage reviews, proactive rate monitoring, and a dedicated relationship manager. This tiered approach increases high-CLV customer retention from 65% to 88%."
+    },
+    {
+      "title": "Post-Close Nurture ROI Justification",
+      "description": "A lender implements a $50-per-borrower annual post-close nurture program including quarterly market updates, annual home value reports, and birthday cards. CLV analysis shows that nurtured borrowers generate $4,200 more in lifetime revenue than non-nurtured borrowers through higher refinance capture, HELOC uptake, and referral rates. The program delivers an 84:1 ROI."
+    }
+  ],
+  "relatedTerms": [
+    "marketing-attribution",
+    "data-driven-marketing",
+    "conversion-rate-optimization",
+    "borrower-engagement",
+    "predictive-analytics"
+  ],
+  "relatedContent": [
+    {
+      "title": "AI Marketing Consulting Services",
+      "slug": "consulting",
+      "type": "service"
+    },
+    {
+      "title": "Data-Driven Marketing",
+      "slug": "data-driven-marketing",
+      "type": "glossary"
+    },
+    {
+      "title": "Marketing Attribution",
+      "slug": "marketing-attribution",
+      "type": "glossary"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do I calculate customer lifetime value for mortgage?",
+      "answer": "Start with your average origination revenue per loan. Add projected refinance revenue based on your historical refi capture rate and average refi frequency. Add ancillary product revenue (HELOC, insurance referral fees). Add referral value by multiplying your average referral rate by the origination revenue per referred loan. Apply a discount rate for time value of money if you want a net present value. Most lenders find their 10-year CLV is 3-5x their initial transaction value."
+    },
+    {
+      "question": "What results can I expect from CLV-based marketing?",
+      "answer": "Lenders who shift to CLV-based marketing allocation typically see overall marketing ROI improve 25-45% within 12 months. Retention rates for high-CLV customers improve 20-30% with tiered service. Referral rates increase 30-50% when post-close experience is optimized. Budget efficiency improves as spend shifts from chasing volume to building valuable long-term relationships. The biggest impact is cultural: teams start thinking about customer relationships instead of transactions."
+    },
+    {
+      "question": "How does AI improve customer lifetime value in mortgage?",
+      "answer": "AI predicts which borrowers will have the highest CLV before you even close their first loan, based on patterns in historical data. It identifies optimal timing for refinance outreach, predicts which customers are at risk of leaving for a competitor, and personalizes retention marketing for each segment. AI can also predict referral propensity, identifying which satisfied customers are most likely to refer and triggering targeted referral requests at the right time."
+    }
+  ],
+  "category": "data-analytics",
+  "seo": {
+    "title": "Customer Lifetime Value in Mortgage | Jarrett Stanley",
+    "description": "Learn how customer lifetime value analysis transforms mortgage marketing by revealing that borrowers are worth 3-5x their initial loan transaction.",
+    "keywords": [
+      "customer lifetime value mortgage",
+      "mortgage CLV",
+      "borrower lifetime value",
+      "mortgage customer retention",
+      "mortgage relationship marketing",
+      "customer value mortgage",
+      "mortgage marketing ROI"
+    ]
+  },
+  "lastUpdated": "2026-02-07"
+}

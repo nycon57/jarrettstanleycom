@@ -1,0 +1,60 @@
+{
+  "slug": "first-party-data-or-borrowed-attention",
+  "title": "First-Party Data or Borrowed Attention: Pick One",
+  "excerpt": "Most mortgage marketing budgets rent attention from platforms that change the rules overnight. Cookie deprecation, algorithmic shifts, rising CPLs. The only defensible move is building a first-party data asset.",
+  "content": [
+    { "type": "paragraph", "text": "In 2024, Google changed its cookie deprecation timeline for the third time. Meta's CPMs for financial services jumped 38% year-over-year. Zillow restructured its lead pricing again. And most mortgage marketers absorbed every one of those hits because they had no alternative — their entire acquisition strategy was built on **rented audience access**." },
+    { "type": "paragraph", "text": "This is not a marketing strategy. It's a dependency. And every dependency has a cost that compounds: rising prices, declining control, and the permanent risk that a platform change wipes out your pipeline overnight." },
+    { "type": "heading", "text": "The Economics of Borrowed Attention", "level": 2 },
+    { "type": "paragraph", "text": "When you buy leads from Zillow, run ads on Meta, or rely on Google search traffic, you're paying a **toll every time you want to reach a borrower**. The platform owns the audience. You rent access. And the price of that access goes in exactly one direction." },
+    { "type": "list", "style": "bullet", "items": [
+      "**Zillow and LendingTree** CPLs have increased an average of 15-20% annually for five consecutive years",
+      "**Meta's auction model** means every new competitor entering the mortgage vertical raises your costs automatically",
+      "**Google's AI Overviews** are compressing organic click-through rates for mortgage queries by 30-40%",
+      "**Third-party cookie deprecation** will eventually eliminate most retargeting and lookalike audiences as we know them"
+    ] },
+    { "type": "paragraph", "text": "Every one of these trends points in the same direction: **the cost of borrowed attention is rising and the effectiveness is declining**. If your marketing strategy doesn't account for this, you're running on a clock." },
+    { "type": "heading", "text": "What First-Party Data Actually Means", "level": 2 },
+    { "type": "paragraph", "text": "First-party data is information you collect directly from people who've interacted with your brand: website visitors, email subscribers, past borrowers, webinar attendees, content downloaders. It's data you own. Nobody can reprice it, throttle it, or take it away." },
+    { "type": "callout", "text": "The mortgage companies that will dominate the next rate cycle aren't the ones spending the most on leads. They're the ones who built owned audiences of 50,000+ contacts during the downmarket — and can activate those audiences for pennies when rates drop.", "variant": "insight" },
+    { "type": "heading", "text": "Building the Asset", "level": 2 },
+    { "type": "paragraph", "text": "A first-party data strategy isn't complicated, but it requires a fundamental shift in how you allocate budget and measure success. Here's the framework I've used." },
+    { "type": "heading", "text": "Capture: Give People a Reason to Identify Themselves", "level": 3 },
+    { "type": "paragraph", "text": "Rate alerts, mortgage calculators, market reports, educational content — anything that delivers genuine value in exchange for an email address and basic profile data. The key is **specificity**. A generic \"subscribe to our newsletter\" converts at 1-2%. A zip-code-specific rate alert converts at 8-12%. The more relevant the value exchange, the richer the data you collect." },
+    { "type": "heading", "text": "Enrich: Layer Intelligence Over Time", "level": 3 },
+    { "type": "paragraph", "text": "Every interaction adds signal. What content did they engage with? What calculator inputs did they use? How far into the application did they get? This behavioral data, layered on top of declared data, creates a **borrower intent profile** that no third-party lead vendor can match." },
+    { "type": "heading", "text": "Activate: Deploy Across Channels You Control", "level": 3 },
+    { "type": "paragraph", "text": "Email, SMS, direct mail, LO outreach — channels where you don't pay a platform toll for every impression. When you own the data and the relationship, your **marginal cost of contact approaches zero**. That's the math that changes everything." },
+    { "type": "heading", "text": "The Transition Budget", "level": 2 },
+    { "type": "paragraph", "text": "You can't flip the switch overnight. Most lenders need 12-18 months to shift from a majority-rented to a majority-owned acquisition model. The move I recommend: redirect **20% of your current paid media budget** into first-party data capture and nurture infrastructure in year one, then increase to 40% in year two as your owned audience grows and starts converting." }
+  ],
+  "publishedAt": "2026-03-23T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["data-analytics", "ai-automation"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/first-party-data-or-borrowed-attention.png",
+  "seo": {
+    "title": "First-Party Data or Borrowed Attention | Jarrett Stanley",
+    "description": "Most mortgage budgets rent audience access from platforms that raise prices every year. Here's how to build a first-party data asset that you own.",
+    "keywords": ["first-party data mortgage marketing", "cookie deprecation mortgage", "owned audience strategy", "mortgage lead generation costs", "first-party data strategy", "mortgage marketing ROI", "data-driven mortgage marketing", "email marketing mortgage", "borrower engagement data", "lead acquisition cost reduction"]
+  },
+  "relatedContent": [
+    { "title": "The Lead Gen Playbook Broke", "slug": "the-lead-gen-playbook-broke", "type": "blog" },
+    { "title": "Rate-Proof Your Marketing", "slug": "rate-proof-your-marketing", "type": "blog" },
+    { "title": "Customer Lifetime Value", "slug": "customer-lifetime-value", "type": "glossary" },
+    { "title": "Email Drip Campaigns", "slug": "email-drip-campaigns", "type": "glossary" },
+    { "title": "Digital Marketing Specialist", "slug": "digital-marketing-specialist", "type": "persona" }
+  ],
+  "faqs": [
+    { "question": "What counts as first-party data in mortgage marketing?", "answer": "Any data collected directly from someone who interacts with your brand: website behavior, email engagement, calculator usage, content downloads, webinar attendance, application data, and past borrower information. The defining characteristic is that you collected it with consent and you own it — no platform can reprice or revoke your access." },
+    { "question": "How long does it take to build a meaningful first-party data asset?", "answer": "Most lenders need 12-18 months to build an owned audience large enough to materially reduce dependence on paid acquisition. The inflection point typically comes around 25,000-50,000 enriched contacts, when email and nurture campaigns start generating enough pipeline to offset paid media cuts. Start the transition now — every month of delay is another month of rising CPLs." },
+    { "question": "Won't reducing paid media spend hurt our pipeline in the short term?", "answer": "It can, which is why the transition should be gradual. Redirect 20% of paid spend in year one, not 50%. The key is redirecting from the lowest-performing paid channels first — the ones with the highest CPL and lowest close rates. Most lenders find that their bottom-quartile paid spend is effectively subsidizing the platform, not their pipeline." },
+    { "question": "How does first-party data work with AI and personalization?", "answer": "First-party data is the foundation AI needs to deliver real personalization. When you have 12+ months of behavioral and engagement data on a contact, AI models can predict intent, optimize send times, personalize content, and score leads with far greater accuracy than any third-party data append. The richer your first-party data, the more powerful your AI becomes." }
+  ],
+  "lastUpdated": "2026-03-23"
+}

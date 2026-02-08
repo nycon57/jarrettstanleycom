@@ -1,0 +1,70 @@
+{
+  "slug": "your-funnel-is-lying-to-you",
+  "title": "Your Funnel Is Lying to You",
+  "excerpt": "The linear awareness-consideration-decision funnel doesn't describe how borrowers actually choose a lender. The real journey is nonlinear, compressed, and increasingly influenced by AI search.",
+  "content": [
+    { "type": "paragraph", "text": "The marketing funnel is one of the most deeply embedded mental models in our industry. Awareness. Consideration. Decision. It's clean. It's logical. It fits perfectly on a slide deck. And it has almost nothing to do with how borrowers actually choose a mortgage lender in 2026." },
+    { "type": "paragraph", "text": "I'm not saying the funnel is completely useless. It describes a general directionality — people do move from not knowing you to knowing you to choosing you. But **the funnel implies a sequence that doesn't exist.** It implies that awareness must precede consideration, that consideration must precede decision, and that each stage is distinct and measurable. None of that is true anymore." },
+    { "type": "heading", "text": "How Borrowers Actually Choose a Lender", "level": 2 },
+    { "type": "paragraph", "text": "We tracked borrower behavior across our digital properties for six months and mapped out what the actual journey looked like. The results were humbling. **The average borrower who closed a loan had 15-20 touchpoints across 4-6 channels over a period that ranged from 72 hours to 18 months.** There was no consistent sequence. Some borrowers went from a Google search directly to an application — skipping \"awareness\" entirely. Others spent months reading content before ever engaging with a human." },
+    { "type": "list", "style": "bullet", "items": [
+      "**38% of closed borrowers first interacted with us through a rate comparison, not branded content.** They were in \"decision\" mode before they were ever in \"awareness\" mode.",
+      "**Borrowers routinely moved backward.** Someone who started an application would abandon it, spend two weeks reading reviews and educational content, then return and complete it.",
+      "**AI search is compressing the journey.** Borrowers using AI assistants to research mortgages arrive at our site with far more knowledge — and far more specific questions — than those who come through traditional search.",
+      "**Referral borrowers skip the funnel almost entirely.** A recommendation from a real estate agent or friend collapses what might be weeks of consideration into a single phone call."
+    ] },
+    { "type": "callout", "text": "The funnel doesn't describe a journey. It describes a reporting structure. And when your reporting structure doesn't match reality, you optimize for the wrong things.", "variant": "insight" },
+    { "type": "heading", "text": "The Measurement Problem", "level": 2 },
+    { "type": "paragraph", "text": "Here's where the funnel really fails: **it forces you to attribute outcomes to stages that may not have mattered.** Your attribution model says a borrower came through a paid search ad (awareness), visited your rate page three times (consideration), and then applied (decision). Clean story. Except that borrower's real estate agent had already told them to call you. The paid ad was just how they found your phone number." },
+    { "type": "paragraph", "text": "When we audited our attribution data against post-close surveys, **the stated reason for choosing us matched the attributed channel less than 40% of the time.** Nearly half the time, the thing our analytics said \"caused\" the conversion wasn't even in the borrower's top three reasons for choosing us." },
+    { "type": "heading", "text": "A Better Framework: Signals, Not Stages", "level": 2 },
+    { "type": "paragraph", "text": "Instead of tracking where borrowers are in a funnel, we started tracking **buying signals** — behaviors that indicate intent regardless of where they appear in a theoretical sequence." },
+    { "type": "list", "style": "numbered", "items": [
+      "**Research signals.** Rate page visits, calculator usage, content downloads. These indicate active consideration but don't tell you how close someone is to a decision.",
+      "**Engagement signals.** Return visits, email opens, chat interactions, social engagement. These indicate sustained interest and are the strongest predictors of eventual conversion.",
+      "**Intent signals.** Application starts, pre-approval requests, direct contact. These indicate readiness to act and should trigger immediate, personalized outreach.",
+      "**Advocacy signals.** Review submissions, referral link usage, social sharing. These indicate borrowers who have already decided and are now influencing others — a stage the traditional funnel completely ignores."
+    ] },
+    { "type": "paragraph", "text": "The difference is subtle but transformative. Signals are **observable and actionable in real time.** Funnel stages are retrospective categories we impose on data after the fact. You can respond to a signal. You can only report on a stage." },
+    { "type": "heading", "text": "What to Measure Instead", "level": 2 },
+    { "type": "paragraph", "text": "If the funnel is lying, what should you actually track? Here's what we shifted to." },
+    { "type": "list", "style": "bullet", "items": [
+      "**Signal velocity:** How quickly is a borrower accumulating buying signals? A borrower who hits three intent signals in 48 hours is fundamentally different from one who accumulates them over six months, even if the total count is the same.",
+      "**Channel influence, not channel attribution:** Instead of crediting one channel with a conversion, measure how each channel contributed to signal acceleration. This is messier but more honest.",
+      "**Time-to-engagement:** How quickly do borrowers move from first signal to first human interaction? This matters more than which stage they're \"in.\"",
+      "**Post-close signal generation:** Are closed borrowers generating advocacy signals? This is your most undervalued marketing channel and the funnel has no way to account for it."
+    ] },
+    { "type": "callout", "text": "The best marketing teams in mortgage aren't optimizing funnels. They're building signal detection systems that respond to borrower behavior in real time, regardless of where it falls in a theoretical sequence.", "variant": "tip" },
+    { "type": "heading", "text": "Letting Go of the Linear Story", "level": 2 },
+    { "type": "paragraph", "text": "The funnel persists because it tells a clean story. Executives like clean stories. Board decks need clean stories. But **optimizing for a clean story means you're optimizing for your reporting, not your borrowers.** The messy, nonlinear, channel-hopping reality of how people actually choose a lender is harder to visualize but far more useful to understand." },
+    { "type": "paragraph", "text": "Your funnel isn't wrong in the way a broken clock is wrong. It's wrong in a more dangerous way — it's **approximately right enough to be convincing, but specifically wrong enough to mislead your resource allocation.** Every dollar you spend optimizing the top of a funnel that doesn't exist is a dollar you could have spent responding to a buying signal that does." }
+  ],
+  "publishedAt": "2026-04-09T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["data-analytics"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/your-funnel-is-lying-to-you.png",
+  "seo": {
+    "title": "Your Funnel Is Lying to You | Jarrett Stanley",
+    "description": "The linear marketing funnel doesn't describe how borrowers choose a lender. A signal-based framework for measuring the nonlinear mortgage buyer journey.",
+    "keywords": ["mortgage marketing funnel", "borrower decision journey", "nonlinear buyer journey", "multi-touch measurement", "marketing attribution mortgage", "buying signals mortgage", "conversion tracking lender", "channel attribution mortgage", "borrower journey mapping"]
+  },
+  "relatedContent": [
+    { "title": "The Metric That Ate Your Marketing Budget", "slug": "the-metric-that-ate-your-marketing-budget", "type": "blog" },
+    { "title": "Bad Data Is a Leadership Problem", "slug": "bad-data-is-a-leadership-problem", "type": "blog" },
+    { "title": "Marketing Attribution", "slug": "marketing-attribution", "type": "glossary" },
+    { "title": "Customer Journey Mapping", "slug": "customer-journey-mapping", "type": "glossary" },
+    { "title": "CMO & VP Marketing", "slug": "cmo-vp-marketing", "type": "persona" }
+  ],
+  "faqs": [
+    { "question": "Is the marketing funnel completely obsolete for mortgage marketing?", "answer": "Not completely — it still describes a general directionality from unknown to known to customer. But it fails as a measurement and optimization framework because real borrower behavior is nonlinear. Borrowers skip stages, move backward, and are influenced by channels the funnel can't account for. Use it as a rough mental model, not as your reporting structure." },
+    { "question": "What are buying signals and how do they differ from funnel stages?", "answer": "Buying signals are observable behaviors that indicate intent — rate page visits, application starts, return visits, chat interactions. Unlike funnel stages, signals are measurable in real time and actionable regardless of sequence. A borrower might show an intent signal before ever showing an awareness signal, which the funnel framework can't accommodate." },
+    { "question": "How should mortgage marketers handle attribution if the funnel is flawed?", "answer": "Shift from single-channel attribution to channel influence measurement. Instead of crediting one channel with a conversion, measure how each channel contributed to accelerating buying signals. This is messier to report but more accurately reflects how borrowers actually make decisions across multiple touchpoints and channels." }
+  ],
+  "lastUpdated": "2026-04-09"
+}

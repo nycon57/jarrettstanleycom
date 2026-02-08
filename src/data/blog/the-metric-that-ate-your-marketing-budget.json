@@ -1,0 +1,76 @@
+{
+  "slug": "the-metric-that-ate-your-marketing-budget",
+  "title": "The Metric That Ate Your Marketing Budget",
+  "excerpt": "Cost-per-lead worship drives teams toward cheap volume and away from borrowers who actually close, fund, and refer. It's time to replace CPL with a metric that measures what matters.",
+  "content": [
+    { "type": "paragraph", "text": "Somewhere in the last decade, cost-per-lead became the metric that runs mortgage marketing departments. Not cost-per-funded-loan. Not customer lifetime value. Not even cost-per-application. **Cost-per-lead — the metric that measures how cheaply you can get someone to fill out a form.** And it's been eating your budget ever since." },
+    { "type": "paragraph", "text": "I've sat in enough marketing review meetings to see the pattern. The team celebrates when CPL drops from $45 to $32. Nobody asks what happened to the conversion rate. Nobody checks whether those cheaper leads actually closed. The dashboard is green, the CFO is happy with the efficiency trend, and meanwhile the pipeline is full of borrowers who were never going to fund." },
+    { "type": "heading", "text": "How CPL Became King", "level": 2 },
+    { "type": "paragraph", "text": "CPL didn't become the dominant mortgage marketing metric because it's the best one. It became dominant because it's the **easiest one to measure and the easiest one to optimize.** Every ad platform reports it natively. Every marketing manager can improve it by loosening targeting, broadening audiences, or running more aggressive lead magnets. The number goes down, and everyone feels productive." },
+    { "type": "paragraph", "text": "But optimizing for CPL creates a predictable set of pathological behaviors:" },
+    { "type": "list", "style": "bullet", "items": [
+      "**Targeting gets looser** — campaigns shift toward audiences more likely to click but less likely to qualify",
+      "**Lead quality degrades** — cheaper leads correlate with lower intent, lower credit scores, and lower close rates",
+      "**Sales teams burn out** — loan officers waste hours chasing unqualified leads and start ignoring the pipeline entirely",
+      "**Attribution breaks** — the cheapest leads often come from the worst sources, but CPL-focused reporting can't see that",
+      "**Budget concentration** — spend flows toward high-volume, low-quality channels because they look efficient on the CPL dashboard"
+    ] },
+    { "type": "callout", "text": "A $30 lead that never closes is infinitely more expensive than a $150 lead that funds a $400,000 loan. CPL can't tell you the difference.", "variant": "insight" },
+    { "type": "heading", "text": "The True Cost Nobody Calculates", "level": 2 },
+    { "type": "paragraph", "text": "Here's the math most mortgage marketing teams don't run. Take a channel generating leads at $35 CPL with a 2% close rate. You need 50 leads to close one loan. **That's $1,750 per funded loan from that channel** — before you account for the LO time wasted on the 49 leads that didn't close." },
+    { "type": "paragraph", "text": "Now take a channel generating leads at $120 CPL with a 12% close rate. You need about 8 leads to close one loan. **That's $960 per funded loan** — and your loan officers spent time with qualified borrowers instead of tire-kickers. The \"expensive\" channel is 45% cheaper when you measure what actually matters." },
+    { "type": "paragraph", "text": "This isn't a hypothetical. I've seen these exact dynamics play out across dozens of marketing channels. The cheapest leads are almost always the most expensive loans to acquire. But you'll never see it if CPL is your primary metric." },
+    { "type": "heading", "text": "What to Measure Instead", "level": 2 },
+    { "type": "paragraph", "text": "Replacing CPL doesn't mean ignoring it entirely — it means demoting it from the headline metric to a supporting indicator. Here's the measurement hierarchy that actually drives profitable growth:" },
+    { "type": "heading", "text": "Cost Per Funded Loan (CPFL)", "level": 3 },
+    { "type": "paragraph", "text": "This is the metric that should headline every marketing review. **Total marketing spend divided by marketing-sourced funded loans, broken down by channel.** It tells you the true acquisition cost and immediately exposes the channels that look cheap on CPL but expensive on outcomes. Calculating CPFL requires connecting your marketing data to your LOS — which is exactly the kind of data infrastructure investment most teams have been avoiding." },
+    { "type": "heading", "text": "Lead-to-Fund Rate by Channel", "level": 3 },
+    { "type": "paragraph", "text": "Not just conversion rate — the **full-funnel conversion from lead to funded loan** for each marketing channel and campaign. This single metric reveals quality differences that CPL completely obscures. A channel with a 1% lead-to-fund rate and a channel with an 8% lead-to-fund rate can have identical CPLs but wildly different business impact." },
+    { "type": "heading", "text": "Lifetime Borrower Value", "level": 3 },
+    { "type": "paragraph", "text": "The most sophisticated lenders measure beyond the first transaction. **A borrower who funds, refinances in 3 years, and refers two friends has a lifetime value that dwarfs the initial loan revenue.** Marketing channels that attract these high-LTV borrowers deserve premium investment, even if their CPL is higher. Referral programs, content marketing, and community engagement often index highest on lifetime value — and lowest on CPL optimization." },
+    { "type": "callout", "text": "Start by calculating your CPFL for your top 3 marketing channels this month. The gap between your CPL ranking and your CPFL ranking will show you exactly where your budget is misallocated.", "variant": "tip" },
+    { "type": "heading", "text": "Breaking the CPL Addiction", "level": 2 },
+    { "type": "paragraph", "text": "The hardest part of moving beyond CPL isn't technical — it's organizational. Your CFO has been reviewing CPL reports for years. Your ad agency optimizes to CPL because that's what you asked for. Your marketing team's bonuses may be tied to CPL targets. **Changing the metric means changing the incentive structure, and that requires executive alignment.**" },
+    { "type": "paragraph", "text": "Start the conversation by running a CPFL analysis alongside your existing CPL reporting for one quarter. Don't replace the old reports — augment them. When the data shows that your \"best\" CPL channel is your worst CPFL performer, the case for changing the primary metric makes itself. I've never seen a CEO argue against measuring what actually drives revenue once they see the comparison." }
+  ],
+  "publishedAt": "2026-03-12T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["data-analytics", "leadership"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/the-metric-that-ate-your-marketing-budget.png",
+  "seo": {
+    "title": "The Metric That Ate Your Marketing Budget | Jarrett Stanley",
+    "description": "Cost-per-lead optimization is silently destroying mortgage marketing ROI. Here's the case for replacing CPL with metrics that measure actual business outcomes.",
+    "keywords": [
+      "cost per lead vs CLV mortgage",
+      "marketing KPI mortgage",
+      "vanity metrics marketing",
+      "cost per funded loan",
+      "mortgage marketing ROI",
+      "lead quality mortgage",
+      "marketing attribution mortgage",
+      "mortgage marketing metrics",
+      "CPL optimization problems",
+      "lifetime borrower value"
+    ]
+  },
+  "relatedContent": [
+    { "title": "Bad Data Is a Leadership Problem", "slug": "bad-data-is-a-leadership-problem", "type": "blog" },
+    { "title": "The CMO's Job Changed", "slug": "the-cmo-job-changed", "type": "blog" },
+    { "title": "Your Funnel Is Lying to You", "slug": "your-funnel-is-lying-to-you", "type": "blog" },
+    { "title": "Customer Lifetime Value", "slug": "customer-lifetime-value", "type": "glossary" },
+    { "title": "Conversion Rate Optimization", "slug": "conversion-rate-optimization", "type": "glossary" },
+    { "title": "Marketing Attribution", "slug": "marketing-attribution", "type": "glossary" }
+  ],
+  "faqs": [
+    { "question": "Why is cost-per-lead a problematic primary metric for mortgage marketing?", "answer": "CPL measures how cheaply you acquire a form fill, not a funded loan. Optimizing for CPL drives teams toward high-volume, low-quality channels that look efficient on dashboards but produce leads that rarely close. The result is wasted sales capacity and higher true acquisition costs." },
+    { "question": "What is cost per funded loan (CPFL) and how do you calculate it?", "answer": "CPFL is total marketing spend divided by the number of marketing-sourced funded loans, broken down by channel. It requires connecting marketing data to your loan origination system to track leads all the way through to closing. It reveals the true cost of acquisition that CPL hides." },
+    { "question": "How do you transition a marketing team from CPL to better metrics?", "answer": "Run CPFL and lead-to-fund rate analysis alongside existing CPL reporting for one quarter without replacing anything. The side-by-side comparison will reveal where budget is misallocated, making the case for new primary metrics self-evident to executives and stakeholders." }
+  ],
+  "lastUpdated": "2026-03-12"
+}

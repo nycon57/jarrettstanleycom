@@ -1,0 +1,58 @@
+{
+  "slug": "your-martech-stack-is-a-frankenstein",
+  "title": "Your Martech Stack Is a Frankenstein. Here's How to Kill It.",
+  "excerpt": "The average mortgage marketing team runs 12-18 tools with no integration strategy. Most of them overlap. Half of them nobody uses. Here's a ruthless simplification framework that actually works.",
+  "content": [
+    { "type": "paragraph", "text": "I audited a mid-size lender's marketing technology last year. They were running 17 tools. Three different email platforms. Two CRMs. A lead scoring tool that hadn't been calibrated since 2022. Total annual spend: north of $400,000. Actual utilization across the stack: **23 percent**." },
+    { "type": "paragraph", "text": "This isn't unusual. It's the norm. Every mortgage marketing team I've worked with has some version of this problem — a martech stack that grew by accretion, one vendor pitch at a time, until nobody can explain what half the tools do or why they're still running." },
+    { "type": "heading", "text": "How Frankenstein Gets Built", "level": 2 },
+    { "type": "paragraph", "text": "It starts innocently. A new VP wants their preferred CRM. A digital lead vendor requires their own pixel and dashboard. Someone signs a contract for a social scheduling tool because the old one didn't have Instagram Reels support. Nobody cancels the old one. **Each tool solves a narrow problem but creates a wider one**: fragmented data, duplicated workflows, and a team that spends more time toggling between dashboards than actually marketing." },
+    { "type": "paragraph", "text": "The real cost isn't the license fees — though those add up fast. It's the **integration tax**: the hours your team spends manually moving data between systems, reconciling conflicting reports, and troubleshooting broken automations that were duct-taped together." },
+    { "type": "heading", "text": "The 60-Day Kill Framework", "level": 2 },
+    { "type": "paragraph", "text": "I've used this framework at Nationwide and with clients. It's not theoretical. It works in four phases, and the whole thing fits inside 60 days if you commit to it." },
+    { "type": "heading", "text": "Phase 1: The Brutal Audit (Week 1-2)", "level": 3 },
+    { "type": "list", "style": "bullet", "items": [
+      "**List every tool** with its annual cost, primary user, and the last time someone actually logged in",
+      "**Map data flows** — where does lead data enter, where does it go, and how many times is it duplicated?",
+      "**Flag overlap** — if two tools do the same thing, one dies. No exceptions.",
+      "**Identify orphans** — tools with no clear owner get a 14-day use-it-or-lose-it window"
+    ] },
+    { "type": "heading", "text": "Phase 2: Consolidate Around Core (Week 3-4)", "level": 3 },
+    { "type": "paragraph", "text": "Every mortgage marketing operation needs exactly four systems: a **CRM**, a **marketing automation platform**, an **analytics layer**, and a **content management system**. Everything else is either a feature of one of those four or it's bloat. Pick your core four and route everything through them." },
+    { "type": "heading", "text": "Phase 3: Assign Ownership (Week 5-6)", "level": 3 },
+    { "type": "paragraph", "text": "Every surviving tool gets a single owner. Not a committee — a person. That person is responsible for utilization, integration health, and renewal decisions. If a tool doesn't have someone willing to own it, that tells you everything you need to know." },
+    { "type": "callout", "text": "The biggest savings aren't in canceled licenses. They're in recovered hours. One client cut seven tools and freed up 30+ hours per week across their marketing team — hours that went straight into campaign execution.", "variant": "insight" },
+    { "type": "heading", "text": "Phase 4: Measure Drag Reduction (Week 7-8)", "level": 3 },
+    { "type": "paragraph", "text": "After consolidation, measure three things: **time-to-launch** for new campaigns, **data reconciliation hours** per week, and **report generation time**. If those numbers don't drop by at least 40 percent, you didn't cut deep enough." },
+    { "type": "heading", "text": "The Vendor Trap to Watch For", "level": 2 },
+    { "type": "paragraph", "text": "Every martech vendor will tell you their platform is the one that consolidates everything else. Most of them are lying. The platforms that actually work as consolidators in mortgage are the ones with **native LOS and CRM integrations**, not the ones that promise a Zapier connection. If your 'integration' requires a middleware layer and a consultant, it's not an integration — it's another dependency." }
+  ],
+  "publishedAt": "2026-03-16T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["operations"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/your-martech-stack-is-a-frankenstein.png",
+  "seo": {
+    "title": "Your Martech Stack Is a Frankenstein | Jarrett Stanley",
+    "description": "A ruthless 60-day framework for auditing, consolidating, and simplifying your mortgage marketing technology stack to eliminate waste and recover hours.",
+    "keywords": ["martech stack consolidation mortgage", "marketing technology audit", "martech simplification", "mortgage marketing tools", "marketing technology ROI", "martech rationalization", "marketing operations efficiency", "mortgage marketing automation", "technology stack optimization", "marketing tool consolidation"]
+  },
+  "relatedContent": [
+    { "title": "The Hidden Tax of Manual Work", "slug": "the-hidden-tax-of-manual-work", "type": "blog" },
+    { "title": "The Cost of Noise", "slug": "the-cost-of-noise", "type": "blog" },
+    { "title": "Workflow Automation", "slug": "workflow-automation", "type": "glossary" },
+    { "title": "CRM Integration", "slug": "crm-integration", "type": "glossary" },
+    { "title": "Operations Director", "slug": "operations-director", "type": "persona" }
+  ],
+  "faqs": [
+    { "question": "How do I know if my martech stack is too complex?", "answer": "If your team spends more than 5 hours per week on data reconciliation between tools, if you have tools with fewer than 2 active users, or if you can't produce a single unified lead report without pulling from multiple dashboards, your stack is overbuilt. The 23% average utilization rate across mortgage marketing stacks suggests most teams are paying for capability they never touch." },
+    { "question": "What are the core four tools every mortgage marketing team needs?", "answer": "A CRM for contact and pipeline management, a marketing automation platform for email, nurture, and campaign execution, an analytics layer for attribution and reporting, and a content management system for web and landing pages. Everything else should be a feature of one of these four or a justified exception with a clear owner." },
+    { "question": "How do I get buy-in to cut tools that specific team members rely on?", "answer": "Start with utilization data, not opinions. Pull login frequency, feature usage, and actual workflow dependency for every tool. When people see that a $30,000/year platform is used by one person for one task that the CRM already handles, the conversation shifts from political to practical. Assign a 14-day trial period where the team uses only the consolidated stack before making final cuts." }
+  ],
+  "lastUpdated": "2026-03-16"
+}

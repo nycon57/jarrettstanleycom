@@ -347,3 +347,90 @@ export function generateSlug(title: string): string {
 export function generatePageKeywords(baseKeywords: string[], pageSpecific: string[] = []): string[] {
   return [...Array.from(new Set([...siteConfig.keywords, ...baseKeywords, ...pageSpecific]))]
 }
+
+// --- pSEO Schema Generators ---
+
+// Generate DefinedTerm structured data for glossary terms
+export function generateDefinedTermSchema({
+  term,
+  definition,
+  url,
+  category,
+}: {
+  term: string
+  definition: string
+  url: string
+  category?: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'DefinedTerm',
+    name: term,
+    description: definition,
+    url,
+    inDefinedTermSet: {
+      '@type': 'DefinedTermSet',
+      name: 'AI Mortgage Marketing Glossary',
+      url: `${siteConfig.url}/insights/glossary`,
+    },
+    ...(category && {
+      termCode: category,
+    }),
+  }
+}
+
+// Generate ItemList structured data for tool roundups
+export function generateItemListSchema({
+  name,
+  description,
+  url,
+  items,
+}: {
+  name: string
+  description: string
+  url: string
+  items: Array<{ name: string; position: number; url?: string }>
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    description,
+    url,
+    numberOfItems: items.length,
+    itemListElement: items.map((item) => ({
+      '@type': 'ListItem',
+      position: item.position,
+      name: item.name,
+      ...(item.url && { url: item.url }),
+    })),
+  }
+}
+
+// Generate CollectionPage structured data for example/index pages
+export function generateCollectionPageSchema({
+  name,
+  description,
+  url,
+}: {
+  name: string
+  description: string
+  url: string
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name,
+    description,
+    url,
+    isPartOf: {
+      '@type': 'WebSite',
+      '@id': `${siteConfig.url}#website`,
+    },
+    author: {
+      '@type': 'Person',
+      name: siteConfig.author.name,
+      url: siteConfig.author.url,
+    },
+  }
+}

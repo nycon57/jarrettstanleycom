@@ -1,13 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
-import HeaderV2 from '@/components/layout/header-v2'
-import { Footer } from '@/components/layout/footer'
-import { ThemeProvider } from '@/components/theme-provider'
-import { ConditionalLayout } from '@/components/layout/conditional-layout'
-import { AnalyticsProvider } from '@/components/analytics/analytics-provider'
-import { ScrollTracker } from '@/components/analytics/scroll-tracker'
-import { CookieConsent } from '@/components/analytics/cookie-consent'
-import { PerformanceMonitor } from '@/components/analytics/performance-monitor'
+import { Providers } from '@/components/providers'
 import { cn } from '@/lib/utils'
 import { generateMetadata as generateSEOMetadata, generatePersonSchema, generateOrganizationSchema, generateWebsiteSchema, generateStructuredData } from '@/lib/seo'
 import './globals.css'
@@ -64,7 +57,6 @@ export const metadata: Metadata = generateSEOMetadata({
   description: 'Strategic advisor and AI marketing pioneer who has generated $500M+ in loan originations. Thought leader in AI-powered mortgage marketing, available for speaking engagements and consulting.',
   keywords: ['AI mortgage marketing', 'mortgage marketing consultant', 'AI mortgage technology', 'mortgage marketing speaker', 'mortgage marketing strategist', 'Jarrett Stanley', 'mortgage digital transformation'],
   canonical: '/',
-  ogImage: '/assets/images/og-image.jpg'
 })
 
 export const viewport: Viewport = {
@@ -111,22 +103,9 @@ export default function RootLayout({
         )}
         suppressHydrationWarning
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <AnalyticsProvider>
-            <ScrollTracker>
-              <ConditionalLayout>
-                {children}
-              </ConditionalLayout>
-              <CookieConsent />
-              <PerformanceMonitor />
-            </ScrollTracker>
-          </AnalyticsProvider>
-        </ThemeProvider>
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )

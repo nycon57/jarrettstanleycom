@@ -2,45 +2,29 @@
 
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { 
-  Mail, 
-  Phone, 
-  MessageCircle, 
-  CheckCircle, 
+import {
+  CheckCircle,
   Send,
-  Mic,
-  Briefcase,
   Camera,
-  Users,
-  ExternalLink,
-  Download,
-  Globe
 } from "lucide-react";
-import { 
-  IconMail, 
-  IconPhone, 
-  IconBrandLinkedin,
-  IconBrandTwitter,
+import {
   IconMicrophone,
   IconBriefcase,
   IconCamera,
-  IconUsers,
-  IconDownload,
-  IconCalendar
 } from "@tabler/icons-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heading, Text } from "@/components/ui/typography";
+import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
-import Link from "next/link";
 import { submitContactForm, submitMediaInquiry } from "@/app/actions/email";
 import { useFormSuccess } from "@/hooks/use-form-success";
 import { ContactFormSuccess } from "@/components/ui/form-success-components";
+import { NameFields, ContactFields, HoneypotField } from "@/components/contact/shared-fields";
+import { MediaOutletField, MediaDetailFields, MediaMessageField } from "@/components/contact/media-inquiry-fields";
+import { CompanyField, GeneralMessageField } from "@/components/contact/general-fields";
 
 // Contact pathway configurations
 const contactPathways = [
@@ -91,25 +75,6 @@ const contactPathways = [
   }
 ];
 
-// Social media links
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    icon: IconBrandLinkedin,
-    href: "https://linkedin.com/in/jarrettstanley",
-    color: "bg-[#0077b5] dark:bg-[#0077b5]",
-    description: "Professional insights and industry updates"
-  },
-  {
-    name: "Twitter",
-    icon: IconBrandTwitter,
-    href: "https://x.com/IAmJarrettS",
-    color: "bg-[#1da1f2] dark:bg-[#1da1f2]",
-    description: "Quick thoughts and real-time commentary"
-  }
-];
-
-
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     // Common fields
@@ -147,10 +112,13 @@ export default function ContactPage() {
     }
   }, []);
 
+  const handleFieldChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
   const handlePathwayClick = (type: string) => {
     setFormData(prev => ({ ...prev, type }));
-    // Smooth scroll to form
-    document.getElementById('contact-form')?.scrollIntoView({ 
+    document.getElementById('contact-form')?.scrollIntoView({
       behavior: 'smooth',
       block: 'start'
     });
@@ -162,13 +130,12 @@ export default function ContactPage() {
 
     try {
       const formDataToSubmit = new FormData();
-      
+
       // Add honeypot and timing fields for spam protection
-      formDataToSubmit.append('website', formData.website); // Honeypot
+      formDataToSubmit.append('website', formData.website);
       formDataToSubmit.append('_formStartTime', formStartTime.toString());
 
       if (formData.type === 'media') {
-        // Prepare media inquiry data
         formDataToSubmit.append('first_name', formData.firstName);
         formDataToSubmit.append('last_name', formData.lastName);
         formDataToSubmit.append('email', formData.email);
@@ -180,13 +147,12 @@ export default function ContactPage() {
         formDataToSubmit.append('interview_type', formData.interviewType);
         formDataToSubmit.append('message', formData.message);
 
-        // Add tracking data
         formDataToSubmit.append('userAgent', navigator.userAgent);
         formDataToSubmit.append('referrer', document.referrer);
         formDataToSubmit.append('urlParams', JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search))));
 
         const result = await submitMediaInquiry(formDataToSubmit);
-        
+
         if (result.error) {
           toast.error(result.error);
         } else {
@@ -194,7 +160,6 @@ export default function ContactPage() {
           resetForm();
         }
       } else {
-        // Prepare general contact data
         const fullName = `${formData.firstName} ${formData.lastName}`.trim() || formData.firstName;
         formDataToSubmit.append('name', fullName);
         formDataToSubmit.append('email', formData.email);
@@ -202,14 +167,13 @@ export default function ContactPage() {
         formDataToSubmit.append('phone', formData.phone);
         formDataToSubmit.append('type', formData.type);
         formDataToSubmit.append('message', formData.message);
-        
-        // Add tracking data
+
         formDataToSubmit.append('userAgent', navigator.userAgent);
         formDataToSubmit.append('referrer', document.referrer);
         formDataToSubmit.append('urlParams', JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search))));
 
         const result = await submitContactForm(formDataToSubmit);
-        
+
         if (result.error) {
           toast.error(result.error);
         } else if (result.success) {
@@ -267,7 +231,7 @@ export default function ContactPage() {
               Let's Connect
             </Badge>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -278,7 +242,7 @@ export default function ContactPage() {
               Ready to Transform Your <span className="text-lilac">Marketing with AI?</span>
             </Heading>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -286,7 +250,7 @@ export default function ContactPage() {
             className="mb-8"
           >
             <Text variant="large" className="mx-auto max-w-3xl text-center text-muted-foreground">
-              Whether you need expert speaking, strategic consulting, or media commentary on AI marketing, 
+              Whether you need expert speaking, strategic consulting, or media commentary on AI marketing,
               I'm here to help. Choose the path that best fits your needs.
             </Text>
           </motion.div>
@@ -302,7 +266,7 @@ export default function ContactPage() {
               Choose the best pathway based on your specific needs and goals
             </Text>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-6 mb-16">
             {contactPathways.map((pathway, index) => (
               <motion.div
@@ -316,7 +280,7 @@ export default function ContactPage() {
               >
                 <Card variant="interactive" className="h-full">
                   <CardContent className="p-6">
-                <motion.div 
+                <motion.div
                   className={`w-12 h-12 rounded-full ${pathway.color} flex items-center justify-center mx-auto mb-4`}
                   whileHover={{ scale: 1.1 }}
                   transition={{ duration: 0.2 }}
@@ -325,7 +289,7 @@ export default function ContactPage() {
                 </motion.div>
                 <h3 className="text-lg font-semibold mb-2 text-foreground text-center">{pathway.title}</h3>
                 <p className="text-sm text-muted-foreground mb-4 text-center">{pathway.description}</p>
-                
+
                 <div className="space-y-2 mb-4">
                   {pathway.features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-2">
@@ -334,10 +298,10 @@ export default function ContactPage() {
                     </div>
                   ))}
                 </div>
-                
-                <Button 
-                  size="sm" 
-                  variant="lilac" 
+
+                <Button
+                  size="sm"
+                  variant="lilac"
                   className="w-full"
                 >
                   {pathway.action}
@@ -365,12 +329,12 @@ export default function ContactPage() {
                   {isMediaInquiry ? 'Media Inquiry' : 'Send Me a Message'}
                 </Heading>
                 <Text className="text-muted-foreground mb-8">
-                  {isMediaInquiry 
+                  {isMediaInquiry
                     ? "Looking for expert commentary on AI marketing, mortgage industry trends, or digital transformation? I'm available for interviews, quotes, and media appearances."
                     : "Have a question or want to discuss how AI can transform your marketing? Fill out the form and I'll get back to you as soon as possible."
                   }
                 </Text>
-                
+
                 <div className="space-y-6">
                   <div className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-lilac" />
@@ -388,7 +352,7 @@ export default function ContactPage() {
                   </div>
                 </div>
               </motion.div>
-              
+
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -398,104 +362,33 @@ export default function ContactPage() {
                 <Card variant="elevated">
                   <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Honeypot field - hidden from real users, bots will fill this */}
-                  <div
-                    aria-hidden="true"
-                    style={{
-                      position: 'absolute',
-                      left: '-9999px',
-                      top: '-9999px',
-                      opacity: 0,
-                      pointerEvents: 'none'
-                    }}
-                  >
-                    <label htmlFor="website">Website (leave blank)</label>
-                    <input
-                      type="text"
-                      id="website"
-                      name="website"
-                      value={formData.website}
-                      onChange={(e) => setFormData(prev => ({ ...prev, website: e.target.value }))}
-                      tabIndex={-1}
-                      autoComplete="off"
-                    />
-                  </div>
+                  <HoneypotField
+                    value={formData.website}
+                    onChange={(value) => handleFieldChange("website", value)}
+                  />
 
-                  {/* Name fields */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="firstName">First Name *</Label>
-                      <Input
-                        id="firstName"
-                        value={formData.firstName}
-                        onChange={(e) => setFormData(prev => ({ ...prev, firstName: e.target.value }))}
-                        required
-                        placeholder="First name"
-                        className="bg-background"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="lastName">Last Name *</Label>
-                      <Input
-                        id="lastName"
-                        value={formData.lastName}
-                        onChange={(e) => setFormData(prev => ({ ...prev, lastName: e.target.value }))}
-                        required
-                        placeholder="Last name"
-                        className="bg-background"
-                      />
-                    </div>
-                  </div>
+                  <NameFields
+                    formData={formData}
+                    onFieldChange={handleFieldChange}
+                  />
 
-                  {/* Contact fields */}
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email *</Label>
-                      <Input
-                        id="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                        required
-                        placeholder={isMediaInquiry ? "journalist@outlet.com" : "you@company.com"}
-                        className="bg-background"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="phone">Phone</Label>
-                      <Input
-                        id="phone"
-                        type="tel"
-                        value={formData.phone}
-                        onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                        placeholder="+1 (555) 123-4567"
-                        className="bg-background"
-                      />
-                    </div>
-                  </div>
+                  <ContactFields
+                    formData={formData}
+                    onFieldChange={handleFieldChange}
+                    emailPlaceholder={isMediaInquiry ? "journalist@outlet.com" : "you@company.com"}
+                  />
 
-                  {/* Company/Outlet field */}
-                  <div className="space-y-2">
-                    <Label htmlFor="company">
-                      {isMediaInquiry ? 'Media Outlet *' : 'Company'}
-                    </Label>
-                    <Input
-                      id="company"
-                      value={isMediaInquiry ? formData.outlet : formData.company}
-                      onChange={(e) => setFormData(prev => ({ 
-                        ...prev, 
-                        [isMediaInquiry ? 'outlet' : 'company']: e.target.value 
-                      }))}
-                      required={isMediaInquiry}
-                      placeholder={isMediaInquiry ? "e.g., Forbes, Wall Street Journal" : "Your company"}
-                      className="bg-background"
-                    />
-                  </div>
+                  {/* Company/Outlet field — variant-specific */}
+                  {isMediaInquiry ? (
+                    <MediaOutletField formData={formData} onFieldChange={handleFieldChange} />
+                  ) : (
+                    <CompanyField formData={formData} onFieldChange={handleFieldChange} />
+                  )}
 
                   {/* Inquiry Type */}
                   <div className="space-y-2">
                     <Label htmlFor="type">Inquiry Type</Label>
-                    <Select value={formData.type} onValueChange={(value) => setFormData(prev => ({ ...prev, type: value }))}>
+                    <Select value={formData.type} onValueChange={(value) => handleFieldChange("type", value)}>
                       <SelectTrigger className="bg-background">
                         <SelectValue placeholder="Select inquiry type" />
                       </SelectTrigger>
@@ -511,83 +404,18 @@ export default function ContactPage() {
                   {/* Media-specific fields */}
                   {isMediaInquiry && (
                     <>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="role">Your Role *</Label>
-                          <Input
-                            id="role"
-                            value={formData.role}
-                            onChange={(e) => setFormData(prev => ({ ...prev, role: e.target.value }))}
-                            required
-                            placeholder="e.g., Staff Writer, Editor"
-                            className="bg-background"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="deadline">Deadline</Label>
-                          <Input
-                            id="deadline"
-                            type="datetime-local"
-                            value={formData.deadline}
-                            onChange={(e) => setFormData(prev => ({ ...prev, deadline: e.target.value }))}
-                            className="bg-background"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div className="space-y-2">
-                          <Label htmlFor="topic">Story Topic *</Label>
-                          <Input
-                            id="topic"
-                            value={formData.topic}
-                            onChange={(e) => setFormData(prev => ({ ...prev, topic: e.target.value }))}
-                            required
-                            placeholder="e.g., AI in mortgage marketing"
-                            className="bg-background"
-                          />
-                        </div>
-                        <div className="space-y-2">
-                          <Label htmlFor="interviewType">Interview Format *</Label>
-                          <Select 
-                            value={formData.interviewType} 
-                            onValueChange={(value) => setFormData(prev => ({ ...prev, interviewType: value }))}
-                          >
-                            <SelectTrigger className="bg-background">
-                              <SelectValue placeholder="Select format" />
-                            </SelectTrigger>
-                            <SelectContent>
-                              <SelectItem value="written">Written Q&A</SelectItem>
-                              <SelectItem value="phone">Phone Interview</SelectItem>
-                              <SelectItem value="video">Video Interview</SelectItem>
-                              <SelectItem value="in-person">In-Person Interview</SelectItem>
-                            </SelectContent>
-                          </Select>
-                        </div>
-                      </div>
+                      <MediaDetailFields formData={formData} onFieldChange={handleFieldChange} />
+                      <MediaMessageField formData={formData} onFieldChange={handleFieldChange} />
                     </>
                   )}
 
-                  {/* Message field */}
-                  <div className="space-y-2">
-                    <Label htmlFor="message">
-                      {isMediaInquiry ? 'Additional Details' : 'Message *'}
-                    </Label>
-                    <Textarea
-                      id="message"
-                      value={formData.message}
-                      onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
-                      required={!isMediaInquiry}
-                      placeholder={isMediaInquiry 
-                        ? "Background on the story, specific angles you're exploring, questions you have..."
-                        : "Tell me about your goals, challenges, or what you'd like to discuss..."
-                      }
-                      className="min-h-[120px] bg-background"
-                    />
-                  </div>
+                  {/* General message field */}
+                  {!isMediaInquiry && (
+                    <GeneralMessageField formData={formData} onFieldChange={handleFieldChange} />
+                  )}
 
-                  <Button 
-                    type="submit" 
+                  <Button
+                    type="submit"
                     variant={isMediaInquiry ? 'skyward' : 'gradient'}
                     className="w-full"
                     disabled={loading}
@@ -613,101 +441,6 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-
-      {/* Social Connect & Press Kit - Hidden */}
-      {/* <section className="py-16 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12">
-              {/* Social Media */}
-              {/* <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="text-center lg:text-left"
-              >
-                <Heading variant="h3" className="mb-4">Connect on Social Media</Heading>
-                <Text className="text-muted-foreground mb-6">
-                  Follow me for daily insights, industry updates, and behind-the-scenes content from my work in AI marketing innovation.
-                </Text>
-                
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  {socialLinks.map((link, index) => (
-                    <motion.a
-                      key={index}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`${link.color} text-white px-6 py-3 rounded-lg flex items-center gap-3 hover:opacity-90 transition-opacity`}
-                    >
-                      <link.icon className="w-5 h-5" />
-                      <div className="text-left">
-                        <div className="font-semibold">{link.name}</div>
-                        <div className="text-xs opacity-90">{link.description}</div>
-                      </div>
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div> */}
-
-              {/* Press Kit */}
-              {/* <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="text-center lg:text-left"
-              >
-                <Heading variant="h3" className="mb-4">Media & Press Kit</Heading>
-                <Text className="text-muted-foreground mb-6">
-                  High-resolution photos, bio, and background materials for journalists and event organizers.
-                </Text>
-                
-                <div className="space-y-3 mb-6">
-                  <div className="flex items-center gap-3 justify-center lg:justify-start">
-                    <CheckCircle className="w-4 h-4 text-lilac" />
-                    <span className="text-sm text-foreground">Professional headshots (high-res)</span>
-                  </div>
-                  <div className="flex items-center gap-3 justify-center lg:justify-start">
-                    <CheckCircle className="w-4 h-4 text-lilac" />
-                    <span className="text-sm text-foreground">Detailed biography and credentials</span>
-                  </div>
-                  <div className="flex items-center gap-3 justify-center lg:justify-start">
-                    <CheckCircle className="w-4 h-4 text-lilac" />
-                    <span className="text-sm text-foreground">AI marketing platform case studies and examples</span>
-                  </div>
-                  <div className="flex items-center gap-3 justify-center lg:justify-start">
-                    <CheckCircle className="w-4 h-4 text-lilac" />
-                    <span className="text-sm text-foreground">Speaking topics and sample presentations</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Button 
-                    asChild 
-                    variant="lilac"
-                  >
-                    <Link href="mailto:jarrett@jarrettstanley.com?subject=Press Kit Request">
-                      <Download className="mr-2 h-4 w-4" />
-                      Request Press Kit
-                    </Link>
-                  </Button>
-                  <Button 
-                    asChild 
-                    variant="lilac"
-                  >
-                    <Link href="/speaking">
-                      <Mic className="mr-2 h-4 w-4" />
-                      Speaking Info
-                    </Link>
-                  </Button>
-                </div>
-              </motion.div> */}
-            {/* </div>
-          </div>
-        </div>
-      </section> */}
       </main>
     </>
   );

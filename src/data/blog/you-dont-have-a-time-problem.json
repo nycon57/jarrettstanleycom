@@ -1,0 +1,127 @@
+{
+  "slug": "you-dont-have-a-time-problem",
+  "title": "You Don't Have a Time Problem. You Have a Design Problem.",
+  "excerpt": "Most leaders don't run out of time. They run out of uninterrupted time. The problem isn't discipline or prioritization. It's that most weeks are designed to generate busywork, not outcomes.",
+  "content": [
+    { "type": "paragraph", "text": "Most leaders don't run out of time. They run out of uninterrupted time." },
+    { "type": "paragraph", "text": "The day fills up. But it fragments. A Slack question turns into ten minutes. A \"quick call\" becomes a meeting. The meeting spawns follow-ups. By 4pm, you've been busy all day and haven't touched the work that actually moves your business forward." },
+    { "type": "paragraph", "text": "I've watched this happen to dozens of leaders. They're not lazy. They're not bad at prioritizing. Their system works exactly as designed. And most systems are designed to generate busywork." },
+    { "type": "paragraph", "text": "Asana found knowledge workers spend 60% of their time on coordination and admin—chasing updates, sitting in meetings that shouldn't exist, switching between tools. That's not just lost time. It's lost clarity. You can't think straight when you're interrupted every fifteen minutes." },
+    { "type": "heading", "text": "Availability became the default", "level": 2 },
+    { "type": "paragraph", "text": "Here's what I keep seeing: organizations that accidentally built their weeks around being available." },
+    { "type": "paragraph", "text": "Fast responses. Open calendars. Real-time collaboration. Meetings as the main way anything gets done. It feels modern. It feels collaborative. Then you notice what you traded away." },
+    { "type": "paragraph", "text": "The work that requires thinking—planning, writing, building, improving—gets pushed into the cracks. Early mornings. Late nights. The twenty minutes between calls. That's not where good work happens. That's where unfinished work piles up." },
+    { "type": "paragraph", "text": "You can see it in how meetings behave. Atlassian found 72% of meetings are ineffective. Not because meetings are bad. Because teams use them as a substitute for clear briefs, clear owners, and clear decisions." },
+    { "type": "paragraph", "text": "So the week becomes interruptions stacked on interruptions. Leaders start saying \"I just need more time.\"" },
+    { "type": "callout", "text": "Here's what's actually true: you need a week designed to produce outcomes. More hours won't save a broken design.", "variant": "insight" },
+    { "type": "heading", "text": "Market shifts expose weak systems", "level": 2 },
+    { "type": "paragraph", "text": "This matters more when the environment moves." },
+    { "type": "paragraph", "text": "Major forecasts expect refi share to rise by end of 2026. That kind of shift changes everything. Inbound demand speeds up. Decisions multiply. Speed expectations rise. Teams that survived on heroics start to break." },
+    { "type": "paragraph", "text": "I've seen it before. When volume spikes, you find out whether you have a system or just a collection of workarounds held together by individual effort. Time doesn't become the constraint. Your operating model does." },
+    { "type": "heading", "text": "Redesign your calendar", "level": 2 },
+    { "type": "paragraph", "text": "Stop treating your calendar like a record of commitments. It's a tool that produces results." },
+    { "type": "paragraph", "text": "Most calendars look like one big category called \"work.\" But work isn't one thing. At minimum, you have three modes:" },
+    { "type": "paragraph", "text": "**Build mode:** Deep creation. Strategy, writing, process improvement, planning. This is where the real value gets made." },
+    { "type": "paragraph", "text": "**Decide mode:** Meetings that move decisions forward, remove blockers, commit direction. Not updates. Decisions." },
+    { "type": "paragraph", "text": "**Respond mode:** Messages, approvals, quick questions, small tasks that keep operations running." },
+    { "type": "paragraph", "text": "Mix these constantly and you get the worst of all three. Building becomes shallow. Decisions slow down. Responses take over the day." },
+    { "type": "paragraph", "text": "The fix isn't \"manage time better.\" That advice has never helped anyone. The fix is boundaries between modes." },
+    { "type": "heading", "text": "Five changes that work without a reorg", "level": 2 },
+    { "type": "paragraph", "text": "These don't require permission from the entire org. They just require consistency." },
+    { "type": "heading", "text": "1. Put build time on the calendar first, not last", "level": 3 },
+    { "type": "paragraph", "text": "If you wait to \"find time,\" you won't. I've never seen it work." },
+    { "type": "paragraph", "text": "Decide the minimum you need to stay sharp. For most leaders, two protected blocks per week changes everything. One block for strategy and systems. One block for the content or assets that carry the strategy forward." },
+    { "type": "paragraph", "text": "The number of hours matters less than the rule: build time is not leftover time." },
+    { "type": "heading", "text": "2. Replace update meetings with pre-reads and shorter decisions", "level": 3 },
+    { "type": "paragraph", "text": "A meeting shouldn't be where people learn context. It should be where people decide." },
+    { "type": "paragraph", "text": "Atlassian tested a \"page-led meeting\" approach—a summary page shared before the meeting. Page-led meetings were more likely to accomplish goals. Attendees reported higher energy and less frustration. That matches my experience. The meetings where everyone arrives prepared are the only ones that feel worth having." },
+    { "type": "paragraph", "text": "Context should be asynchronous. Decisions should be synchronous." },
+    { "type": "heading", "text": "3. Give small asks their own lane", "level": 3 },
+    { "type": "paragraph", "text": "One of the biggest time drains isn't big projects. It's micro-interruptions. A tweak. A quick review. A one-off request. Each one reasonable. Together, destructive." },
+    { "type": "paragraph", "text": "Give them a lane: a form, a queue, a single intake channel with required fields. Truly urgent requests still surface. What changes is that small asks stop landing on top of focus work." },
+    { "type": "paragraph", "text": "This feels bureaucratic at first. Then people realize they can actually think for two hours straight, and they never want to go back." },
+    { "type": "heading", "text": "4. Cut the search tax", "level": 3 },
+    { "type": "paragraph", "text": "Atlassian's State of Teams 2025 research found teams waste 25% of their time searching for answers. That's not a knowledge problem. It's a retrieval problem." },
+    { "type": "paragraph", "text": "Pick one place where decisions live. Not files scattered everywhere. Not tribal memory. One place." },
+    { "type": "paragraph", "text": "Then enforce a simple rule: if it's not documented there, it doesn't exist. Meetings shrink when people can find answers without asking three people and scheduling a call." },
+    { "type": "heading", "text": "5. Use AI and automation to eliminate restarts", "level": 3 },
+    { "type": "paragraph", "text": "The highest-value automation eliminates the work of getting back up to speed. What pays off consistently:" },
+    { "type": "list", "style": "bullet", "items": [
+      "Meeting summaries that capture decisions and owners",
+      "Automatic request routing that forces clarity before work starts",
+      "Templates that create consistent briefs and reduce revision loops",
+      "Dashboards that show \"what changed\" instead of \"what happened\""
+    ] },
+    { "type": "paragraph", "text": "AI isn't the strategy. It's an accelerant. Use it to stabilize your system so people stop losing time to reorientation." },
+    { "type": "heading", "text": "How you'll know it's working", "level": 2 },
+    { "type": "paragraph", "text": "You don't need a measurement system. You need a few signals that focus is returning:" },
+    { "type": "list", "style": "bullet", "items": [
+      "Fewer \"quick calls\" because context is written down",
+      "Less rework because briefs and standards are clearer",
+      "Shorter meetings because they're decision-focused",
+      "People can answer questions without asking three other people",
+      "Your best work happens during normal hours, not at night"
+    ] },
+    { "type": "paragraph", "text": "If those aren't happening, the system still leaks time." },
+    { "type": "heading", "text": "A one-week experiment", "level": 2 },
+    { "type": "paragraph", "text": "If you want to test this without making it a project:" },
+    { "type": "list", "style": "bullet", "items": [
+      "Put two build blocks on the calendar. Protect them like client meetings.",
+      "Turn one recurring meeting into a decision meeting with a pre-read.",
+      "Create one intake channel for small asks. Require clarity fields."
+    ] },
+    { "type": "paragraph", "text": "That's it. No overhaul. No new tools. Just a week where the calendar is designed, not inherited." },
+    { "type": "paragraph", "text": "Most leaders don't need more time. They need a week that stops fighting their priorities." }
+  ],
+  "publishedAt": "2025-01-13T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["leadership", "operations"],
+  "series": {
+    "name": "The Signal",
+    "slug": "the-signal",
+    "issueNumber": 4
+  },
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/the-signal.jpg",
+  "seo": {
+    "title": "You Don't Have a Time Problem | Jarrett Stanley",
+    "description": "Most leaders don't need more time. They need a week designed to produce outcomes. Five practical changes that protect focus and eliminate busywork for good.",
+    "keywords": [
+      "leadership time management",
+      "calendar design",
+      "meeting effectiveness",
+      "deep work",
+      "operational efficiency",
+      "workflow optimization",
+      "focus time",
+      "productivity for leaders"
+    ]
+  },
+  "relatedContent": [
+    { "title": "The Cost of Noise", "slug": "the-cost-of-noise", "type": "blog" },
+    { "title": "Busy Is Not the Same as Effective", "slug": "busy-is-not-the-same-as-effective", "type": "blog" },
+    { "title": "Urgency Inflation", "slug": "urgency-inflation", "type": "blog" },
+    { "title": "Workflow Automation", "slug": "workflow-automation", "type": "glossary" },
+    { "title": "Marketing Automation for Mortgage", "slug": "marketing-automation-mortgage", "type": "glossary" }
+  ],
+  "faqs": [
+    {
+      "question": "How do I protect focus time when my team needs me available?",
+      "answer": "The key is separating your week into distinct modes: build, decide, and respond. Schedule two protected build blocks per week and treat them like client meetings. Route small asks through a dedicated intake channel so they don't interrupt deep work. Teams quickly adapt when they know you're reachable during respond windows and unavailable during build time."
+    },
+    {
+      "question": "What is the most effective way to reduce unnecessary meetings?",
+      "answer": "Replace update meetings with pre-reads and shorter decision meetings. Share a summary page before the meeting so everyone arrives with context. Atlassian found that page-led meetings were more likely to accomplish goals with higher energy and less frustration. The rule is simple: context should be asynchronous, decisions should be synchronous."
+    },
+    {
+      "question": "How can AI and automation help leaders reclaim their time?",
+      "answer": "The highest-value automation eliminates the work of getting back up to speed after interruptions. Meeting summaries that capture decisions and owners, automatic request routing that forces clarity before work starts, and dashboards that show what changed rather than what happened all reduce reorientation time. AI is not the strategy itself but an accelerant that stabilizes your system."
+    }
+  ],
+  "lastUpdated": "2025-01-13"
+}

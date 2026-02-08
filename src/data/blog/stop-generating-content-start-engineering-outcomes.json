@@ -1,0 +1,65 @@
+{
+  "slug": "stop-generating-content-start-engineering-outcomes",
+  "title": "Stop Generating Content. Start Engineering Outcomes.",
+  "excerpt": "Generative AI made content cheap. When everyone can produce volume, volume stops being a differentiator. The real leverage is engineering content that drives applications, consultations, and referrals.",
+  "content": [
+    { "type": "paragraph", "text": "Within six months of ChatGPT going mainstream, the average mortgage company's content output tripled. Blog posts, social captions, email sequences — the volume explosion was immediate. What didn't change: conversion rates, application starts, or pipeline generated from content. In most cases, those numbers went **down**." },
+    { "type": "paragraph", "text": "The market drew the wrong lesson from generative AI. It assumed that the constraint on content marketing was always production speed. It wasn't. The constraint was — and still is — **strategic intent**. Making content faster doesn't help if you never had a clear theory of how content drives revenue." },
+    { "type": "heading", "text": "The Volume Trap", "level": 2 },
+    { "type": "paragraph", "text": "More content means more noise. When every lender publishes three blog posts a week and posts daily on LinkedIn, the supply of mortgage marketing content has exploded while borrower attention remains fixed. The result is predictable: **engagement per piece drops, SEO competition intensifies, and the marginal value of one more article approaches zero**." },
+    { "type": "paragraph", "text": "I've watched teams celebrate publishing 40 blog posts in a quarter while their content-attributed pipeline generated exactly two applications. That's not a content strategy. That's a publishing habit with a budget." },
+    { "type": "heading", "text": "What Outcome Engineering Looks Like", "level": 2 },
+    { "type": "paragraph", "text": "Outcome engineering starts with a different question. Instead of \"what content should we create?\" it asks: **\"what borrower action do we need to trigger, and what content architecture gets us there?\"**" },
+    { "type": "callout", "text": "Every piece of content should have a named outcome: application start, rate alert signup, consultation booking, or referral partner share. If you can't name the outcome, don't create the content.", "variant": "tip" },
+    { "type": "heading", "text": "The Architecture Framework", "level": 3 },
+    { "type": "list", "style": "numbered", "items": [
+      "**Anchor content** — A definitive, high-value asset that establishes authority on a specific topic. Not a 500-word blog post. A comprehensive guide, interactive tool, or data-driven report that's genuinely worth a borrower's email address.",
+      "**Distribution fragments** — Shorter pieces derived from the anchor: social posts, email sequences, video clips. Each one routes back to the anchor with a clear CTA.",
+      "**Conversion mechanism** — The specific action embedded in or adjacent to the anchor: a calculator, pre-qualification form, consultation scheduler, or rate alert signup.",
+      "**Nurture sequence** — Automated follow-up that moves the person from content consumer to qualified lead over 7-14 days, using behavioral triggers rather than arbitrary timing."
+    ] },
+    { "type": "heading", "text": "Measuring What Matters", "level": 2 },
+    { "type": "paragraph", "text": "Most content teams measure the wrong things: page views, time on page, social impressions. These are **activity metrics**, not outcome metrics. They tell you content was seen, not that it worked." },
+    { "type": "list", "style": "bullet", "items": [
+      "**Content-attributed applications** — How many application starts can be traced to a content interaction within 30 days?",
+      "**Content-to-lead conversion rate** — What percentage of content consumers take a named action?",
+      "**Revenue per content asset** — Total closed loan revenue attributed to each piece of content over its lifetime",
+      "**Content velocity** — Time from first content interaction to application start"
+    ] },
+    { "type": "paragraph", "text": "When you shift to outcome metrics, the calculus changes completely. One well-engineered piece that drives 50 applications is worth more than 200 posts that drive traffic to nowhere." },
+    { "type": "heading", "text": "Where AI Actually Helps", "level": 2 },
+    { "type": "paragraph", "text": "The irony is that generative AI is enormously useful for content marketing — just not the way most teams use it. **AI should handle distribution and personalization, not strategy.** Use it to generate the 15 distribution fragments from your anchor content. Use it to personalize email sequences based on borrower segment. Use it to A/B test headlines at scale." },
+    { "type": "paragraph", "text": "But the strategic decisions — what anchor to build, what outcome to target, what conversion mechanism to embed — those require **human judgment informed by data**. AI can accelerate execution of a good content strategy. It cannot replace the strategy itself." },
+    { "type": "heading", "text": "The 10:1 Rule", "level": 2 },
+    { "type": "paragraph", "text": "Here's the ratio I use: for every 10 hours available for content, spend 1 hour creating and 9 hours engineering distribution, conversion, and measurement. Most teams invert this ratio — and wonder why their content doesn't generate revenue. **Production is the easy part. Engineering the outcome is where the leverage lives.**" }
+  ],
+  "publishedAt": "2026-03-30T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["ai-automation", "operations"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/stop-generating-content-start-engineering-outcomes.png",
+  "seo": {
+    "title": "Stop Generating Content. Start Engineering Outcomes | Jarrett Stanley",
+    "description": "Generative AI made content cheap but volume isn't a strategy. How to engineer content that drives applications, consultations, and measurable mortgage pipeline.",
+    "keywords": ["AI content strategy mortgage", "generative AI marketing ROI", "content marketing efficiency", "mortgage content marketing", "content attribution", "outcome-driven content", "content engineering framework", "mortgage marketing strategy", "AI content personalization", "content conversion optimization"]
+  },
+  "relatedContent": [
+    { "title": "Prompt Engineering Is Not a Marketing Strategy", "slug": "prompt-engineering-is-not-a-marketing-strategy", "type": "blog" },
+    { "title": "The Metric That Ate Your Marketing Budget", "slug": "the-metric-that-ate-your-marketing-budget", "type": "blog" },
+    { "title": "Mortgage Content Marketing", "slug": "mortgage-content-marketing", "type": "glossary" },
+    { "title": "Conversion Rate Optimization", "slug": "conversion-rate-optimization", "type": "glossary" },
+    { "title": "Marketing Director", "slug": "marketing-director", "type": "persona" }
+  ],
+  "faqs": [
+    { "question": "How is outcome engineering different from regular content strategy?", "answer": "Traditional content strategy starts with topics and channels. Outcome engineering starts with a specific borrower action — application start, consultation booking, rate alert signup — and works backward to design the content architecture that triggers it. Every piece has a named outcome before it's created, and measurement is based on revenue impact, not engagement metrics." },
+    { "question": "What role should AI play in content marketing?", "answer": "AI should handle execution, not strategy. Use it to generate distribution fragments from anchor content, personalize email sequences by borrower segment, A/B test headlines at scale, and repurpose long-form assets into channel-specific formats. The strategic decisions — what to build, what outcome to target, what conversion mechanism to embed — require human judgment informed by data." },
+    { "question": "How do I measure content ROI in mortgage marketing?", "answer": "Track four outcome metrics: content-attributed applications (application starts within 30 days of content interaction), content-to-lead conversion rate, revenue per content asset over its lifetime, and content velocity (time from first content touch to application start). These replace vanity metrics like page views and social impressions with actual business impact measurement." },
+    { "question": "What is the 10:1 rule for content?", "answer": "For every 10 hours available for content, spend 1 hour on creation and 9 hours on distribution, conversion engineering, and measurement. Most teams invert this — spending 90% of their time producing and 10% distributing. The leverage in content marketing isn't production speed; it's engineering the path from consumption to conversion." }
+  ],
+  "lastUpdated": "2026-03-30"
+}

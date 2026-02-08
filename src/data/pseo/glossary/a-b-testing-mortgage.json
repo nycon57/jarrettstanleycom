@@ -1,0 +1,74 @@
+{
+  "slug": "a-b-testing-mortgage",
+  "term": "A/B Testing in Mortgage",
+  "shortDefinition": "A/B testing in mortgage marketing compares two versions of marketing elements, such as landing pages, emails, or ads, by randomly splitting traffic between them to determine which version produces better results.",
+  "detailedExplanation": "A/B testing, also called split testing, is a controlled experiment where two versions of a marketing element are shown to similar audiences simultaneously to determine which performs better. In mortgage marketing, A/B testing applies to every customer-facing element: website landing pages, email subject lines, ad creative, call-to-action buttons, form designs, rate presentation formats, and even the timing and sequence of follow-up communications.\n\nThe scientific method behind A/B testing is straightforward. You create two versions of something, changing only one variable between them (the 'variable' or 'treatment'). You randomly split your audience so each group sees one version. You measure a specific outcome metric, like conversion rate, click-through rate, or application submission rate. After enough data is collected to reach statistical significance, you adopt the winning version and move on to the next test.\n\nIn mortgage marketing, the variables worth testing fall into several categories. Copy and messaging tests evaluate different headlines, value propositions, and calls-to-action. Design tests compare layouts, colors, image choices, and form placements. Offer tests compare different rate presentations, fee structures, or incentive offers. Timing tests evaluate optimal send times for emails or the best days to launch campaigns. Channel tests compare the same message delivered through different platforms.\n\nStatistical significance is the critical concept that separates valid testing from guessing. A test needs enough data, enough conversions, to conclude that the observed difference is real and not random chance. In mortgage marketing, where conversion volumes are lower than e-commerce, this means tests often need to run for 2-4 weeks to reach significance. Ending a test too early because one version 'looks better' leads to false conclusions and wasted optimization effort.\n\nAI-powered testing platforms accelerate the process through multi-armed bandit algorithms that automatically shift traffic toward winning variants as the test progresses, and through multivariate testing that evaluates many combinations simultaneously rather than one variable at a time. These approaches are particularly valuable in mortgage marketing where traffic volumes may not support traditional A/B testing timelines for dozens of test ideas.\n\nThe compounding effect of systematic testing is remarkable. If you run 3-4 tests per month and achieve a 10% improvement from every other test, you accumulate a 30-40% improvement over a year. Top-performing mortgage marketing teams make testing a continuous discipline rather than an occasional project.",
+  "industryContext": "In my experience leading marketing at Nationwide Mortgage Bankers, we run an average of 4 A/B tests per month across email, landing pages, and paid advertising. Over 18 months, this testing program improved our overall lead-to-application conversion rate by 52%. The single most impactful test discovered that showing personalized estimated monthly payments on our landing pages, based on the visitor's estimated loan amount from the referring ad, increased conversion by 38% compared to showing generic rate information.\n\nThe mortgage industry has been slower to adopt systematic testing than other industries, which means the low-hanging fruit is abundant. Many mortgage websites have never tested their primary call-to-action button, lead form layout, or rate page design. Lenders who begin testing these foundational elements typically see large, quick improvements because they are optimizing for the first time.\n\nA/B testing also helps navigate the mortgage industry's compliance constraints. When compliance restricts certain messaging approaches, testing helps you find the most effective alternative within approved guidelines. You might test three different compliant ways to present rate information and discover that one produces significantly more leads than the others. This evidence-based approach to compliant marketing is far more effective than guessing which approved message will resonate.",
+  "examples": [
+    {
+      "title": "Landing Page Headline Test",
+      "description": "A lender tests two headline approaches for their refinance landing page. Version A: 'Lower Your Monthly Payment Today.' Version B: 'You Could Save $327/Month on Your Mortgage.' The specific savings amount in Version B outperforms the generic promise by 41%, demonstrating the power of specificity in mortgage messaging."
+    },
+    {
+      "title": "Email Subject Line Optimization",
+      "description": "A lender tests email subject lines across 50,000 contacts. 'Rates Just Dropped Below 6%' achieves a 34% open rate versus 'February Rate Update' at 19%. Following this insight, all rate alert emails shift to specific number-driven subject lines, improving overall email program performance by 28%."
+    },
+    {
+      "title": "Lead Form Length Experiment",
+      "description": "A lender tests a 3-field form (name, email, phone) against a 7-field form that adds loan purpose, property state, credit range, and timeline. The short form generates 55% more submissions, but the long form produces leads that convert to application at 3x the rate. The lender adopts the short form with progressive profiling, capturing additional fields after initial submission."
+    }
+  ],
+  "relatedTerms": [
+    "conversion-rate-optimization",
+    "data-driven-marketing",
+    "marketing-attribution",
+    "machine-learning-in-marketing",
+    "digital-mortgage-marketing"
+  ],
+  "relatedContent": [
+    {
+      "title": "AI Marketing Consulting Services",
+      "slug": "consulting",
+      "type": "service"
+    },
+    {
+      "title": "Conversion Rate Optimization",
+      "slug": "conversion-rate-optimization",
+      "type": "glossary"
+    },
+    {
+      "title": "Data-Driven Marketing",
+      "slug": "data-driven-marketing",
+      "type": "glossary"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "How do I start A/B testing for my mortgage marketing?",
+      "answer": "Begin with your highest-traffic pages and most-sent emails, where small improvements produce the biggest absolute impact. Choose a testing tool: Google Optimize (free) for website tests, your email platform's built-in testing for emails, and ad platform testing for paid campaigns. Start with one test at a time, changing only one variable per test. Ensure you have enough traffic for statistical significance. Use a sample size calculator to determine how long each test needs to run before drawing conclusions."
+    },
+    {
+      "question": "What results can I expect from A/B testing in mortgage?",
+      "answer": "Individual tests typically produce improvements of 5-40% on the tested metric. Over 12 months of consistent testing (3-4 tests per month), the compounding effect typically delivers 30-60% overall improvement in conversion rates. The ROI is exceptional because testing costs very little: you are optimizing existing traffic rather than purchasing more. A single high-impact test that improves landing page conversion by 20% can generate thousands of additional leads annually at zero incremental cost."
+    },
+    {
+      "question": "What should I A/B test first on my mortgage website?",
+      "answer": "Start with the highest-impact elements: primary call-to-action button text and design, lead capture form length and layout, main headline copy on your highest-traffic landing page, rate page presentation format, and the hero section of your homepage. These elements affect every visitor, so improvements compound across all traffic. After optimizing the basics, move to email subject lines, ad creative, and secondary page elements."
+    }
+  ],
+  "category": "data-analytics",
+  "seo": {
+    "title": "A/B Testing for Mortgage Marketing | Jarrett Stanley",
+    "description": "Learn how A/B testing helps mortgage marketers optimize landing pages, emails, and ads for 30-60% higher conversion rates through systematic experimentation.",
+    "keywords": [
+      "A/B testing mortgage",
+      "mortgage split testing",
+      "mortgage landing page testing",
+      "email testing mortgage",
+      "mortgage conversion testing",
+      "marketing experiments mortgage",
+      "mortgage optimization testing"
+    ]
+  },
+  "lastUpdated": "2026-02-07"
+}

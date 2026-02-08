@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Metadata } from 'next'
+import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
 import { Button } from '@/components/ui/button'
 import { BlogPostCard } from '@/components/ui/blog-post-card'
 import { ResourceCard } from '@/components/ui/resource-card'
@@ -7,11 +8,12 @@ import { Badge } from '@/components/ui/badge'
 import { getBlogPosts, getResources, getCategories } from '@/app/actions/blog'
 import { ArrowRight, BookOpen, Download, Lightbulb, TrendingUp } from 'lucide-react'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = generateSEOMetadata({
   title: 'Insights Hub - Expert Knowledge on AI & Mortgage Marketing',
   description: 'Discover cutting-edge insights on AI in mortgage marketing, industry trends, and leadership strategies from Jarrett Stanley. Access exclusive resources and thought leadership content.',
-  keywords: ['AI marketing insights', 'mortgage industry trends', 'marketing strategy', 'artificial intelligence', 'leadership', 'TrueTone AI'],
-}
+  keywords: ['AI marketing insights', 'mortgage industry trends', 'marketing strategy', 'artificial intelligence', 'leadership'],
+  canonical: '/insights',
+})
 
 export default async function InsightsHub() {
   // Fetch featured content and categories

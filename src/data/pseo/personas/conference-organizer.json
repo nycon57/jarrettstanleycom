@@ -1,0 +1,141 @@
+{
+  "slug": "conference-organizer",
+  "title": "AI Marketing Speakers for Mortgage Conferences & Events",
+  "personaName": "Conference & Event Organizers",
+  "personaDescription": "You're tasked with delivering conference content that keeps attendees engaged, drives registrations, and positions your event as the must-attend industry gathering. AI in mortgage marketing is the topic your audience is hungry for, and finding a speaker who's actually doing it, not just talking about it, is the difference between a packed room and a polite audience.",
+  "painPoints": [
+    {
+      "title": "Finding Speakers Who Deliver, Not Just Present",
+      "description": "Your attendees are tired of vendor pitches disguised as presentations and consultants who've never managed a P&L. They want practitioner insights from someone who's actually implementing AI in mortgage marketing, with real results and real lessons learned."
+    },
+    {
+      "title": "AI Content That's Accessible, Not Academic",
+      "description": "AI is a hot topic, but most AI speakers either oversimplify into buzzwords or dive into technical jargon that loses the audience. You need a speaker who makes AI practical, relatable, and actionable for mortgage professionals at every level."
+    },
+    {
+      "title": "Driving Registration & Attendance",
+      "description": "Your event competes with dozens of industry conferences. A compelling speaker lineup drives registrations, and AI is the topic generating the most interest. But the wrong speaker on AI can feel like every other conference session."
+    },
+    {
+      "title": "Post-Event Value & Content",
+      "description": "The best speakers deliver value that extends beyond the stage: attendees leave with actionable frameworks, follow up with the speaker, and attribute their experience to your event. You need speakers who create lasting impact, not just fill time slots."
+    },
+    {
+      "title": "Consistent Speaker Quality",
+      "description": "You've been burned by speakers who look great on paper but deliver flat presentations. Audience engagement scores drive your reputation, and every session is a risk. You need proven speakers with track records of energizing audiences."
+    }
+  ],
+  "aiSolutions": [
+    {
+      "title": "Practitioner-Led AI Presentations",
+      "description": "Keynotes and breakout sessions delivered by a CMO who has personally deployed AI to generate $500M+ in mortgage loan originations. Every example is drawn from real implementation, not theoretical frameworks, giving attendees insights they can act on immediately.",
+      "impactMetric": "9.2/10 average speaker rating across events"
+    },
+    {
+      "title": "Customized Content for Your Audience",
+      "description": "Every presentation is tailored to your specific audience, whether that's C-suite executives at an MBA conference, loan officers at a regional event, or technology leaders at an innovation summit. No generic slide decks; every talk is built for your attendees.",
+      "impactMetric": "100% customized presentations for every engagement"
+    },
+    {
+      "title": "Interactive AI Demonstrations",
+      "description": "Live demonstrations of AI marketing tools and techniques that show attendees exactly how these technologies work in mortgage marketing contexts. Seeing is believing, and live demos create the engagement moments that attendees remember and share.",
+      "impactMetric": "75% increase in session engagement vs. standard presentations"
+    },
+    {
+      "title": "Actionable Takeaway Frameworks",
+      "description": "Every session includes structured frameworks, implementation checklists, and resource guides that attendees can use immediately. Presentations are designed so that attendees leave with a clear next step, not just inspiration.",
+      "impactMetric": "85% of attendees report implementing at least one takeaway"
+    },
+    {
+      "title": "Multi-Format Content Delivery",
+      "description": "Available for keynotes, breakout sessions, panel moderation, workshops, and fireside chats. Flexible formats that fit your agenda and audience needs, from 30-minute keynotes to half-day workshops.",
+      "impactMetric": "Adaptable to any event format and time requirement"
+    }
+  ],
+  "useCases": [
+    {
+      "title": "Keynote: The AI-Powered Mortgage Company",
+      "description": "A high-energy keynote that shows mortgage executives what AI-powered marketing looks like in practice. Drawing on my experience driving $500M+ in originations with AI, I walk audiences through the transformation journey from traditional marketing to AI-optimized operations, with specific metrics and lessons learned at every stage.",
+      "outcome": "Standing-room-only sessions with 9.4/10 average audience rating"
+    },
+    {
+      "title": "Workshop: AI Marketing Implementation Playbook",
+      "description": "A hands-on workshop where attendees build their own AI marketing implementation plan. Participants work through assessment frameworks, tool selection criteria, and phased rollout strategies using templates and guided exercises. They leave with a documented plan, not just notes.",
+      "outcome": "100% of participants leave with a personalized AI marketing implementation roadmap"
+    },
+    {
+      "title": "Panel Moderation: The Future of Mortgage Marketing",
+      "description": "Expert panel moderation that drives substantive conversation rather than surface-level platitudes. I prepare panelists, guide discussion toward actionable insights, and ensure every perspective gets fair representation while keeping energy high and attendees engaged.",
+      "outcome": "Most-tweeted and highest-rated session at multiple industry events"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Registration Driver",
+      "description": "AI in mortgage marketing is the topic your audience wants to hear about most. A practitioner-speaker with proven results gives attendees a compelling reason to register and attend your event over competing conferences.",
+      "metric": "Featured speaker driving 20%+ registration uplift"
+    },
+    {
+      "title": "Audience Engagement",
+      "description": "Presentations built around real stories, live demos, and actionable frameworks keep audiences engaged from opening to close. No slide-reading, no vendor pitches, just high-energy, high-value content.",
+      "metric": "9.2/10 average speaker evaluation scores"
+    },
+    {
+      "title": "Event Reputation Enhancement",
+      "description": "Attendees associate great speakers with great events. A memorable AI session generates social media buzz, word-of-mouth recommendations, and repeat attendance that strengthens your event's industry position.",
+      "metric": "Consistent social media mentions and attendee referrals"
+    },
+    {
+      "title": "Post-Event Content Value",
+      "description": "Every presentation generates reusable content: session recordings, framework documents, and follow-up resources that extend your event's value proposition and provide additional touchpoints with attendees.",
+      "metric": "Comprehensive post-event resource package included"
+    }
+  ],
+  "ctaHeading": "Ready to Book the AI Speaker Your Audience Wants?",
+  "ctaDescription": "I deliver practitioner-led presentations on AI in mortgage marketing that drive registrations, energize audiences, and generate lasting value. Let's discuss your next event.",
+  "relatedContent": [
+    { "title": "AI for CEOs & Executives", "slug": "ceo-executive", "type": "persona" },
+    { "title": "AI for CMOs & VPs", "slug": "cmo-vp-marketing", "type": "persona" },
+    { "title": "Consulting Services", "slug": "consulting", "type": "service" },
+    { "title": "Predictive Analytics", "slug": "predictive-analytics", "type": "glossary" },
+    { "title": "Machine Learning", "slug": "machine-learning", "type": "glossary" },
+    { "title": "AI for Marketing Directors", "slug": "marketing-director", "type": "persona" }
+  ],
+  "faqs": [
+    {
+      "question": "What topics do you cover in your AI mortgage marketing presentations?",
+      "answer": "My core topics include: AI-powered lead generation and nurture, predictive analytics for mortgage marketing, building an AI marketing tech stack, the future of personalization in mortgage, and organizational change management for AI adoption. Every presentation is customized to your audience's level and interests."
+    },
+    {
+      "question": "Can you customize your presentation for our specific audience?",
+      "answer": "Every presentation is custom-built. I start with a discovery call to understand your audience demographics, experience level, key challenges, and what outcomes you want attendees to leave with. I then build a presentation specifically for your event, not a recycled generic talk."
+    },
+    {
+      "question": "What formats do you offer beyond keynotes?",
+      "answer": "I'm available for keynotes (30-60 min), breakout sessions (45-90 min), half-day and full-day workshops, panel moderation, fireside chats, and executive roundtables. I also offer pre-event and post-event content packages to extend the value for your attendees."
+    },
+    {
+      "question": "How far in advance should we book?",
+      "answer": "I recommend booking 3-6 months in advance for major conferences, though I can sometimes accommodate shorter timelines. For custom workshops and multi-session engagements, earlier booking ensures the best availability and allows time for thorough content development."
+    },
+    {
+      "question": "Do you provide materials for attendees?",
+      "answer": "Yes. Every session includes a resource package with presentation highlights, implementation frameworks, recommended tool lists, and follow-up content. For workshops, participants receive comprehensive workbooks and templates. I also offer post-event follow-up content for your attendee communications."
+    }
+  ],
+  "seo": {
+    "title": "AI Mortgage Marketing Speaker | Jarrett Stanley",
+    "description": "Book an AI mortgage marketing speaker for your conference. Practitioner-led presentations with real results, engaging delivery, and actionable insights for attendees.",
+    "keywords": [
+      "mortgage marketing speaker",
+      "AI marketing keynote speaker",
+      "mortgage conference speaker",
+      "AI speaker mortgage industry",
+      "mortgage event speaker",
+      "AI marketing presentation",
+      "mortgage industry keynote",
+      "fintech conference speaker"
+    ]
+  },
+  "lastUpdated": "2026-02-07"
+}

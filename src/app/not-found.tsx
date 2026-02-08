@@ -12,22 +12,22 @@ export const metadata: Metadata = generateSEOMetadata({
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-purple-50">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-purple-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
       <div className="max-w-md w-full mx-auto text-center px-6">
         {/* 404 Number */}
         <div className="mb-8">
-          <h1 className="text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 font-signal">
+          <h1 className="text-8xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-400 font-signal">
             404
           </h1>
         </div>
 
         {/* Error Message */}
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4 font-signal">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-4 font-signal">
             Page Not Found
           </h2>
-          <p className="text-gray-600 text-lg mb-6">
-            The page you're looking for doesn't exist or has been moved. 
+          <p className="text-gray-600 dark:text-gray-400 text-lg mb-6">
+            The page you're looking for doesn't exist or has been moved.
             Let's get you back on track.
           </p>
         </div>
@@ -39,7 +39,7 @@ export default function NotFound() {
               Return Home
             </Link>
           </Button>
-          
+
           <div className="flex gap-3">
             <Button asChild variant="outline" className="flex-1">
               <Link href="/speaking">
@@ -55,33 +55,33 @@ export default function NotFound() {
         </div>
 
         {/* Popular Links */}
-        <div className="text-sm text-gray-500">
+        <div className="text-sm text-gray-500 dark:text-gray-400">
           <p className="mb-3">Popular pages:</p>
           <div className="flex flex-wrap justify-center gap-2">
-            <Link 
-              href="/about" 
-              className="hover:text-purple-600 transition-colors"
+            <Link
+              href="/about"
+              className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
             >
               About
             </Link>
             <span>•</span>
-            <Link 
-              href="/services" 
-              className="hover:text-purple-600 transition-colors"
+            <Link
+              href="/services"
+              className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
             >
               Services
             </Link>
             <span>•</span>
-            <Link 
-              href="/insights/blog" 
-              className="hover:text-purple-600 transition-colors"
+            <Link
+              href="/insights/blog"
+              className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
             >
               Blog
             </Link>
             <span>•</span>
-            <Link 
-              href="/contact" 
-              className="hover:text-purple-600 transition-colors"
+            <Link
+              href="/contact"
+              className="hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
             >
               Contact
             </Link>

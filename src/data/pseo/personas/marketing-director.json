@@ -1,0 +1,137 @@
+{
+  "slug": "marketing-director",
+  "title": "AI Marketing Strategies for Marketing Directors",
+  "personaName": "Marketing Directors",
+  "personaDescription": "As a marketing director at a mid-size mortgage lender, you're the bridge between executive vision and marketing execution. You need AI to stretch your team's capabilities, prove campaign effectiveness, and deliver the sophisticated marketing programs that drive real business growth.",
+  "painPoints": [
+    {
+      "title": "Team Bandwidth Constraints",
+      "description": "Your team handles everything from brand campaigns to LO support materials to event coordination. Everyone is stretched thin, and strategic initiatives keep getting pushed back because tactical demands consume all available bandwidth."
+    },
+    {
+      "title": "Campaign Performance Plateaus",
+      "description": "You've optimized the obvious levers, but conversion rates have flatlined. The next level of performance requires personalization and testing at a scale your team can't achieve manually. You're stuck in incremental improvement territory."
+    },
+    {
+      "title": "Multi-Channel Coordination",
+      "description": "Email, paid search, social, direct mail, events, co-marketing with partners. Coordinating messaging and timing across channels is a logistical nightmare, and inconsistent experiences confuse borrowers and dilute your brand."
+    },
+    {
+      "title": "Reporting & Attribution Gaps",
+      "description": "Leadership wants marketing metrics that map to business outcomes, but your reporting is channel-siloed. You can report on email open rates and ad impressions, but connecting those to funded loans requires data integrations you don't have."
+    },
+    {
+      "title": "Vendor & Tool Overload",
+      "description": "Your martech stack has grown organically into a patchwork of point solutions. Each vendor promises AI capabilities, but nothing is connected, and your team spends more time managing tools than executing campaigns."
+    }
+  ],
+  "aiSolutions": [
+    {
+      "title": "AI Campaign Orchestration",
+      "description": "A unified AI layer that coordinates messaging, timing, and budget allocation across all marketing channels. Instead of managing each channel independently, AI optimizes the entire borrower journey from first touch to funded loan.",
+      "impactMetric": "45% improvement in cross-channel campaign performance"
+    },
+    {
+      "title": "Automated Content Production Pipeline",
+      "description": "AI-powered workflows that transform a single campaign brief into email sequences, social posts, landing pages, and ad variations, complete with A/B test variants, all maintaining brand voice and compliance standards.",
+      "impactMetric": "60% reduction in campaign production timeline"
+    },
+    {
+      "title": "Unified Marketing Intelligence",
+      "description": "AI that connects your disparate marketing platforms and CRM data into a single view of campaign performance, borrower behavior, and attribution, giving you and leadership the complete picture that's been impossible to assemble manually.",
+      "impactMetric": "Complete marketing attribution from first touch to funded loan"
+    },
+    {
+      "title": "Predictive Audience Building",
+      "description": "AI models that identify your highest-value borrower segments and predict which prospects are most likely to convert, enabling your team to focus resources on the audiences that drive the most revenue.",
+      "impactMetric": "35% increase in marketing-sourced pipeline value"
+    },
+    {
+      "title": "Smart Martech Consolidation",
+      "description": "AI that evaluates your existing tool stack, identifies redundancies, and recommends a streamlined architecture that delivers more capability with fewer platforms and lower total cost of ownership.",
+      "impactMetric": "30% reduction in martech spend with improved capabilities"
+    }
+  ],
+  "useCases": [
+    {
+      "title": "The AI-Augmented Marketing Team",
+      "description": "In my work with marketing directors, the biggest transformation comes from positioning AI as a team multiplier rather than a replacement. AI handles data analysis, content variations, testing, and reporting, freeing your human marketers to focus on strategy, creative direction, and stakeholder management.",
+      "outcome": "Team effectively operates at 2x capacity without additional headcount"
+    },
+    {
+      "title": "Campaign Performance Breakthrough",
+      "description": "What I've seen work is deploying AI testing at a scale that breaks through performance plateaus. Instead of testing two subject lines, AI tests 200 message variations simultaneously, identifying winning combinations that human intuition would never discover.",
+      "outcome": "28% improvement in campaign conversion rates within 90 days"
+    },
+    {
+      "title": "Executive Dashboard Automation",
+      "description": "I help marketing directors build AI-powered reporting that automatically translates channel metrics into business outcomes. Leadership sees funded loans, revenue contribution, and pipeline value instead of clicks and impressions.",
+      "outcome": "80% reduction in manual reporting time with improved executive confidence in marketing ROI"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Team Capacity Multiplication",
+      "description": "AI amplifies your existing team's output without adding headcount. Repetitive tasks are automated, and your marketers spend their time on high-value strategic work.",
+      "metric": "2x effective team capacity"
+    },
+    {
+      "title": "Performance Breakthroughs",
+      "description": "Break through conversion plateaus with AI-powered testing, personalization, and optimization at a scale that's impossible to achieve manually.",
+      "metric": "28% improvement in conversion rates"
+    },
+    {
+      "title": "Operational Efficiency",
+      "description": "Streamline your martech stack, automate campaign production, and reduce manual coordination overhead. AI makes your marketing operations lean and responsive.",
+      "metric": "60% faster campaign-to-market timelines"
+    },
+    {
+      "title": "Strategic Credibility",
+      "description": "Deliver the data-driven reporting and attribution that earns marketing a seat at the executive table. AI-powered analytics prove your department's impact on business outcomes.",
+      "metric": "Clear ROI visibility at the executive level"
+    }
+  ],
+  "ctaHeading": "Ready to Unlock Your Team's Full Potential?",
+  "ctaDescription": "I help marketing directors implement AI systems that multiply team capacity, break through performance plateaus, and prove marketing's impact on the bottom line.",
+  "relatedContent": [
+    { "title": "Marketing Automation", "slug": "marketing-automation", "type": "glossary" },
+    { "title": "Predictive Analytics", "slug": "predictive-analytics", "type": "glossary" },
+    { "title": "A/B Testing", "slug": "ab-testing", "type": "glossary" },
+    { "title": "Consulting Services", "slug": "consulting", "type": "service" },
+    { "title": "AI for CMOs & VPs", "slug": "cmo-vp-marketing", "type": "persona" },
+    { "title": "AI for Digital Marketing Specialists", "slug": "digital-marketing-specialist", "type": "persona" }
+  ],
+  "faqs": [
+    {
+      "question": "How do I build a business case for AI marketing investment?",
+      "answer": "I help marketing directors build ROI-focused business cases that speak the language of the C-suite. We start by quantifying current inefficiencies, including time spent on manual tasks, conversion rate gaps, and attribution blind spots, then project the financial impact of AI-driven improvements. Most business cases show payback within one quarter."
+    },
+    {
+      "question": "Will my team feel threatened by AI implementation?",
+      "answer": "Change management is critical, and I address it head-on. The framing matters: AI eliminates the tasks your team doesn't want to do, like manual reporting, A/B test analysis, and content variations, freeing them for the creative and strategic work they were hired to do. Teams that embrace AI become more valuable, not less."
+    },
+    {
+      "question": "How do you approach integration with our existing martech stack?",
+      "answer": "I start with a full audit of your current tools and data flows, then design an AI integration strategy that maximizes existing investments before recommending any new platforms. The goal is to create a unified data layer that makes your existing tools smarter, not to add more complexity."
+    },
+    {
+      "question": "What's the difference between AI marketing tools and traditional marketing automation?",
+      "answer": "Traditional automation executes rules you define: if X, then Y. AI learns patterns and optimizes autonomously: it discovers that certain borrower segments respond to specific messages at specific times through channels you might not have tested. AI doesn't just execute your strategy faster; it discovers better strategies."
+    }
+  ],
+  "seo": {
+    "title": "AI Marketing for Marketing Directors | Jarrett Stanley",
+    "description": "AI marketing strategies for mortgage marketing directors. Multiply team capacity, break performance plateaus, and prove ROI with AI-powered marketing systems.",
+    "keywords": [
+      "marketing director AI strategy",
+      "mortgage marketing director",
+      "AI marketing team",
+      "marketing operations AI",
+      "campaign optimization AI",
+      "marketing attribution mortgage",
+      "martech AI integration",
+      "marketing director consulting"
+    ]
+  },
+  "lastUpdated": "2026-02-07"
+}

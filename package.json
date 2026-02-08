@@ -91,6 +91,7 @@
     "@types/node": "^20.11.0",
     "@types/react": "^18.3.23",
     "@types/react-dom": "^18.3.7",
+    "agentation": "^2.2.0",
     "autoprefixer": "^10.4.20",
     "dotenv": "^17.2.3",
     "eslint": "^9.39.2",

@@ -1,0 +1,72 @@
+{
+  "slug": "the-cmo-job-changed",
+  "title": "The CMO's Job Changed. Most CMOs Didn't.",
+  "excerpt": "The mortgage CMO role shifted from brand steward to revenue architect and data strategist. Most CMOs are still running a decade-old playbook while their CEO asks for pipeline attribution they can't provide.",
+  "content": [
+    { "type": "paragraph", "text": "Five years ago, the mortgage CMO's job was relatively straightforward: manage the brand, run some campaigns, keep the website updated, and make sure the trade show booth looked good. The CEO didn't ask hard questions about marketing's contribution to pipeline because everyone assumed it was working. **That era is over.**" },
+    { "type": "paragraph", "text": "Today's mortgage CEO wants to know exactly how many funded loans marketing sourced last quarter. They want attribution down to the campaign level. They want to understand the relationship between marketing spend and pull-through rate. And they want a CMO who can sit in a room with the CFO and defend every dollar with data." },
+    { "type": "heading", "text": "The Old Playbook Is a Liability", "level": 2 },
+    { "type": "paragraph", "text": "The playbook most mortgage CMOs are running was written for a different era. It's heavy on brand awareness, light on measurement. It treats marketing as a cost center, not a revenue engine. And it assumes that if the brand \"feels right\" and the campaigns look professional, the leads will come." },
+    { "type": "paragraph", "text": "That playbook worked when margins were wide, competition was less sophisticated, and nobody had the technology to measure marketing's actual impact. All three of those conditions have evaporated. **Margins are compressed. Competitors are running data-driven operations. And the measurement tools exist — your CEO knows it, even if you're not using them.**" },
+    { "type": "list", "style": "bullet", "items": [
+      "**Brand steward** is now table stakes, not the job description",
+      "**Campaign manager** has been replaced by revenue architect",
+      "**Creative director** has been eclipsed by data strategist",
+      "**Event coordinator** matters less than pipeline engineer",
+      "**Vendor manager** is secondary to technology integrator"
+    ] },
+    { "type": "heading", "text": "What the Modern Mortgage CMO Actually Does", "level": 2 },
+    { "type": "paragraph", "text": "The CMOs who are thriving right now — the ones getting promoted, getting budget increases, and getting invited to the strategy table — share a common profile. They've rebuilt their role around three pillars." },
+    { "type": "heading", "text": "Pillar 1: Revenue Accountability", "level": 3 },
+    { "type": "paragraph", "text": "Modern mortgage CMOs own a number. Not impressions, not brand sentiment, not website traffic — **a revenue number**. They can trace marketing-sourced leads through the funnel to funded loans and calculate a true cost per acquisition. When the CEO asks \"what did marketing produce last month?\" they answer in dollars, not reach metrics." },
+    { "type": "heading", "text": "Pillar 2: Data Infrastructure", "level": 3 },
+    { "type": "paragraph", "text": "You can't be accountable to revenue if you can't measure it. The modern CMO builds and owns the data infrastructure that connects marketing activity to business outcomes. That means **CRM integration, attribution modeling, and a clean data pipeline** from first touch to funded loan. Most mortgage marketing teams are still operating with data gaps so large you could lose an entire campaign's performance in them." },
+    { "type": "heading", "text": "Pillar 3: Technology Strategy", "level": 3 },
+    { "type": "paragraph", "text": "The CMO's technology decisions now directly impact operational capacity. AI-powered lead routing, automated nurture sequences, predictive analytics for campaign optimization — these aren't IT projects. **They're marketing strategy decisions** that determine whether your team can compete at scale or gets buried by a competitor who automated six months ago." },
+    { "type": "callout", "text": "If your CMO can't tell you the cost per funded loan for each marketing channel, they're managing a brand, not driving a business. Those are very different jobs.", "variant": "insight" },
+    { "type": "heading", "text": "Why Most CMOs Haven't Made the Shift", "level": 2 },
+    { "type": "paragraph", "text": "This isn't a talent problem — it's an incentive and structure problem. Most mortgage CMOs were hired for the old job and are still being evaluated on the old metrics. Their org chart puts them in charge of creative and events, not technology and analytics. **Their budget is structured as overhead, not investment.** And their CEO hasn't clearly articulated what the new expectations actually are." },
+    { "type": "paragraph", "text": "The CMOs who made the transition did it by **rewriting their own job description** before someone else did it for them. They invested in analytics capability. They learned enough about AI and data to be dangerous. They started presenting marketing results in financial language. And they demanded — or built — the attribution infrastructure that proved their value." },
+    { "type": "callout", "text": "The fastest way to modernize the CMO role is to change the reporting. Stop leading with impressions and clicks. Start leading with cost per funded loan, marketing-sourced pipeline, and pull-through rate by channel.", "variant": "tip" },
+    { "type": "paragraph", "text": "The mortgage industry is consolidating. The CMOs who survive it will be the ones who can prove, with data, that marketing isn't overhead — it's the growth engine. Everyone else is a cost line item waiting to be cut." }
+  ],
+  "publishedAt": "2026-03-05T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["leadership"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/the-cmo-job-changed.png",
+  "seo": {
+    "title": "The CMO's Job Changed. Most CMOs Didn't. | Jarrett Stanley",
+    "description": "The mortgage CMO role evolved from brand steward to revenue architect. Here's why most CMOs are still running an outdated playbook — and how to modernize.",
+    "keywords": [
+      "CMO role evolution mortgage",
+      "mortgage marketing leadership",
+      "CMO strategy 2026",
+      "mortgage CMO accountability",
+      "marketing attribution mortgage",
+      "revenue marketing mortgage",
+      "CMO data strategy",
+      "mortgage marketing measurement",
+      "marketing leadership transformation",
+      "mortgage CMO skills"
+    ]
+  },
+  "relatedContent": [
+    { "title": "Bad Data Is a Leadership Problem", "slug": "bad-data-is-a-leadership-problem", "type": "blog" },
+    { "title": "The Metric That Ate Your Marketing Budget", "slug": "the-metric-that-ate-your-marketing-budget", "type": "blog" },
+    { "title": "Marketing Attribution", "slug": "marketing-attribution", "type": "glossary" },
+    { "title": "CMO & VP Marketing", "slug": "cmo-vp-marketing", "type": "persona" },
+    { "title": "CEO & Executive", "slug": "ceo-executive", "type": "persona" }
+  ],
+  "faqs": [
+    { "question": "How has the mortgage CMO role changed in recent years?", "answer": "The role has shifted from brand management and campaign oversight to revenue accountability, data infrastructure ownership, and technology strategy. Modern mortgage CMOs are expected to tie marketing directly to funded loan volume and defend spend with financial metrics, not vanity metrics." },
+    { "question": "What metrics should a modern mortgage CMO report on?", "answer": "Cost per funded loan by channel, marketing-sourced pipeline value, pull-through rate by campaign, customer acquisition cost, and lifetime borrower value. These revenue-aligned metrics replace traditional reporting on impressions, clicks, and brand sentiment scores." },
+    { "question": "Why are most mortgage CMOs still using outdated approaches?", "answer": "It's primarily a structural issue. Most were hired for brand management, are evaluated on legacy metrics, and operate with budgets categorized as overhead. The shift requires CMOs to proactively rewrite their own role — building analytics capabilities and presenting results in financial language before being asked." }
+  ],
+  "lastUpdated": "2026-03-05"
+}

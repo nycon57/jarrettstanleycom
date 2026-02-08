@@ -1,0 +1,75 @@
+{
+  "slug": "90-day-ai-marketing-sprint",
+  "title": "The 90-Day AI Marketing Sprint: A Playbook for Mortgage Leaders",
+  "excerpt": "A step-by-step framework for deploying AI in mortgage marketing: Weeks 1-4 audit and readiness, Weeks 5-8 focused pilot, Weeks 9-12 measure, iterate, and scale. Built from real deployment experience.",
+  "content": [
+    { "type": "paragraph", "text": "Most AI initiatives in mortgage marketing die one of two deaths. Either they never launch — stuck in an endless planning phase where the perfect becomes the enemy of the possible. Or they launch too broadly, fail to show results quickly enough, and get quietly defunded. The 90-day sprint is designed to avoid both." },
+    { "type": "paragraph", "text": "This isn't a theoretical framework. **It's the playbook we used at Nationwide** to go from AI-curious to AI-operational in a single quarter. It's been refined through three separate deployments, and the structure works whether you're a top-20 lender or a regional shop with a five-person marketing team." },
+    { "type": "heading", "text": "Phase 1: Audit and Readiness (Weeks 1-4)", "level": 2 },
+    { "type": "paragraph", "text": "Before you touch any AI tool, you need to understand what you're working with. This phase is about honest assessment — not aspirational roadmapping." },
+    { "type": "heading", "text": "Week 1-2: Data Audit", "level": 3 },
+    { "type": "list", "style": "bullet", "items": [
+      "**Inventory your data sources.** CRM, LOS, marketing automation, website analytics, call tracking, social platforms. List every system that holds borrower or marketing data.",
+      "**Assess data quality.** What percentage of CRM records have complete contact information? How many duplicate records exist? When was the data last cleaned? Be ruthlessly honest here — AI amplifies data quality, for better or worse.",
+      "**Map data connections.** Which systems talk to each other? Where are the manual handoffs? Where does data get re-keyed from one system to another? These gaps are where AI can have the most immediate impact."
+    ] },
+    { "type": "heading", "text": "Week 3: Workflow Mapping", "level": 3 },
+    { "type": "paragraph", "text": "Document your **top ten marketing workflows** by volume and time investment. For each workflow, answer: How many people touch it? How many steps does it take? Where do bottlenecks occur? What's the error rate? The workflow with the highest volume, most manual steps, and most predictable pattern is your ideal pilot candidate." },
+    { "type": "heading", "text": "Week 4: Pilot Selection and Success Criteria", "level": 3 },
+    { "type": "paragraph", "text": "Choose **one workflow** for your pilot. Not three. Not \"a few related ones.\" One. Then define success criteria before you start. What specific metric needs to improve, by how much, to justify continued investment? Write it down. Get leadership sign-off. This prevents the goalposts from moving mid-sprint." },
+    { "type": "callout", "text": "The most common mistake in Phase 1 is picking a pilot that's too ambitious. Choose the boring, repetitive workflow — not the sexy strategic one. Lead scoring, email personalization, and content tagging are ideal first pilots. Full campaign strategy is not.", "variant": "warning" },
+    { "type": "heading", "text": "Phase 2: Focused Pilot (Weeks 5-8)", "level": 2 },
+    { "type": "paragraph", "text": "Four weeks to build, test, and refine your pilot. This is where most teams underestimate the non-AI work required." },
+    { "type": "heading", "text": "Week 5: Build the Foundation", "level": 3 },
+    { "type": "list", "style": "bullet", "items": [
+      "**Clean the pilot data.** Whatever data feeds your chosen workflow, clean it now. Deduplicate records, standardize formats, fill critical gaps. This isn't glamorous, but it's the difference between a pilot that works and one that produces garbage.",
+      "**Set up measurement infrastructure.** Before you deploy anything, make sure you can measure the outcome. A/B test framework, baseline metrics, tracking codes — all of this must be in place before the AI touches a single borrower interaction.",
+      "**Define the human-in-the-loop process.** What does human review look like? Who approves AI-generated output? How quickly? Build the governance workflow alongside the AI workflow."
+    ] },
+    { "type": "heading", "text": "Week 6-7: Deploy and Iterate", "level": 3 },
+    { "type": "paragraph", "text": "Launch the pilot at **limited scale** — maybe 20% of the total workflow volume. Monitor daily. Not weekly. Daily. You're looking for three things: accuracy of AI output, speed improvement versus manual process, and edge cases the AI handles poorly. **Expect the first week to be rough.** Every AI deployment I've seen required significant tuning in the first 5-7 days." },
+    { "type": "heading", "text": "Week 8: Stabilize", "level": 3 },
+    { "type": "paragraph", "text": "By week 8, your pilot should be running smoothly at limited scale. Document every adjustment you made. Build a troubleshooting guide. Train the team members who will manage this ongoing. The goal is to make the pilot **operational without you babysitting it** — because in Phase 3, your attention needs to shift to measurement and scaling." },
+    { "type": "heading", "text": "Phase 3: Measure, Iterate, Scale (Weeks 9-12)", "level": 2 },
+    { "type": "paragraph", "text": "This is where most pilots either earn their expansion or die on the vine. The discipline here is in **measuring honestly and scaling deliberately.**" },
+    { "type": "list", "style": "numbered", "items": [
+      "**Week 9-10: Full measurement.** Expand pilot to 100% of the workflow volume. Compare against your pre-defined success criteria. Did the AI-driven process outperform the manual baseline? By how much? Where did it underperform?",
+      "**Week 11: Leadership review.** Present results to stakeholders. Include both wins and failures. Propose a scaling plan that identifies the next 2-3 workflows to apply the same approach. Be specific about resource requirements.",
+      "**Week 12: Scale preparation.** If results justify it, begin data prep for the next workflow. If results are mixed, document what you learned and decide whether to iterate further on the current pilot or pivot to a different workflow."
+    ] },
+    { "type": "callout", "text": "A pilot that shows a 15-20% improvement in one workflow is worth more than a theoretical plan to transform ten workflows. Start small, prove value, then scale with evidence.", "variant": "insight" },
+    { "type": "heading", "text": "What 90 Days Actually Buys You", "level": 2 },
+    { "type": "paragraph", "text": "At the end of this sprint, you won't have transformed your entire marketing operation. That's not the point. What you will have is **proof.** Proof that AI works in your specific environment, with your specific data, on your specific workflows. You'll have a team that understands how to deploy AI responsibly. You'll have a measurement framework you can apply to future initiatives. And you'll have a credible story to tell leadership about what's possible." },
+    { "type": "paragraph", "text": "That proof is worth more than any vendor pitch deck or industry case study. It's **your data, your results, your next step.** And it only takes 90 days to get there." }
+  ],
+  "publishedAt": "2026-04-13T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["ai-automation"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/90-day-ai-marketing-sprint.png",
+  "seo": {
+    "title": "The 90-Day AI Marketing Sprint | Jarrett Stanley",
+    "description": "A step-by-step playbook for deploying AI in mortgage marketing in 90 days: audit, pilot, measure, and scale. Built from real deployment experience.",
+    "keywords": ["AI marketing implementation plan", "AI marketing playbook mortgage", "AI pilot program lender", "90-day AI sprint", "mortgage marketing AI deployment", "AI readiness audit", "marketing automation pilot", "AI marketing ROI", "AI workflow mortgage"]
+  },
+  "relatedContent": [
+    { "title": "Prompt Engineering Is Not a Marketing Strategy", "slug": "prompt-engineering-is-not-a-marketing-strategy", "type": "blog" },
+    { "title": "The Hidden Tax of Manual Work", "slug": "the-hidden-tax-of-manual-work", "type": "blog" },
+    { "title": "Half a Billion Dollars in AI Pipeline", "slug": "half-a-billion-dollars-ai-pipeline", "type": "blog" },
+    { "title": "Workflow Automation", "slug": "workflow-automation", "type": "glossary" },
+    { "title": "Marketing Automation in Mortgage", "slug": "marketing-automation-mortgage", "type": "glossary" },
+    { "title": "Operations Director", "slug": "operations-director", "type": "persona" }
+  ],
+  "faqs": [
+    { "question": "Why limit the pilot to a single workflow instead of testing AI across multiple areas?", "answer": "Focusing on one workflow forces discipline in data preparation, measurement design, and iteration. Multiple simultaneous pilots spread your team's attention too thin, making it impossible to distinguish signal from noise when evaluating results. A single successful pilot creates a proven template you can replicate systematically across other workflows." },
+    { "question": "What's the ideal first AI pilot for a mortgage marketing team?", "answer": "The ideal first pilot is high-volume, repetitive, and has a clear measurable outcome. Lead scoring, email personalization, and content categorization are strong candidates. Avoid strategic or creative workflows for your first pilot — they're harder to measure and more subjective to evaluate, which makes it difficult to demonstrate clear ROI to stakeholders." },
+    { "question": "What resources does a 90-day AI marketing sprint typically require?", "answer": "At minimum, you need a marketing lead who owns the sprint (dedicating roughly 50% of their time), a technical resource for data integration and tool configuration, and executive sponsorship for removing blockers. Budget varies based on tooling, but the biggest investment is time for data cleaning and workflow documentation — which most teams underestimate by a factor of two." },
+    { "question": "What happens after the 90-day sprint ends?", "answer": "The sprint produces three outcomes: proof of concept results, a trained team, and a reusable deployment framework. If the pilot succeeded, you begin scaling to additional workflows using the same phased approach. If results were mixed, you iterate on the current pilot with the insights gained. Either way, you now have real data to guide your next investment decision instead of vendor promises." }
+  ],
+  "lastUpdated": "2026-04-13"
+}

@@ -1,0 +1,88 @@
+{
+  "slug": "the-lead-gen-playbook-broke",
+  "title": "The Lead Gen Playbook Broke. Now What?",
+  "excerpt": "The mortgage lead generation strategies that worked for a decade are producing diminishing returns. Aggregator leads cost more, convert less, and trigger-lead regulation is tightening. Here is what is actually working now.",
+  "content": [
+    { "type": "paragraph", "text": "The playbook that built mortgage marketing for the last decade is broken. Not bending. Not evolving. Broken." },
+    { "type": "paragraph", "text": "Aggregator leads that once converted at 3-4% now hover below 1% in most markets. Referral partner programs that generated reliable volume are being squeezed by consolidation and commission compression. And the trigger-lead model that so many lenders depended on is facing regulatory action that could shut it down entirely." },
+    { "type": "paragraph", "text": "If your 2026 marketing plan is built on the same lead sources as your 2022 plan, you are building on a foundation that is actively crumbling." },
+    { "type": "heading", "text": "Why the old model stopped working", "level": 2 },
+    { "type": "paragraph", "text": "The breakdown is not one thing. It is a convergence of forces that hit simultaneously." },
+    { "type": "paragraph", "text": "**Aggregator economics flipped.** Lead aggregators now sell the same lead to 4-8 lenders. The borrower gets overwhelmed, ghosts everyone, and the cost per funded loan from aggregator sources has tripled in many cases. You are not buying leads. You are buying lottery tickets." },
+    { "type": "paragraph", "text": "**Trigger leads are under fire.** The mortgage industry has relied on credit bureau trigger leads for years, but consumer backlash and legislative pressure are real. The Homebuyers Privacy Protection Act continues to gain momentum. Whether or not it passes in its current form, the writing is on the wall: unsolicited outreach based on credit pulls is a shrinking strategy." },
+    { "type": "paragraph", "text": "**Borrowers research differently now.** First-time homebuyers in particular do not start with a lender. They start with Google, Reddit, AI search tools, and social media. By the time they talk to a loan officer, they have already formed opinions and shortlisted options. If you are not part of that early research phase, you are competing on rate alone." },
+    { "type": "callout", "text": "The lead generation crisis is not a volume problem. It is a relevance problem. Lenders are spending more to reach borrowers who care less.", "variant": "insight" },
+    { "type": "heading", "text": "What is actually working in 2026", "level": 2 },
+    { "type": "paragraph", "text": "The lenders who are growing right now are not doing it by finding a better aggregator. They are building demand generation engines that create their own pipeline." },
+    { "type": "heading", "text": "First-party content that ranks and converts", "level": 3 },
+    { "type": "paragraph", "text": "SEO is not dead. It is different. The lenders winning organic traffic are publishing **specific, localized, decision-stage content** that answers the exact questions borrowers type into search. Not generic \"5 Tips for First-Time Homebuyers\" articles. Content like \"FHA loan limits in [county] for 2026\" or \"VA loan closing costs at [lender] vs. [competitor].\" Content that earns trust by being genuinely useful." },
+    { "type": "heading", "text": "AI-powered nurture that adapts", "level": 3 },
+    { "type": "paragraph", "text": "The old drip campaign model sent the same 12-email sequence to everyone. The new model uses behavioral signals to dynamically adjust messaging. A borrower who opened a rate comparison email gets a different follow-up than one who clicked on a down payment assistance guide. The technology exists. Most lenders just have not implemented it because their martech stack was built for batch-and-blast." },
+    { "type": "heading", "text": "Referral ecosystems, not referral partners", "level": 3 },
+    { "type": "paragraph", "text": "Single-point referral relationships are fragile. What works better is building an **ecosystem** of referral sources: real estate agents, financial advisors, builders, and settlement companies who all feed into a coordinated system. The difference is technology. A CRM with automated co-marketing, joint content, and shared reporting turns a loose network into a predictable pipeline." },
+    { "type": "heading", "text": "The measurement problem nobody wants to fix", "level": 2 },
+    { "type": "paragraph", "text": "Here is the uncomfortable truth. Most mortgage marketers cannot tell you the true cost per funded loan by source. They can tell you cost per lead. They can tell you cost per application. But the full-funnel view from first marketing touch to funded loan is a black hole." },
+    { "type": "paragraph", "text": "This matters because the strategies that look expensive at the top of the funnel, like content marketing and brand building, often produce the cheapest funded loans. And the strategies that look cheap at the top, like aggregator leads, often produce the most expensive funded loans once you account for conversion rates and fallout." },
+    { "type": "list", "style": "bullet", "items": [
+      "**Track cost per funded loan, not cost per lead.** This is the only metric that tells the truth.",
+      "**Build attribution across the full lifecycle.** Marketing touches that happen 90 days before application still matter.",
+      "**Separate branded from unbranded demand.** Branded search converts 5-10x better than unbranded. Know the difference."
+    ] },
+    { "type": "heading", "text": "A 90-day shift", "level": 2 },
+    { "type": "paragraph", "text": "You cannot rebuild your entire lead generation strategy overnight. But you can start the shift in the next quarter." },
+    { "type": "list", "style": "numbered", "items": [
+      "**Audit your true cost per funded loan by source.** Most lenders have never done this honestly. The numbers will surprise you.",
+      "**Launch one first-party content initiative.** Pick your highest-value loan product and build 10 pieces of decision-stage content around it.",
+      "**Replace one batch-and-blast campaign with an adaptive nurture sequence.** Start with your largest lead source and let AI optimize timing and messaging."
+    ] },
+    { "type": "paragraph", "text": "The playbook broke. That is not a crisis. It is a forcing function. The lenders who build their own demand generation capabilities now will own the next cycle. The ones waiting for the old model to come back will keep buying increasingly expensive lottery tickets." }
+  ],
+  "publishedAt": "2026-02-13T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["operations", "ai-automation"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/the-lead-gen-playbook-broke.png",
+  "seo": {
+    "title": "The Lead Gen Playbook Broke. Now What? | Jarrett Stanley",
+    "description": "Mortgage lead generation strategies from the last decade are failing. Here is what is actually producing pipeline in 2026 and how to make the shift.",
+    "keywords": [
+      "mortgage lead generation 2026",
+      "lead generation crisis mortgage",
+      "quality leads mortgage",
+      "mortgage lead strategy",
+      "trigger leads mortgage regulation",
+      "mortgage content marketing",
+      "demand generation mortgage",
+      "cost per funded loan",
+      "mortgage marketing strategy",
+      "first-party lead generation"
+    ]
+  },
+  "relatedContent": [
+    { "title": "Half a Billion Dollars of AI-Driven Pipeline", "slug": "half-a-billion-dollars-ai-pipeline", "type": "blog" },
+    { "title": "Speed-to-Lead Is a Lie", "slug": "speed-to-lead-is-a-lie", "type": "blog" },
+    { "title": "Lead Nurturing Automation", "slug": "lead-nurturing-automation", "type": "glossary" },
+    { "title": "Conversion Rate Optimization", "slug": "conversion-rate-optimization", "type": "glossary" },
+    { "title": "Loan Officer", "slug": "loan-officer", "type": "persona" }
+  ],
+  "faqs": [
+    {
+      "question": "Are aggregator leads still worth buying in 2026?",
+      "answer": "For most lenders, aggregator leads should be a decreasing share of the marketing mix, not the foundation. The economics have deteriorated as lead reselling has increased and borrower response rates have dropped. They can still contribute volume, but only if you track true cost per funded loan and hold aggregators accountable to that metric, not lead volume."
+    },
+    {
+      "question": "What will happen to trigger leads under new regulations?",
+      "answer": "Trigger-lead regulation is advancing at both federal and state levels. Even if current legislation stalls, the trajectory is clear: unsolicited outreach based on credit bureau data will face increasing restrictions. Lenders should be actively reducing dependence on trigger leads and building alternative pipeline sources now rather than waiting for a legislative deadline."
+    },
+    {
+      "question": "How much should a mortgage lender invest in content marketing?",
+      "answer": "Content marketing typically requires 6-12 months to produce meaningful organic pipeline, so it demands patience. A reasonable starting investment is 15-20% of the marketing budget redirected from underperforming lead sources. Focus initially on decision-stage content for your highest-value loan products rather than broad awareness content that is harder to attribute to funded loans."
+    }
+  ],
+  "lastUpdated": "2026-02-13"
+}

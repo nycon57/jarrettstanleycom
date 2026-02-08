@@ -1,0 +1,63 @@
+{
+  "slug": "marketing-sales-alignment-fantasy",
+  "title": "Marketing and Sales Alignment Is a Fantasy (Unless You Build the Bridge)",
+  "excerpt": "Marketing creates leads LOs don't trust. LOs create content marketing can't control. The alignment conversation has gone nowhere for a decade because both sides are solving different problems.",
+  "content": [
+    { "type": "paragraph", "text": "Every mortgage conference I attend has at least one panel on \"marketing and sales alignment.\" Every year, the same talking points. Every year, nothing changes. Marketing blames loan officers for ignoring leads. Loan officers blame marketing for sending junk. Both sides retreat to their corners and keep doing exactly what they were doing before." },
+    { "type": "paragraph", "text": "The reason alignment never sticks is simple: **it's not an attitude problem. It's a structural one.** You can't align two teams that operate on different timelines, measure different outcomes, and report to different people by putting them in a room and asking them to \"collaborate more.\"" },
+    { "type": "heading", "text": "Why the Disconnect Persists", "level": 2 },
+    { "type": "paragraph", "text": "Marketing operates on campaigns. Quarters. Lead volume. Brand awareness metrics that take months to materialize. Sales operates on **today's pipeline.** This week's closings. The borrower who just called and needs an answer in fifteen minutes. These aren't misaligned priorities — they're fundamentally different operating rhythms." },
+    { "type": "paragraph", "text": "When marketing generates 500 leads from a rate campaign, they see success. When a loan officer gets 50 of those leads and 47 are rate shoppers who won't return a call, they see waste. **Both are right.** The problem is that no one built the system to distinguish between the two outcomes before the leads were distributed." },
+    { "type": "heading", "text": "The Lead Handoff Is Where Everything Breaks", "level": 2 },
+    { "type": "paragraph", "text": "Most lenders treat lead distribution like a conveyor belt. Marketing drops leads into a CRM. Leads get round-robined to LOs. LOs cherry-pick the ones that look promising and ignore the rest. Marketing sees low contact rates and assumes sales is lazy. Sales sees low-quality leads and assumes marketing is incompetent." },
+    { "type": "list", "style": "bullet", "items": [
+      "**No shared definition of a qualified lead.** Marketing counts form fills. Sales counts people ready to talk.",
+      "**No feedback loop.** LOs rarely report back on lead quality in a structured way.",
+      "**No tiered routing.** A borrower who ran credit and requested a pre-approval gets the same treatment as someone who downloaded a generic homebuying guide.",
+      "**No shared accountability.** Marketing owns cost-per-lead. Sales owns close rate. Nobody owns the middle."
+    ] },
+    { "type": "callout", "text": "Alignment isn't a meeting cadence. It's a shared system with shared definitions, shared data, and shared accountability for outcomes neither team can achieve alone.", "variant": "insight" },
+    { "type": "heading", "text": "Building the Bridge: A Structural Approach", "level": 2 },
+    { "type": "paragraph", "text": "At Nationwide, we stopped trying to \"align\" and started trying to **integrate.** The difference matters. Alignment assumes two separate teams that occasionally coordinate. Integration means building shared infrastructure that forces collaboration by design." },
+    { "type": "heading", "text": "Step 1: Define the Handoff Spectrum", "level": 3 },
+    { "type": "paragraph", "text": "Not every lead is the same, and your system shouldn't treat them that way. We built a **lead maturity model** — five stages from raw inquiry to sales-ready — with specific behavioral triggers that move a lead from one stage to the next. Marketing owns stages one through three. Sales owns four and five. The criteria for each transition are documented, measurable, and non-negotiable." },
+    { "type": "heading", "text": "Step 2: Build the Feedback Engine", "level": 3 },
+    { "type": "paragraph", "text": "Every lead that reaches a loan officer gets a disposition within 48 hours. Not optional. Not \"when you get to it.\" The disposition feeds directly back into marketing's scoring model, so the system **gets smarter over time.** Within 90 days, we cut unqualified lead volume by 30% without reducing total funded loans. LOs got fewer leads, but better ones." },
+    { "type": "heading", "text": "Step 3: Shared Scorecards", "level": 3 },
+    { "type": "paragraph", "text": "The single most impactful change we made was creating a **joint scorecard** that both teams report against. Marketing doesn't just report on leads generated — they report on leads accepted by sales. Sales doesn't just report on close rate — they report on speed-to-contact and disposition compliance. When both teams own a piece of each other's outcomes, the finger-pointing stops." },
+    { "type": "heading", "text": "The Content Problem Nobody Admits", "level": 2 },
+    { "type": "paragraph", "text": "Here's the other side of the alignment failure: **content.** Marketing creates brand-consistent campaigns. Loan officers create their own flyers, social posts, and email templates — often with outdated rates, compliance issues, or messaging that contradicts the brand. You can't control this by sending angry emails about brand guidelines. You control it by **making the right thing the easy thing.**" },
+    { "type": "paragraph", "text": "We built a content library with pre-approved, compliance-cleared templates that LOs can customize within guardrails. The templates auto-populate with current rates and local market data. Adoption went from 15% to 70% in six months — not because we mandated it, but because **our templates performed better than what LOs were creating on their own.**" },
+    { "type": "callout", "text": "Stop trying to get loan officers to follow your brand guidelines. Start building tools that make brand-compliant content the path of least resistance.", "variant": "tip" },
+    { "type": "heading", "text": "What Alignment Actually Looks Like", "level": 2 },
+    { "type": "paragraph", "text": "Real alignment is boring. It's not a rah-rah offsite or a Slack channel called #smarketing. It's a shared CRM with enforced workflows. It's a lead scoring model that both teams helped build. It's a weekly 30-minute standup where marketing and sales review the same dashboard — not two different reports that tell two different stories. It's **infrastructure, not inspiration.**" }
+  ],
+  "publishedAt": "2026-04-02T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["operations", "leadership"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/marketing-sales-alignment-fantasy.png",
+  "seo": {
+    "title": "Marketing and Sales Alignment Is a Fantasy | Jarrett Stanley",
+    "description": "Marketing and sales alignment fails because it's a structural problem, not an attitude problem. A framework for building real integration at mortgage lenders.",
+    "keywords": ["marketing sales alignment mortgage", "loan officer marketing disconnect", "sales enablement lender", "lead handoff mortgage", "marketing operations mortgage", "sales marketing integration", "lead scoring mortgage", "CRM workflow lender", "marketing accountability"]
+  },
+  "relatedContent": [
+    { "title": "The Lead Gen Playbook Broke", "slug": "the-lead-gen-playbook-broke", "type": "blog" },
+    { "title": "Speed to Lead Is a Lie", "slug": "speed-to-lead-is-a-lie", "type": "blog" },
+    { "title": "AI Lead Scoring", "slug": "ai-lead-scoring", "type": "glossary" },
+    { "title": "Lead Nurturing Automation", "slug": "lead-nurturing-automation", "type": "glossary" },
+    { "title": "Sales Manager", "slug": "sales-manager", "type": "persona" }
+  ],
+  "faqs": [
+    { "question": "Why does marketing and sales alignment fail at most mortgage companies?", "answer": "Alignment fails because it's treated as a communication problem when it's actually a structural one. Marketing and sales operate on different timelines, measure different KPIs, and report to different leaders. Without shared systems, shared definitions of lead quality, and shared accountability for outcomes, no amount of meetings will fix the disconnect." },
+    { "question": "What is a lead maturity model and how does it help?", "answer": "A lead maturity model defines five stages from raw inquiry to sales-ready, with specific behavioral triggers that advance a lead from one stage to the next. Marketing owns the early stages of nurturing and qualification, while sales owns the later stages. This creates a clear handoff point and eliminates the ambiguity that causes friction between teams." },
+    { "question": "How can mortgage lenders get loan officers to use brand-approved content?", "answer": "The key is making compliant content easier to use than what LOs create on their own. Build a library of pre-approved, compliance-cleared templates that auto-populate with current rates and local market data. When your templates outperform homemade alternatives, adoption becomes organic rather than forced." }
+  ],
+  "lastUpdated": "2026-04-02"
+}

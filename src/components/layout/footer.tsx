@@ -6,12 +6,15 @@ import { Linkedin, Twitter, Mail } from "lucide-react";
 
 const footerLinks = {
   services: [
-    { name: "AI Strategy Consulting", href: "/services#consulting" },
+    { name: "AI Strategy Consulting", href: "/services/consulting" },
     { name: "Speaking Engagements", href: "/speaking" },
-    { name: "Marketing Automation", href: "/services#automation" },
+    { name: "Solutions by Role", href: "/solutions" },
   ],
   resources: [
-    { name: "Blog", href: "/blog" },
+    { name: "Blog & Articles", href: "/insights/blog" },
+    { name: "AI Glossary", href: "/insights/glossary" },
+    { name: "Tools & Resources", href: "/insights/tools" },
+    { name: "Campaign Examples", href: "/insights/examples" },
   ],
   connect: [
     { name: "Contact", href: "/contact" },

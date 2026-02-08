@@ -440,12 +440,7 @@ export default function ConsultingPage() {
       </section>
 
       {/* Newsletter CTA Section */}
-      <CtaSection 
-        variant="compact"
-        showFeatures={true}
-        showTrustIndicators={true}
-        showBackground={true}
-      />
+      <CtaSection variant="compact" />
     </main>
   );
 }

@@ -19,32 +19,70 @@ import {
   FileText,
   Linkedin,
   ArrowRight,
-  ExternalLink
+  ExternalLink,
+  Wrench,
+  Lightbulb,
+  Users
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 // Navigation items with submenu structure
 const navigationItems = [
   { name: "About", href: "/about" },
-  { 
-    name: "Services", 
+  {
+    name: "Services",
     href: "/services",
     submenu: [
-      { 
-        name: "Speaking Engagements", 
-        href: "/speaking", 
-        description: "Keynotes and workshops on AI in mortgage marketing", 
-        icon: Mic 
+      {
+        name: "Speaking Engagements",
+        href: "/speaking",
+        description: "Keynotes and workshops on AI in mortgage marketing",
+        icon: Mic
       },
-      { 
-        name: "Consulting", 
-        href: "/services/consulting", 
-        description: "Strategic guidance for enterprise mortgage companies", 
-        icon: Briefcase 
+      {
+        name: "Consulting",
+        href: "/services/consulting",
+        description: "Strategic guidance for enterprise mortgage companies",
+        icon: Briefcase
+      },
+      {
+        name: "Solutions by Role",
+        href: "/solutions",
+        description: "AI marketing strategies tailored to your role",
+        icon: Users
       }
     ]
   },
-  { name: "Blog", href: "/insights/blog" },
+  {
+    name: "Insights",
+    href: "/insights",
+    submenu: [
+      {
+        name: "Blog & Articles",
+        href: "/insights/blog",
+        description: "Thought leadership on AI in mortgage marketing",
+        icon: BookOpen
+      },
+      {
+        name: "Glossary",
+        href: "/insights/glossary",
+        description: "AI and mortgage marketing terms explained",
+        icon: FileText
+      },
+      {
+        name: "Tools & Resources",
+        href: "/insights/tools",
+        description: "Curated AI tools for mortgage professionals",
+        icon: Wrench
+      },
+      {
+        name: "Campaign Examples",
+        href: "/insights/examples",
+        description: "Real-world AI marketing campaigns that work",
+        icon: Lightbulb
+      }
+    ]
+  },
   { name: "Contact", href: "/contact" }
 ];
 

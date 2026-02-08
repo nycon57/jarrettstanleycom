@@ -20,7 +20,6 @@ export const metadata: Metadata = generateSEOMetadata({
   description: 'Proven AI marketing strategies that generated $500M+ in loan originations. Strategic advisor and keynote speaker transforming the mortgage industry through artificial intelligence.',
   keywords: ['AI mortgage marketing expert', 'mortgage marketing consultant', 'mortgage digital transformation', 'AI lending strategies', 'mortgage technology keynote speaker', 'Jarrett Stanley'],
   canonical: '/',
-  ogImage: '/assets/images/jarrett-stanley-homepage-og.jpg'
 })
 
 export default function HomePage() {

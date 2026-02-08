@@ -1,0 +1,142 @@
+{
+  "slug": "sales-manager",
+  "title": "AI Marketing Strategies for Sales Managers",
+  "personaName": "Sales Managers",
+  "personaDescription": "As a sales manager, your team's production depends on a steady stream of qualified leads and the tools to convert them efficiently. AI marketing bridges the gap between lead generation and loan closing, giving your producers better leads, faster follow-up, and the insights they need to hit their numbers.",
+  "painPoints": [
+    {
+      "title": "Lead Quality Complaints from Producers",
+      "description": "Your LOs constantly complain about lead quality. They waste time chasing unqualified prospects while good opportunities slip through the cracks. Without effective lead scoring, every lead gets the same treatment regardless of its actual potential."
+    },
+    {
+      "title": "Inconsistent Follow-Up Execution",
+      "description": "Even your best producers struggle with consistent follow-up. Some leads get called immediately, others languish for days. The speed-to-lead data is clear, but getting an entire team to follow up within minutes is an execution challenge, not a knowledge gap."
+    },
+    {
+      "title": "Uneven Team Performance",
+      "description": "Your top 20% of producers generate 80% of volume. The rest have the capability but lack the consistent lead flow, marketing support, and systematic approach that top performers develop naturally. You need to replicate success, not just celebrate it."
+    },
+    {
+      "title": "CRM Adoption & Data Quality",
+      "description": "Your CRM is only as good as the data your team puts in. LOs view data entry as administrative burden rather than strategic advantage. Pipeline visibility suffers because half the team treats the CRM as optional."
+    },
+    {
+      "title": "Coaching with Incomplete Information",
+      "description": "You want to coach your team based on data, but you don't have visibility into what's actually happening in their pipelines. By the time you spot a problem in monthly reports, the damage is already done. You need real-time performance intelligence."
+    }
+  ],
+  "aiSolutions": [
+    {
+      "title": "AI Lead Scoring & Prioritization",
+      "description": "AI that evaluates every lead based on hundreds of data points, including credit indicators, behavioral signals, engagement patterns, and demographic factors, and delivers a prioritized list to each LO so they always work the highest-potential opportunities first.",
+      "impactMetric": "45% increase in lead-to-application conversion rate"
+    },
+    {
+      "title": "Automated Speed-to-Lead System",
+      "description": "AI-powered instant response that engages new leads within 60 seconds via text, email, or chat, qualifying the prospect and scheduling a call with the right LO. No lead goes untouched, regardless of when it arrives or what your team is doing.",
+      "impactMetric": "95% of leads contacted within 60 seconds"
+    },
+    {
+      "title": "AI Sales Coaching Intelligence",
+      "description": "Real-time dashboards that track individual and team performance, pipeline health, conversion rates, and activity levels. AI identifies coaching opportunities, highlights at-risk deals, and surfaces patterns that help you intervene before problems become missed quotas.",
+      "impactMetric": "Real-time visibility into team performance and pipeline health"
+    },
+    {
+      "title": "Automated CRM Enrichment",
+      "description": "AI that automatically captures and enriches contact data from calls, emails, and interactions, reducing manual data entry and ensuring your CRM reflects reality. Your team spends time selling, not typing, and you get the pipeline visibility you need.",
+      "impactMetric": "75% reduction in manual CRM data entry"
+    },
+    {
+      "title": "Performance Pattern Recognition",
+      "description": "AI that analyzes what your top producers do differently, including their response patterns, communication styles, follow-up cadences, and conversion tactics, then codifies those behaviors into playbooks and automations that lift the entire team.",
+      "impactMetric": "30% improvement in average producer performance"
+    }
+  ],
+  "useCases": [
+    {
+      "title": "The AI-Enabled Sales Floor",
+      "description": "In my work with sales managers, the transformation happens when AI handles the operational mechanics of sales: lead distribution, follow-up scheduling, CRM updates, and performance tracking. This frees your LOs to do what they're actually good at, building relationships and closing loans, while ensuring nothing falls through the cracks.",
+      "outcome": "35% increase in team-wide funded loan volume within 6 months"
+    },
+    {
+      "title": "Top-Producer Replication",
+      "description": "What I've seen work is using AI to analyze your top producers' workflows and systematize their approach. AI identifies the specific behaviors, timing, and messaging that drive their success, then builds automated playbooks that help your mid-tier producers adopt those same practices.",
+      "outcome": "Average producer performing at 70th percentile within 90 days of AI implementation"
+    },
+    {
+      "title": "Predictive Pipeline Management",
+      "description": "AI that forecasts team production with accuracy that transforms your planning. The system predicts which deals will close, which are at risk, and where your pipeline needs reinforcement, giving you weeks of lead time to make adjustments rather than reacting to missed numbers.",
+      "outcome": "90% pipeline forecast accuracy replacing gut-feel projections"
+    }
+  ],
+  "benefits": [
+    {
+      "title": "Higher-Quality Lead Flow",
+      "description": "Every lead your team works is scored and prioritized by AI. Producers focus on the prospects most likely to close, dramatically improving conversion rates and reducing wasted effort.",
+      "metric": "45% improvement in lead-to-close conversion"
+    },
+    {
+      "title": "Consistent Execution",
+      "description": "AI ensures every lead gets immediate, professional follow-up regardless of time, day, or team workload. Eliminate the execution gaps that cost your team deals.",
+      "metric": "95% speed-to-lead within 60 seconds"
+    },
+    {
+      "title": "Team-Wide Performance Lift",
+      "description": "AI-powered systems replicate top-producer behaviors across your entire team. Raise the floor, not just the ceiling, of team performance.",
+      "metric": "30% improvement in average production per LO"
+    },
+    {
+      "title": "Data-Driven Coaching",
+      "description": "Coach with precision using real-time performance data, pipeline analytics, and AI-identified coaching opportunities. Spot problems early and intervene with targeted guidance.",
+      "metric": "Real-time performance intelligence"
+    },
+    {
+      "title": "Accurate Forecasting",
+      "description": "Replace gut-feel pipeline projections with AI-powered forecasts. Know what's closing, what's at risk, and where to focus your team's energy.",
+      "metric": "90% pipeline forecast accuracy"
+    }
+  ],
+  "ctaHeading": "Ready to Build a Team That Consistently Hits Its Numbers?",
+  "ctaDescription": "I help sales managers implement AI systems that improve lead quality, ensure consistent follow-up, and lift team-wide performance. Let's discuss how AI can help your team close more loans.",
+  "relatedContent": [
+    { "title": "Lead Scoring", "slug": "lead-scoring", "type": "glossary" },
+    { "title": "Predictive Analytics", "slug": "predictive-analytics", "type": "glossary" },
+    { "title": "Consulting Services", "slug": "consulting", "type": "service" },
+    { "title": "AI for Loan Officers", "slug": "loan-officer", "type": "persona" },
+    { "title": "AI for Branch Managers", "slug": "branch-manager", "type": "persona" },
+    { "title": "AI for CMOs & VPs", "slug": "cmo-vp-marketing", "type": "persona" }
+  ],
+  "faqs": [
+    {
+      "question": "How do I get my LOs to actually use AI tools?",
+      "answer": "The key is making AI invisible. The best AI tools work behind the scenes: scoring leads before LOs see them, sending instant responses automatically, and enriching CRM data without manual input. When AI makes their job easier without adding steps, adoption happens naturally."
+    },
+    {
+      "question": "Will AI lead scoring actually improve my team's conversion rates?",
+      "answer": "Dramatically. The data consistently shows that prioritized lead routing based on AI scoring improves conversion rates by 30-50%. Your team stops wasting time on prospects who won't convert and focuses energy on the opportunities with the highest probability of closing."
+    },
+    {
+      "question": "How does AI help with sales coaching?",
+      "answer": "AI provides the data you need to coach effectively: call patterns, response times, pipeline movement, and conversion rates at the individual level. More importantly, AI identifies what your top producers do differently and helps you replicate those behaviors across the team."
+    },
+    {
+      "question": "Can AI really respond to leads faster than my team?",
+      "answer": "AI responds within seconds, 24/7, with personalized messages that qualify the prospect and schedule callbacks. It's not about replacing human conversation; it's about ensuring every lead gets immediate engagement while your LOs are on calls, in closings, or off the clock."
+    }
+  ],
+  "seo": {
+    "title": "AI Marketing for Sales Managers | Jarrett Stanley",
+    "description": "AI strategies for mortgage sales managers. Improve lead quality, boost team performance, and hit production targets with AI-powered sales and marketing systems.",
+    "keywords": [
+      "mortgage sales manager AI",
+      "AI lead scoring mortgage",
+      "sales team AI tools",
+      "mortgage sales performance",
+      "AI speed to lead",
+      "sales coaching AI mortgage",
+      "loan officer productivity AI",
+      "mortgage sales automation"
+    ]
+  },
+  "lastUpdated": "2026-02-07"
+}

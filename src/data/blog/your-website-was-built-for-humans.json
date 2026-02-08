@@ -1,0 +1,100 @@
+{
+  "slug": "your-website-was-built-for-humans",
+  "title": "Your Website Was Built for Humans. AI Doesn't Care.",
+  "excerpt": "AI search engines now drive 44% of discovery for financial services. Your beautifully designed website is invisible to them. A framework for Answer Engine Optimization and Generative Engine Optimization that puts mortgage brands where borrowers actually look.",
+  "content": [
+    { "type": "paragraph", "text": "Your website looks great. The hero image is sharp, the navigation is clean, the conversion forms are optimized. It was built for humans who land on a page and scroll." },
+    { "type": "paragraph", "text": "The problem is that an increasing share of your potential borrowers never land on your page at all." },
+    { "type": "paragraph", "text": "AI search tools like ChatGPT, Perplexity, Google AI Overviews, and Gemini are reshaping how people find mortgage information. Research from Gartner projects that **traditional search traffic will decline 25% by 2026** as AI-powered answers replace click-through behavior. For financial services, AI-driven discovery already accounts for a significant and growing share of how borrowers start their research." },
+    { "type": "paragraph", "text": "If your marketing strategy depends on someone clicking a blue link and landing on your site, you are optimizing for a behavior that is in structural decline." },
+    { "type": "heading", "text": "How AI search actually works", "level": 2 },
+    { "type": "paragraph", "text": "Traditional SEO is about ranking. AI search is about **being selected as a source.** That is a fundamentally different game." },
+    { "type": "paragraph", "text": "When a borrower asks ChatGPT \"What are current FHA loan requirements?\" or asks Perplexity \"Best mortgage lenders for first-time buyers in New Jersey,\" the AI synthesizes information from multiple sources and presents a single answer. It might cite your content. It might not. The decision depends on factors that are different from traditional ranking signals." },
+    { "type": "list", "style": "bullet", "items": [
+      "**Structured, factual content** gets cited more than opinion or promotional copy",
+      "**Specific answers to specific questions** outperform general overviews",
+      "**Authoritative sources** with consistent, verifiable information get weighted higher",
+      "**Schema markup and clear data formatting** help AI systems parse and extract your content"
+    ] },
+    { "type": "callout", "text": "In AI search, you are not competing for a position on a results page. You are competing to be the source that the AI trusts enough to cite.", "variant": "insight" },
+    { "type": "heading", "text": "Answer Engine Optimization: the new SEO", "level": 2 },
+    { "type": "paragraph", "text": "Answer Engine Optimization (AEO) is the practice of structuring your content so that AI systems can find it, parse it, and cite it in generated answers. It is not a replacement for traditional SEO. It is an additional layer that is becoming essential." },
+    { "type": "paragraph", "text": "The core principles of AEO for mortgage companies:" },
+    { "type": "list", "style": "numbered", "items": [
+      "**Answer the question directly.** Start pages and sections with clear, factual answers. AI systems extract the most direct response to a query. Bury your answer under three paragraphs of preamble and you lose.",
+      "**Use question-and-answer formatting.** FAQ sections, structured Q&A, and clear heading hierarchies (H2 as question, content as answer) make it easy for AI to extract and attribute.",
+      "**Publish specific, current data.** AI search prioritizes recency and specificity. \"FHA loan limits for 2026\" with actual county-level data beats \"Learn about FHA loans\" every time.",
+      "**Implement comprehensive schema markup.** FAQPage, Article, FinancialProduct, and Organization schemas give AI systems machine-readable signals about your content."
+    ] },
+    { "type": "heading", "text": "Generative Engine Optimization: earning citations", "level": 2 },
+    { "type": "paragraph", "text": "Generative Engine Optimization (GEO) goes beyond formatting. It is about building the kind of content authority that makes AI systems consistently reference your brand." },
+    { "type": "paragraph", "text": "GEO strategies that work for mortgage companies:" },
+    { "type": "list", "style": "bullet", "items": [
+      "**Build topical depth, not breadth.** AI systems recognize expertise clusters. A lender with 50 pages covering every angle of VA loans will be cited for VA questions more than a lender with one generic VA page.",
+      "**Create original data and benchmarks.** AI search loves citable data. Publish your own rate comparisons, market analyses, or borrower surveys and AI systems will reference them.",
+      "**Maintain a consistent knowledge graph.** Your company name, NMLS number, service areas, and loan products should be structured identically across your site, Google Business Profile, and third-party directories.",
+      "**Earn mentions on authoritative platforms.** AI search pulls from a wide corpus. Press mentions, industry publication features, and expert roundups all increase your likelihood of being cited."
+    ] },
+    { "type": "heading", "text": "What this means for your website", "level": 2 },
+    { "type": "paragraph", "text": "Your website still matters. But its job is changing. It is no longer just a destination. It is a **content repository that AI systems mine for answers.**" },
+    { "type": "paragraph", "text": "That means rethinking how you structure and publish content. Every page should be evaluated on two axes: how well it converts a human visitor, and how well it serves as a source for AI-generated answers. Often, the changes that improve one improve the other. Clearer structure, more specific data, better organized information." },
+    { "type": "callout", "text": "The best mortgage websites in 2026 will be designed for two audiences simultaneously: borrowers who land on the page and AI systems that mine it for answers.", "variant": "tip" },
+    { "type": "heading", "text": "A practical starting framework", "level": 2 },
+    { "type": "paragraph", "text": "You do not need to rebuild your entire digital presence. Start with these moves." },
+    { "type": "list", "style": "numbered", "items": [
+      "**Audit your top 20 pages for AI readability.** Can the key answer on each page be extracted in one paragraph? Is the structure clear enough for a machine to parse?",
+      "**Add FAQ schema to every product and educational page.** This is the single highest-ROI AEO action for most mortgage websites.",
+      "**Build one deep content cluster around your strongest loan product.** Create 10-15 pages covering every borrower question about that product, interlinked and structured for both humans and AI.",
+      "**Monitor AI search citations.** Track whether your brand appears in ChatGPT, Perplexity, and Google AI Overview results for your target queries. This is your new ranking metric."
+    ] },
+    { "type": "paragraph", "text": "The shift from SEO to AEO and GEO is not a trend. It is a structural change in how borrowers discover lenders. The mortgage companies that adapt their content strategy now will own the AI search landscape. The ones that keep optimizing only for blue links will wonder why their traffic keeps declining." }
+  ],
+  "publishedAt": "2026-02-17T12:00:00Z",
+  "readTimeMinutes": 5,
+  "isFeatured": false,
+  "author": {
+    "name": "Jarrett Stanley",
+    "title": "Chief Marketing Officer",
+    "company": "Nationwide Mortgage Bankers"
+  },
+  "categories": ["ai-automation", "operations"],
+  "featuredImage": "https://nksqewatarrgiqvnddcp.supabase.co/storage/v1/object/public/ttai-media/blog-featured/your-website-was-built-for-humans.png",
+  "seo": {
+    "title": "Your Website Was Built for Humans. AI Doesn't Care. | Jarrett Stanley",
+    "description": "AI search drives growing share of mortgage discovery. A framework for Answer Engine Optimization and Generative Engine Optimization for mortgage brands.",
+    "keywords": [
+      "answer engine optimization mortgage",
+      "generative engine optimization",
+      "AI search mortgage",
+      "AEO mortgage marketing",
+      "GEO strategy mortgage",
+      "AI Overviews mortgage",
+      "ChatGPT mortgage search",
+      "mortgage SEO 2026",
+      "schema markup mortgage",
+      "AI content strategy"
+    ]
+  },
+  "relatedContent": [
+    { "title": "The Trust Deficit Nobody Talks About", "slug": "the-trust-deficit-nobody-talks-about", "type": "blog" },
+    { "title": "Mortgage SEO", "slug": "mortgage-seo", "type": "glossary" },
+    { "title": "Mortgage Content Marketing", "slug": "mortgage-content-marketing", "type": "glossary" },
+    { "title": "Digital Mortgage Marketing", "slug": "digital-mortgage-marketing", "type": "glossary" },
+    { "title": "Digital Marketing Specialist", "slug": "digital-marketing-specialist", "type": "persona" }
+  ],
+  "faqs": [
+    {
+      "question": "Is traditional SEO dead for mortgage companies?",
+      "answer": "No, but it is no longer sufficient on its own. Traditional SEO still drives organic traffic and conversions. However, as AI search tools capture a growing share of discovery behavior, mortgage companies need to add AEO and GEO practices on top of existing SEO. Think of it as expanding your optimization strategy, not replacing it."
+    },
+    {
+      "question": "How do I know if AI search engines are citing my content?",
+      "answer": "Start by manually querying your target keywords in ChatGPT, Perplexity, and Google AI Overviews. Note whether your brand or content appears as a cited source. Several emerging tools also track AI search citations, though the space is still maturing. Make this a recurring monthly audit alongside your traditional search ranking reports."
+    },
+    {
+      "question": "What is the difference between AEO and GEO?",
+      "answer": "Answer Engine Optimization (AEO) focuses on structuring your content so AI systems can parse and extract it, using techniques like FAQ formatting, schema markup, and direct answer placement. Generative Engine Optimization (GEO) is broader, focusing on building the topical authority and content depth that makes AI systems consistently cite your brand as a trusted source. AEO is tactical; GEO is strategic."
+    }
+  ],
+  "lastUpdated": "2026-02-17"
+}

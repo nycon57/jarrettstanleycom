@@ -2,29 +2,21 @@
 
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { Metadata } from 'next'
 import { ResourceCard } from '@/components/ui/resource-card'
 import { CategoryFilter } from '@/components/ui/category-filter'
 import { Pagination } from '@/components/ui/pagination'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Resource } from '@/lib/supabase'
 import type { TransformedCategory } from '@/lib/sanity/types'
-import { getResources, getCategories, trackResourceDownload } from '@/app/actions/blog'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { z } from 'zod'
-import { 
-  Download, 
-  Filter, 
-  Grid, 
-  List, 
-  SortAsc, 
+import { getResources, getCategories } from '@/app/actions/blog'
+import { DownloadModal, useDownloadModal } from '@/components/resources/download-modal'
+import {
+  Filter,
+  Grid,
+  List,
+  SortAsc,
   SortDesc,
   FileText,
   BookOpen,
@@ -36,15 +28,6 @@ import {
 } from 'lucide-react'
 
 const RESOURCES_PER_PAGE = 12
-
-const downloadFormSchema = z.object({
-  email: z.string().email('Please enter a valid email address'),
-  firstName: z.string().min(1, 'First name is required'),
-  lastName: z.string().optional(),
-  company: z.string().optional(),
-})
-
-type DownloadFormData = z.infer<typeof downloadFormSchema>
 
 const resourceTypeIcons = {
   whitepaper: FileText,
@@ -69,6 +52,7 @@ const resourceTypeLabels = {
 function ResourcesPageContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
+  const { isOpen, resource, requestDownload, close } = useDownloadModal()
 
   // State
   const [resources, setResources] = useState<Resource[]>([])
@@ -76,9 +60,6 @@ function ResourcesPageContent() {
   const [loading, setLoading] = useState(true)
   const [totalPages, setTotalPages] = useState(0)
   const [totalCount, setTotalCount] = useState(0)
-  const [downloadModalOpen, setDownloadModalOpen] = useState(false)
-  const [selectedResource, setSelectedResource] = useState<Resource | null>(null)
-  const [downloadLoading, setDownloadLoading] = useState(false)
 
   // URL parameters
   const [currentPage, setCurrentPage] = useState(1)
@@ -88,16 +69,6 @@ function ResourcesPageContent() {
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid')
   const [showFilters, setShowFilters] = useState(false)
   const [featuredOnly, setFeaturedOnly] = useState(false)
-
-  // Form
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset
-  } = useForm<DownloadFormData>({
-    resolver: zodResolver(downloadFormSchema)
-  })
 
   // Initialize state from URL parameters
   useEffect(() => {
@@ -164,7 +135,7 @@ function ResourcesPageContent() {
   // Update URL when parameters change
   const updateURL = (params: Record<string, string | number | boolean | undefined>) => {
     const url = new URLSearchParams(searchParams.toString())
-    
+
     Object.entries(params).forEach(([key, value]) => {
       if (value !== undefined && value !== '' && value !== 1 && value !== false) {
         url.set(key, String(value))
@@ -210,43 +181,6 @@ function ResourcesPageContent() {
     setFeaturedOnly(newFeatured)
     setCurrentPage(1)
     updateURL({ featured: newFeatured, page: undefined })
-  }
-
-  const handleResourceDownload = (resource: Resource) => {
-    if (resource.requires_email) {
-      setSelectedResource(resource)
-      setDownloadModalOpen(true)
-    } else {
-      // Direct download
-      window.open(resource.file_url, '_blank')
-    }
-  }
-
-  const onDownloadSubmit = async (data: DownloadFormData) => {
-    if (!selectedResource) return
-
-    setDownloadLoading(true)
-    try {
-      await trackResourceDownload(
-        selectedResource.id,
-        data.email,
-        data.firstName,
-        data.lastName,
-        data.company
-      )
-      
-      // Open download link
-      window.open(selectedResource.file_url, '_blank')
-      
-      // Close modal and reset form
-      setDownloadModalOpen(false)
-      setSelectedResource(null)
-      reset()
-    } catch (error) {
-      console.error('Error tracking download:', error)
-    } finally {
-      setDownloadLoading(false)
-    }
   }
 
   const clearFilters = () => {
@@ -320,7 +254,7 @@ function ResourcesPageContent() {
                     `${totalCount} resource${totalCount !== 1 ? 's' : ''} found`
                   )}
                 </div>
-                
+
                 <Button
                   variant="outline"
                   size="sm"
@@ -430,7 +364,7 @@ function ResourcesPageContent() {
             {/* Main content */}
             <main className="flex-1">
               {loading ? (
-                <div className={viewMode === 'grid' 
+                <div className={viewMode === 'grid'
                   ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
                   : "space-y-6"
                 }>
@@ -455,7 +389,7 @@ function ResourcesPageContent() {
                 </div>
               ) : (
                 <>
-                  <div className={viewMode === 'grid' 
+                  <div className={viewMode === 'grid'
                     ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12"
                     : "space-y-6 mb-12"
                   }>
@@ -463,7 +397,7 @@ function ResourcesPageContent() {
                       <ResourceCard
                         key={resource.id}
                         resource={resource}
-                        onDownload={handleResourceDownload}
+                        onDownload={requestDownload}
                         className={viewMode === 'list' ? 'flex flex-col sm:flex-row' : ''}
                       />
                     ))}
@@ -491,7 +425,7 @@ function ResourcesPageContent() {
               Need Custom Solutions?
             </h2>
             <p className="text-purple-100 text-lg mb-8 max-w-2xl mx-auto">
-              Looking for personalized guidance or custom AI marketing solutions? 
+              Looking for personalized guidance or custom AI marketing solutions?
               Let's discuss how we can help transform your mortgage marketing strategy.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -506,93 +440,11 @@ function ResourcesPageContent() {
         </section>
       </div>
 
-      {/* Download Modal */}
-      <Dialog open={downloadModalOpen} onOpenChange={setDownloadModalOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
-            <DialogTitle>Download Resource</DialogTitle>
-            <DialogDescription>
-              Please provide your information to download{' '}
-              <strong>{selectedResource?.title}</strong>
-            </DialogDescription>
-          </DialogHeader>
-          
-          <form onSubmit={handleSubmit(onDownloadSubmit)} className="space-y-4">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div>
-                <Label htmlFor="firstName">First Name *</Label>
-                <Input
-                  id="firstName"
-                  {...register('firstName')}
-                  placeholder="Your first name"
-                />
-                {errors.firstName && (
-                  <p className="text-sm text-red-600 mt-1">{errors.firstName.message}</p>
-                )}
-              </div>
-              
-              <div>
-                <Label htmlFor="lastName">Last Name</Label>
-                <Input
-                  id="lastName"
-                  {...register('lastName')}
-                  placeholder="Your last name"
-                />
-              </div>
-            </div>
-            
-            <div>
-              <Label htmlFor="email">Email Address *</Label>
-              <Input
-                id="email"
-                type="email"
-                {...register('email')}
-                placeholder="your.email@company.com"
-              />
-              {errors.email && (
-                <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>
-              )}
-            </div>
-            
-            <div>
-              <Label htmlFor="company">Company</Label>
-              <Input
-                id="company"
-                {...register('company')}
-                placeholder="Your company name"
-              />
-            </div>
-            
-            <div className="flex justify-end space-x-2 pt-4">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setDownloadModalOpen(false)}
-                disabled={downloadLoading}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                disabled={downloadLoading}
-                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white"
-              >
-                {downloadLoading ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                    Downloading...
-                  </>
-                ) : (
-                  <>
-                    <Download className="w-4 h-4 mr-2" />
-                    Download Now
-                  </>
-                )}
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
+      <DownloadModal
+        isOpen={isOpen}
+        resource={resource}
+        onClose={close}
+      />
     </>
   )
 }
