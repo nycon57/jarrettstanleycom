@@ -3,6 +3,7 @@ import localFont from 'next/font/local'
 import { Providers } from '@/components/providers'
 import { cn } from '@/lib/utils'
 import { generateMetadata as generateSEOMetadata, generatePersonSchema, generateOrganizationSchema, generateWebsiteSchema, generateStructuredData } from '@/lib/seo'
+import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const signal = localFont({
@@ -106,6 +107,7 @@ export default function RootLayout({
         <Providers>
           {children}
         </Providers>
+        <Analytics />
       </body>
     </html>
   )
