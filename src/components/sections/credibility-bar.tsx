@@ -2,13 +2,12 @@
 
 import { motion } from 'framer-motion'
 import { Card, CardContent } from '@/components/ui/card'
-import { Award, Brain, Mic, Users } from 'lucide-react'
 
 const credibilityItems = [
-  { icon: Award, title: "AI Marketing Pioneer", subtitle: "20+ Years Transforming Mortgage Marketing Through Innovation" },
-  { icon: Brain, title: "Strategic Advisor", subtitle: "Architecting AI Solutions That Drive $500M+ in Loan Originations" },
-  { icon: Mic, title: "Keynote Authority", subtitle: "Featured Speaker at Major Industry Events Nationwide" },
-  { icon: Users, title: "Trusted Partner", subtitle: "Empowering Fortune 500 and Enterprise Mortgage Leaders" }
+  { stat: "20+", label: "Years", subtitle: "Leading mortgage marketing at enterprise scale" },
+  { stat: "Enterprise", label: "Scale", subtitle: "AI marketing strategies built for national mortgage lenders" },
+  { stat: "50+", label: "Events", subtitle: "Keynote speaker at industry conferences nationwide" },
+  { stat: "2", label: "Companies", subtitle: "CMO at Nationwide Mortgage Bankers. CEO at TrueTone AI" },
 ]
 
 export function CredibilityBar() {
@@ -18,8 +17,8 @@ export function CredibilityBar() {
       <div className="max-w-7xl mx-auto px-4 relative">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {credibilityItems.map((item, index) => (
-            <motion.div 
-              key={index} 
+            <motion.div
+              key={index}
               className="group text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -29,17 +28,12 @@ export function CredibilityBar() {
             >
               <Card variant="blur" className="text-center hover:bg-white/10 transition-all">
                 <CardContent className="p-6">
-                  <motion.div 
-                    className="relative mx-auto w-16 h-16 mb-4"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-lilac to-orchid rounded-2xl"></div>
-                    <div className="absolute inset-1 bg-background/50 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                      <item.icon className="w-6 h-6 text-white" />
-                    </div>
-                  </motion.div>
-                  <h3 className="font-semibold text-lg mb-2 text-foreground">{item.title}</h3>
+                  <div className="text-4xl md:text-5xl font-signal font-bold bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent mb-1">
+                    {item.stat}
+                  </div>
+                  <div className="text-sm font-semibold text-foreground/60 uppercase tracking-wider mb-3">
+                    {item.label}
+                  </div>
                   <p className="text-muted-foreground text-sm leading-relaxed">{item.subtitle}</p>
                 </CardContent>
               </Card>

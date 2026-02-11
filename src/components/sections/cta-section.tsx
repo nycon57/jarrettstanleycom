@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Mail, Brain, TrendingUp } from "lucide-react";
+import { ArrowRight, Wrench, BarChart3, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -84,9 +84,9 @@ const CtaSection = ({
             "font-signal font-bold text-center tracking-tight",
             variant === "compact" ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl lg:text-6xl"
           )}>
-            Stay Ahead of the
+            Cut Through the Noise.
             <span className="block mt-2 bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent animate-gradient bg-300% bg-gradient-x">
-              AI Revolution
+              Subscribe to The Signal.
             </span>
           </h2>
 
@@ -96,12 +96,12 @@ const CtaSection = ({
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-lilac to-orchid rounded-lg blur-sm opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative w-10 h-10 bg-gradient-to-br from-lilac/10 to-orchid/10 dark:from-lilac/20 dark:to-orchid/20 rounded-lg flex items-center justify-center border border-lilac/20 dark:border-lilac/30 group-hover:border-lilac/40 dark:group-hover:border-lilac/50 transition-colors">
-                  <Brain className="h-5 w-5 text-lilac dark:text-lilac" />
+                  <Wrench className="h-5 w-5 text-lilac dark:text-lilac" />
                 </div>
               </div>
               <div className="text-sm">
-                <div className="font-semibold text-foreground">AI Insights</div>
-                <div className="text-muted-foreground">Weekly deep dives</div>
+                <div className="font-semibold text-foreground">AI Tool Reviews</div>
+                <div className="text-muted-foreground">Unbiased breakdowns</div>
               </div>
             </div>
 
@@ -109,12 +109,12 @@ const CtaSection = ({
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-orchid to-skyward rounded-lg blur-sm opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative w-10 h-10 bg-gradient-to-br from-orchid/10 to-skyward/10 dark:from-orchid/20 dark:to-skyward/20 rounded-lg flex items-center justify-center border border-orchid/20 dark:border-orchid/30 group-hover:border-orchid/40 dark:group-hover:border-orchid/50 transition-colors">
-                  <Mail className="h-5 w-5 text-orchid dark:text-orchid" />
+                  <BarChart3 className="h-5 w-5 text-orchid dark:text-orchid" />
                 </div>
               </div>
               <div className="text-sm">
-                <div className="font-semibold text-foreground">Exclusive Content</div>
-                <div className="text-muted-foreground">Members-only access</div>
+                <div className="font-semibold text-foreground">Industry Strategy</div>
+                <div className="text-muted-foreground">20+ years of frameworks</div>
               </div>
             </div>
 
@@ -122,20 +122,18 @@ const CtaSection = ({
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-skyward to-lavender rounded-lg blur-sm opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
                 <div className="relative w-10 h-10 bg-gradient-to-br from-skyward/10 to-lavender/10 dark:from-skyward/20 dark:to-lavender/20 rounded-lg flex items-center justify-center border border-skyward/20 dark:border-skyward/30 group-hover:border-skyward/40 dark:group-hover:border-skyward/50 transition-colors">
-                  <TrendingUp className="h-5 w-5 text-skyward dark:text-skyward" />
+                  <FileText className="h-5 w-5 text-skyward dark:text-skyward" />
                 </div>
               </div>
               <div className="text-sm">
-                <div className="font-semibold text-foreground">Growth Strategies</div>
-                <div className="text-muted-foreground">Proven frameworks</div>
+                <div className="font-semibold text-foreground">Case Studies</div>
+                <div className="text-muted-foreground">Real AI in mortgage</div>
               </div>
             </div>
           </div>
 
-          {/* Description */}
-          <p className="mt-6 text-lg md:text-xl text-muted-foreground text-center max-w-2xl leading-relaxed">
-            Get exclusive insights on <span className="text-lilac dark:text-lilac font-semibold">AI-powered mortgage marketing</span> delivered to your inbox.
-            Join <span className="text-orchid dark:text-orchid font-semibold">industry thought leaders</span> who are transforming their business with AI.
+          <p className="mt-8 text-lg text-muted-foreground text-center max-w-2xl">
+            A weekly newsletter on AI and mortgage marketing &mdash; written by a CMO who builds with it every day.
           </p>
 
           {/* Form */}

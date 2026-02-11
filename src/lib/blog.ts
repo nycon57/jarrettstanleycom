@@ -100,6 +100,7 @@ export function toTransformedPost(post: BlogPost): TransformedPost {
     title: post.title,
     slug: post.slug,
     excerpt: post.excerpt,
+    featured_image_url: post.featuredImage,
     published_at: post.publishedAt,
     read_time_minutes: post.readTimeMinutes,
     is_featured: post.isFeatured,

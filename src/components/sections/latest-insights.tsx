@@ -95,7 +95,7 @@ const LatestInsights = ({ posts }: LatestInsightsProps) => {
             >
               <div className="group h-full overflow-hidden rounded-xl border border-lilac/20 bg-card shadow-sm transition-all hover:shadow-xl hover:border-lilac/40">
                 <Link href={`/insights/blog/${post.slug}`} className="flex h-full flex-col">
-                  <div className="relative aspect-[4/3] w-full overflow-hidden bg-gradient-to-br from-lilac/20 to-orchid/20">
+                  <div className="relative aspect-[1200/630] w-full overflow-hidden bg-gradient-to-br from-lilac/20 to-orchid/20">
                     {post.categories && post.categories.length > 0 && (
                       <Badge 
                         className="absolute top-4 right-4 z-10 bg-gradient-to-r from-lilac to-orchid text-white border-none"

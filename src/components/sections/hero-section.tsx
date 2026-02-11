@@ -3,7 +3,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from '@/components/ui/button'
-import { Mic, Sparkles } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { Mic, ArrowRight } from 'lucide-react'
 import { motion, useReducedMotion } from 'framer-motion'
 
 export function HeroSection() {
@@ -15,12 +16,12 @@ export function HeroSection() {
         {/* Additional gradient overlay for depth */}
         <div className="absolute inset-0 bg-gradient-to-r from-gray-100/50 via-transparent to-lilac/10 dark:from-shadow/80 dark:via-transparent dark:to-lilac/20"></div>
       </div>
-      
+
       {/* Main Content Container - Add top padding for navigation */}
       <div className="relative z-10 h-full flex">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full pt-24">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch h-[calc(900px-6rem)]">
-            
+
             {/* Left Side - Cutout Image */}
             <div className="relative order-2 lg:order-1 flex items-end justify-center lg:justify-start">
               <div className="relative w-full max-w-md lg:max-w-lg mx-auto lg:mx-0 flex flex-col justify-end">
@@ -47,6 +48,20 @@ export function HeroSection() {
             {/* Right Side - Text Content */}
             <div className="order-1 lg:order-2 text-center lg:text-left flex items-center">
               <div className="w-full">
+                {/* Credential badge */}
+                <motion.div
+                  initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1, duration: 0.5 }}
+                >
+                  <Badge
+                    variant="outline"
+                    className="mb-6 px-4 py-1.5 text-sm border-lilac/40 text-muted-foreground bg-white/50 dark:bg-white/5 backdrop-blur-sm"
+                  >
+                    CMO, Nationwide Mortgage Bankers &bull; CEO, TrueTone AI
+                  </Badge>
+                </motion.div>
+
                 {/* Main heading */}
                 <motion.h1
                   className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-signal font-bold mb-6 lg:mb-8 text-gray-900 dark:text-white leading-[1.1]"
@@ -60,7 +75,7 @@ export function HeroSection() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.2, duration: 0.6 }}
                   >
-                    WHERE MORTGAGE
+                    MOST COMPANIES
                   </motion.span>
                   <motion.span
                     className="block mb-2"
@@ -68,7 +83,7 @@ export function HeroSection() {
                     animate={{ opacity: 1, x: 0 }}
                     transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4, duration: 0.6 }}
                   >
-                    MARKETING MEETS
+                    TALK ABOUT AI.
                   </motion.span>
                   <motion.span
                     className="block bg-gradient-to-r from-lilac via-lavender to-skyward bg-clip-text text-transparent"
@@ -76,10 +91,10 @@ export function HeroSection() {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.6, duration: 0.8, ease: "easeOut" }}
                   >
-                    ARTIFICIAL INTELLIGENCE
+                    I BUILD WITH IT.
                   </motion.span>
                 </motion.h1>
-                
+
                 {/* Subheadline */}
                 <motion.p
                   className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-200 mb-8 lg:mb-10 leading-relaxed font-hind max-w-2xl mx-auto lg:mx-0"
@@ -87,9 +102,9 @@ export function HeroSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.8, duration: 0.6 }}
                 >
-                  Harness the power of artificial intelligence to transform your mortgage marketing and accelerate growth.
+                  I help mortgage companies use AI to generate more loans, cut wasted spend, and build marketing that actually scales. Speaker, strategic advisor, and the guy who built it at Nationwide.
                 </motion.p>
-                
+
                 {/* Action buttons */}
                 <motion.div
                   className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
@@ -97,25 +112,25 @@ export function HeroSection() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={shouldReduceMotion ? { duration: 0 } : { delay: 1, duration: 0.6 }}
                 >
-                  <Button 
+                  <Button
                     asChild
                     size="lg"
                     className="bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-base px-8 py-4 h-auto"
                   >
                     <Link href="/speaking">
                       <Mic className="mr-2 h-5 w-5" />
-                      Book a Keynote
+                      Book a Speaking Engagement
                     </Link>
                   </Button>
-                  <Button 
+                  <Button
                     asChild
                     size="lg"
                     variant="outline"
                     className="border-2 border-gray-300 dark:border-white/40 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/60 backdrop-blur-sm transition-all duration-300 text-base px-8 py-4 h-auto"
                   >
-                    <Link href="/services">
-                      <Sparkles className="mr-2 h-5 w-5" />
-                      Start Transformation
+                    <Link href="/services/consulting">
+                      <ArrowRight className="mr-2 h-5 w-5" />
+                      Explore Consulting
                     </Link>
                   </Button>
                 </motion.div>

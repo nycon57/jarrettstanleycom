@@ -1,5 +1,6 @@
-import { Brain, Target, Trophy, Users } from "lucide-react";
+import { Mic, Brain, BookOpen } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 import { Badge } from "@/components/ui/badge";
 
@@ -14,19 +15,21 @@ const BridgingGapSection = () => {
               variant="outline"
               className="flex items-center gap-1 px-2.5 py-1.5 text-sm border-lilac/50 text-lilac dark:border-lilac/30"
             >
-              <Trophy className="h-auto w-4" />
-              Industry Leadership
+              Work With Me
             </Badge>
             <h2 className="text-center text-3xl font-semibold lg:text-left lg:text-4xl text-foreground">
-              Bridging the Gap Between <span className="text-transparent bg-clip-text bg-gradient-to-r from-lilac to-orchid">Technology and Trust</span>
+              What You Get When You{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-lilac to-orchid">
+                Work With Me
+              </span>
             </h2>
-              <p className="text-center text-muted-foreground lg:text-left lg:text-lg">
-                With over two decades of experience pioneering AI-powered mortgage marketing, I've helped industry leaders generate over $500M in loan originations through innovative strategies that balance technology, compliance, and customer trust.
-              </p>
-              
-              <p className="text-center text-muted-foreground lg:text-left lg:text-lg">
-                As an independent strategic advisor, I bring unbiased expertise and proven methodologies to help mortgage companies navigate the AI revolution. My approach combines deep industry knowledge with cutting-edge technology implementation, ensuring every initiative delivers measurable ROI while maintaining regulatory compliance.
-              </p>
+            <p className="text-center text-muted-foreground lg:text-left lg:text-lg">
+              Two decades of mortgage marketing and hands-on experience building AI systems that work in regulated industries. I don&apos;t sell theory &mdash; I share what I&apos;ve built, what failed, and what actually moved the numbers.
+            </p>
+
+            <p className="text-center text-muted-foreground lg:text-left lg:text-lg">
+              As an independent advisor, I have no vendor allegiances and no software to push. My only incentive is helping you get results &mdash; whether that&apos;s on stage, in a strategy session, or through my newsletter.
+            </p>
           </div>
           <div className="relative ml-auto max-h-[450px] w-full">
             <div className="absolute inset-0 bg-gradient-to-r from-lilac/20 to-orchid/20 rounded-xl blur-3xl"></div>
@@ -40,45 +43,54 @@ const BridgingGapSection = () => {
           </div>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
-          <div className="flex flex-col gap-4">
-            <div className="gap flex flex-col gap-3 rounded-lg border p-6 bg-card hover:bg-lilac/5 dark:hover:bg-lilac/10 transition-colors">
+          <Link href="/speaking" className="flex flex-col gap-4 group">
+            <div className="gap flex flex-col gap-3 rounded-lg border p-6 bg-card hover:bg-lilac/5 dark:hover:bg-lilac/10 transition-colors h-full">
+              <div className="flex flex-col items-center gap-2 lg:flex-row">
+                <Mic className="h-auto w-6 text-lilac" />
+                <h3 className="text-center text-lg font-medium lg:text-left">
+                  Speaking Engagements
+                </h3>
+              </div>
+              <p className="text-center text-sm text-muted-foreground md:text-base lg:text-left">
+                Practical keynotes on AI in mortgage marketing. Your audience leaves with frameworks they can use Monday morning, not buzzwords.
+              </p>
+              <span className="text-lilac text-sm font-medium mt-auto group-hover:underline text-center lg:text-left">
+                View topics &amp; book &rarr;
+              </span>
+            </div>
+          </Link>
+          <Link href="/services/consulting" className="flex flex-col gap-4 group">
+            <div className="gap flex flex-col gap-3 rounded-lg border p-6 bg-card hover:bg-lilac/5 dark:hover:bg-lilac/10 transition-colors h-full">
               <div className="flex flex-col items-center gap-2 lg:flex-row">
                 <Brain className="h-auto w-6 text-lilac" />
                 <h3 className="text-center text-lg font-medium lg:text-left">
-                  Why Work With Me?
+                  Strategic Consulting
                 </h3>
               </div>
               <p className="text-center text-sm text-muted-foreground md:text-base lg:text-left">
-                I bring real-world experience building and deploying AI solutions that have transformed mortgage marketing at scale.
+                AI strategy audits, implementation roadmaps, and team training. Built for mortgage leaders who need a plan, not a pitch deck.
               </p>
+              <span className="text-lilac text-sm font-medium mt-auto group-hover:underline text-center lg:text-left">
+                Explore consulting &rarr;
+              </span>
             </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="gap flex flex-col gap-3 rounded-lg border p-6 bg-card hover:bg-lilac/5 dark:hover:bg-lilac/10 transition-colors">
+          </Link>
+          <Link href="/insights/blog" className="flex flex-col gap-4 group">
+            <div className="gap flex flex-col gap-3 rounded-lg border p-6 bg-card hover:bg-lilac/5 dark:hover:bg-lilac/10 transition-colors h-full">
               <div className="flex flex-col items-center gap-2 lg:flex-row">
-                <Target className="h-auto w-6 text-lilac" />
+                <BookOpen className="h-auto w-6 text-lilac" />
                 <h3 className="text-center text-lg font-medium lg:text-left">
-                  My Mission
+                  The Signal Newsletter
                 </h3>
               </div>
               <p className="text-center text-sm text-muted-foreground md:text-base lg:text-left">
-                To empower mortgage companies with AI strategies that drive growth while maintaining compliance and customer trust.
+                Weekly essays on AI, marketing operations, and leadership in mortgage. No fluff, no sponsored content. Just what I&apos;m seeing and thinking.
               </p>
+              <span className="text-lilac text-sm font-medium mt-auto group-hover:underline text-center lg:text-left">
+                Read The Signal &rarr;
+              </span>
             </div>
-          </div>
-          <div className="flex flex-col gap-4">
-            <div className="gap flex flex-col gap-3 rounded-lg border p-6 bg-card hover:bg-lilac/5 dark:hover:bg-lilac/10 transition-colors">
-              <div className="flex flex-col items-center gap-2 lg:flex-row">
-                <Users className="h-auto w-6 text-lilac" />
-                <h3 className="text-center text-lg font-medium lg:text-left">
-                  Who I Serve
-                </h3>
-              </div>
-              <p className="text-center text-sm text-muted-foreground md:text-base lg:text-left">
-                Forward-thinking mortgage executives ready to embrace AI innovation and transform their marketing operations.
-              </p>
-            </div>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

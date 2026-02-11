@@ -78,7 +78,7 @@ export function TestimonialsCarousel() {
               What <span className="text-transparent bg-clip-text bg-gradient-to-r from-lilac to-orchid">People Are Saying</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              Trusted by industry leaders who've experienced transformative results
+              What colleagues and collaborators say about working with Jarrett
             </p>
           </div>
           <div className="flex gap-2">

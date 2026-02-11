@@ -1,45 +1,45 @@
 import { Metadata } from 'next'
-import Link from 'next/link'
-import Image from 'next/image'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Heading, Text } from '@/components/ui/typography'
 import { HeroSection } from '@/components/sections/hero-section'
-import { CredibilityBar } from '@/components/sections/credibility-bar'
+
 import { BridgingGapSection } from '@/components/sections/bridging-gap-section'
 import { ServicesShowcase } from '@/components/sections/services-showcase'
 import { LatestInsights } from '@/components/sections/latest-insights'
 import { TestimonialsCarousel } from '@/components/sections/testimonials-carousel'
 import { CtaSection } from '@/components/sections/cta-section'
 import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
-import { getBlogPosts } from '@/app/actions/blog'
+import { getAllBlogPosts, toTransformedPost } from '@/lib/blog'
+import type { BlogPost } from '@/lib/supabase'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Jarrett Stanley | AI Mortgage Marketing Expert & Strategic Advisor',
-  description: 'Proven AI marketing strategies that generated $500M+ in loan originations. Strategic advisor and keynote speaker transforming the mortgage industry through artificial intelligence.',
-  keywords: ['AI mortgage marketing expert', 'mortgage marketing consultant', 'mortgage digital transformation', 'AI lending strategies', 'mortgage technology keynote speaker', 'Jarrett Stanley'],
+  title: 'Jarrett Stanley | AI Mortgage Marketing Speaker & Strategic Advisor',
+  description: 'CMO at Nationwide Mortgage Bankers and CEO of TrueTone AI. Keynote speaker and strategic advisor helping mortgage companies build AI-powered marketing that scales.',
+  keywords: ['AI mortgage marketing expert', 'mortgage marketing consultant', 'mortgage marketing keynote speaker', 'AI lending strategies', 'Jarrett Stanley'],
   canonical: '/',
 })
 
-export default function HomePage() {
-  // TODO: Fetch blog posts client-side or through props
-  const posts: any[] = []
+export default async function HomePage() {
+  const allPosts = await getAllBlogPosts()
+  const posts: BlogPost[] = allPosts.slice(0, 6).map((post) => {
+    const transformed = toTransformedPost(post)
+    return {
+      ...transformed,
+      content: '',
+      is_published: true,
+      created_at: post.publishedAt,
+      updated_at: post.publishedAt,
+    } as BlogPost
+  })
 
   return (
     <main className="flex min-h-screen flex-col overflow-x-hidden">
       {/* Hero Section with Animated Background */}
       <HeroSection />
-      
-      {/* Credibility Bar */}
-      <CredibilityBar />
 
-      {/* Bridging the Gap Section */}
+      {/* What You Get When You Work With Me */}
       <BridgingGapSection />
 
-      {/* Services Showcase */}
+      {/* Three Ways to Work With Me */}
       <ServicesShowcase />
-
 
       {/* Latest Insights Section */}
       <LatestInsights posts={posts} />
