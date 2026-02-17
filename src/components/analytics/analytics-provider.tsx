@@ -1,16 +1,16 @@
 'use client';
 
-import { useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 import Script from 'next/script';
-import { 
-  initGA, 
-  initClarity, 
-  trackPageView, 
+import {
+  trackPageView,
   storeUTMParameters,
   GA_MEASUREMENT_ID,
-  CLARITY_PROJECT_ID 
+  CLARITY_PROJECT_ID,
+  GOOGLE_ADS_ID,
 } from '@/lib/analytics';
+import { hasConsentFor } from '@/components/analytics/cookie-consent';
 
 interface AnalyticsProviderProps {
   children: React.ReactNode;
@@ -19,6 +19,14 @@ interface AnalyticsProviderProps {
 function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [analyticsConsent, setAnalyticsConsent] = useState(false);
+  const [marketingConsent, setMarketingConsent] = useState(false);
+
+  // Check consent on mount
+  useEffect(() => {
+    setAnalyticsConsent(hasConsentFor('analytics'));
+    setMarketingConsent(hasConsentFor('marketing'));
+  }, []);
 
   // Track page views on route changes
   useEffect(() => {
@@ -35,8 +43,8 @@ function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
 
   return (
     <>
-      {/* Google Analytics 4 */}
-      {GA_MEASUREMENT_ID && (
+      {/* Google Analytics 4 — requires analytics consent */}
+      {analyticsConsent && GA_MEASUREMENT_ID && (
         <>
           <Script
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -68,8 +76,21 @@ function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
         </>
       )}
 
-      {/* Microsoft Clarity */}
-      {CLARITY_PROJECT_ID && (
+      {/* Google Ads — requires marketing consent and gtag to be loaded */}
+      {marketingConsent && GOOGLE_ADS_ID && analyticsConsent && (
+        <Script
+          id="google-ads-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.gtag && gtag('config', '${GOOGLE_ADS_ID}');
+            `,
+          }}
+        />
+      )}
+
+      {/* Microsoft Clarity — requires analytics consent */}
+      {analyticsConsent && CLARITY_PROJECT_ID && (
         <Script
           id="microsoft-clarity"
           strategy="afterInteractive"

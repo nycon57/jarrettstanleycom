@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@/components/theme-provider'
 import { AnalyticsProvider } from '@/components/analytics/analytics-provider'
+import { GTMProvider } from '@/components/analytics/gtm-provider'
 import { ScrollTracker } from '@/components/analytics/scroll-tracker'
 import { CookieConsent } from '@/components/analytics/cookie-consent'
 import { PerformanceMonitor } from '@/components/analytics/performance-monitor'
@@ -15,6 +16,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
       disableTransitionOnChange
     >
       <AnalyticsProvider>
+        <GTMProvider />
         <ScrollTracker>
           <ConditionalLayout>
             {children}

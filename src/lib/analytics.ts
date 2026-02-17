@@ -1,7 +1,11 @@
 /**
  * Analytics utility for JarrettStanley.com
- * Provides comprehensive tracking for Google Analytics 4 and Microsoft Clarity
+ * Provides comprehensive tracking for Google Analytics 4, Microsoft Clarity,
+ * Google Ads conversions, and GTM dataLayer integration.
  */
+
+import { hasConsentFor } from '@/components/analytics/cookie-consent';
+import { pushFormConversion, pushConversion } from '@/lib/gtm';
 
 // Google Analytics 4 types
 declare global {
@@ -14,6 +18,7 @@ declare global {
 // Analytics configuration
 export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || '';
 export const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || '';
+export const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || '';
 
 // Event categories for organized tracking
 export const EVENT_CATEGORIES = {
@@ -42,6 +47,15 @@ export interface UTMParameters {
   utm_term?: string;
   utm_content?: string;
 }
+
+// Conversion value mapping for Google Ads
+const CONVERSION_VALUES: Record<string, { value: number; currency: string }> = {
+  speaking_inquiry: { value: 500, currency: 'USD' },
+  consulting_inquiry: { value: 2000, currency: 'USD' },
+  newsletter_signup: { value: 10, currency: 'USD' },
+  form_submit: { value: 100, currency: 'USD' },
+  resource_download: { value: 25, currency: 'USD' },
+};
 
 /**
  * Initialize Google Analytics 4
@@ -84,9 +98,10 @@ export const initClarity = () => {
 };
 
 /**
- * Track page views
+ * Track page views (gated by analytics consent)
  */
 export const trackPageView = (url: string, title?: string) => {
+  if (!hasConsentFor('analytics')) return;
   if (typeof window.gtag !== 'function') return;
 
   window.gtag('config', GA_MEASUREMENT_ID, {
@@ -96,9 +111,10 @@ export const trackPageView = (url: string, title?: string) => {
 };
 
 /**
- * Track custom events
+ * Track custom events (gated by analytics consent)
  */
 export const trackEvent = ({ action, category, label, value, custom_parameters }: AnalyticsEvent) => {
+  if (!hasConsentFor('analytics')) return;
   if (typeof window.gtag !== 'function') return;
 
   window.gtag('event', action, {
@@ -120,6 +136,25 @@ export const trackEvent = ({ action, category, label, value, custom_parameters }
 };
 
 /**
+ * Track Google Ads conversion (only fires when GOOGLE_ADS_ID is set)
+ */
+export const trackGoogleAdsConversion = (
+  conversionLabel: string,
+  value?: number,
+  currency: string = 'USD'
+) => {
+  if (!GOOGLE_ADS_ID) return;
+  if (!hasConsentFor('marketing')) return;
+  if (typeof window.gtag !== 'function') return;
+
+  window.gtag('event', 'conversion', {
+    send_to: `${GOOGLE_ADS_ID}/${conversionLabel}`,
+    value: value,
+    currency: currency,
+  });
+};
+
+/**
  * Form submission tracking
  */
 export const trackFormSubmission = (formName: string, formType: 'contact' | 'newsletter' | 'consulting' | 'resource_download', additionalData?: Record<string, any>) => {
@@ -134,6 +169,17 @@ export const trackFormSubmission = (formName: string, formType: 'contact' | 'new
       ...additionalData,
     },
   });
+
+  // Push to GTM dataLayer for ad pixel triggers
+  if (hasConsentFor('marketing')) {
+    pushFormConversion(formType, formName);
+  }
+
+  // Fire Google Ads conversion if configured
+  const conversionInfo = CONVERSION_VALUES.form_submit;
+  if (conversionInfo) {
+    trackGoogleAdsConversion('form_submit', conversionInfo.value, conversionInfo.currency);
+  }
 };
 
 /**
@@ -195,7 +241,7 @@ export const trackReadingProgress = (postTitle: string, progress: number) => {
   // Track at 25%, 50%, 75%, and 100% milestones
   const milestones = [25, 50, 75, 100];
   const milestone = milestones.find(m => progress >= m && progress < m + 5);
-  
+
   if (milestone) {
     trackContentEngagement('blog_post', postTitle, 'read_progress', milestone);
   }
@@ -216,6 +262,20 @@ export const trackResourceDownload = (resourceName: string, resourceType: string
       conversion_type: 'resource_download',
     },
   });
+
+  // Push to GTM dataLayer
+  if (hasConsentFor('marketing')) {
+    pushConversion('resource_download', {
+      resource_name: resourceName,
+      resource_type: resourceType,
+    });
+  }
+
+  // Fire Google Ads conversion
+  const conversionInfo = CONVERSION_VALUES.resource_download;
+  if (conversionInfo) {
+    trackGoogleAdsConversion('resource_download', conversionInfo.value, conversionInfo.currency);
+  }
 };
 
 /**
@@ -233,6 +293,20 @@ export const trackSpeakingInquiry = (inquiryType: 'calendly_click' | 'form_submi
       high_value_conversion: true,
     },
   });
+
+  // Push to GTM dataLayer
+  if (hasConsentFor('marketing')) {
+    pushConversion('speaking', {
+      inquiry_type: inquiryType,
+      speaking_topic: topic,
+    });
+  }
+
+  // Fire Google Ads conversion
+  const conversionInfo = CONVERSION_VALUES.speaking_inquiry;
+  if (conversionInfo) {
+    trackGoogleAdsConversion('speaking_inquiry', conversionInfo.value, conversionInfo.currency);
+  }
 };
 
 /**
@@ -250,6 +324,20 @@ export const trackConsultingInquiry = (inquiryType: 'form_submit' | 'email_click
       high_value_conversion: true,
     },
   });
+
+  // Push to GTM dataLayer
+  if (hasConsentFor('marketing')) {
+    pushConversion('consulting', {
+      inquiry_type: inquiryType,
+      service_type: serviceType,
+    });
+  }
+
+  // Fire Google Ads conversion
+  const conversionInfo = CONVERSION_VALUES.consulting_inquiry;
+  if (conversionInfo) {
+    trackGoogleAdsConversion('consulting_inquiry', conversionInfo.value, conversionInfo.currency);
+  }
 };
 
 /**
@@ -279,7 +367,7 @@ export const storeUTMParameters = () => {
 
   if (hasUTMParams) {
     sessionStorage.setItem('utm_parameters', JSON.stringify(utmParams));
-    
+
     // Track campaign attribution
     trackEvent({
       action: 'campaign_attribution',
@@ -385,6 +473,20 @@ export const trackNewsletterSignup = (signupLocation: string, leadMagnet?: strin
       conversion_type: 'newsletter_signup',
     },
   });
+
+  // Push to GTM dataLayer
+  if (hasConsentFor('marketing')) {
+    pushConversion('newsletter', {
+      signup_location: signupLocation,
+      lead_magnet: leadMagnet,
+    });
+  }
+
+  // Fire Google Ads conversion
+  const conversionInfo = CONVERSION_VALUES.newsletter_signup;
+  if (conversionInfo) {
+    trackGoogleAdsConversion('newsletter_signup', conversionInfo.value, conversionInfo.currency);
+  }
 };
 
 /**

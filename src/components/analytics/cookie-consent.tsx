@@ -7,7 +7,7 @@ import { Badge } from '@/components/ui/badge';
 import { X } from 'lucide-react';
 
 const CONSENT_STORAGE_KEY = 'jarrett-stanley-cookie-consent';
-const CONSENT_VERSION = '1.0';
+const CONSENT_VERSION = '2.0';
 
 interface CookieConsentProps {
   className?: string;
