@@ -21,13 +21,13 @@ export const CLARITY_PROJECT_ID = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID || 
 export const GOOGLE_ADS_ID = process.env.NEXT_PUBLIC_GOOGLE_ADS_ID || '';
 
 // Event categories for organized tracking
-export const EVENT_CATEGORIES = {
+const EVENT_CATEGORIES = {
   ENGAGEMENT: 'engagement',
   LEAD_GENERATION: 'lead_generation',
   CONTENT: 'content',
   NAVIGATION: 'navigation',
   CONVERSION: 'conversion',
-  SOCIAL: 'social',
+  SOCIAL: 'social'
 } as const;
 
 // Custom event types
@@ -49,18 +49,18 @@ export interface UTMParameters {
 }
 
 // Conversion value mapping for Google Ads
-const CONVERSION_VALUES: Record<string, { value: number; currency: string }> = {
+const CONVERSION_VALUES: Record<string, {value: number;currency: string;}> = {
   speaking_inquiry: { value: 500, currency: 'USD' },
   consulting_inquiry: { value: 2000, currency: 'USD' },
   newsletter_signup: { value: 10, currency: 'USD' },
   form_submit: { value: 100, currency: 'USD' },
-  resource_download: { value: 25, currency: 'USD' },
+  resource_download: { value: 25, currency: 'USD' }
 };
 
 /**
  * Initialize Google Analytics 4
  */
-export const initGA = () => {
+const initGA = () => {
   if (!GA_MEASUREMENT_ID) {
     console.warn('Google Analytics Measurement ID not found');
     return;
@@ -78,21 +78,21 @@ export const initGA = () => {
     page_location: window.location.href,
     custom_parameters: {
       site_name: 'JarrettStanley.com',
-      content_group1: 'Main Site',
-    },
+      content_group1: 'Main Site'
+    }
   });
 };
 
 /**
  * Initialize Microsoft Clarity
  */
-export const initClarity = () => {
+const initClarity = () => {
   if (!CLARITY_PROJECT_ID) {
     console.warn('Microsoft Clarity Project ID not found');
     return;
   }
 
-  window.clarity = window.clarity || function() {
+  window.clarity = window.clarity || function () {
     (window.clarity.q = window.clarity.q || []).push(arguments);
   };
 };
@@ -106,7 +106,7 @@ export const trackPageView = (url: string, title?: string) => {
 
   window.gtag('config', GA_MEASUREMENT_ID, {
     page_title: title || document.title,
-    page_location: url,
+    page_location: url
   });
 };
 
@@ -121,7 +121,7 @@ export const trackEvent = ({ action, category, label, value, custom_parameters }
     event_category: category,
     event_label: label,
     value: value,
-    ...custom_parameters,
+    ...custom_parameters
   });
 
   // Also send to Clarity for additional context
@@ -130,7 +130,7 @@ export const trackEvent = ({ action, category, label, value, custom_parameters }
       category,
       label,
       value,
-      ...custom_parameters,
+      ...custom_parameters
     });
   }
 };
@@ -138,11 +138,11 @@ export const trackEvent = ({ action, category, label, value, custom_parameters }
 /**
  * Track Google Ads conversion (only fires when GOOGLE_ADS_ID is set)
  */
-export const trackGoogleAdsConversion = (
-  conversionLabel: string,
-  value?: number,
-  currency: string = 'USD'
-) => {
+const trackGoogleAdsConversion = (
+conversionLabel: string,
+value?: number,
+currency: string = 'USD') =>
+{
   if (!GOOGLE_ADS_ID) return;
   if (!hasConsentFor('marketing')) return;
   if (typeof window.gtag !== 'function') return;
@@ -150,7 +150,7 @@ export const trackGoogleAdsConversion = (
   window.gtag('event', 'conversion', {
     send_to: `${GOOGLE_ADS_ID}/${conversionLabel}`,
     value: value,
-    currency: currency,
+    currency: currency
   });
 };
 
@@ -166,8 +166,8 @@ export const trackFormSubmission = (formName: string, formType: 'contact' | 'new
       form_name: formName,
       form_type: formType,
       conversion_type: formType === 'newsletter' ? 'email_signup' : 'lead_generation',
-      ...additionalData,
-    },
+      ...additionalData
+    }
   });
 
   // Push to GTM dataLayer for ad pixel triggers
@@ -194,8 +194,8 @@ export const trackCTAClick = (ctaName: string, ctaLocation: string, ctaType: 'sp
       cta_name: ctaName,
       cta_location: ctaLocation,
       cta_type: ctaType,
-      button_text: ctaName,
-    },
+      button_text: ctaName
+    }
   });
 };
 
@@ -211,8 +211,8 @@ export const trackExternalLink = (url: string, linkText: string, linkType: 'soci
       link_url: url,
       link_text: linkText,
       link_type: linkType,
-      outbound: true,
-    },
+      outbound: true
+    }
   });
 };
 
@@ -229,18 +229,18 @@ export const trackContentEngagement = (contentType: 'blog_post' | 'resource' | '
       content_type: contentType,
       content_title: contentTitle,
       engagement_type: engagementType,
-      read_progress: progress,
-    },
+      read_progress: progress
+    }
   });
 };
 
 /**
  * Reading progress tracking for blog posts
  */
-export const trackReadingProgress = (postTitle: string, progress: number) => {
+const trackReadingProgress = (postTitle: string, progress: number) => {
   // Track at 25%, 50%, 75%, and 100% milestones
   const milestones = [25, 50, 75, 100];
-  const milestone = milestones.find(m => progress >= m && progress < m + 5);
+  const milestone = milestones.find((m) => progress >= m && progress < m + 5);
 
   if (milestone) {
     trackContentEngagement('blog_post', postTitle, 'read_progress', milestone);
@@ -259,15 +259,15 @@ export const trackResourceDownload = (resourceName: string, resourceType: string
       resource_name: resourceName,
       resource_type: resourceType,
       resource_category: resourceCategory,
-      conversion_type: 'resource_download',
-    },
+      conversion_type: 'resource_download'
+    }
   });
 
   // Push to GTM dataLayer
   if (hasConsentFor('marketing')) {
     pushConversion('resource_download', {
       resource_name: resourceName,
-      resource_type: resourceType,
+      resource_type: resourceType
     });
   }
 
@@ -290,15 +290,15 @@ export const trackSpeakingInquiry = (inquiryType: 'calendly_click' | 'form_submi
       inquiry_type: inquiryType,
       speaking_topic: topic,
       conversion_type: 'speaking_inquiry',
-      high_value_conversion: true,
-    },
+      high_value_conversion: true
+    }
   });
 
   // Push to GTM dataLayer
   if (hasConsentFor('marketing')) {
     pushConversion('speaking', {
       inquiry_type: inquiryType,
-      speaking_topic: topic,
+      speaking_topic: topic
     });
   }
 
@@ -321,15 +321,15 @@ export const trackConsultingInquiry = (inquiryType: 'form_submit' | 'email_click
       inquiry_type: inquiryType,
       service_type: serviceType,
       conversion_type: 'consulting_inquiry',
-      high_value_conversion: true,
-    },
+      high_value_conversion: true
+    }
   });
 
   // Push to GTM dataLayer
   if (hasConsentFor('marketing')) {
     pushConversion('consulting', {
       inquiry_type: inquiryType,
-      service_type: serviceType,
+      service_type: serviceType
     });
   }
 
@@ -343,7 +343,7 @@ export const trackConsultingInquiry = (inquiryType: 'form_submit' | 'email_click
 /**
  * Get UTM parameters from URL
  */
-export const getUTMParameters = (): UTMParameters => {
+const getUTMParameters = (): UTMParameters => {
   if (typeof window === 'undefined') return {};
 
   const urlParams = new URLSearchParams(window.location.search);
@@ -352,7 +352,7 @@ export const getUTMParameters = (): UTMParameters => {
     utm_medium: urlParams.get('utm_medium') || undefined,
     utm_campaign: urlParams.get('utm_campaign') || undefined,
     utm_term: urlParams.get('utm_term') || undefined,
-    utm_content: urlParams.get('utm_content') || undefined,
+    utm_content: urlParams.get('utm_content') || undefined
   };
 };
 
@@ -363,17 +363,17 @@ export const storeUTMParameters = () => {
   if (typeof window === 'undefined') return;
 
   const utmParams = getUTMParameters();
-  const hasUTMParams = Object.values(utmParams).some(value => value !== undefined);
+  const hasUTMParams = Object.values(utmParams).some((value) => value !== undefined);
 
   if (hasUTMParams) {
-    sessionStorage.setItem('utm_parameters', JSON.stringify(utmParams));
+    sessionStorage.setItem('utm_parameters:v1', JSON.stringify(utmParams));
 
     // Track campaign attribution
     trackEvent({
       action: 'campaign_attribution',
       category: EVENT_CATEGORIES.ENGAGEMENT,
       label: utmParams.utm_campaign || 'unknown',
-      custom_parameters: utmParams,
+      custom_parameters: utmParams
     });
   }
 };
@@ -404,8 +404,8 @@ export const trackConversionFunnel = (funnelStep: string, funnelName: string, st
     custom_parameters: {
       funnel_name: funnelName,
       funnel_step: funnelStep,
-      step_number: stepNumber,
-    },
+      step_number: stepNumber
+    }
   });
 };
 
@@ -421,8 +421,8 @@ export const trackVideoInteraction = (videoTitle: string, action: 'play' | 'paus
     custom_parameters: {
       video_title: videoTitle,
       video_action: action,
-      video_progress: progress,
-    },
+      video_progress: progress
+    }
   });
 };
 
@@ -438,8 +438,8 @@ export const trackSearch = (searchTerm: string, resultCount: number, searchLocat
     custom_parameters: {
       search_term: searchTerm,
       result_count: resultCount,
-      search_location: searchLocation,
-    },
+      search_location: searchLocation
+    }
   });
 };
 
@@ -454,8 +454,8 @@ export const trackFileDownload = (fileName: string, fileType: string, downloadSo
     custom_parameters: {
       file_name: fileName,
       file_type: fileType,
-      download_source: downloadSource,
-    },
+      download_source: downloadSource
+    }
   });
 };
 
@@ -470,15 +470,15 @@ export const trackNewsletterSignup = (signupLocation: string, leadMagnet?: strin
     custom_parameters: {
       signup_location: signupLocation,
       lead_magnet: leadMagnet,
-      conversion_type: 'newsletter_signup',
-    },
+      conversion_type: 'newsletter_signup'
+    }
   });
 
   // Push to GTM dataLayer
   if (hasConsentFor('marketing')) {
     pushConversion('newsletter', {
       signup_location: signupLocation,
-      lead_magnet: leadMagnet,
+      lead_magnet: leadMagnet
     });
   }
 
@@ -501,8 +501,8 @@ export const trackError = (errorType: string, errorMessage: string, location: st
       error_type: errorType,
       error_message: errorMessage,
       error_location: location,
-      fatal: fatal,
-    },
+      fatal: fatal
+    }
   });
 };
 
@@ -520,8 +520,8 @@ export const trackScrollDepth = (depth: number, page: string) => {
       value: depth,
       custom_parameters: {
         scroll_depth: depth,
-        page_url: page,
-      },
+        page_url: page
+      }
     });
   }
 };

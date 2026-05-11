@@ -1,5 +1,3 @@
-'use server';
-
 import React from 'react';
 import { headers } from 'next/headers';
 import {
@@ -14,8 +12,8 @@ import {
   sendResourceDownloadEmail,
   sendNewsletterWelcome,
   sendNewsletterNotification,
-  safeEmailSend
-} from '@/lib/email-service';
+  safeEmailSend } from
+'@/lib/email-service';
 import { createClient } from '@/lib/supabase-client';
 import { supabase } from '@/lib/supabase';
 import { checkForSpam, isSubmittedTooFast } from '@/lib/spam-protection';
@@ -24,8 +22,8 @@ import { checkForSpam, isSubmittedTooFast } from '@/lib/spam-protection';
 async function getClientIP(): Promise<string> {
   const headersList = await headers();
   return headersList.get('x-forwarded-for')?.split(',')[0].trim() ||
-         headersList.get('x-real-ip') ||
-         'unknown';
+  headersList.get('x-real-ip') ||
+  'unknown';
 }
 
 // Contact form submission action
@@ -40,7 +38,7 @@ export async function submitContactForm(formData: FormData) {
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
     const message = formData.get('message') as string;
-    const type = (formData.get('type') as string) || 'general';
+    const type = formData.get('type') as string || 'general';
     const company = formData.get('company') as string;
     const phone = formData.get('phone') as string;
 
@@ -82,7 +80,7 @@ export async function submitContactForm(formData: FormData) {
     // Get tracking data
     const userAgent = formData.get('userAgent') as string;
     const referrer = formData.get('referrer') as string;
-    const urlParamsString = (formData.get('urlParams') as string) || '{}';
+    const urlParamsString = formData.get('urlParams') as string || '{}';
 
     console.log('🔍 Raw tracking data:', { userAgent, referrer, urlParamsString });
 
@@ -111,7 +109,7 @@ export async function submitContactForm(formData: FormData) {
       utm_medium: urlParams.utm_medium || null,
       utm_campaign: urlParams.utm_campaign || null,
       utm_term: urlParams.utm_term || null,
-      utm_content: urlParams.utm_content || null,
+      utm_content: urlParams.utm_content || null
     };
 
     console.log('💾 About to insert to Supabase contacts table:', insertData);
@@ -129,15 +127,15 @@ export async function submitContactForm(formData: FormData) {
     console.log('📧 Starting email sending process...');
 
     // Send emails (don't let email failures prevent form submission)
-    const contactData = { 
-      name, 
-      email, 
-      message, 
-      type: type as 'general' | 'speaking' | 'consulting' | 'media', 
-      company, 
-      phone 
+    const contactData = {
+      name,
+      email,
+      message,
+      type: type as 'general' | 'speaking' | 'consulting' | 'media',
+      company,
+      phone
     };
-    
+
     console.log('📤 Sending confirmation email to user...');
     const confirmationResult = await safeEmailSend(() => sendContactConfirmation(contactData));
     console.log('📧 Confirmation email result:', confirmationResult ? 'SUCCESS' : 'FAILED');
@@ -202,7 +200,7 @@ export async function submitMediaInquiry(formData: FormData) {
     // Get tracking data
     const userAgent = formData.get('userAgent') as string;
     const referrer = formData.get('referrer') as string;
-    const urlParams = JSON.parse((formData.get('urlParams') as string) || '{}');
+    const urlParams = JSON.parse(formData.get('urlParams') as string || '{}');
 
     // Save to database
     const { error: dbError } = await supabase.from('contacts').insert({
@@ -222,7 +220,7 @@ export async function submitMediaInquiry(formData: FormData) {
       utm_medium: urlParams.utm_medium || null,
       utm_campaign: urlParams.utm_campaign || null,
       utm_term: urlParams.utm_term || null,
-      utm_content: urlParams.utm_content || null,
+      utm_content: urlParams.utm_content || null
     });
 
     if (dbError) {
@@ -241,9 +239,9 @@ export async function submitMediaInquiry(formData: FormData) {
       deadline,
       topic,
       interview_type: interviewType,
-      message,
+      message
     };
-    
+
     await safeEmailSend(() => sendMediaConfirmation(mediaData));
     await safeEmailSend(() => sendMediaNotification(mediaData));
 
@@ -301,10 +299,10 @@ export async function subscribeToNewsletter(formData: FormData) {
     // Get tracking data
     const userAgent = formData.get('userAgent') as string;
     const referrer = formData.get('referrer') as string;
-    const urlParamsString = (formData.get('urlParams') as string) || '{}';
-    
+    const urlParamsString = formData.get('urlParams') as string || '{}';
+
     console.log('🔍 Raw tracking data:', { userAgent, referrer, urlParamsString });
-    
+
     let urlParams;
     try {
       urlParams = JSON.parse(urlParamsString);
@@ -326,7 +324,7 @@ export async function subscribeToNewsletter(formData: FormData) {
       utm_medium: urlParams.utm_medium || null,
       utm_campaign: urlParams.utm_campaign || null,
       utm_term: urlParams.utm_term || null,
-      utm_content: urlParams.utm_content || null,
+      utm_content: urlParams.utm_content || null
     };
 
     console.log('💾 About to insert to Supabase subscribers table:', insertData);
@@ -364,7 +362,7 @@ export async function subscribeToNewsletter(formData: FormData) {
 }
 
 // Resource download action
-export async function downloadResource(formData: FormData) {
+async function downloadResource(formData: FormData) {
   try {
     const email = formData.get('email') as string;
     const firstName = formData.get('firstName') as string;
@@ -411,14 +409,14 @@ export async function downloadResource(formData: FormData) {
     // Get tracking data
     const userAgent = formData.get('userAgent') as string;
     const referrer = formData.get('referrer') as string;
-    const urlParams = JSON.parse((formData.get('urlParams') as string) || '{}');
+    const urlParams = JSON.parse(formData.get('urlParams') as string || '{}');
 
     // Get resource details
-    const { data: resource, error: resourceError } = await supabase
-      .from('resources')
-      .select('*')
-      .eq('id', resourceId)
-      .single();
+    const { data: resource, error: resourceError } = await supabase.
+    from('resources').
+    select('*').
+    eq('id', resourceId).
+    single();
 
     if (resourceError || !resource) {
       return { error: 'Resource not found' };
@@ -437,7 +435,7 @@ export async function downloadResource(formData: FormData) {
       utm_medium: urlParams.utm_medium || null,
       utm_campaign: urlParams.utm_campaign || null,
       utm_term: urlParams.utm_term || null,
-      utm_content: urlParams.utm_content || null,
+      utm_content: urlParams.utm_content || null
     });
 
     if (dbError) {
@@ -446,14 +444,14 @@ export async function downloadResource(formData: FormData) {
     }
 
     // Update download count
-    await supabase
-      .from('resources')
-      .update({ download_count: resource.download_count + 1 })
-      .eq('id', resourceId);
+    await supabase.
+    from('resources').
+    update({ download_count: resource.download_count + 1 }).
+    eq('id', resourceId);
 
     // Send download email
-    await safeEmailSend(() => 
-      sendResourceDownloadEmail(email, firstName, resource.title, resource.file_url)
+    await safeEmailSend(() =>
+    sendResourceDownloadEmail(email, firstName, resource.title, resource.file_url)
     );
 
     return { success: true, downloadUrl: resource.file_url };
@@ -517,7 +515,7 @@ export async function submitConsultingInquiry(data: any) {
       utm_medium: urlParams.utm_medium,
       utm_campaign: urlParams.utm_campaign,
       utm_term: urlParams.utm_term,
-      utm_content: urlParams.utm_content,
+      utm_content: urlParams.utm_content
     });
 
     if (dbError) {
@@ -537,7 +535,7 @@ export async function submitConsultingInquiry(data: any) {
 }
 
 // Update speaking inquiry to use email integration
-export async function submitSpeakingInquiry(data: any) {
+async function submitSpeakingInquiry(data: any) {
   try {
     // SPAM PROTECTION CHECK
     const clientIP = await getClientIP();
@@ -584,7 +582,7 @@ export async function submitSpeakingInquiry(data: any) {
       utm_medium: urlParams.utm_medium,
       utm_campaign: urlParams.utm_campaign,
       utm_term: urlParams.utm_term,
-      utm_content: urlParams.utm_content,
+      utm_content: urlParams.utm_content
     });
 
     if (dbError) {
@@ -604,7 +602,7 @@ export async function submitSpeakingInquiry(data: any) {
 }
 
 // Enhanced waitlist action with email integration
-export async function submitWaitlistSignup(data: any) {
+async function submitWaitlistSignup(data: any) {
   try {
     // Get tracking data from the form
     const referrer = data.referrer || null;
@@ -624,7 +622,7 @@ export async function submitWaitlistSignup(data: any) {
       utm_medium: urlParams.utm_medium,
       utm_campaign: urlParams.utm_campaign,
       utm_term: urlParams.utm_term,
-      utm_content: urlParams.utm_content,
+      utm_content: urlParams.utm_content
     });
 
     if (dbError) {
@@ -634,13 +632,15 @@ export async function submitWaitlistSignup(data: any) {
 
     // Send confirmation email (you already have this template)
     await safeEmailSend(async () => {
-      const { WaitlistConfirmationEmail } = await import('@/components/email/waitlist-confirmation');
-      const { sendEmail } = await import('@/lib/email');
-      
+      const [{ WaitlistConfirmationEmail }, { sendEmail }] = await Promise.all([
+        import('@/components/email/waitlist-confirmation'),
+        import('@/lib/email')
+      ]);
+
       return sendEmail({
         to: data.email,
         subject: '🎉 Welcome to TrueTone AI Beta Waitlist!',
-        react: React.createElement(WaitlistConfirmationEmail, { firstName: data.first_name }),
+        react: React.createElement(WaitlistConfirmationEmail, { firstName: data.first_name })
       });
     });
 

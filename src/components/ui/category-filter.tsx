@@ -35,7 +35,7 @@ export function CategoryFilter({
   }
 
   return (
-    <div className={cn("space-y-4", className)}>
+    <div className={cn("gap-y-4", className)}>
       <div className="flex items-center justify-between">
         <h3 className="font-semibold text-sm text-muted-foreground uppercase tracking-wide">
           Categories
@@ -47,7 +47,7 @@ export function CategoryFilter({
             onClick={handleClearAll}
             className="text-xs h-8 px-2"
           >
-            <X className="w-3 h-3 mr-1" />
+            <X className="size-3 mr-1" />
             Clear All
           </Button>
         )}
@@ -79,7 +79,7 @@ export function CategoryFilter({
             >
               {category.name}
               {isSelected && (
-                <X className="w-3 h-3 ml-1" />
+                <X className="size-3 ml-1" />
               )}
             </Badge>
           )

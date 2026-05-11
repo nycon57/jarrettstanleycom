@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -14,27 +15,26 @@ interface CookieConsentProps {
 }
 
 export function CookieConsent({ className }: CookieConsentProps) {
-  const [showBanner, setShowBanner] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [bannerState, setBannerState] = useState({ showBanner: false, isLoading: true });
+  const { showBanner, isLoading } = bannerState;
 
   useEffect(() => {
     // Check if user has already given consent
     const checkConsent = () => {
+      let shouldShowBanner = false;
       try {
         const consent = localStorage.getItem(CONSENT_STORAGE_KEY);
         if (consent) {
           const consentData = JSON.parse(consent);
           // Show banner if no consent or version mismatch
-          if (!consentData.version || consentData.version !== CONSENT_VERSION) {
-            setShowBanner(true);
-          }
+          shouldShowBanner = !consentData.version || consentData.version !== CONSENT_VERSION;
         } else {
-          setShowBanner(true);
+          shouldShowBanner = true;
         }
       } catch {
-        setShowBanner(true);
+        shouldShowBanner = true;
       }
-      setIsLoading(false);
+      setBannerState({ showBanner: shouldShowBanner, isLoading: false });
     };
 
     // Delay to avoid flash on initial load
@@ -48,11 +48,11 @@ export function CookieConsent({ className }: CookieConsentProps) {
       analytics: true,
       marketing: true,
       version: CONSENT_VERSION,
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toISOString()
     };
 
     localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consentData));
-    setShowBanner(false);
+    setBannerState((current) => ({ ...current, showBanner: false }));
 
     // Reload page to initialize tracking scripts
     window.location.reload();
@@ -64,17 +64,17 @@ export function CookieConsent({ className }: CookieConsentProps) {
       analytics: false,
       marketing: false,
       version: CONSENT_VERSION,
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toISOString()
     };
 
     localStorage.setItem(CONSENT_STORAGE_KEY, JSON.stringify(consentData));
-    setShowBanner(false);
+    setBannerState((current) => ({ ...current, showBanner: false }));
   };
 
   const handleDismiss = () => {
     // Set a temporary consent for this session only
     sessionStorage.setItem(`${CONSENT_STORAGE_KEY}-dismissed`, 'true');
-    setShowBanner(false);
+    setBannerState((current) => ({ ...current, showBanner: false }));
   };
 
   if (isLoading || !showBanner) {
@@ -86,7 +86,7 @@ export function CookieConsent({ className }: CookieConsentProps) {
       <Card className="max-w-4xl mx-auto border-2 shadow-lg bg-background/95 backdrop-blur-sm">
         <CardContent className="p-6">
           <div className="flex items-start justify-between gap-4">
-            <div className="flex-1 space-y-4">
+            <div className="flex-1 gap-y-4">
               <div className="flex items-center gap-2">
                 <h3 className="text-lg font-semibold">Cookie Preferences</h3>
                 <Badge variant="secondary" className="text-xs">
@@ -94,12 +94,12 @@ export function CookieConsent({ className }: CookieConsentProps) {
                 </Badge>
               </div>
               
-              <div className="text-sm text-muted-foreground space-y-2">
+              <div className="text-sm text-muted-foreground gap-y-2">
                 <p>
                   We use cookies to enhance your experience on JarrettStanley.com. This includes:
                 </p>
                 <div className="grid sm:grid-cols-3 gap-3 mt-3">
-                  <div className="space-y-1">
+                  <div className="gap-y-1">
                     <p className="font-medium text-foreground">
                       🔧 Necessary Cookies
                     </p>
@@ -107,7 +107,7 @@ export function CookieConsent({ className }: CookieConsentProps) {
                       Required for site functionality, security, and basic features.
                     </p>
                   </div>
-                  <div className="space-y-1">
+                  <div className="gap-y-1">
                     <p className="font-medium text-foreground">
                       📊 Analytics Cookies
                     </p>
@@ -115,7 +115,7 @@ export function CookieConsent({ className }: CookieConsentProps) {
                       Help us understand how visitors interact with our site to improve content and user experience.
                     </p>
                   </div>
-                  <div className="space-y-1">
+                  <div className="gap-y-1">
                     <p className="font-medium text-foreground">
                       🎯 Marketing Cookies
                     </p>
@@ -126,38 +126,38 @@ export function CookieConsent({ className }: CookieConsentProps) {
                 </div>
                 <p className="text-xs pt-2">
                   By clicking "Accept All", you consent to our use of cookies. You can manage your preferences at any time.
-                  <a 
-                    href="/privacy" 
+                  <Link
+                    href="/privacy"
                     className="text-primary hover:underline ml-1"
                     target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                    rel="noopener noreferrer">
+
                     Learn more about our privacy practices
-                  </a>
+                  </Link>
                 </p>
               </div>
 
               <div className="flex flex-wrap items-center gap-3">
-                <Button 
+                <Button
                   onClick={handleAcceptAll}
                   size="sm"
-                  className="bg-primary hover:bg-primary/90"
-                >
+                  className="bg-primary hover:bg-primary/90">
+
                   Accept All Cookies
                 </Button>
-                <Button 
+                <Button
                   onClick={handleAcceptNecessary}
                   variant="outline"
-                  size="sm"
-                >
+                  size="sm">
+
                   Necessary Only
                 </Button>
-                <Button 
+                <Button
                   onClick={handleDismiss}
                   variant="ghost"
                   size="sm"
-                  className="text-muted-foreground hover:text-foreground"
-                >
+                  className="text-muted-foreground hover:text-foreground">
+
                   Ask Me Later
                 </Button>
               </div>
@@ -167,16 +167,16 @@ export function CookieConsent({ className }: CookieConsentProps) {
               variant="ghost"
               size="sm"
               onClick={handleDismiss}
-              className="flex-shrink-0 h-6 w-6 p-0 text-muted-foreground hover:text-foreground"
-            >
-              <X className="h-4 w-4" />
+              className="flex-shrink-0 size-6 p-0 text-muted-foreground hover:text-foreground">
+
+              <X className="size-4" />
               <span className="sr-only">Dismiss</span>
             </Button>
           </div>
         </CardContent>
       </Card>
-    </div>
-  );
+    </div>);
+
 }
 
 // Utility function to check if user has given consent
@@ -195,7 +195,7 @@ export function hasConsentFor(type: 'necessary' | 'analytics' | 'marketing'): bo
 }
 
 // Get all consent preferences
-export function getConsentPreferences() {
+function getConsentPreferences() {
   if (typeof window === 'undefined') {
     return { necessary: false, analytics: false, marketing: false };
   }
@@ -210,7 +210,7 @@ export function getConsentPreferences() {
     return {
       necessary: consentData.necessary || false,
       analytics: consentData.analytics || false,
-      marketing: consentData.marketing || false,
+      marketing: consentData.marketing || false
     };
   } catch {
     return { necessary: false, analytics: false, marketing: false };

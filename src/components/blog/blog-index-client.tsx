@@ -3,7 +3,7 @@
 import { useState, useMemo } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { format } from 'date-fns'
+import { formatDateLabel } from '@/lib/date-format'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -48,9 +48,11 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
   const seriesList = useMemo(() => {
     const seen = new Map<string, { name: string; slug: string; count: number }>()
     for (const post of posts) {
-      if (post.series && !seen.has(post.series.slug)) {
-        const count = posts.filter((p) => p.series?.slug === post.series?.slug).length
-        seen.set(post.series.slug, { name: post.series.name, slug: post.series.slug, count })
+      const series = post.series
+      const seriesSlug = series?.slug
+      if (series && seriesSlug && !seen.has(seriesSlug)) {
+        const count = posts.filter((p) => p.series?.slug === seriesSlug).length
+        seen.set(seriesSlug, { name: series.name, slug: seriesSlug, count })
       }
     }
     return Array.from(seen.values())
@@ -62,7 +64,7 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
     <div>
       {/* Search */}
       <div className="relative mb-8">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
         <input
           id="blog-search"
           type="text"
@@ -77,7 +79,7 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
             onClick={() => setSearchQuery('')}
             className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
           >
-            <X className="h-4 w-4" />
+            <X className="size-4" />
           </button>
         )}
       </div>
@@ -97,7 +99,7 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
                 : 'border-border hover:border-lilac/30 hover:bg-lilac/5'
             }`}
           >
-            <Newspaper className="w-3 h-3" />
+            <Newspaper className="size-3" />
             {series.name}
             <span className="text-xs text-muted-foreground">({series.count})</span>
           </button>
@@ -137,7 +139,7 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
             }}
             className="inline-flex items-center gap-1 rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
           >
-            <X className="w-3 h-3" />
+            <X className="size-3" />
             Clear
           </button>
         )}
@@ -170,7 +172,10 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
         </div>
       ) : (
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredPosts.map((post) => (
+          {filteredPosts.map((post) => {
+            const publishedLabel = formatDateLabel(post.publishedAt, 'MMM d, yyyy')
+
+            return (
             <Link
               key={post.slug}
               href={`/insights/blog/${post.slug}`}
@@ -212,15 +217,15 @@ export function BlogIndexClient({ posts, categories }: BlogIndexClientProps) {
                   </p>
                   <div className="flex items-center justify-between text-xs text-muted-foreground">
                     <span className="flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
+                      <Clock className="size-3" />
                       {post.readTimeMinutes} min read
                     </span>
-                    <span>{format(new Date(post.publishedAt), 'MMM d, yyyy')}</span>
+                    <span>{publishedLabel}</span>
                   </div>
                 </CardContent>
               </Card>
             </Link>
-          ))}
+          )})}
         </div>
       )}
     </div>

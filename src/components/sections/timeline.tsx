@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Calendar, Briefcase, Award, Rocket } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -22,13 +22,13 @@ interface TimelineProps {
 const getIcon = (type: TimelineItem['type']) => {
   switch (type) {
     case 'position':
-      return <Briefcase className="h-5 w-5" />
+      return <Briefcase className="size-5" />
     case 'achievement':
-      return <Award className="h-5 w-5" />
+      return <Award className="size-5" />
     case 'milestone':
-      return <Rocket className="h-5 w-5" />
+      return <Rocket className="size-5" />
     default:
-      return <Calendar className="h-5 w-5" />
+      return <Calendar className="size-5" />
   }
 }
 
@@ -38,9 +38,9 @@ export function Timeline({ items, className }: TimelineProps) {
       {/* Vertical line */}
       <div className="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-lilac/20 via-lilac/50 to-lilac/20" />
       
-      <div className="space-y-12">
+      <div className="gap-y-12">
         {items.map((item, index) => (
-          <motion.div
+          <m.div
             key={item.id}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -49,15 +49,15 @@ export function Timeline({ items, className }: TimelineProps) {
             className="relative flex gap-6"
           >
             {/* Icon circle */}
-            <div className="relative z-10 flex h-16 w-16 items-center justify-center rounded-full bg-background border-2 border-lilac/20 shadow-lg">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-lilac to-orchid text-white">
+            <div className="relative z-10 flex size-16 items-center justify-center rounded-full bg-background border-2 border-lilac/20 shadow-lg">
+              <div className="flex size-10 items-center justify-center rounded-full bg-gradient-to-br from-lilac to-orchid text-white">
                 {item.icon || getIcon(item.type)}
               </div>
             </div>
             
             {/* Content */}
             <div className="flex-1 pb-12">
-              <motion.div
+              <m.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -76,9 +76,9 @@ export function Timeline({ items, className }: TimelineProps) {
                 <p className="text-muted-foreground leading-relaxed">
                   {item.description}
                 </p>
-              </motion.div>
+              </m.div>
             </div>
-          </motion.div>
+          </m.div>
         ))}
       </div>
     </div>

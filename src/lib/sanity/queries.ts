@@ -1,7 +1,7 @@
-import { groq } from 'next-sanity'
+import { groq } from 'next-sanity';
 
 // Post queries
-export const postsQuery = groq`*[_type == "post"] | order(publishedAt desc) {
+const postsQuery = groq`*[_type == "post"] | order(publishedAt desc) {
   _id,
   title,
   slug,
@@ -23,9 +23,9 @@ export const postsQuery = groq`*[_type == "post"] | order(publishedAt desc) {
     slug,
     color
   }
-}`
+}`;
 
-export const paginatedPostsQuery = groq`{
+const paginatedPostsQuery = groq`{
   "posts": *[_type == "post"] | order(publishedAt desc) [$start...$end] {
     _id,
     title,
@@ -50,10 +50,10 @@ export const paginatedPostsQuery = groq`{
     }
   },
   "totalCount": count(*[_type == "post"])
-}`
+}`;
 
 // Simple posts query without complex filtering (more reliable)
-export const allPostsQuery = groq`{
+const allPostsQuery = groq`{
   "posts": *[_type == "post"] | order(publishedAt desc) [$start...$end] {
     _id,
     title,
@@ -78,7 +78,7 @@ export const allPostsQuery = groq`{
     }
   },
   "totalCount": count(*[_type == "post"])
-}`
+}`;
 
 export const filteredPostsQuery = groq`{
   "posts": *[_type == "post"] | order(publishedAt desc) [$start...$end] {
@@ -105,9 +105,9 @@ export const filteredPostsQuery = groq`{
     }
   },
   "totalCount": count(*[_type == "post"])
-}`
+}`;
 
-export const featuredPostsQuery = groq`*[_type == "post" && isFeatured == true] | order(publishedAt desc) [0...$limit] {
+const featuredPostsQuery = groq`*[_type == "post" && isFeatured == true] | order(publishedAt desc) [0...$limit] {
   _id,
   title,
   slug,
@@ -129,7 +129,7 @@ export const featuredPostsQuery = groq`*[_type == "post" && isFeatured == true] 
     slug,
     color
   }
-}`
+}`;
 
 export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][0] {
   _id,
@@ -159,7 +159,7 @@ export const postBySlugQuery = groq`*[_type == "post" && slug.current == $slug][
     slug,
     color
   }
-}`
+}`;
 
 export const relatedPostsQuery = groq`*[_type == "post" && _id != $currentPostId && count((categories[]->_id)[@ in $categoryIds]) > 0] | order(publishedAt desc) [0...$limit] {
   _id,
@@ -183,7 +183,7 @@ export const relatedPostsQuery = groq`*[_type == "post" && _id != $currentPostId
     slug,
     color
   }
-}`
+}`;
 
 export const recentPostsQuery = groq`*[_type == "post" && _id != $currentPostId] | order(publishedAt desc) [0...$limit] {
   _id,
@@ -207,7 +207,7 @@ export const recentPostsQuery = groq`*[_type == "post" && _id != $currentPostId]
     slug,
     color
   }
-}`
+}`;
 
 // Category queries
 export const categoriesQuery = groq`*[_type == "category"] | order(name asc) {
@@ -216,18 +216,18 @@ export const categoriesQuery = groq`*[_type == "category"] | order(name asc) {
   slug,
   description,
   color
-}`
+}`;
 
-export const categoryBySlugQuery = groq`*[_type == "category" && slug.current == $slug][0] {
+const categoryBySlugQuery = groq`*[_type == "category" && slug.current == $slug][0] {
   _id,
   name,
   slug,
   description,
   color
-}`
+}`;
 
 // Author queries
-export const authorsQuery = groq`*[_type == "author"] | order(name asc) {
+const authorsQuery = groq`*[_type == "author"] | order(name asc) {
   _id,
   name,
   slug,
@@ -237,9 +237,9 @@ export const authorsQuery = groq`*[_type == "author"] | order(name asc) {
   company,
   linkedIn,
   twitter
-}`
+}`;
 
-export const authorBySlugQuery = groq`*[_type == "author" && slug.current == $slug][0] {
+const authorBySlugQuery = groq`*[_type == "author" && slug.current == $slug][0] {
   _id,
   name,
   slug,
@@ -249,10 +249,10 @@ export const authorBySlugQuery = groq`*[_type == "author" && slug.current == $sl
   company,
   linkedIn,
   twitter
-}`
+}`;
 
 // Search query
-export const searchPostsQuery = groq`*[_type == "post" && (
+const searchPostsQuery = groq`*[_type == "post" && (
   title match $query ||
   excerpt match $query ||
   pt::text(content) match $query
@@ -278,9 +278,9 @@ export const searchPostsQuery = groq`*[_type == "post" && (
     slug,
     color
   }
-}`
+}`;
 
 // Slug queries for static generation
-export const postSlugsQuery = groq`*[_type == "post" && defined(slug.current)][].slug.current`
-export const categorySlugsQuery = groq`*[_type == "category" && defined(slug.current)][].slug.current`
-export const authorSlugsQuery = groq`*[_type == "author" && defined(slug.current)][].slug.current`
+const postSlugsQuery = groq`*[_type == "post" && defined(slug.current)][].slug.current`;
+const categorySlugsQuery = groq`*[_type == "category" && defined(slug.current)][].slug.current`;
+const authorSlugsQuery = groq`*[_type == "author" && defined(slug.current)][].slug.current`;

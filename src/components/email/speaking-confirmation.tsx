@@ -1,5 +1,53 @@
 import * as React from 'react';
 
+
+const SPEAKING_CONFIRMATION_STYLE_1 = { 
+              backgroundColor: '#22c55e', 
+              color: 'white', 
+              borderRadius: '50%', 
+              width: '24px', 
+              height: '24px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '12px', 
+              fontWeight: 'bold', 
+              marginRight: '15px', 
+              flexShrink: 0 
+            
+} satisfies React.CSSProperties;
+
+const SPEAKING_CONFIRMATION_STYLE_2 = { 
+              backgroundColor: '#22c55e', 
+              color: 'white', 
+              borderRadius: '50%', 
+              width: '24px', 
+              height: '24px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '12px', 
+              fontWeight: 'bold', 
+              marginRight: '15px', 
+              flexShrink: 0 
+            
+} satisfies React.CSSProperties;
+
+const SPEAKING_CONFIRMATION_STYLE_3 = { 
+              backgroundColor: '#22c55e', 
+              color: 'white', 
+              borderRadius: '50%', 
+              width: '24px', 
+              height: '24px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '12px', 
+              fontWeight: 'bold', 
+              marginRight: '15px', 
+              flexShrink: 0 
+            
+} satisfies React.CSSProperties;
 interface SpeakingConfirmationEmailProps {
   firstName: string;
   data: {
@@ -92,20 +140,7 @@ export const SpeakingConfirmationEmail: React.FC<Readonly<SpeakingConfirmationEm
         
         <div style={{ marginBottom: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ 
-              backgroundColor: '#22c55e', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '24px', 
-              height: '24px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '12px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={SPEAKING_CONFIRMATION_STYLE_1}>
               1
             </div>
             <div>
@@ -119,20 +154,7 @@ export const SpeakingConfirmationEmail: React.FC<Readonly<SpeakingConfirmationEm
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ 
-              backgroundColor: '#22c55e', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '24px', 
-              height: '24px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '12px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={SPEAKING_CONFIRMATION_STYLE_2}>
               2
             </div>
             <div>
@@ -146,20 +168,7 @@ export const SpeakingConfirmationEmail: React.FC<Readonly<SpeakingConfirmationEm
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-            <div style={{ 
-              backgroundColor: '#22c55e', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '24px', 
-              height: '24px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '12px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={SPEAKING_CONFIRMATION_STYLE_3}>
               3
             </div>
             <div>

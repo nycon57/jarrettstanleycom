@@ -70,8 +70,9 @@ export default async function GlossaryTermDetailPage({ params }: PageProps) {
     <article className="min-h-screen bg-background">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={structuredData}
-      />
+      >
+        {structuredData}
+      </script>
       <GlossaryTermPage
         term={term}
         relatedTerms={relatedTerms}

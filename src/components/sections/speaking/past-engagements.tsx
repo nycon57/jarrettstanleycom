@@ -1,6 +1,7 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
+import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Calendar, MapPin, Users, Sparkles } from 'lucide-react'
@@ -98,25 +99,25 @@ export function PastEngagements() {
   return (
     <section className="py-24 sm:py-32 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          <h2 className="text-3xl font-signal font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
             Speaking Highlights
           </h2>
-          <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
+          <p className="mt-4 text-lg text-neutral-700 dark:text-neutral-300">
             Delivering transformative insights to industry leaders nationwide
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Featured Engagements */}
-        <div className="mt-20 space-y-8">
+        <div className="mt-20 gap-y-8">
           {engagements.map((engagement, index) => (
-            <motion.div
+            <m.div
               key={engagement.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -126,14 +127,14 @@ export function PastEngagements() {
               <Card className={`overflow-hidden ${engagement.featured ? 'border-lilac/30 bg-gradient-to-br from-lilac/5 to-transparent' : ''}`}>
                 <CardHeader>
                   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
-                    <div className="space-y-2">
+                    <div className="gap-y-2">
                       <div className="flex flex-wrap items-center gap-2">
                         <CardTitle className="text-xl font-signal">
                           {engagement.title}
                         </CardTitle>
                         {engagement.featured && (
                           <Badge variant="default" className="bg-lilac">
-                            <Sparkles className="w-3 h-3 mr-1" />
+                            <Sparkles className="size-3 mr-1" />
                             Featured
                           </Badge>
                         )}
@@ -141,17 +142,17 @@ export function PastEngagements() {
                       <CardDescription className="text-base">
                         {engagement.organization}
                       </CardDescription>
-                      <div className="flex flex-wrap gap-4 text-sm text-gray-700 dark:text-gray-400">
+                      <div className="flex flex-wrap gap-4 text-sm text-neutral-700 dark:text-neutral-400">
                         <span className="flex items-center gap-1">
-                          <Calendar className="w-4 h-4" />
+                          <Calendar className="size-4" />
                           {engagement.date}
                         </span>
                         <span className="flex items-center gap-1">
-                          <MapPin className="w-4 h-4" />
+                          <MapPin className="size-4" />
                           {engagement.location}
                         </span>
                         <span className="flex items-center gap-1">
-                          <Users className="w-4 h-4" />
+                          <Users className="size-4" />
                           {engagement.audience}
                         </span>
                       </div>
@@ -161,65 +162,65 @@ export function PastEngagements() {
                     </Badge>
                   </div>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="gap-y-4">
                   <div>
                     <p className="font-semibold text-lilac mb-1">
                       Topic: {engagement.topic}
                     </p>
-                    <p className="text-gray-700 dark:text-gray-300">
+                    <p className="text-neutral-700 dark:text-neutral-300">
                       {engagement.description}
                     </p>
                   </div>
                   
                   <div>
-                    <p className="font-semibold text-gray-900 dark:text-white mb-2">
+                    <p className="font-semibold text-neutral-900 dark:text-white mb-2">
                       Key Highlights:
                     </p>
                     <ul className="grid sm:grid-cols-2 gap-2">
                       {engagement.highlights.map((highlight) => (
                         <li key={highlight} className="flex items-start">
                           <span className="text-lilac mr-2">•</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{highlight}</span>
+                          <span className="text-sm text-neutral-700 dark:text-neutral-300">{highlight}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
                   {engagement.impact && (
-                    <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
-                      <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                    <div className="pt-3 border-t border-neutral-200 dark:border-neutral-700">
+                      <p className="text-sm font-semibold text-neutral-900 dark:text-white">
                         {engagement.impact}
                       </p>
                     </div>
                   )}
                 </CardContent>
               </Card>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 
         {/* CTA Section */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
           viewport={{ once: true }}
           className="mt-16 text-center bg-gradient-to-r from-lilac/10 to-orchid/10 rounded-2xl p-8"
         >
-          <h3 className="text-xl font-signal font-semibold text-gray-900 dark:text-white mb-3">
+          <h3 className="text-xl font-signal font-semibold text-neutral-900 dark:text-white mb-3">
             Looking for an Engaging Speaker?
           </h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto">
+          <p className="text-neutral-700 dark:text-neutral-300 mb-6 max-w-2xl mx-auto">
             Jarrett brings energy, expertise, and actionable insights to every presentation. 
             Whether it's a keynote, workshop, or panel discussion, he delivers content that resonates and drives results.
           </p>
-          <a
+          <Link
             href="/contact"
             className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-lg shadow-sm text-white bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 transition-colors"
           >
             Book Jarrett for Your Event
-          </a>
-        </motion.div>
+          </Link>
+        </m.div>
       </div>
     </section>
   )

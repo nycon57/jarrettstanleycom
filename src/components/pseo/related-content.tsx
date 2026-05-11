@@ -23,7 +23,7 @@ export function RelatedContent({ links, heading = 'Related Content' }: RelatedCo
 
   return (
     <section className="py-12">
-      <h2 className="font-signal text-2xl md:text-3xl font-bold mb-6">{heading}</h2>
+      <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-6">{heading}</h2>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {links.map((link) => (
           <Link
@@ -39,7 +39,7 @@ export function RelatedContent({ links, heading = 'Related Content' }: RelatedCo
                 {link.title}
               </span>
             </div>
-            <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground group-hover:text-lilac group-hover:translate-x-0.5 transition-all" />
+            <ArrowRight className="size-4 shrink-0 text-muted-foreground group-hover:text-lilac group-hover:translate-x-0.5 transition-all" />
           </Link>
         ))}
       </div>

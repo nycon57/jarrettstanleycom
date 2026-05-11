@@ -54,11 +54,12 @@ export function ResourceCard({ resource, onDownload, className }: ResourceCardPr
             src={resource.thumbnail_url}
             alt={resource.title}
             fill
+            sizes="(max-width: 768px) 100vw, 33vw"
             className="object-cover transition-transform duration-300 group-hover:scale-105"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <IconComponent className="w-16 h-16 text-purple-400" />
+            <IconComponent className="size-16 text-purple-400" />
           </div>
         )}
         {resource.is_featured && (
@@ -87,7 +88,7 @@ export function ResourceCard({ resource, onDownload, className }: ResourceCardPr
           ))}
         </div>
         
-        <h3 className="font-signal font-bold text-xl leading-tight transition-colors group-hover:text-purple-600">
+        <h3 className="font-signal font-semibold text-xl leading-tight transition-colors group-hover:text-purple-600">
           {resource.title}
         </h3>
       </CardHeader>
@@ -110,7 +111,7 @@ export function ResourceCard({ resource, onDownload, className }: ResourceCardPr
           onClick={handleDownload}
           className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
         >
-          <Download className="w-4 h-4 mr-2" />
+          <Download className="size-4 mr-2" />
           {resource.requires_email ? 'Download (Email Required)' : 'Download'}
         </Button>
       </CardFooter>

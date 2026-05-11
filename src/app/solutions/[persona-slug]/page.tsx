@@ -76,8 +76,9 @@ export default async function PersonaDetailPage({ params }: PageProps) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={generateStructuredData(schemas)}
-      />
+      >
+        {generateStructuredData(schemas)}
+      </script>
 
       <div className="container max-w-5xl pt-24 md:pt-28 pb-12 md:pb-16">
         <PseoBreadcrumbs items={breadcrumbs} />
@@ -99,7 +100,7 @@ export default async function PersonaDetailPage({ params }: PageProps) {
           >
             <Link href="/services/consulting">
               Discuss Your Strategy
-              <ArrowRight className="ml-2 h-4 w-4" />
+              <ArrowRight className="ml-2 size-4" />
             </Link>
           </Button>
         </section>
@@ -117,11 +118,11 @@ export default async function PersonaDetailPage({ params }: PageProps) {
             {persona.painPoints.map((point, index) => {
               const Icon = painPointIcons[index % painPointIcons.length]
               return (
-                <Card key={index} className="h-full">
+                <Card key={point.title} className="h-full">
                   <CardHeader className="pb-2">
                     <div className="flex items-start gap-3">
-                      <div className="mt-0.5 w-9 h-9 shrink-0 rounded-lg bg-orchid/10 border border-orchid/20 flex items-center justify-center">
-                        <Icon className="h-[1.125rem] w-[1.125rem] text-orchid" />
+                      <div className="mt-0.5 size-9 shrink-0 rounded-lg bg-orchid/10 border border-orchid/20 flex items-center justify-center">
+                        <Icon className="size-[1.125rem] text-orchid" />
                       </div>
                       <h3 className="font-signal text-base font-semibold leading-snug">
                         {point.title}
@@ -152,11 +153,11 @@ export default async function PersonaDetailPage({ params }: PageProps) {
             {persona.aiSolutions.map((solution, index) => {
               const Icon = solutionIcons[index % solutionIcons.length]
               return (
-                <Card key={index} className="h-full border-lilac/10">
+                <Card key={solution.title} className="h-full border-lilac/10">
                   <CardHeader className="pb-2">
                     <div className="flex items-start gap-3">
-                      <div className="mt-0.5 w-9 h-9 shrink-0 rounded-lg bg-gradient-to-br from-lilac/10 to-orchid/10 border border-lilac/20 flex items-center justify-center">
-                        <Icon className="h-[1.125rem] w-[1.125rem] text-lilac" />
+                      <div className="mt-0.5 size-9 shrink-0 rounded-lg bg-gradient-to-br from-lilac/10 to-orchid/10 border border-lilac/20 flex items-center justify-center">
+                        <Icon className="size-[1.125rem] text-lilac" />
                       </div>
                       <h3 className="font-signal text-base font-semibold leading-snug">
                         {solution.title}
@@ -186,9 +187,9 @@ export default async function PersonaDetailPage({ params }: PageProps) {
             How these strategies play out in practice, drawn from real
             implementations.
           </Text>
-          <div className="space-y-6">
-            {persona.useCases.map((useCase, index) => (
-              <Card key={index} className="overflow-hidden">
+          <div className="gap-y-6">
+            {persona.useCases.map((useCase) => (
+              <Card key={useCase.title} className="overflow-hidden">
                 <div className="md:flex">
                   <div className="flex-1 p-6">
                     <h3 className="font-signal text-lg font-semibold mb-3">
@@ -222,13 +223,13 @@ export default async function PersonaDetailPage({ params }: PageProps) {
             {persona.personaName.toLowerCase()}.
           </Text>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {persona.benefits.map((benefit, index) => (
+            {persona.benefits.map((benefit) => (
               <div
-                key={index}
+                key={benefit.title}
                 className="p-5 rounded-xl border border-border hover:border-lilac/20 transition-colors"
               >
                 <div className="flex items-center gap-2 mb-3">
-                  <CheckCircle className="h-5 w-5 text-lilac shrink-0" />
+                  <CheckCircle className="size-5 text-lilac shrink-0" />
                   <h3 className="font-signal text-base font-semibold">
                     {benefit.title}
                   </h3>

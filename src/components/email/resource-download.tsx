@@ -1,5 +1,30 @@
 import * as React from 'react';
 
+
+const RESOURCE_DOWNLOAD_STYLE_1 = {
+          backgroundColor: '#16a34a',
+          color: 'white',
+          padding: '16px 32px',
+          borderRadius: '8px',
+          textDecoration: 'none',
+          fontSize: '18px',
+          fontWeight: 'bold',
+          display: 'inline-block',
+          boxShadow: '0 4px 12px rgba(22, 101, 52, 0.3)'
+        
+} satisfies React.CSSProperties;
+
+const RESOURCE_DOWNLOAD_STYLE_2 = {
+          backgroundColor: '#f59e0b',
+          color: 'white',
+          padding: '12px 24px',
+          borderRadius: '6px',
+          textDecoration: 'none',
+          fontSize: '14px',
+          fontWeight: 'bold',
+          display: 'inline-block'
+        
+} satisfies React.CSSProperties;
 interface ResourceDownloadEmailProps {
   firstName: string;
   resourceTitle: string;
@@ -48,17 +73,7 @@ export const ResourceDownloadEmail: React.FC<Readonly<ResourceDownloadEmailProps
         <h2 style={{ color: '#166534', marginTop: '0', fontSize: '20px', marginBottom: '20px' }}>
           📄 Access Your Resource
         </h2>
-        <a href={downloadUrl} style={{
-          backgroundColor: '#16a34a',
-          color: 'white',
-          padding: '16px 32px',
-          borderRadius: '8px',
-          textDecoration: 'none',
-          fontSize: '18px',
-          fontWeight: 'bold',
-          display: 'inline-block',
-          boxShadow: '0 4px 12px rgba(22, 101, 52, 0.3)'
-        }}>
+        <a href={downloadUrl} style={RESOURCE_DOWNLOAD_STYLE_1}>
           🔽 Download Now
         </a>
         <p style={{ margin: '15px 0 0 0', fontSize: '14px', color: '#6b7280' }}>
@@ -153,16 +168,7 @@ export const ResourceDownloadEmail: React.FC<Readonly<ResourceDownloadEmailProps
           Get weekly insights on AI-powered marketing, industry trends, and exclusive resources 
           delivered straight to your inbox.
         </p>
-        <a href="https://jarrettstanley.com/newsletter" style={{
-          backgroundColor: '#f59e0b',
-          color: 'white',
-          padding: '12px 24px',
-          borderRadius: '6px',
-          textDecoration: 'none',
-          fontSize: '14px',
-          fontWeight: 'bold',
-          display: 'inline-block'
-        }}>
+        <a href="https://jarrettstanley.com/newsletter" style={RESOURCE_DOWNLOAD_STYLE_2}>
           Subscribe to Newsletter
         </a>
       </div>

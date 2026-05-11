@@ -44,7 +44,7 @@ export function ContentCard({
           </p>
           <div className="flex items-center gap-1 mt-4 text-sm font-medium text-lilac">
             Read more
-            <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <ArrowRight className="size-3.5 group-hover:translate-x-0.5 transition-transform" />
           </div>
         </CardContent>
       </Card>

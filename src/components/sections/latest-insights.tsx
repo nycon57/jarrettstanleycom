@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight, Calendar } from "lucide-react";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { format } from "date-fns";
+import { formatDateLabel } from "@/lib/date-format";
 
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -25,11 +25,6 @@ const LatestInsights = ({ posts }: LatestInsightsProps) => {
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
-  // Don't render if no posts available
-  if (!posts || posts.length === 0) {
-    return null;
-  }
-
   useEffect(() => {
     if (!carouselApi) {
       return;
@@ -45,13 +40,18 @@ const LatestInsights = ({ posts }: LatestInsightsProps) => {
     };
   }, [carouselApi]);
 
+  // Don't render if no posts available
+  if (!posts || posts.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-24">
       <div className="container">
         <div className="mb-12 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-              Latest <span className="text-transparent bg-clip-text bg-gradient-to-r from-lilac to-orchid">Insights</span>
+          <div className="gap-y-2">
+            <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
+              Latest <span className="text-lilac">Insights</span>
             </h2>
             <p className="text-muted-foreground text-lg">
               Thoughts on AI, mortgage marketing, and the future of our industry
@@ -88,7 +88,10 @@ const LatestInsights = ({ posts }: LatestInsightsProps) => {
         className="w-full"
       >
         <CarouselContent className="mr-[calc(theme(container.padding))] 2xl:ml-[calc(50vw-700px+theme(container.padding)-20px)] 2xl:mr-[calc(50vw-700px+theme(container.padding))] gap-6">
-          {posts.map((post) => (
+          {posts.map((post) => {
+            const publishedLabel = formatDateLabel(post.published_at, 'MMM d, yyyy')
+
+            return (
             <CarouselItem
               key={post.id}
               className="px-4 md:basis-1/2 md:pr-0 md:pl-4 lg:basis-1/3"
@@ -109,6 +112,7 @@ const LatestInsights = ({ posts }: LatestInsightsProps) => {
                         src={post.featured_image_url}
                         alt={post.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover transition duration-500 group-hover:scale-105"
                       />
                     ) : (
@@ -135,7 +139,7 @@ const LatestInsights = ({ posts }: LatestInsightsProps) => {
                     <div className="mt-6 flex items-center justify-between">
                       <Badge variant="secondary" className="rounded-full bg-lilac/10 text-lilac border-lilac/20">
                         <Calendar className="mr-1.5 size-3.5" />
-                        <span className="text-xs">{format(new Date(post.published_at), 'MMM d, yyyy')}</span>
+                        <span className="text-xs">{publishedLabel}</span>
                       </Badge>
                       <Button
                         variant="ghost"
@@ -149,7 +153,7 @@ const LatestInsights = ({ posts }: LatestInsightsProps) => {
                 </Link>
               </div>
             </CarouselItem>
-          ))}
+          )})}
         </CarouselContent>
       </Carousel>
       <div className="mt-16 flex items-center justify-center">

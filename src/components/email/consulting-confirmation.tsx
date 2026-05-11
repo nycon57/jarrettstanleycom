@@ -1,5 +1,53 @@
 import * as React from 'react';
 
+
+const CONSULTING_CONFIRMATION_STYLE_1 = { 
+              backgroundColor: '#3b82f6', 
+              color: 'white', 
+              borderRadius: '50%', 
+              width: '24px', 
+              height: '24px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '12px', 
+              fontWeight: 'bold', 
+              marginRight: '15px', 
+              flexShrink: 0 
+            
+} satisfies React.CSSProperties;
+
+const CONSULTING_CONFIRMATION_STYLE_2 = { 
+              backgroundColor: '#3b82f6', 
+              color: 'white', 
+              borderRadius: '50%', 
+              width: '24px', 
+              height: '24px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '12px', 
+              fontWeight: 'bold', 
+              marginRight: '15px', 
+              flexShrink: 0 
+            
+} satisfies React.CSSProperties;
+
+const CONSULTING_CONFIRMATION_STYLE_3 = { 
+              backgroundColor: '#3b82f6', 
+              color: 'white', 
+              borderRadius: '50%', 
+              width: '24px', 
+              height: '24px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '12px', 
+              fontWeight: 'bold', 
+              marginRight: '15px', 
+              flexShrink: 0 
+            
+} satisfies React.CSSProperties;
 interface ConsultingConfirmationEmailProps {
   firstName: string;
   data: {
@@ -93,20 +141,7 @@ export const ConsultingConfirmationEmail: React.FC<Readonly<ConsultingConfirmati
         
         <div style={{ marginBottom: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ 
-              backgroundColor: '#3b82f6', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '24px', 
-              height: '24px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '12px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={CONSULTING_CONFIRMATION_STYLE_1}>
               1
             </div>
             <div>
@@ -120,20 +155,7 @@ export const ConsultingConfirmationEmail: React.FC<Readonly<ConsultingConfirmati
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ 
-              backgroundColor: '#3b82f6', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '24px', 
-              height: '24px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '12px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={CONSULTING_CONFIRMATION_STYLE_2}>
               2
             </div>
             <div>
@@ -147,20 +169,7 @@ export const ConsultingConfirmationEmail: React.FC<Readonly<ConsultingConfirmati
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-            <div style={{ 
-              backgroundColor: '#3b82f6', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '24px', 
-              height: '24px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '12px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={CONSULTING_CONFIRMATION_STYLE_3}>
               3
             </div>
             <div>

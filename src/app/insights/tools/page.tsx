@@ -40,8 +40,9 @@ export default async function ToolsIndexPage() {
     <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={structuredData}
-      />
+      >
+        {structuredData}
+      </script>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 pt-32">
@@ -50,16 +51,16 @@ export default async function ToolsIndexPage() {
           <PseoBreadcrumbs items={breadcrumbs} />
           <div className="max-w-3xl">
             <div className="flex items-center gap-3 mb-6">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lilac/10 to-orchid/10 border border-lilac/20">
-                <Wrench className="h-6 w-6 text-lilac" />
+              <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-to-br from-lilac/10 to-orchid/10 border border-lilac/20">
+                <Wrench className="size-6 text-lilac" />
               </div>
               <Badge variant="gradient-subtle" size="md">
                 {roundups.length} Tool Roundups
               </Badge>
             </div>
-            <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight">
               AI Tools for{' '}
-              <span className="bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent">
+              <span className="text-lilac">
                 Mortgage Marketing
               </span>
             </h1>
@@ -135,7 +136,7 @@ export default async function ToolsIndexPage() {
                     </div>
                     <div className="flex items-center gap-1 mt-4 text-sm font-medium text-lilac">
                       View comparison
-                      <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                      <ArrowRight className="size-3.5 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </CardContent>
                 </Card>

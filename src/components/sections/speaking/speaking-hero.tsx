@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 
 export function SpeakingHero() {
   return (
-    <section className="py-32 bg-gradient-to-br from-gray-50 via-white to-lilac/10 dark:from-shadow dark:via-indigo dark:to-orchid relative">
+    <section className="py-32 bg-gradient-to-br from-neutral-50 via-white to-lilac/10 dark:from-shadow dark:via-indigo dark:to-orchid relative">
       {/* Background pattern */}
       <div className="absolute inset-0 bg-grid-black/[0.02] dark:bg-grid-white/[0.02] bg-[size:60px_60px]" />
       
@@ -21,10 +21,10 @@ export function SpeakingHero() {
             </Badge>
             <div className="flex items-center gap-1">
               <p className="text-sm font-semibold text-lilac dark:text-white">Book Jarrett Now</p>
-              <ChevronRight className="h-4 w-4 text-lilac dark:text-white" />
+              <ChevronRight className="size-4 text-lilac dark:text-white" />
             </div>
           </a>
-          <h1 className="text-center text-5xl font-signal font-semibold text-gray-900 dark:text-white md:text-6xl">
+          <h1 className="text-center text-5xl font-signal font-semibold text-neutral-900 dark:text-white md:text-6xl">
             Transform Your Event with AI Marketing Expertise
           </h1>
           <p className="text-center text-lg text-muted-foreground md:text-xl max-w-3xl">

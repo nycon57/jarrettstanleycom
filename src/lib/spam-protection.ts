@@ -9,15 +9,16 @@
  */
 
 // Rate limiting store (in-memory, consider Redis for production scale)
-const rateLimitStore = new Map<string, { count: number; resetTime: number }>();
+const rateLimitStore = new Map<string, {count: number;resetTime: number;}>();
 const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minute
 const RATE_LIMIT_MAX = 3; // Max submissions per window
+const SPAM_KEYWORD_PATTERN = /\b(?:buy now|click here|act now|limited time|free money|make money fast|casino|viagra|bitcoin investment|crypto investment|forex trading|earn from home|work from home opportunity)\b/;
 
 /**
  * Detects gibberish/random character strings
  * Returns true if the string appears to be gibberish
  */
-export function isGibberish(text: string): boolean {
+function isGibberish(text: string): boolean {
   if (!text || text.length < 3) return false;
 
   // Clean the text
@@ -42,7 +43,7 @@ export function isGibberish(text: string): boolean {
   }
 
   // Check for strings with very low vowel ratio (less than 15% vowels is suspicious)
-  const vowelCount = (cleaned.match(/[aeiou]/g)?.length || 0);
+  const vowelCount = cleaned.match(/[aeiou]/g)?.length || 0;
   const letterCount = cleaned.replace(/[^a-z]/g, '').length;
   if (letterCount > 5 && vowelCount / letterCount < 0.15) {
     return true;
@@ -94,7 +95,7 @@ function hasHighEntropy(text: string): boolean {
  * Validates that the honeypot field is empty
  * Returns true if the submission is likely a bot (honeypot filled)
  */
-export function isHoneypotFilled(honeypotValue: string | null | undefined): boolean {
+function isHoneypotFilled(honeypotValue: string | null | undefined): boolean {
   return !!honeypotValue && honeypotValue.trim().length > 0;
 }
 
@@ -102,7 +103,7 @@ export function isHoneypotFilled(honeypotValue: string | null | undefined): bool
  * Check rate limiting for an identifier (IP or email)
  * Returns true if rate limited (should block)
  */
-export function isRateLimited(identifier: string): boolean {
+function isRateLimited(identifier: string): boolean {
   const now = Date.now();
   const record = rateLimitStore.get(identifier);
 
@@ -126,14 +127,14 @@ export function isRateLimited(identifier: string): boolean {
 /**
  * Detect suspicious patterns in form data
  */
-export function hasSuspiciousPatterns(data: {
+function hasSuspiciousPatterns(data: {
   name?: string;
   firstName?: string;
   lastName?: string;
   email?: string;
   message?: string;
   company?: string;
-}): { suspicious: boolean; reason?: string } {
+}): {suspicious: boolean;reason?: string;} {
   // Check names for gibberish
   const fullName = data.name || `${data.firstName || ''} ${data.lastName || ''}`.trim();
 
@@ -155,18 +156,9 @@ export function hasSuspiciousPatterns(data: {
 
   // Check for common spam keywords in message
   if (data.message) {
-    const spamKeywords = [
-      'buy now', 'click here', 'act now', 'limited time',
-      'free money', 'make money fast', 'casino', 'viagra',
-      'bitcoin investment', 'crypto investment', 'forex trading',
-      'earn from home', 'work from home opportunity'
-    ];
-
     const lowerMessage = data.message.toLowerCase();
-    for (const keyword of spamKeywords) {
-      if (lowerMessage.includes(keyword)) {
-        return { suspicious: true, reason: 'Message contains spam keywords' };
-      }
+    if (SPAM_KEYWORD_PATTERN.test(lowerMessage)) {
+      return { suspicious: true, reason: 'Message contains spam keywords' };
     }
   }
 
@@ -254,10 +246,10 @@ export function checkForSpam(data: {
  * Legitimate users take at least a few seconds to fill forms
  */
 export function isSubmittedTooFast(
-  startTime: number,
-  submitTime: number = Date.now(),
-  minSeconds: number = 3
-): boolean {
+startTime: number,
+submitTime: number = Date.now(),
+minSeconds: number = 3)
+: boolean {
   const elapsedSeconds = (submitTime - startTime) / 1000;
   return elapsedSeconds < minSeconds;
 }
@@ -265,7 +257,7 @@ export function isSubmittedTooFast(
 /**
  * Clean up old rate limit entries periodically
  */
-export function cleanupRateLimitStore(): void {
+function cleanupRateLimitStore(): void {
   const now = Date.now();
   rateLimitStore.forEach((value, key) => {
     if (now > value.resetTime) {

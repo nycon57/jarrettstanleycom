@@ -6,6 +6,17 @@ import {
   Link,
 } from '@react-email/components';
 import { EmailLayout, colors, styles } from '../components/email-layout';
+import { formatEmailTimestamp } from '../email-date';
+
+const TYPE_BADGE_STYLE = {
+  color: colors.background.white,
+  padding: '4px 8px',
+  borderRadius: '4px',
+  fontSize: '12px',
+  fontWeight: '600',
+  display: 'inline-block',
+  margin: '0',
+} satisfies React.CSSProperties;
 
 interface ContactNotificationEmailProps {
   name: string;
@@ -16,14 +27,16 @@ interface ContactNotificationEmailProps {
   phone?: string;
 }
 
-export const ContactNotificationEmail: React.FC<ContactNotificationEmailProps> = ({
+export const ContactNotificationEmail: React.FC<Readonly<ContactNotificationEmailProps>> = (props) => renderContactNotificationEmail(props);
+
+function renderContactNotificationEmail({
   name,
   email,
   message,
   type = 'general',
   company,
   phone,
-}) => {
+}: Readonly<ContactNotificationEmailProps>) {
   const getTypeLabel = () => {
     switch (type) {
       case 'speaking': return 'Speaking Inquiry';
@@ -218,16 +231,7 @@ export const ContactNotificationEmail: React.FC<ContactNotificationEmailProps> =
           }}>
             Type:
           </Text>
-          <Text style={{
-            backgroundColor: getTypeColor(),
-            color: colors.background.white,
-            padding: '4px 8px',
-            borderRadius: '4px',
-            fontSize: '12px',
-            fontWeight: '600',
-            display: 'inline-block',
-            margin: '0',
-          }}>
+          <Text style={{ ...TYPE_BADGE_STYLE, backgroundColor: getTypeColor() }}>
             {getTypeLabel()}
           </Text>
         </Section>
@@ -326,15 +330,7 @@ export const ContactNotificationEmail: React.FC<ContactNotificationEmailProps> =
         </Heading>
         <Section>
           <Text style={{ margin: '0 0 5px 0', fontSize: '12px', color: colors.text.light }}>
-            <strong>Received:</strong> {new Date().toLocaleString('en-US', {
-              timeZone: 'America/Chicago',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit',
-              timeZoneName: 'short'
-            })}
+            <strong>Received:</strong> {formatEmailTimestamp()}
           </Text>
           <Text style={{ margin: '0 0 5px 0', fontSize: '12px', color: colors.text.light }}>
             <strong>Message Length:</strong> {message.length} characters
@@ -383,4 +379,5 @@ export const ContactNotificationEmail: React.FC<ContactNotificationEmailProps> =
       )}
     </EmailLayout>
   );
-};
+
+}

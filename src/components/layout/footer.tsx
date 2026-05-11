@@ -4,6 +4,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { Linkedin, Twitter, Mail } from "lucide-react";
 
+const COPYRIGHT_YEAR = 2026;
+
 const footerLinks = {
   services: [
     { name: "AI Strategy Consulting", href: "/services/consulting" },
@@ -65,7 +67,7 @@ export function Footer() {
               Chief Marketing Officer at Nationwide Mortgage Bankers.
               Speaker, consultant, and AI innovator in mortgage marketing.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex gap-x-4">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
                 return (
@@ -77,7 +79,7 @@ export function Footer() {
                     className="text-white/60 hover:text-lilac transition-colors"
                     aria-label={social.name}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="size-5" />
                   </Link>
                 );
               })}
@@ -87,7 +89,7 @@ export function Footer() {
           {/* Services Column */}
           <div>
             <h3 className="font-signal font-semibold text-white mb-4">Services</h3>
-            <ul className="space-y-3">
+            <ul className="gap-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -104,7 +106,7 @@ export function Footer() {
           {/* Resources Column */}
           <div>
             <h3 className="font-signal font-semibold text-white mb-4">Resources</h3>
-            <ul className="space-y-3">
+            <ul className="gap-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -121,7 +123,7 @@ export function Footer() {
           {/* Connect Column */}
           <div>
             <h3 className="font-signal font-semibold text-white mb-4">Connect</h3>
-            <ul className="space-y-3">
+            <ul className="gap-y-3">
               {footerLinks.connect.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -137,11 +139,11 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-y-4 md:gap-y-0">
           <div className="text-sm text-white/60">
-            &copy; {new Date().getFullYear()} Jarrett Stanley. All rights reserved.
+            &copy; {COPYRIGHT_YEAR} Jarrett Stanley. All rights reserved.
           </div>
-          <div className="flex space-x-6 text-sm">
+          <div className="flex gap-x-6 text-sm">
             <Link href="/privacy" className="text-white/60 hover:text-white transition-colors">
               Privacy Policy
             </Link>

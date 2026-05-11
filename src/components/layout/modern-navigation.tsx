@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useSyncExternalStore } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -86,6 +86,15 @@ const navigationItems = [
   { name: "Contact", href: "/contact" }
 ];
 
+function subscribeToHydration(onStoreChange: () => void) {
+  onStoreChange();
+  return () => {};
+}
+
+function useHasHydrated() {
+  return useSyncExternalStore(subscribeToHydration, () => true, () => false);
+}
+
 interface SubmenuItemProps {
   item: {
     name: string;
@@ -103,21 +112,21 @@ const SubmenuItem = ({ item, onClose }: SubmenuItemProps) => {
     <Link
       href={item.href}
       onClick={onClose}
-      className="group flex items-start space-x-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-lilac/5 hover:to-skyward/5 transition-all duration-300 border border-transparent hover:border-lilac/20"
+      className="group flex items-start gap-x-4 p-4 rounded-xl hover:bg-gradient-to-r hover:from-lilac/5 hover:to-skyward/5 transition-all duration-300 border border-transparent hover:border-lilac/20"
     >
       <div className="flex-shrink-0">
-        <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-lilac to-orchid flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-          <Icon className="w-5 h-5 text-white" />
+        <div className="size-10 rounded-lg bg-gradient-to-br from-lilac to-orchid flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+          <Icon className="size-5 text-white" />
         </div>
       </div>
       <div className="flex-1 min-w-0">
-        <div className="flex items-center space-x-2">
-          <p className="text-sm font-semibold text-gray-900 dark:text-white group-hover:text-lilac transition-colors duration-300">
+        <div className="flex items-center gap-x-2">
+          <p className="text-sm font-semibold text-neutral-900 dark:text-white group-hover:text-lilac transition-colors duration-300">
             {item.name}
           </p>
-          <ArrowRight className="w-4 h-4 text-gray-400 group-hover:text-lilac group-hover:translate-x-1 transition-all duration-300" />
+          <ArrowRight className="size-4 text-neutral-400 group-hover:text-lilac group-hover:translate-x-1 transition-all duration-300" />
         </div>
-        <p className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+        <p className="text-sm text-neutral-700 dark:text-neutral-300 group-hover:text-neutral-700 dark:group-hover:text-neutral-200 transition-colors duration-300">
           {item.description}
         </p>
       </div>
@@ -136,13 +145,13 @@ const MegaMenu = ({ items, isOpen, onClose }: MegaMenuProps) => {
 
   return (
     <div className={cn(
-      "absolute top-full left-1/2 -translate-x-1/2 w-96 bg-white/95 dark:bg-shadow/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-2xl transition-all duration-300 z-50",
+      "absolute top-full left-1/2 -translate-x-1/2 w-96 bg-white/95 dark:bg-shadow/95 backdrop-blur-xl border border-neutral-200/50 dark:border-neutral-700/50 rounded-2xl shadow-2xl transition-all duration-300 z-50",
       isOpen 
         ? "opacity-100 translate-y-2 visible" 
         : "opacity-0 translate-y-0 invisible"
     )}>
       <div className="p-6">
-        <div className="space-y-2">
+        <div className="gap-y-2">
           {items.map((item) => (
             <SubmenuItem key={item.name} item={item} onClose={onClose} />
           ))}
@@ -158,14 +167,10 @@ interface ThemeToggleProps {
 
 const ThemeToggle = ({ shouldUseLightText }: ThemeToggleProps) => {
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useHasHydrated();
 
   if (!mounted) {
-    return <div className="w-9 h-9" />;
+    return <div className="size-9" />;
   }
 
   return (
@@ -174,18 +179,18 @@ const ThemeToggle = ({ shouldUseLightText }: ThemeToggleProps) => {
       size="sm"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
       className={cn(
-        "relative w-9 h-9 rounded-full transition-all duration-300 hover:scale-110",
+        "relative size-9 rounded-full transition-all duration-300 hover:scale-110",
         shouldUseLightText 
           ? "text-white hover:bg-white/20" 
-          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+          : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
       )}
     >
       <Sun className={cn(
-        "w-4 h-4 transition-all duration-500 absolute",
+        "size-4 transition-all duration-500 absolute",
         theme === 'dark' ? "rotate-90 scale-0" : "rotate-0 scale-100"
       )} />
       <Moon className={cn(
-        "w-4 h-4 transition-all duration-500 absolute",
+        "size-4 transition-all duration-500 absolute",
         theme === 'dark' ? "rotate-0 scale-100" : "-rotate-90 scale-0"
       )} />
     </Button>
@@ -208,9 +213,11 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <button
+        type="button"
+        aria-label="Close navigation menu"
         className={cn(
-          "fixed inset-0 bg-black/50 backdrop-blur-sm transition-opacity duration-300 z-40",
+          "fixed inset-0 bg-zinc-950/50 backdrop-blur-sm transition-opacity duration-300 z-40",
           isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         )}
         onClick={onClose}
@@ -218,12 +225,12 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
       
       {/* Mobile menu panel */}
       <div className={cn(
-        "fixed top-0 right-0 h-full w-80 bg-white dark:bg-shadow border-l border-gray-200 dark:border-gray-700 transition-transform duration-300 z-50",
+        "fixed top-0 right-0 h-full w-80 bg-white dark:bg-shadow border-l border-neutral-200 dark:border-neutral-700 transition-transform duration-300 z-50",
         isOpen ? "translate-x-0" : "translate-x-full"
       )}>
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center justify-between p-6 border-b border-neutral-200 dark:border-neutral-700">
             <Image
               src="/assets/images/JS-Logo.png"
               alt="Jarrett Stanley"
@@ -242,15 +249,15 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
               variant="ghost"
               size="sm"
               onClick={onClose}
-              className="w-9 h-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800"
+              className="size-9 rounded-full hover:bg-neutral-100 dark:hover:bg-neutral-800"
             >
-              <X className="w-5 h-5" />
+              <X className="size-5" />
             </Button>
           </div>
 
           {/* Navigation items */}
           <div className="flex-1 overflow-y-auto p-6">
-            <nav className="space-y-2">
+            <nav className="gap-y-2">
               {navigationItems.map((item) => (
                 <div key={item.name}>
                   {item.submenu ? (
@@ -261,12 +268,12 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
                           "w-full flex items-center justify-between p-3 rounded-xl text-left font-medium transition-all duration-300",
                           pathname.startsWith(item.href)
                             ? "bg-gradient-to-r from-lilac/10 to-skyward/10 text-lilac"
-                            : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                            : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                         )}
                       >
                         {item.name}
                         <ChevronDown className={cn(
-                          "w-4 h-4 transition-transform duration-300",
+                          "size-4 transition-transform duration-300",
                           openSubmenu === item.name ? "rotate-180" : "rotate-0"
                         )} />
                       </button>
@@ -275,7 +282,7 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
                         "overflow-hidden transition-all duration-300",
                         openSubmenu === item.name ? "max-h-96 mt-2" : "max-h-0"
                       )}>
-                        <div className="pl-4 space-y-1">
+                        <div className="pl-4 gap-y-1">
                           {item.submenu.map((subItem) => {
                             const Icon = subItem.icon;
                             return (
@@ -284,16 +291,16 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
                                 href={subItem.href}
                                 onClick={onClose}
                                 className={cn(
-                                  "flex items-center space-x-3 p-3 rounded-lg transition-all duration-300",
+                                  "flex items-center gap-x-3 p-3 rounded-lg transition-all duration-300",
                                   pathname === subItem.href
                                     ? "bg-gradient-to-r from-lilac/20 to-skyward/20 text-lilac"
-                                    : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800/50"
+                                    : "text-neutral-600 dark:text-neutral-400 hover:bg-neutral-50 dark:hover:bg-neutral-800/50"
                                 )}
                               >
-                                <Icon className="w-4 h-4" />
+                                <Icon className="size-4" />
                                 <div>
                                   <div className="font-medium">{subItem.name}</div>
-                                  <div className="text-xs text-gray-500 dark:text-gray-500">
+                                  <div className="text-xs text-neutral-500 dark:text-neutral-500">
                                     {subItem.description}
                                   </div>
                                 </div>
@@ -311,7 +318,7 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
                         "block w-full p-3 rounded-xl font-medium transition-all duration-300",
                         pathname === item.href
                           ? "bg-gradient-to-r from-lilac/10 to-skyward/10 text-lilac"
-                          : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                          : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                       )}
                     >
                       {item.name}
@@ -323,26 +330,26 @@ const MobileMenu = ({ isOpen, onClose, pathname }: MobileMenuProps) => {
           </div>
 
           {/* Footer */}
-          <div className="p-6 border-t border-gray-200 dark:border-gray-700">
-            <div className="space-y-4">
+          <div className="p-6 border-t border-neutral-200 dark:border-neutral-700">
+            <div className="gap-y-4">
               <Button 
                 asChild
                 className="w-full bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 text-white border-0 rounded-xl h-12 font-medium transition-all duration-300 hover:scale-105"
               >
                 <Link href="/contact">
                   Get in Touch
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="size-4 ml-2" />
                 </Link>
               </Button>
               
-              <div className="flex items-center justify-center space-x-4">
+              <div className="flex items-center justify-center gap-x-4">
                 <Link
                   href="https://linkedin.com/in/jarrettstanley"
-                  className="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:text-lilac hover:bg-lilac/10 transition-all duration-300"
+                  className="p-2 rounded-full text-neutral-600 dark:text-neutral-400 hover:text-lilac hover:bg-lilac/10 transition-all duration-300"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="size-5" />
                 </Link>
                 <ThemeToggle shouldUseLightText={false} />
               </div>
@@ -360,18 +367,7 @@ export function ModernNavigation() {
   const { theme } = useTheme();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  // Check if component is mounted (for theme)
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Close mobile menu when pathname changes
-  useEffect(() => {
-    setIsMobileMenuOpen(false);
-    setActiveDropdown(null);
-  }, [pathname]);
+  const mounted = useHasHydrated();
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -392,17 +388,17 @@ export function ModernNavigation() {
       case 'blurred':
         return 'bg-white/10 backdrop-blur-md border-white/20 shadow-sm';
       case 'solid':
-        return 'bg-white dark:bg-shadow border-gray-200 dark:border-gray-700 shadow-lg';
+        return 'bg-white dark:bg-shadow border-neutral-200 dark:border-neutral-700 shadow-lg';
       case 'hidden':
-        return 'bg-white dark:bg-shadow border-gray-200 dark:border-gray-700 shadow-lg';
+        return 'bg-white dark:bg-shadow border-neutral-200 dark:border-neutral-700 shadow-lg';
       default:
-        return 'bg-white dark:bg-shadow border-gray-200 dark:border-gray-700 shadow-lg';
+        return 'bg-white dark:bg-shadow border-neutral-200 dark:border-neutral-700 shadow-lg';
     }
   };
 
   const textColorClasses = shouldUseLightText 
     ? 'text-white' 
-    : 'text-gray-900 dark:text-white';
+    : 'text-neutral-900 dark:text-white';
 
   const linkHoverClasses = shouldUseLightText
     ? 'hover:text-skyward'
@@ -451,7 +447,7 @@ export function ModernNavigation() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center gap-x-8">
               {navigationItems.map((item) => (
                 <div key={item.name} className="relative">
                   {item.submenu ? (
@@ -459,20 +455,23 @@ export function ModernNavigation() {
                       className="relative"
                       onMouseEnter={() => setActiveDropdown(item.name)}
                       onMouseLeave={() => setActiveDropdown(null)}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setActiveDropdown(activeDropdown === item.name ? null : item.name);
-                      }}
                     >
-                      <button className={cn(
-                        "flex items-center space-x-1 font-medium transition-all duration-300 py-2 px-1",
+                      <button
+                        type="button"
+                        className={cn(
+                        "flex items-center gap-x-1 font-medium transition-all duration-300 py-2 px-1",
                         textColorClasses,
                         linkHoverClasses,
                         pathname.startsWith(item.href) ? 'text-lilac' : ''
-                      )}>
+                        )}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setActiveDropdown(activeDropdown === item.name ? null : item.name);
+                        }}
+                      >
                         <span>{item.name}</span>
                         <ChevronDown className={cn(
-                          "w-4 h-4 transition-transform duration-300",
+                          "size-4 transition-transform duration-300",
                           activeDropdown === item.name ? 'rotate-180' : 'rotate-0'
                         )} />
                       </button>
@@ -504,7 +503,7 @@ export function ModernNavigation() {
             </nav>
 
             {/* Right side actions */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center gap-x-4">
               {/* Social link */}
               <Link
                 href="https://linkedin.com/in/jarrettstanley"
@@ -512,12 +511,12 @@ export function ModernNavigation() {
                   "hidden sm:flex p-2 rounded-full transition-all duration-300 hover:scale-110",
                   shouldUseLightText 
                     ? "text-white hover:bg-white/20" 
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                 )}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="size-5" />
               </Link>
 
               {/* Theme toggle - desktop */}
@@ -532,7 +531,7 @@ export function ModernNavigation() {
               >
                 <Link href="/contact">
                   Get in Touch
-                  <ArrowRight className="w-4 h-4 ml-2" />
+                  <ArrowRight className="size-4 ml-2" />
                 </Link>
               </Button>
 
@@ -541,14 +540,14 @@ export function ModernNavigation() {
                 variant="ghost"
                 size="sm"
                 className={cn(
-                  "lg:hidden w-9 h-9 rounded-full transition-all duration-300",
+                  "lg:hidden size-9 rounded-full transition-all duration-300",
                   shouldUseLightText 
                     ? "text-white hover:bg-white/20" 
-                    : "text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+                    : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
                 )}
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                <div className="relative w-5 h-5">
+                <div className="relative size-5">
                   <Menu className={cn(
                     "absolute inset-0 transition-all duration-300",
                     isMobileMenuOpen ? "rotate-90 scale-0" : "rotate-0 scale-100"

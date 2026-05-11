@@ -31,8 +31,8 @@ export function GlossaryTermPage({ term, relatedTerms, breadcrumbs }: GlossaryTe
           <Badge variant="lilac" className="mb-4">
             {glossaryCategoryLabels[term.category]}
           </Badge>
-          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            <span className="bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent">
+          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
+            <span className="text-lilac">
               {term.term}
             </span>
           </h1>
@@ -45,12 +45,12 @@ export function GlossaryTermPage({ term, relatedTerms, breadcrumbs }: GlossaryTe
       {/* Detailed Explanation */}
       <section className="pb-12">
         <div className="container max-w-4xl">
-          <h2 className="font-signal text-2xl md:text-3xl font-bold mb-6">
+          <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-6">
             What Is {term.term}?
           </h2>
           <div className="prose dark:prose-invert max-w-none">
-            {term.detailedExplanation.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="text-base text-muted-foreground leading-relaxed mb-4">
+            {term.detailedExplanation.split('\n\n').map((paragraph) => (
+              <p key={paragraph} className="text-base text-muted-foreground leading-relaxed mb-4">
                 {paragraph}
               </p>
             ))}
@@ -61,12 +61,12 @@ export function GlossaryTermPage({ term, relatedTerms, breadcrumbs }: GlossaryTe
       {/* Industry Context */}
       <section className="pb-12">
         <div className="container max-w-4xl">
-          <h2 className="font-signal text-2xl md:text-3xl font-bold mb-6">
+          <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-6">
             Why This Matters in Mortgage Marketing
           </h2>
           <div className="relative rounded-2xl bg-gradient-to-br from-lilac/5 via-orchid/5 to-skyward/5 border border-lilac/10 p-6 md:p-8">
-            {term.industryContext.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="text-base text-muted-foreground leading-relaxed mb-4 last:mb-0">
+            {term.industryContext.split('\n\n').map((paragraph) => (
+              <p key={paragraph} className="text-base text-muted-foreground leading-relaxed mb-4 last:mb-0">
                 {paragraph}
               </p>
             ))}
@@ -77,12 +77,12 @@ export function GlossaryTermPage({ term, relatedTerms, breadcrumbs }: GlossaryTe
       {/* Examples Grid */}
       <section className="pb-12">
         <div className="container max-w-4xl">
-          <h2 className="font-signal text-2xl md:text-3xl font-bold mb-6">
+          <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-6">
             {term.term} in Action
           </h2>
           <div className="grid gap-4 md:grid-cols-1">
-            {term.examples.map((example, index) => (
-              <Card key={index} variant="elevated">
+            {term.examples.map((example) => (
+              <Card key={example.title} variant="elevated">
                 <CardContent className="pt-6">
                   <h3 className="font-signal text-lg font-semibold mb-3">
                     {example.title}
@@ -101,7 +101,7 @@ export function GlossaryTermPage({ term, relatedTerms, breadcrumbs }: GlossaryTe
       {relatedTerms.length > 0 && (
         <section className="pb-12">
           <div className="container max-w-4xl">
-            <h2 className="font-signal text-2xl md:text-3xl font-bold mb-6">
+            <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-6">
               Related Terms
             </h2>
             <div className="flex flex-wrap gap-2">

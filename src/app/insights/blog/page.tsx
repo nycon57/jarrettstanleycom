@@ -33,7 +33,7 @@ export default async function BlogIndexPage() {
   const breadcrumbs = buildBlogBreadcrumbs()
 
   // Structured data is generated from our own static content (not user input)
-  // and is safe to use with dangerouslySetInnerHTML per Next.js JSON-LD pattern
+  // and is safe to use with a plain JSON-LD script child
   const structuredData = generateStructuredData([
     generateCollectionPageSchema({
       name: 'Blog & Articles',
@@ -53,17 +53,18 @@ export default async function BlogIndexPage() {
     <article className="min-h-screen bg-background">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={structuredData}
-      />
+      >
+        {structuredData}
+      </script>
 
       {/* Hero Section */}
       <section className="pt-32 pb-12">
         <div className="container max-w-6xl">
           <PseoBreadcrumbs items={breadcrumbs} />
 
-          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4">
             Blog &{' '}
-            <span className="bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent">
+            <span className="text-lilac">
               Articles
             </span>
           </h1>

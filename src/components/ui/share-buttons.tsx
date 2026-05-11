@@ -31,7 +31,7 @@ export function ShareButtons({ shareUrl, title }: ShareButtonsProps) {
   }
 
   return (
-    <div className="flex items-center space-x-4">
+    <div className="flex items-center gap-x-4">
       <Button asChild variant="outline" size="sm">
         <TrackedLink
           href={shareLinks.twitter}
@@ -40,9 +40,9 @@ export function ShareButtons({ shareUrl, title }: ShareButtonsProps) {
             linkType: 'social'
           }}
           external
-          className="flex items-center space-x-2"
+          className="flex items-center gap-x-2"
         >
-          <Twitter className="w-4 h-4" />
+          <Twitter className="size-4" />
           <span>Twitter</span>
         </TrackedLink>
       </Button>
@@ -55,9 +55,9 @@ export function ShareButtons({ shareUrl, title }: ShareButtonsProps) {
             linkType: 'social'
           }}
           external
-          className="flex items-center space-x-2"
+          className="flex items-center gap-x-2"
         >
-          <Linkedin className="w-4 h-4" />
+          <Linkedin className="size-4" />
           <span>LinkedIn</span>
         </TrackedLink>
       </Button>
@@ -70,9 +70,9 @@ export function ShareButtons({ shareUrl, title }: ShareButtonsProps) {
             linkType: 'social'
           }}
           external
-          className="flex items-center space-x-2"
+          className="flex items-center gap-x-2"
         >
-          <Facebook className="w-4 h-4" />
+          <Facebook className="size-4" />
           <span>Facebook</span>
         </TrackedLink>
       </Button>
@@ -81,9 +81,9 @@ export function ShareButtons({ shareUrl, title }: ShareButtonsProps) {
         variant="outline" 
         size="sm"
         onClick={copyToClipboard}
-        className="flex items-center space-x-2"
+        className="flex items-center gap-x-2"
       >
-        <Link2 className="w-4 h-4" />
+        <Link2 className="size-4" />
         <span>{copied ? 'Copied!' : 'Copy Link'}</span>
       </Button>
     </div>

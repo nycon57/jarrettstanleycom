@@ -1,21 +1,170 @@
 import * as React from 'react';
 
+
+const NEWSLETTER_WELCOME_STYLE_1 = {
+              backgroundColor: '#7c3aed',
+              color: 'white',
+              borderRadius: '50%',
+              width: '28px',
+              height: '28px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              marginRight: '15px',
+              flexShrink: 0
+            
+} satisfies React.CSSProperties;
+
+const NEWSLETTER_WELCOME_STYLE_2 = {
+              backgroundColor: '#7c3aed',
+              color: 'white',
+              borderRadius: '50%',
+              width: '28px',
+              height: '28px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              marginRight: '15px',
+              flexShrink: 0
+            
+} satisfies React.CSSProperties;
+
+const NEWSLETTER_WELCOME_STYLE_3 = {
+              backgroundColor: '#7c3aed',
+              color: 'white',
+              borderRadius: '50%',
+              width: '28px',
+              height: '28px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              marginRight: '15px',
+              flexShrink: 0
+            
+} satisfies React.CSSProperties;
+
+const NEWSLETTER_WELCOME_STYLE_4 = {
+              backgroundColor: '#7c3aed',
+              color: 'white',
+              borderRadius: '50%',
+              width: '28px',
+              height: '28px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '14px',
+              fontWeight: 'bold',
+              marginRight: '15px',
+              flexShrink: 0
+            
+} satisfies React.CSSProperties;
+
+const NEWSLETTER_WELCOME_STYLE_5 = {
+          backgroundColor: '#16a34a',
+          color: 'white',
+          padding: '14px 28px',
+          borderRadius: '8px',
+          textDecoration: 'none',
+          fontSize: '16px',
+          fontWeight: 'bold',
+          display: 'inline-block',
+          boxShadow: '0 4px 12px rgba(22, 101, 52, 0.3)'
+        
+} satisfies React.CSSProperties;
+
+const NEWSLETTER_WELCOME_STYLE_6 = {
+              backgroundColor: '#f59e0b',
+              color: 'white',
+              borderRadius: '50%',
+              width: '20px',
+              height: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '12px',
+              fontWeight: 'bold',
+              flexShrink: 0,
+              marginTop: '2px'
+            
+} satisfies React.CSSProperties;
+
+const NEWSLETTER_WELCOME_STYLE_7 = {
+              backgroundColor: '#f59e0b',
+              color: 'white',
+              borderRadius: '50%',
+              width: '20px',
+              height: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '12px',
+              fontWeight: 'bold',
+              flexShrink: 0,
+              marginTop: '2px'
+            
+} satisfies React.CSSProperties;
+
+const NEWSLETTER_WELCOME_STYLE_8 = {
+              backgroundColor: '#f59e0b',
+              color: 'white',
+              borderRadius: '50%',
+              width: '20px',
+              height: '20px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontSize: '12px',
+              fontWeight: 'bold',
+              flexShrink: 0,
+              marginTop: '2px'
+            
+} satisfies React.CSSProperties;
+
+const NEWSLETTER_WELCOME_STYLE_9 = {
+            width: '50px',
+            height: '50px',
+            borderRadius: '50%',
+            backgroundColor: '#f3f4f6',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontSize: '20px'
+          
+} satisfies React.CSSProperties;
+
+const NEWSLETTER_WELCOME_STYLE_10 = {
+          backgroundColor: '#7c3aed',
+          color: 'white',
+          padding: '12px 24px',
+          borderRadius: '6px',
+          textDecoration: 'none',
+          fontSize: '14px',
+          fontWeight: 'bold',
+          display: 'inline-block'
+        
+} satisfies React.CSSProperties;
 interface NewsletterWelcomeEmailProps {
   firstName: string;
 }
 
-export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailProps>> = ({
-  firstName,
+const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailProps>> = ({
+  firstName
 }) => {
   return (
     <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <div style={{ 
-          background: 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)', 
-          color: 'white', 
-          padding: '25px', 
-          borderRadius: '8px' 
+        <div style={{
+          background: 'linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%)',
+          color: 'white',
+          padding: '25px',
+          borderRadius: '8px'
         }}>
           <h1 style={{ margin: '0', fontSize: '32px' }}>🚀 Welcome to the AI Marketing Revolution!</h1>
           <p style={{ margin: '15px 0 0 0', fontSize: '18px', opacity: '0.9' }}>
@@ -47,20 +196,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
         
         <div style={{ marginBottom: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ 
-              backgroundColor: '#7c3aed', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '28px', 
-              height: '28px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '14px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={NEWSLETTER_WELCOME_STYLE_1}>
               📊
             </div>
             <div>
@@ -74,20 +210,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ 
-              backgroundColor: '#7c3aed', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '28px', 
-              height: '28px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '14px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={NEWSLETTER_WELCOME_STYLE_2}>
               🛠️
             </div>
             <div>
@@ -101,20 +224,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ 
-              backgroundColor: '#7c3aed', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '28px', 
-              height: '28px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '14px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={NEWSLETTER_WELCOME_STYLE_3}>
               💡
             </div>
             <div>
@@ -128,20 +238,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-            <div style={{ 
-              backgroundColor: '#7c3aed', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '28px', 
-              height: '28px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '14px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={NEWSLETTER_WELCOME_STYLE_4}>
               🎯
             </div>
             <div>
@@ -157,11 +254,11 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
       </div>
 
       {/* Bonus Welcome Resource */}
-      <div style={{ 
-        backgroundColor: '#f0fdf4', 
-        border: '2px solid #16a34a', 
-        borderRadius: '12px', 
-        padding: '25px', 
+      <div style={{
+        backgroundColor: '#f0fdf4',
+        border: '2px solid #16a34a',
+        borderRadius: '12px',
+        padding: '25px',
         marginBottom: '25px',
         textAlign: 'center'
       }}>
@@ -172,17 +269,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
           As a thank you for joining, here's my most popular resource: 
           <strong>"The AI Marketing Implementation Playbook"</strong>
         </p>
-        <a href="https://jarrettstanley.com/resources/ai-marketing-playbook" style={{
-          backgroundColor: '#16a34a',
-          color: 'white',
-          padding: '14px 28px',
-          borderRadius: '8px',
-          textDecoration: 'none',
-          fontSize: '16px',
-          fontWeight: 'bold',
-          display: 'inline-block',
-          boxShadow: '0 4px 12px rgba(22, 101, 52, 0.3)'
-        }}>
+        <a href="https://jarrettstanley.com/resources/ai-marketing-playbook" style={NEWSLETTER_WELCOME_STYLE_5}>
           🔽 Download Your Free Playbook
         </a>
       </div>
@@ -194,20 +281,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
         </h3>
         <div style={{ display: 'grid', gap: '12px' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-            <span style={{ 
-              backgroundColor: '#f59e0b',
-              color: 'white',
-              borderRadius: '50%',
-              width: '20px',
-              height: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              flexShrink: 0,
-              marginTop: '2px'
-            }}>
+            <span style={NEWSLETTER_WELCOME_STYLE_6}>
               1
             </span>
             <span style={{ color: '#a16207', fontSize: '14px', lineHeight: '1.5' }}>
@@ -215,20 +289,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-            <span style={{ 
-              backgroundColor: '#f59e0b',
-              color: 'white',
-              borderRadius: '50%',
-              width: '20px',
-              height: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              flexShrink: 0,
-              marginTop: '2px'
-            }}>
+            <span style={NEWSLETTER_WELCOME_STYLE_7}>
               2
             </span>
             <span style={{ color: '#a16207', fontSize: '14px', lineHeight: '1.5' }}>
@@ -236,20 +297,7 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
             </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px' }}>
-            <span style={{ 
-              backgroundColor: '#f59e0b',
-              color: 'white',
-              borderRadius: '50%',
-              width: '20px',
-              height: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '12px',
-              fontWeight: 'bold',
-              flexShrink: 0,
-              marginTop: '2px'
-            }}>
+            <span style={NEWSLETTER_WELCOME_STYLE_8}>
               3
             </span>
             <span style={{ color: '#a16207', fontSize: '14px', lineHeight: '1.5' }}>
@@ -311,20 +359,11 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
         </h3>
         <p style={{ margin: '0 0 15px 0', fontSize: '14px', color: '#6b7280', lineHeight: '1.6', fontStyle: 'italic' }}>
           "I started this newsletter because I believe AI doesn't have to replace the human element 
-          in marketing—it should amplify it. Every week, I share what I'm learning, testing, and 
+          in marketing; it should amplify it. Every week, I share what I'm learning, testing, and 
           implementing so you can stay ahead of the curve without losing your authentic voice."
         </p>
         <div style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
-          <div style={{ 
-            width: '50px', 
-            height: '50px', 
-            borderRadius: '50%', 
-            backgroundColor: '#f3f4f6',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            fontSize: '20px'
-          }}>
+          <div style={NEWSLETTER_WELCOME_STYLE_9}>
             👨‍💼
           </div>
           <div>
@@ -339,11 +378,11 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
       </div>
 
       {/* Reply CTA */}
-      <div style={{ 
-        backgroundColor: '#f5f3ff', 
-        border: '2px dashed #7c3aed', 
-        borderRadius: '8px', 
-        padding: '20px', 
+      <div style={{
+        backgroundColor: '#f5f3ff',
+        border: '2px dashed #7c3aed',
+        borderRadius: '8px',
+        padding: '20px',
         marginBottom: '25px',
         textAlign: 'center'
       }}>
@@ -351,18 +390,9 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
           💭 I Want to Hear from You!
         </h3>
         <p style={{ margin: '0 0 15px 0', fontSize: '14px', color: '#6d28d9' }}>
-          What's your biggest AI marketing challenge right now? Hit reply and let me know—I read every email!
+          What's your biggest AI marketing challenge right now? Hit reply and let me know. I read every email!
         </p>
-        <a href="mailto:jarrett@jarrettstanley.com?subject=My AI Marketing Challenge" style={{
-          backgroundColor: '#7c3aed',
-          color: 'white',
-          padding: '12px 24px',
-          borderRadius: '6px',
-          textDecoration: 'none',
-          fontSize: '14px',
-          fontWeight: 'bold',
-          display: 'inline-block'
-        }}>
+        <a href="mailto:jarrett@jarrettstanley.com?subject=My AI Marketing Challenge" style={NEWSLETTER_WELCOME_STYLE_10}>
           📧 Send Me Your Challenge
         </a>
       </div>
@@ -376,10 +406,10 @@ export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailPro
           Jarrett Stanley | jarrettstanley.com | Chicago, IL
         </p>
         <p style={{ margin: '0', fontSize: '12px', color: '#9ca3af' }}>
-          <a href="#" style={{ color: '#9ca3af', textDecoration: 'underline' }}>Update preferences</a> | 
-          <a href="#" style={{ color: '#9ca3af', textDecoration: 'underline', marginLeft: '8px' }}>Unsubscribe</a>
+          <a href="https://jarrettstanley.com/newsletter/preferences" style={{ color: '#9ca3af', textDecoration: 'underline' }}>Update preferences</a> | 
+          <a href="https://jarrettstanley.com/newsletter/unsubscribe" style={{ color: '#9ca3af', textDecoration: 'underline', marginLeft: '8px' }}>Unsubscribe</a>
         </p>
       </div>
-    </div>
-  );
+    </div>);
+
 };

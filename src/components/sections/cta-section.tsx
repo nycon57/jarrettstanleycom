@@ -5,7 +5,6 @@ import { ArrowRight, Wrench, BarChart3, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import { subscribeToNewsletter } from "@/app/actions/email";
 import { useFormSuccess } from "@/hooks/use-form-success";
 import { NewsletterSignupSuccess } from "@/components/ui/form-success-components";
 import { toast } from "sonner";
@@ -40,7 +39,11 @@ const CtaSection = ({
       formData.append('referrer', document.referrer);
       formData.append('urlParams', JSON.stringify(Object.fromEntries(new URLSearchParams(window.location.search))));
 
-      const result = await subscribeToNewsletter(formData);
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        body: formData,
+      });
+      const result = await response.json();
 
       if (result.error) {
         toast.error(result.error);
@@ -72,20 +75,20 @@ const CtaSection = ({
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 via-transparent to-orchid/5" />
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-br from-lilac/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-skyward/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-orchid/3 via-transparent to-lavender/3 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 left-1/4 size-96 bg-gradient-to-br from-lilac/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 size-96 bg-gradient-to-br from-skyward/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-[800px] bg-gradient-to-r from-orchid/3 via-transparent to-lavender/3 rounded-full blur-3xl"></div>
       </div>
 
       <div className="container relative">
         <div className="flex flex-col items-center max-w-4xl mx-auto">
           {/* Heading */}
           <h2 className={cn(
-            "font-signal font-bold text-center tracking-tight",
+            "font-signal font-semibold text-center tracking-tight",
             variant === "compact" ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl lg:text-6xl"
           )}>
             Cut Through the Noise.
-            <span className="block mt-2 bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent animate-gradient bg-300% bg-gradient-x">
+            <span className="block mt-2 animate-gradient bg-300% bg-gradient-x text-lilac">
               Subscribe to The Signal.
             </span>
           </h2>
@@ -95,8 +98,8 @@ const CtaSection = ({
             <div className="flex items-center justify-center sm:justify-start gap-3 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-lilac to-orchid rounded-lg blur-sm opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
-                <div className="relative w-10 h-10 bg-gradient-to-br from-lilac/10 to-orchid/10 dark:from-lilac/20 dark:to-orchid/20 rounded-lg flex items-center justify-center border border-lilac/20 dark:border-lilac/30 group-hover:border-lilac/40 dark:group-hover:border-lilac/50 transition-colors">
-                  <Wrench className="h-5 w-5 text-lilac dark:text-lilac" />
+                <div className="relative size-10 bg-gradient-to-br from-lilac/10 to-orchid/10 dark:from-lilac/20 dark:to-orchid/20 rounded-lg flex items-center justify-center border border-lilac/20 dark:border-lilac/30 group-hover:border-lilac/40 dark:group-hover:border-lilac/50 transition-colors">
+                  <Wrench className="size-5 text-lilac dark:text-lilac" />
                 </div>
               </div>
               <div className="text-sm">
@@ -108,8 +111,8 @@ const CtaSection = ({
             <div className="flex items-center justify-center sm:justify-start gap-3 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-orchid to-skyward rounded-lg blur-sm opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
-                <div className="relative w-10 h-10 bg-gradient-to-br from-orchid/10 to-skyward/10 dark:from-orchid/20 dark:to-skyward/20 rounded-lg flex items-center justify-center border border-orchid/20 dark:border-orchid/30 group-hover:border-orchid/40 dark:group-hover:border-orchid/50 transition-colors">
-                  <BarChart3 className="h-5 w-5 text-orchid dark:text-orchid" />
+                <div className="relative size-10 bg-gradient-to-br from-orchid/10 to-skyward/10 dark:from-orchid/20 dark:to-skyward/20 rounded-lg flex items-center justify-center border border-orchid/20 dark:border-orchid/30 group-hover:border-orchid/40 dark:group-hover:border-orchid/50 transition-colors">
+                  <BarChart3 className="size-5 text-orchid dark:text-orchid" />
                 </div>
               </div>
               <div className="text-sm">
@@ -121,8 +124,8 @@ const CtaSection = ({
             <div className="flex items-center justify-center sm:justify-start gap-3 group">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-br from-skyward to-lavender rounded-lg blur-sm opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
-                <div className="relative w-10 h-10 bg-gradient-to-br from-skyward/10 to-lavender/10 dark:from-skyward/20 dark:to-lavender/20 rounded-lg flex items-center justify-center border border-skyward/20 dark:border-skyward/30 group-hover:border-skyward/40 dark:group-hover:border-skyward/50 transition-colors">
-                  <FileText className="h-5 w-5 text-skyward dark:text-skyward" />
+                <div className="relative size-10 bg-gradient-to-br from-skyward/10 to-lavender/10 dark:from-skyward/20 dark:to-lavender/20 rounded-lg flex items-center justify-center border border-skyward/20 dark:border-skyward/30 group-hover:border-skyward/40 dark:group-hover:border-skyward/50 transition-colors">
+                  <FileText className="size-5 text-skyward dark:text-skyward" />
                 </div>
               </div>
               <div className="text-sm">
@@ -138,7 +141,7 @@ const CtaSection = ({
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="mt-8 w-full max-w-lg">
-            <div className="space-y-4">
+            <div className="gap-y-4">
               {/* Name Fields */}
               <div className="grid grid-cols-2 gap-4">
                 {/* First Name Input */}
@@ -196,7 +199,7 @@ const CtaSection = ({
                     ) : (
                       <>
                         Subscribe
-                        <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                        <ArrowRight className="ml-2 size-4 group-hover:translate-x-0.5 transition-transform" />
                       </>
                     )}
                   </Button>

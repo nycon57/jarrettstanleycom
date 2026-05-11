@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import { Metadata } from 'next';
 
 // Site configuration
 export const siteConfig = {
@@ -8,19 +8,19 @@ export const siteConfig = {
   url: 'https://jarrettstanley.com',
   ogImage: '/assets/images/og-image.jpg',
   keywords: [
-    'AI mortgage marketing',
-    'mortgage marketing consultant', 
-    'AI mortgage technology',
-    'mortgage marketing speaker',
-    'mortgage marketing strategist',
-    'Jarrett Stanley',
-    'mortgage digital transformation',
-    'mortgage industry AI',
-    'strategic advisor',
-    'mortgage marketing automation',
-    'AI in lending',
-    'mortgage technology speaker'
-  ],
+  'AI mortgage marketing',
+  'mortgage marketing consultant',
+  'AI mortgage technology',
+  'mortgage marketing speaker',
+  'mortgage marketing strategist',
+  'Jarrett Stanley',
+  'mortgage digital transformation',
+  'mortgage industry AI',
+  'strategic advisor',
+  'mortgage marketing automation',
+  'AI in lending',
+  'mortgage technology speaker'],
+
   author: {
     name: 'Jarrett Stanley',
     url: 'https://jarrettstanley.com',
@@ -32,22 +32,22 @@ export const siteConfig = {
     name: 'Jarrett Stanley Strategic Advising',
     url: 'https://jarrettstanley.com'
   }
-}
+};
 
 interface SEOProps {
-  title?: string
-  description?: string
-  keywords?: string[]
-  canonical?: string
-  ogImage?: string
-  ogType?: 'website' | 'article' | 'profile'
-  publishedTime?: string
-  modifiedTime?: string
-  authors?: string[]
-  section?: string
-  tags?: string[]
-  noindex?: boolean
-  nofollow?: boolean
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  canonical?: string;
+  ogImage?: string;
+  ogType?: 'website' | 'article' | 'profile';
+  publishedTime?: string;
+  modifiedTime?: string;
+  authors?: string[];
+  section?: string;
+  tags?: string[];
+  noindex?: boolean;
+  nofollow?: boolean;
 }
 
 export function generateMetadata({
@@ -65,18 +65,18 @@ export function generateMetadata({
   noindex = false,
   nofollow = false
 }: SEOProps = {}): Metadata {
-  const pageTitle = title 
-    ? `${title} | ${siteConfig.name}` 
-    : `${siteConfig.name} - ${siteConfig.title}`
-  
-  const pageUrl = canonical ? `${siteConfig.url}${canonical}` : siteConfig.url
-  const allKeywords = [...siteConfig.keywords, ...keywords]
+  const pageTitle = title ?
+  `${title} | ${siteConfig.name}` :
+  `${siteConfig.name} - ${siteConfig.title}`;
+
+  const pageUrl = canonical ? `${siteConfig.url}${canonical}` : siteConfig.url;
+  const allKeywords = [...siteConfig.keywords, ...keywords];
 
   const metadata: Metadata = {
     title: pageTitle,
     description,
     keywords: allKeywords,
-    authors: authors?.map(name => ({ name })) || [{ name: siteConfig.author.name }],
+    authors: authors?.map((name) => ({ name })) || [{ name: siteConfig.author.name }],
     creator: siteConfig.author.name,
     publisher: siteConfig.author.name,
     metadataBase: new URL(siteConfig.url),
@@ -85,10 +85,10 @@ export function generateMetadata({
       follow: !nofollow,
       'max-image-preview': 'large',
       'max-snippet': -1,
-      'max-video-preview': -1,
+      'max-video-preview': -1
     },
     alternates: {
-      canonical: pageUrl,
+      canonical: pageUrl
     },
     openGraph: {
       type: ogType,
@@ -98,27 +98,27 @@ export function generateMetadata({
       description,
       siteName: siteConfig.name,
       images: [
-        {
-          url: ogImage,
-          width: 1200,
-          height: 630,
-          alt: title || siteConfig.title,
-        },
-      ],
+      {
+        url: ogImage,
+        width: 1200,
+        height: 630,
+        alt: title || siteConfig.title
+      }]
+
     },
     twitter: {
       card: 'summary_large_image',
       title: pageTitle,
       description,
       images: [ogImage],
-      creator: siteConfig.author.twitter,
+      creator: siteConfig.author.twitter
     },
     verification: {
       google: process.env.GOOGLE_VERIFICATION,
       yandex: process.env.YANDEX_VERIFICATION,
-      yahoo: process.env.YAHOO_VERIFICATION,
-    },
-  }
+      yahoo: process.env.YAHOO_VERIFICATION
+    }
+  };
 
   // Add article-specific metadata
   if (ogType === 'article' && publishedTime) {
@@ -129,11 +129,11 @@ export function generateMetadata({
       modifiedTime,
       authors: authors,
       section,
-      tags,
-    }
+      tags
+    };
   }
 
-  return metadata
+  return metadata;
 }
 
 // Generate structured data for person
@@ -146,27 +146,27 @@ export function generatePersonSchema() {
     url: siteConfig.author.url,
     email: siteConfig.author.email,
     sameAs: [
-      siteConfig.author.linkedin,
-      siteConfig.author.twitter,
-    ],
+    siteConfig.author.linkedin,
+    siteConfig.author.twitter],
+
     jobTitle: 'Chief Marketing Officer',
     worksFor: {
       '@type': 'Organization',
       name: siteConfig.organization.name,
-      url: siteConfig.organization.url,
+      url: siteConfig.organization.url
     },
     knowsAbout: [
-      'AI Marketing',
-      'Mortgage Marketing',
-      'Digital Transformation',
-      'Marketing Technology',
-      'Artificial Intelligence',
-      'Lead Generation',
-      'Marketing Automation'
-    ],
+    'AI Marketing',
+    'Mortgage Marketing',
+    'Digital Transformation',
+    'Marketing Technology',
+    'Artificial Intelligence',
+    'Lead Generation',
+    'Marketing Automation'],
+
     description: siteConfig.description,
-    image: `${siteConfig.url}/assets/images/jarrett-stanley-headshot.jpg`,
-  }
+    image: `${siteConfig.url}/assets/images/jarrett-stanley-headshot.jpg`
+  };
 }
 
 // Generate structured data for organization
@@ -181,19 +181,19 @@ export function generateOrganizationSchema() {
     description: siteConfig.description,
     founder: {
       '@type': 'Person',
-      name: siteConfig.author.name,
+      name: siteConfig.author.name
     },
     sameAs: [
-      siteConfig.author.linkedin,
-      siteConfig.author.twitter,
-    ],
+    siteConfig.author.linkedin,
+    siteConfig.author.twitter],
+
     contactPoint: {
       '@type': 'ContactPoint',
       email: siteConfig.author.email,
       contactType: 'customer service',
       availableLanguage: 'English'
     }
-  }
+  };
 }
 
 // Generate structured data for website
@@ -216,11 +216,11 @@ export function generateWebsiteSchema() {
       },
       'query-input': 'required name=search_term_string'
     }
-  }
+  };
 }
 
 // Generate structured data for articles/blog posts
-export function generateArticleSchema({
+function generateArticleSchema({
   title,
   description,
   publishedTime,
@@ -229,16 +229,16 @@ export function generateArticleSchema({
   url,
   image,
   keywords = []
-}: {
-  title: string
-  description: string
-  publishedTime: string
-  modifiedTime?: string
-  authors?: string[]
-  url: string
-  image?: string
-  keywords?: string[]
-}) {
+
+
+
+
+
+
+
+
+
+}: {title: string;description: string;publishedTime: string;modifiedTime?: string;authors?: string[];url: string;image?: string;keywords?: string[];}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
@@ -247,29 +247,29 @@ export function generateArticleSchema({
     image: image || siteConfig.ogImage,
     datePublished: publishedTime,
     dateModified: modifiedTime || publishedTime,
-    author: authors.map(name => ({
+    author: authors.map((name) => ({
       '@type': 'Person',
-      name,
+      name
     })),
     publisher: {
       '@type': 'Person',
       name: siteConfig.author.name,
       logo: {
         '@type': 'ImageObject',
-        url: `${siteConfig.url}/assets/images/TrueToneAI-Icon-Logo-Full-Color.png`,
-      },
+        url: `${siteConfig.url}/assets/images/TrueToneAI-Icon-Logo-Full-Color.png`
+      }
     },
     url,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': url,
+      '@id': url
     },
-    keywords: keywords.join(', '),
-  }
+    keywords: keywords.join(', ')
+  };
 }
 
 // Generate breadcrumb structured data
-export function generateBreadcrumbSchema(items: Array<{ name: string; url: string }>) {
+export function generateBreadcrumbSchema(items: Array<{name: string;url: string;}>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -277,75 +277,73 @@ export function generateBreadcrumbSchema(items: Array<{ name: string; url: strin
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: item.url,
-    })),
-  }
+      item: item.url
+    }))
+  };
 }
 
 // Generate FAQ structured data
-export function generateFAQSchema(faqs: Array<{ question: string; answer: string }>) {
+export function generateFAQSchema(faqs: Array<{question: string;answer: string;}>) {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: faqs.map(faq => ({
+    mainEntity: faqs.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
         '@type': 'Answer',
-        text: faq.answer,
-      },
-    })),
-  }
+        text: faq.answer
+      }
+    }))
+  };
 }
 
 // Helper to inject structured data
 export function generateStructuredData(schemas: object[]) {
-  return {
-    __html: JSON.stringify(schemas.length === 1 ? schemas[0] : schemas),
-  }
+  return JSON.stringify(schemas.length === 1 ? schemas[0] : schemas);
 }
 
 // Generate canonical URL
-export function generateCanonicalUrl(path: string = '') {
-  const cleanPath = path.startsWith('/') ? path : `/${path}`
-  return `${siteConfig.url}${cleanPath}`
+function generateCanonicalUrl(path: string = '') {
+  const cleanPath = path.startsWith('/') ? path : `/${path}`;
+  return `${siteConfig.url}${cleanPath}`;
 }
 
 // Generate breadcrumb items for navigation
-export function generateBreadcrumbs(path: string): Array<{ name: string; url: string }> {
-  const paths = path.split('/').filter(Boolean)
-  const breadcrumbs = [{ name: 'Home', url: '/' }]
-  
-  let currentPath = ''
+function generateBreadcrumbs(path: string): Array<{name: string;url: string;}> {
+  const paths = path.split('/').filter(Boolean);
+  const breadcrumbs = [{ name: 'Home', url: '/' }];
+
+  let currentPath = '';
   paths.forEach((segment, index) => {
-    currentPath += `/${segment}`
-    const name = segment
-      .split('-')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ')
-    
+    currentPath += `/${segment}`;
+    const name = segment.
+    split('-').
+    map((word) => word.charAt(0).toUpperCase() + word.slice(1)).
+    join(' ');
+
     breadcrumbs.push({
       name,
-      url: currentPath,
-    })
-  })
-  
-  return breadcrumbs
+      url: currentPath
+    });
+  });
+
+  return breadcrumbs;
 }
 
 // SEO-friendly URL slug generator
-export function generateSlug(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-') // Replace spaces with hyphens
-    .replace(/-+/g, '-') // Replace multiple hyphens with single
-    .trim()
+function generateSlug(title: string): string {
+  return title.
+  toLowerCase().
+  replace(/[^\w\s-]/g, '') // Remove special characters
+  .replace(/\s+/g, '-') // Replace spaces with hyphens
+  .replace(/-+/g, '-') // Replace multiple hyphens with single
+  .trim();
 }
 
 // Generate page-specific keywords
-export function generatePageKeywords(baseKeywords: string[], pageSpecific: string[] = []): string[] {
-  return [...Array.from(new Set([...siteConfig.keywords, ...baseKeywords, ...pageSpecific]))]
+function generatePageKeywords(baseKeywords: string[], pageSpecific: string[] = []): string[] {
+  return [...Array.from(new Set([...siteConfig.keywords, ...baseKeywords, ...pageSpecific]))];
 }
 
 // --- pSEO Schema Generators ---
@@ -355,13 +353,13 @@ export function generateDefinedTermSchema({
   term,
   definition,
   url,
-  category,
-}: {
-  term: string
-  definition: string
-  url: string
-  category?: string
-}) {
+  category
+
+
+
+
+
+}: {term: string;definition: string;url: string;category?: string;}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'DefinedTerm',
@@ -371,12 +369,12 @@ export function generateDefinedTermSchema({
     inDefinedTermSet: {
       '@type': 'DefinedTermSet',
       name: 'AI Mortgage Marketing Glossary',
-      url: `${siteConfig.url}/insights/glossary`,
+      url: `${siteConfig.url}/insights/glossary`
     },
     ...(category && {
-      termCode: category,
-    }),
-  }
+      termCode: category
+    })
+  };
 }
 
 // Generate ItemList structured data for tool roundups
@@ -384,13 +382,13 @@ export function generateItemListSchema({
   name,
   description,
   url,
-  items,
-}: {
-  name: string
-  description: string
-  url: string
-  items: Array<{ name: string; position: number; url?: string }>
-}) {
+  items
+
+
+
+
+
+}: {name: string;description: string;url: string;items: Array<{name: string;position: number;url?: string;}>;}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -402,21 +400,21 @@ export function generateItemListSchema({
       '@type': 'ListItem',
       position: item.position,
       name: item.name,
-      ...(item.url && { url: item.url }),
-    })),
-  }
+      ...(item.url && { url: item.url })
+    }))
+  };
 }
 
 // Generate CollectionPage structured data for example/index pages
 export function generateCollectionPageSchema({
   name,
   description,
-  url,
-}: {
-  name: string
-  description: string
-  url: string
-}) {
+  url
+
+
+
+
+}: {name: string;description: string;url: string;}) {
   return {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -425,12 +423,12 @@ export function generateCollectionPageSchema({
     url,
     isPartOf: {
       '@type': 'WebSite',
-      '@id': `${siteConfig.url}#website`,
+      '@id': `${siteConfig.url}#website`
     },
     author: {
       '@type': 'Person',
       name: siteConfig.author.name,
-      url: siteConfig.author.url,
-    },
-  }
+      url: siteConfig.author.url
+    }
+  };
 }

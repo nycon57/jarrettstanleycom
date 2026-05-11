@@ -1,12 +1,12 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Calendar, MapPin, Clock, ExternalLink } from 'lucide-react'
 import { createBrowserClient } from '@/lib/supabase-client'
-import { format } from 'date-fns'
+import { formatDateLabel } from '@/lib/date-format'
 
 interface SpeakingEvent {
   id: string
@@ -23,8 +23,11 @@ interface SpeakingEvent {
 }
 
 export function UpcomingEvents() {
-  const [events, setEvents] = useState<SpeakingEvent[]>([])
-  const [loading, setLoading] = useState(true)
+  const [eventState, setEventState] = useState<{ events: SpeakingEvent[]; loading: boolean }>({
+    events: [],
+    loading: true
+  })
+  const { events, loading } = eventState
 
   useEffect(() => {
     fetchUpcomingEvents()
@@ -44,7 +47,7 @@ export function UpcomingEvents() {
 
       // If no data, use placeholder events
       if (!data || data.length === 0) {
-        setEvents(placeholderEvents)
+        setEventState({ events: placeholderEvents, loading: false })
       } else {
         // Transform data to handle null values
         const transformedData = data.map(event => ({
@@ -52,14 +55,12 @@ export function UpcomingEvents() {
           topics: event.topics || undefined,
           event_type: event.event_type as "keynote" | "panel" | "workshop" | "webinar" | "podcast" | "conference" || "keynote"
         }))
-        setEvents(transformedData)
+        setEventState({ events: transformedData, loading: false })
       }
     } catch (error) {
       console.error('Error fetching events:', error)
       // Use placeholder events on error
-      setEvents(placeholderEvents)
-    } finally {
-      setLoading(false)
+      setEventState({ events: placeholderEvents, loading: false })
     }
   }
 
@@ -80,19 +81,19 @@ export function UpcomingEvents() {
       workshop: 'bg-green-100 text-green-700',
       webinar: 'bg-orange-100 text-orange-700'
     }
-    return colors[type as keyof typeof colors] || 'bg-gray-100 text-gray-700'
+    return colors[type as keyof typeof colors] || 'bg-neutral-100 text-neutral-700'
   }
 
   if (loading) {
     return (
-      <section className="py-24 sm:py-32 bg-white dark:bg-gray-800">
+      <section className="py-24 sm:py-32 bg-white dark:bg-neutral-800">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 className="text-3xl font-signal font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
               Upcoming Speaking Events
             </h2>
-            <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
-              Loading events...
+            <p className="mt-4 text-lg text-neutral-700 dark:text-neutral-300">
+              Loading events…
             </p>
           </div>
         </div>
@@ -102,19 +103,19 @@ export function UpcomingEvents() {
 
   if (events.length === 0) {
     return (
-      <section className="py-24 sm:py-32 bg-white dark:bg-gray-800">
+      <section className="py-24 sm:py-32 bg-white dark:bg-neutral-800">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
             className="mx-auto max-w-2xl text-center"
           >
-            <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            <h2 className="text-3xl font-signal font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
               Upcoming Speaking Events
             </h2>
-            <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
+            <p className="mt-4 text-lg text-neutral-700 dark:text-neutral-300">
               Check back soon for upcoming speaking engagements
             </p>
             <div className="mt-8">
@@ -122,33 +123,36 @@ export function UpcomingEvents() {
                 <a href="#book-jarrett">Book Jarrett for Your Event</a>
               </Button>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
     )
   }
 
   return (
-    <section className="py-24 sm:py-32 bg-white dark:bg-gray-800">
+    <section className="py-24 sm:py-32 bg-white dark:bg-neutral-800">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          <h2 className="text-3xl font-signal font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
             Upcoming Speaking Events
           </h2>
-          <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
+          <p className="mt-4 text-lg text-neutral-700 dark:text-neutral-300">
             Join Jarrett at these upcoming conferences and events
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
-          {events.map((event, index) => (
-            <motion.div
+          {events.map((event, index) => {
+            const eventDateLabel = formatDateLabel(event.event_date, 'MMMM d, yyyy')
+
+            return (
+            <m.div
               key={event.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -169,30 +173,30 @@ export function UpcomingEvents() {
                   <p className="mt-2 text-base font-semibold text-purple-600 dark:text-lilac">{event.topics?.join(', ') || event.organization}</p>
                 </CardHeader>
                 <CardContent>
-                  <div className="space-y-3 text-sm text-gray-700 dark:text-gray-300">
+                  <div className="gap-y-3 text-sm text-neutral-700 dark:text-neutral-300">
                     <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4" />
-                      <span>{format(new Date(event.event_date), 'MMMM d, yyyy')}</span>
+                      <Calendar className="size-4" />
+                      <span>{eventDateLabel}</span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <MapPin className="h-4 w-4" />
+                      <MapPin className="size-4" />
                       <span>{event.location}</span>
                     </div>
                     {event.organization && (
                       <div className="flex items-center gap-2">
-                        <Clock className="h-4 w-4" />
+                        <Clock className="size-4" />
                         <span>{event.organization}</span>
                       </div>
                     )}
                   </div>
                   {event.description && (
-                    <p className="mt-4 text-sm text-gray-700 dark:text-gray-300">{event.description}</p>
+                    <p className="mt-4 text-sm text-neutral-700 dark:text-neutral-300">{event.description}</p>
                   )}
                   {event.event_url && (
                     <div className="mt-6">
                       <Button asChild variant="outline" size="sm" className="w-full">
                         <a href={event.event_url} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="mr-2 h-4 w-4" />
+                          <ExternalLink className="mr-2 size-4" />
                           {event.is_virtual ? 'Join Virtual Event' : 'Register for Event'}
                         </a>
                       </Button>
@@ -200,8 +204,8 @@ export function UpcomingEvents() {
                   )}
                 </CardContent>
               </Card>
-            </motion.div>
-          ))}
+            </m.div>
+          )})}
         </div>
       </div>
     </section>

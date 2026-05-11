@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { CheckCircle, BarChart3 } from 'lucide-react'
@@ -78,8 +79,9 @@ export default async function ExampleDetailPage({ params }: PageProps) {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={structuredData}
-      />
+      >
+        {structuredData}
+      </script>
 
       <div className="container max-w-4xl pt-24 md:pt-28 pb-12 md:pb-16">
         <PseoBreadcrumbs items={breadcrumbs} />
@@ -91,34 +93,37 @@ export default async function ExampleDetailPage({ params }: PageProps) {
               {exampleTypeLabels[example.exampleType]}
             </Badge>
           </div>
-          <h1 className="font-signal text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+          <h1 className="font-signal text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-6">
             {example.title}
           </h1>
-          <div className="text-muted-foreground leading-relaxed space-y-4">
-            {example.introduction.split('\n\n').map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
+          <div className="text-muted-foreground leading-relaxed gap-y-4">
+            {example.introduction.split('\n\n').map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
         </div>
 
         {/* Campaign Examples */}
         <section className="mb-16">
-          <h2 className="font-signal text-2xl md:text-3xl font-bold mb-8">
+          <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-8">
             Campaign Examples
           </h2>
-          <div className="space-y-8">
-            {example.examples.filter((entry) => !entry.isReal).map((entry, index) => (
-              <Card key={index} className="overflow-hidden">
+          <div className="gap-y-8">
+            {example.examples.reduce<ReactNode[]>((cards, entry) => {
+              if (entry.isReal) return cards;
+
+              cards.push(
+              <Card key={entry.title} className="overflow-hidden">
                 <CardHeader className="pb-4">
                   <h3 className="font-signal text-xl font-semibold leading-snug">
                     {entry.title}
                   </h3>
                 </CardHeader>
-                <CardContent className="space-y-6">
+                <CardContent className="gap-y-6">
                   {/* Description */}
-                  <div className="text-muted-foreground leading-relaxed space-y-3">
-                    {entry.description.split('\n\n').map((p, i) => (
-                      <p key={i}>{p}</p>
+                  <div className="text-muted-foreground leading-relaxed gap-y-3">
+                    {entry.description.split('\n\n').map((p) => (
+                      <p key={p}>{p}</p>
                     ))}
                   </div>
 
@@ -126,13 +131,13 @@ export default async function ExampleDetailPage({ params }: PageProps) {
                   {entry.metrics && Object.keys(entry.metrics).length > 0 && (
                     <div className="rounded-xl bg-gradient-to-br from-lilac/5 via-orchid/5 to-skyward/5 border border-lilac/10 p-5">
                       <div className="flex items-center gap-2 mb-3">
-                        <BarChart3 className="h-4 w-4 text-lilac" />
+                        <BarChart3 className="size-4 text-lilac" />
                         <span className="text-sm font-semibold">Key Metrics</span>
                       </div>
                       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {Object.entries(entry.metrics).map(([label, value]) => (
                           <div key={label}>
-                            <div className="text-lg font-bold text-lilac">{value}</div>
+                            <div className="text-lg font-semibold text-lilac">{value}</div>
                             <div className="text-xs text-muted-foreground">{label}</div>
                           </div>
                         ))}
@@ -143,9 +148,9 @@ export default async function ExampleDetailPage({ params }: PageProps) {
                   {/* Why It Works */}
                   <div>
                     <h4 className="font-signal text-base font-semibold mb-2">Why It Works</h4>
-                    <div className="text-muted-foreground leading-relaxed space-y-3">
-                      {entry.whyItWorks.split('\n\n').map((p, i) => (
-                        <p key={i}>{p}</p>
+                    <div className="text-muted-foreground leading-relaxed gap-y-3">
+                      {entry.whyItWorks.split('\n\n').map((p) => (
+                        <p key={p}>{p}</p>
                       ))}
                     </div>
                   </div>
@@ -153,10 +158,10 @@ export default async function ExampleDetailPage({ params }: PageProps) {
                   {/* Key Takeaways */}
                   <div>
                     <h4 className="font-signal text-base font-semibold mb-2">Key Takeaways</h4>
-                    <ul className="space-y-2">
-                      {entry.keyTakeaways.map((takeaway, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <CheckCircle className="h-4 w-4 text-lilac mt-0.5 shrink-0" />
+                    <ul className="gap-y-2">
+                      {entry.keyTakeaways.map((takeaway) => (
+                        <li key={takeaway} className="flex items-start gap-2">
+                          <CheckCircle className="size-4 text-lilac mt-0.5 shrink-0" />
                           <span className="text-sm text-muted-foreground">{takeaway}</span>
                         </li>
                       ))}
@@ -164,31 +169,33 @@ export default async function ExampleDetailPage({ params }: PageProps) {
                   </div>
                 </CardContent>
               </Card>
-            ))}
+              );
+              return cards;
+            }, [])}
           </div>
         </section>
 
         {/* Analysis */}
         <section className="mb-16">
-          <h2 className="font-signal text-2xl md:text-3xl font-bold mb-6">
+          <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-6">
             What Makes These Work
           </h2>
-          <div className="text-muted-foreground leading-relaxed space-y-4">
-            {example.analysis.split('\n\n').map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
+          <div className="text-muted-foreground leading-relaxed gap-y-4">
+            {example.analysis.split('\n\n').map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
         </section>
 
         {/* How to Replicate */}
         <section className="mb-16">
-          <h2 className="font-signal text-2xl md:text-3xl font-bold mb-8">
+          <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-8">
             How to Replicate These Results
           </h2>
-          <div className="space-y-6">
+          <div className="gap-y-6">
             {example.howToReplicate.map((step) => (
               <div key={step.step} className="flex gap-4">
-                <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gradient-to-br from-lilac to-orchid flex items-center justify-center text-white font-bold text-sm">
+                <div className="flex-shrink-0 size-10 rounded-full bg-gradient-to-br from-lilac to-orchid flex items-center justify-center text-white font-semibold text-sm">
                   {step.step}
                 </div>
                 <div className="flex-1 pt-1">

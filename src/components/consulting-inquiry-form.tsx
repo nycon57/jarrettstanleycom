@@ -10,13 +10,12 @@ import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { ConsultingFormData, consultingFormSchema } from "@/lib/validations/consulting";
-import { submitConsultingInquiry } from "@/app/actions/email";
 import { useAnalytics } from "@/hooks/use-analytics";
 import { useFormSuccess } from "@/hooks/use-form-success";
 import { ConsultingInquirySuccess } from "@/components/ui/form-success-components";
 import { Loader2 } from "lucide-react";
 
-export function ConsultingInquiryForm() {
+function useConsultingInquiryFormView() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [hasStarted, setHasStarted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
@@ -61,7 +60,12 @@ export function ConsultingInquiryForm() {
         _formStartTime: formStartTime.toString(),
       };
 
-      const result = await submitConsultingInquiry(enrichedData);
+      const response = await fetch('/api/consulting', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(enrichedData),
+      });
+      const result = await response.json();
 
       if (result.success) {
         showSuccess({ 
@@ -98,7 +102,7 @@ export function ConsultingInquiryForm() {
         name={data.name}
         company={data.company}
       />
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="gap-y-6">
       {/* Honeypot field - hidden from real users */}
       <div
         aria-hidden="true"
@@ -117,7 +121,7 @@ export function ConsultingInquiryForm() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="first_name">First Name *</Label>
           <Input
             id="first_name"
@@ -131,7 +135,7 @@ export function ConsultingInquiryForm() {
           )}
         </div>
 
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="last_name">Last Name *</Label>
           <Input
             id="last_name"
@@ -146,7 +150,7 @@ export function ConsultingInquiryForm() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="email">Email *</Label>
           <Input
             id="email"
@@ -160,7 +164,7 @@ export function ConsultingInquiryForm() {
           )}
         </div>
 
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="phone">Phone</Label>
           <Input
             id="phone"
@@ -173,7 +177,7 @@ export function ConsultingInquiryForm() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="company">Company *</Label>
           <Input
             id="company"
@@ -186,7 +190,7 @@ export function ConsultingInquiryForm() {
           )}
         </div>
 
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="role">Your Role *</Label>
           <Input
             id="role"
@@ -201,7 +205,7 @@ export function ConsultingInquiryForm() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="company_size">Company Size *</Label>
           <Select onValueChange={(value) => setValue("company_size", value as any)}>
             <SelectTrigger className="bg-background">
@@ -220,7 +224,7 @@ export function ConsultingInquiryForm() {
           )}
         </div>
 
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="budget_range">Budget Range *</Label>
           <Select onValueChange={(value) => setValue("budget_range", value as any)}>
             <SelectTrigger className="bg-background">
@@ -240,7 +244,7 @@ export function ConsultingInquiryForm() {
         </div>
       </div>
 
-      <div className="space-y-2">
+      <div className="gap-y-2">
         <Label htmlFor="timeline">Project Timeline *</Label>
         <Select onValueChange={(value) => setValue("timeline", value as any)}>
           <SelectTrigger className="bg-background">
@@ -258,12 +262,12 @@ export function ConsultingInquiryForm() {
         )}
       </div>
 
-      <div className="space-y-2">
+      <div className="gap-y-2">
         <Label htmlFor="project_description">Project Description *</Label>
         <Textarea
           id="project_description"
           {...register("project_description")}
-          placeholder="Tell us about your project goals and what you hope to achieve..."
+          placeholder="Tell us about your project goals and what you hope to achieve…"
           className="min-h-[120px] bg-background"
         />
         {errors.project_description && (
@@ -271,7 +275,7 @@ export function ConsultingInquiryForm() {
         )}
       </div>
 
-      <div className="space-y-2">
+      <div className="gap-y-2">
         <Label htmlFor="current_challenges">Current Challenges *</Label>
         <Textarea
           id="current_challenges"
@@ -284,7 +288,7 @@ export function ConsultingInquiryForm() {
         )}
       </div>
 
-      <div className="space-y-2">
+      <div className="gap-y-2">
         <Label htmlFor="preferred_contact_method">Preferred Contact Method</Label>
         <Select 
           defaultValue="email"
@@ -312,8 +316,8 @@ export function ConsultingInquiryForm() {
       >
         {isSubmitting ? (
           <>
-            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-            Submitting...
+            <Loader2 className="mr-2 size-4 animate-spin" />
+            Submitting…
           </>
         ) : (
           "Submit Inquiry"
@@ -322,4 +326,10 @@ export function ConsultingInquiryForm() {
       </form>
     </>
   );
+
 }
+
+export function ConsultingInquiryForm() {
+  return useConsultingInquiryFormView();
+}
+

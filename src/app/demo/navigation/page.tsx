@@ -1,3 +1,10 @@
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Navigation Demo',
+  description: 'Internal navigation demo for validating JarrettStanley.com header and menu behavior.',
+};
+
 export default function NavigationDemoPage() {
   return (
     <div className="min-h-screen">
@@ -5,7 +12,7 @@ export default function NavigationDemoPage() {
       <section className="relative bg-gradient-to-b from-purple-900 via-purple-800 to-purple-600 text-white py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-signal font-bold mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-signal font-semibold mb-6">
               Professional Navigation Demo
             </h1>
             <p className="text-xl sm:text-2xl opacity-90 mb-8">
@@ -22,9 +29,9 @@ export default function NavigationDemoPage() {
       <section className="py-20 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-signal font-bold mb-6">Navigation Features</h2>
+            <h2 className="text-3xl font-signal font-semibold mb-6">Navigation Features</h2>
             <div className="prose prose-lg max-w-none">
-              <ul className="space-y-4">
+              <ul className="gap-y-4">
                 <li>
                   <strong>Responsive Design:</strong> The navigation adapts seamlessly between desktop and mobile viewports
                 </li>
@@ -50,10 +57,10 @@ export default function NavigationDemoPage() {
       </section>
 
       {/* Dark Section */}
-      <section className="py-20 bg-gray-900 text-white">
+      <section className="py-20 bg-neutral-900 text-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-signal font-bold mb-6">Dark Background Test</h2>
+            <h2 className="text-3xl font-signal font-semibold mb-6">Dark Background Test</h2>
             <p className="text-lg opacity-90">
               The navigation maintains excellent contrast on dark backgrounds, ensuring readability and usability.
             </p>
@@ -62,10 +69,10 @@ export default function NavigationDemoPage() {
       </section>
 
       {/* Light Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-neutral-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-signal font-bold mb-6">Light Background Test</h2>
+            <h2 className="text-3xl font-signal font-semibold mb-6">Light Background Test</h2>
             <p className="text-lg">
               On light backgrounds, the navigation switches to dark text with proper hover states and visual hierarchy.
             </p>
@@ -77,7 +84,7 @@ export default function NavigationDemoPage() {
       <section className="py-32 bg-background">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl font-signal font-bold mb-6">Plenty of Content for Scrolling</h2>
+            <h2 className="text-3xl font-signal font-semibold mb-6">Plenty of Content for Scrolling</h2>
             <p className="text-lg">
               This section provides enough height to test the scroll behavior of the navigation.
             </p>

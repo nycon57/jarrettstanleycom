@@ -20,6 +20,7 @@ import { Badge } from '@/components/ui/badge'
 import { Card, CardHeader, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { CtaSection } from '@/components/sections/cta-section'
+import { formatDateLabel } from '@/lib/date-format'
 
 interface PageProps {
   params: Promise<{ category: string }>
@@ -53,6 +54,7 @@ export default async function ToolRoundupPage({ params }: PageProps) {
   }
 
   const breadcrumbs = buildToolBreadcrumbs(roundup)
+  const lastUpdatedLabel = formatDateLabel(roundup.lastUpdated, 'MMMM d, yyyy')
 
   const structuredData = generateStructuredData([
     generateItemListSchema({
@@ -77,8 +79,9 @@ export default async function ToolRoundupPage({ params }: PageProps) {
     <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={structuredData}
-      />
+      >
+        {structuredData}
+      </script>
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 pt-32">
@@ -91,16 +94,16 @@ export default async function ToolRoundupPage({ params }: PageProps) {
                 {toolCategoryLabels[roundup.category]}
               </Badge>
               <div className="flex items-center gap-1.5 text-sm text-muted-foreground">
-                <Calendar className="h-3.5 w-3.5" />
-                <span>Updated {new Date(roundup.lastUpdated).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                <Calendar className="size-3.5" />
+                <span>Updated {lastUpdatedLabel}</span>
               </div>
             </div>
-            <h1 className="font-signal text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight">
+            <h1 className="font-signal text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight">
               {roundup.title}
             </h1>
-            <div className="mt-6 space-y-4 text-muted-foreground leading-relaxed">
-              {introductionParagraphs.map((paragraph, index) => (
-                <p key={index}>{paragraph}</p>
+            <div className="mt-6 gap-y-4 text-muted-foreground leading-relaxed">
+              {introductionParagraphs.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
           </div>
@@ -129,17 +132,17 @@ export default async function ToolRoundupPage({ params }: PageProps) {
       {/* Ranked Tool List */}
       <section className="py-16">
         <div className="container mx-auto px-4">
-          <h2 className="font-signal text-2xl md:text-3xl font-bold mb-10">
+          <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-10">
             Top {roundup.tools.length} Tools Ranked
           </h2>
-          <div className="space-y-8">
+          <div className="gap-y-8">
             {roundup.tools.map((tool) => (
               <Card key={tool.name} className="overflow-hidden">
                 <CardHeader className="pb-4">
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-lilac/10 to-orchid/10 border border-lilac/20">
-                        <span className="font-signal text-xl font-bold text-lilac">
+                      <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-lilac/10 to-orchid/10 border border-lilac/20">
+                        <span className="font-signal text-xl font-semibold text-lilac">
                           {tool.rank}
                         </span>
                       </div>
@@ -166,14 +169,14 @@ export default async function ToolRoundupPage({ params }: PageProps) {
                     {/* Pros */}
                     <div>
                       <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-1.5">
-                        <CheckCircle className="h-4 w-4 text-skyward" />
+                        <CheckCircle className="size-4 text-skyward" />
                         Pros
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="gap-y-2">
                         {tool.pros.map((pro) => (
                           <li
                             key={pro}
-                            className="text-sm text-muted-foreground leading-relaxed pl-5 relative before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-skyward/50"
+                            className="text-sm text-muted-foreground leading-relaxed pl-5 relative before:absolute before:left-0 before:top-2 before:size-1.5 before:rounded-full before:bg-skyward/50"
                           >
                             {pro}
                           </li>
@@ -183,14 +186,14 @@ export default async function ToolRoundupPage({ params }: PageProps) {
                     {/* Cons */}
                     <div>
                       <h4 className="text-sm font-semibold text-foreground mb-3 flex items-center gap-1.5">
-                        <XCircle className="h-4 w-4 text-orchid" />
+                        <XCircle className="size-4 text-orchid" />
                         Cons
                       </h4>
-                      <ul className="space-y-2">
+                      <ul className="gap-y-2">
                         {tool.cons.map((con) => (
                           <li
                             key={con}
-                            className="text-sm text-muted-foreground leading-relaxed pl-5 relative before:absolute before:left-0 before:top-2 before:h-1.5 before:w-1.5 before:rounded-full before:bg-orchid/50"
+                            className="text-sm text-muted-foreground leading-relaxed pl-5 relative before:absolute before:left-0 before:top-2 before:size-1.5 before:rounded-full before:bg-orchid/50"
                           >
                             {con}
                           </li>
@@ -201,7 +204,7 @@ export default async function ToolRoundupPage({ params }: PageProps) {
                   {/* Best For + Link */}
                   <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-4 border-t border-border">
                     <div className="flex items-start gap-2">
-                      <Star className="h-4 w-4 text-lilac shrink-0 mt-0.5" />
+                      <Star className="size-4 text-lilac shrink-0 mt-0.5" />
                       <p className="text-sm">
                         <span className="font-semibold">Best for:</span>{' '}
                         <span className="text-muted-foreground">{tool.bestFor}</span>
@@ -219,7 +222,7 @@ export default async function ToolRoundupPage({ params }: PageProps) {
                         rel="noopener noreferrer nofollow"
                       >
                         Visit Website
-                        <ExternalLink className="ml-1.5 h-3.5 w-3.5" />
+                        <ExternalLink className="ml-1.5 size-3.5" />
                       </a>
                     </Button>
                   </div>
@@ -233,7 +236,7 @@ export default async function ToolRoundupPage({ params }: PageProps) {
       {/* Recommendations */}
       <section className="py-16 bg-muted/30">
         <div className="container mx-auto px-4">
-          <h2 className="font-signal text-2xl md:text-3xl font-bold mb-8">
+          <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-8">
             Our Recommendations
           </h2>
           <div className="grid gap-4 md:grid-cols-2">
@@ -241,8 +244,8 @@ export default async function ToolRoundupPage({ params }: PageProps) {
               <Card key={rec.useCase} className="overflow-hidden">
                 <CardContent className="p-6">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-lilac to-orchid">
-                      <Trophy className="h-5 w-5 text-white" />
+                    <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-lilac to-orchid">
+                      <Trophy className="size-5 text-white" />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-lilac mb-1">

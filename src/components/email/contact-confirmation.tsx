@@ -6,10 +6,10 @@ interface ContactConfirmationEmailProps {
   message: string;
 }
 
-export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmailProps>> = ({
+const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmailProps>> = ({
   name,
   type,
-  message,
+  message
 }) => {
   const getTypeSpecificContent = () => {
     switch (type) {
@@ -50,11 +50,11 @@ export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmai
     <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
       {/* Header */}
       <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-        <div style={{ 
-          background: 'linear-gradient(135deg, #9D7AD6 0%, #B794F6 100%)', 
-          color: 'white', 
-          padding: '20px', 
-          borderRadius: '8px' 
+        <div style={{
+          background: 'linear-gradient(135deg, #9D7AD6 0%, #B794F6 100%)',
+          color: 'white',
+          padding: '20px',
+          borderRadius: '8px'
         }}>
           <h1 style={{ margin: '0', fontSize: '28px' }}>Thank You, {name}!</h1>
           <p style={{ margin: '10px 0 0 0', fontSize: '18px', opacity: '0.9' }}>
@@ -69,12 +69,12 @@ export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmai
           {content.description}
         </p>
         
-        <div style={{ 
-          backgroundColor: '#e3f2fd', 
-          border: '1px solid #90caf9', 
-          borderRadius: '6px', 
-          padding: '15px', 
-          margin: '20px 0' 
+        <div style={{
+          backgroundColor: '#e3f2fd',
+          border: '1px solid #90caf9',
+          borderRadius: '6px',
+          padding: '15px',
+          margin: '20px 0'
         }}>
           <p style={{ margin: '0', fontSize: '14px', color: '#1565c0' }}>
             <strong>Expected Response Time:</strong> Within {content.responseTime}
@@ -97,11 +97,11 @@ export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmai
         <h3 style={{ color: '#333', marginTop: '0', fontSize: '18px', marginBottom: '15px' }}>
           Your Message:
         </h3>
-        <div style={{ 
-          backgroundColor: '#f8f9fa', 
-          padding: '15px', 
-          borderRadius: '6px', 
-          borderLeft: '3px solid #9D7AD6' 
+        <div style={{
+          backgroundColor: '#f8f9fa',
+          padding: '15px',
+          borderRadius: '6px',
+          boxShadow: 'inset 0 0 0 1px #d8c6f0'
         }}>
           <p style={{ color: '#555', fontSize: '14px', lineHeight: '1.6', margin: '0', whiteSpace: 'pre-wrap' }}>
             {message}
@@ -127,23 +127,23 @@ export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmai
           Follow Jarrett's insights:
         </p>
         <div style={{ display: 'flex', justifyContent: 'center', gap: '15px', flexWrap: 'wrap' }}>
-          <a href="https://linkedin.com/in/jarrettstanley" style={{ 
-            backgroundColor: '#0077b5', 
-            color: 'white', 
-            padding: '8px 16px', 
-            borderRadius: '4px', 
-            textDecoration: 'none', 
-            fontSize: '14px' 
+          <a href="https://linkedin.com/in/jarrettstanley" style={{
+            backgroundColor: '#0077b5',
+            color: 'white',
+            padding: '8px 16px',
+            borderRadius: '4px',
+            textDecoration: 'none',
+            fontSize: '14px'
           }}>
             LinkedIn
           </a>
-          <a href="https://x.com/IAmJarrettS" style={{ 
-            backgroundColor: '#1da1f2', 
-            color: 'white', 
-            padding: '8px 16px', 
-            borderRadius: '4px', 
-            textDecoration: 'none', 
-            fontSize: '14px' 
+          <a href="https://x.com/IAmJarrettS" style={{
+            backgroundColor: '#1da1f2',
+            color: 'white',
+            padding: '8px 16px',
+            borderRadius: '4px',
+            textDecoration: 'none',
+            fontSize: '14px'
           }}>
             Twitter
           </a>
@@ -159,6 +159,6 @@ export const ContactConfirmationEmail: React.FC<Readonly<ContactConfirmationEmai
           Jarrett Stanley | AI Marketing Expert | jarrettstanley.com
         </p>
       </div>
-    </div>
-  );
+    </div>);
+
 };

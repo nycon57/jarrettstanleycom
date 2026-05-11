@@ -16,7 +16,7 @@ export interface EmailConfig {
   replyTo?: string;
 }
 
-export interface ContactFormData {
+interface ContactFormData {
   name: string;
   email: string;
   message: string;
@@ -25,7 +25,7 @@ export interface ContactFormData {
   phone?: string;
 }
 
-export interface SpeakingInquiryData {
+interface SpeakingInquiryData {
   first_name: string;
   last_name: string;
   email: string;
@@ -40,7 +40,7 @@ export interface SpeakingInquiryData {
   message?: string;
 }
 
-export interface MediaInquiryData {
+interface MediaInquiryData {
   first_name: string;
   last_name: string;
   email: string;
@@ -65,7 +65,7 @@ export const sendEmail = async (config: EmailConfig) => {
       subject: config.subject,
       html: config.html,
       react: config.react,
-      replyTo: config.replyTo,
+      replyTo: config.replyTo
     });
 
     if (error) {
@@ -81,27 +81,27 @@ export const sendEmail = async (config: EmailConfig) => {
 };
 
 // Send confirmation email to user
-export const sendContactConfirmation = async (data: ContactFormData) => {
+const sendContactConfirmation = async (data: ContactFormData) => {
   const subject = getConfirmationSubject(data.type);
-  
+
   return sendEmail({
     to: data.email,
     subject,
     react: React.createElement(
       require('@/components/email/contact-confirmation').ContactConfirmationEmail,
-      { 
-        name: data.name, 
+      {
+        name: data.name,
         type: data.type || 'general',
-        message: data.message 
+        message: data.message
       }
-    ),
+    )
   });
 };
 
 // Send notification email to Jarrett
-export const sendContactNotification = async (data: ContactFormData) => {
+const sendContactNotification = async (data: ContactFormData) => {
   const subject = getNotificationSubject(data.type);
-  
+
   return sendEmail({
     to: NOTIFICATION_EMAIL,
     subject,
@@ -109,24 +109,24 @@ export const sendContactNotification = async (data: ContactFormData) => {
     react: React.createElement(
       require('@/components/email/contact-notification').ContactNotificationEmail,
       data
-    ),
+    )
   });
 };
 
 // Send speaking inquiry confirmation
-export const sendSpeakingConfirmation = async (data: SpeakingInquiryData) => {
+const sendSpeakingConfirmation = async (data: SpeakingInquiryData) => {
   return sendEmail({
     to: data.email,
     subject: 'Speaking inquiry received - We\'ll be in touch soon!',
     react: React.createElement(
       require('@/components/email/speaking-confirmation').SpeakingConfirmationEmail,
       { firstName: data.first_name, data }
-    ),
+    )
   });
 };
 
 // Send speaking inquiry notification
-export const sendSpeakingNotification = async (data: SpeakingInquiryData) => {
+const sendSpeakingNotification = async (data: SpeakingInquiryData) => {
   return sendEmail({
     to: NOTIFICATION_EMAIL,
     subject: `New Speaking Inquiry: ${data.event_name || 'Event TBD'}`,
@@ -134,24 +134,24 @@ export const sendSpeakingNotification = async (data: SpeakingInquiryData) => {
     react: React.createElement(
       require('@/components/email/speaking-notification').SpeakingNotificationEmail,
       data
-    ),
+    )
   });
 };
 
 // Send consulting confirmation
-export const sendConsultingConfirmation = async (data: any) => {
+const sendConsultingConfirmation = async (data: any) => {
   return sendEmail({
     to: data.email,
     subject: 'Consulting inquiry received - Let\'s discuss your project',
     react: React.createElement(
       require('@/components/email/consulting-confirmation').ConsultingConfirmationEmail,
       { firstName: data.first_name, data }
-    ),
+    )
   });
 };
 
 // Send consulting notification
-export const sendConsultingNotification = async (data: any) => {
+const sendConsultingNotification = async (data: any) => {
   return sendEmail({
     to: NOTIFICATION_EMAIL,
     subject: `New Consulting Inquiry: ${data.company} - ${data.budget_range}`,
@@ -159,24 +159,24 @@ export const sendConsultingNotification = async (data: any) => {
     react: React.createElement(
       require('@/components/email/consulting-notification').ConsultingNotificationEmail,
       data
-    ),
+    )
   });
 };
 
 // Send media inquiry confirmation
-export const sendMediaConfirmation = async (data: MediaInquiryData) => {
+const sendMediaConfirmation = async (data: MediaInquiryData) => {
   return sendEmail({
     to: data.email,
     subject: 'Media inquiry received - Response coming soon',
     react: React.createElement(
       require('@/components/email/media-confirmation').MediaConfirmationEmail,
       { firstName: data.first_name, data }
-    ),
+    )
   });
 };
 
 // Send media inquiry notification
-export const sendMediaNotification = async (data: MediaInquiryData) => {
+const sendMediaNotification = async (data: MediaInquiryData) => {
   return sendEmail({
     to: NOTIFICATION_EMAIL,
     subject: `Media Inquiry: ${data.outlet} - ${data.topic}`,
@@ -184,31 +184,31 @@ export const sendMediaNotification = async (data: MediaInquiryData) => {
     react: React.createElement(
       require('@/components/email/media-notification').MediaNotificationEmail,
       data
-    ),
+    )
   });
 };
 
 // Send resource download email
-export const sendResourceDownloadEmail = async (email: string, firstName: string, resourceTitle: string, downloadUrl: string) => {
+const sendResourceDownloadEmail = async (email: string, firstName: string, resourceTitle: string, downloadUrl: string) => {
   return sendEmail({
     to: email,
     subject: `Your download: ${resourceTitle}`,
     react: React.createElement(
       require('@/components/email/resource-download').ResourceDownloadEmail,
       { firstName, resourceTitle, downloadUrl }
-    ),
+    )
   });
 };
 
 // Send newsletter welcome email
-export const sendNewsletterWelcome = async (email: string, firstName: string) => {
+const sendNewsletterWelcome = async (email: string, firstName: string) => {
   return sendEmail({
     to: email,
     subject: 'Welcome to the AI Marketing Revolution!',
     react: React.createElement(
       require('@/components/email/newsletter-welcome').NewsletterWelcomeEmail,
       { firstName }
-    ),
+    )
   });
 };
 
@@ -240,7 +240,7 @@ function getNotificationSubject(type?: string): string {
 }
 
 // Error handling wrapper
-export const safeEmailSend = async (emailFunction: () => Promise<any>) => {
+const safeEmailSend = async (emailFunction: () => Promise<any>) => {
   try {
     await emailFunction();
   } catch (error) {

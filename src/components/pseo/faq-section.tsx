@@ -18,10 +18,10 @@ export function FAQSection({ faqs, heading = 'Frequently Asked Questions' }: FAQ
 
   return (
     <section className="py-12">
-      <h2 className="font-signal text-2xl md:text-3xl font-bold mb-8">{heading}</h2>
+      <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-8">{heading}</h2>
       <Accordion type="single" collapsible className="w-full">
-        {faqs.map((faq, index) => (
-          <AccordionItem key={index} value={`faq-${index}`} className="border-b border-border">
+        {faqs.map((faq) => (
+          <AccordionItem key={faq.question} value={`faq-${faq.question}`} className="border-b border-border">
             <AccordionTrigger className="text-left text-base font-medium py-5 hover:no-underline hover:text-lilac">
               {faq.question}
             </AccordionTrigger>

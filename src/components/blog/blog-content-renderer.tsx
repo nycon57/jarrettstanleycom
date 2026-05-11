@@ -1,22 +1,56 @@
-import { Fragment } from 'react'
 import type { ContentBlock } from '@/types/blog'
 import { Lightbulb, AlertTriangle, Sparkles } from 'lucide-react'
 
-function renderInlineText(text: string): React.ReactNode {
-  // Split on **bold** markers, preserving the delimiters
-  const parts = text.split(/(\*\*.*?\*\*)/g)
-  return parts.map((part, i) => {
-    if (part.startsWith('**') && part.endsWith('**')) {
-      return <strong key={i} className="font-semibold text-foreground">{part.slice(2, -2)}</strong>
+function InlineText({ text }: { text: string }) {
+  const segments: Array<{ key: string; text: string; strong: boolean }> = []
+  const boldPattern = /\*\*(.*?)\*\*/g
+  let lastIndex = 0
+  let match: RegExpExecArray | null
+
+  while ((match = boldPattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      segments.push({
+        key: `text-${lastIndex}`,
+        text: text.slice(lastIndex, match.index),
+        strong: false,
+      })
     }
-    return <Fragment key={i}>{part}</Fragment>
-  })
+
+    segments.push({
+      key: `strong-${match.index}`,
+      text: match[1],
+      strong: true,
+    })
+    lastIndex = match.index + match[0].length
+  }
+
+  if (lastIndex < text.length) {
+    segments.push({
+      key: `text-${lastIndex}`,
+      text: text.slice(lastIndex),
+      strong: false,
+    })
+  }
+
+  return (
+    <>
+      {segments.map((segment) =>
+        segment.strong ? (
+          <strong key={segment.key} className="font-semibold text-foreground">
+            {segment.text}
+          </strong>
+        ) : (
+          <span key={segment.key}>{segment.text}</span>
+        )
+      )}
+    </>
+  )
 }
 
 function ParagraphBlock({ text }: { text: string }) {
   return (
     <p className="text-base text-muted-foreground leading-relaxed mb-6">
-      {renderInlineText(text)}
+      <InlineText text={text} />
     </p>
   )
 }
@@ -24,7 +58,7 @@ function ParagraphBlock({ text }: { text: string }) {
 function HeadingBlock({ text, level }: { text: string; level: 2 | 3 }) {
   if (level === 2) {
     return (
-      <h2 className="font-signal text-2xl md:text-3xl font-bold mt-12 mb-6 scroll-mt-20">
+      <h2 className="font-signal text-2xl md:text-3xl font-semibold mt-12 mb-6 scroll-mt-20">
         {text}
       </h2>
     )
@@ -40,13 +74,13 @@ function ListBlock({ style, items }: { style: 'bullet' | 'numbered'; items: stri
   const Tag = style === 'numbered' ? 'ol' : 'ul'
   return (
     <Tag
-      className={`mb-6 space-y-2 pl-6 ${
+      className={`mb-6 gap-y-2 pl-6 ${
         style === 'numbered' ? 'list-decimal' : 'list-disc'
       } text-muted-foreground`}
     >
-      {items.map((item, i) => (
-        <li key={i} className="text-base leading-relaxed pl-1">
-          {renderInlineText(item)}
+      {items.map((item) => (
+        <li key={item} className="text-base leading-relaxed pl-1">
+          <InlineText text={item} />
         </li>
       ))}
     </Tag>
@@ -70,9 +104,9 @@ function CalloutBlock({ text, variant = 'insight' }: { text: string; variant?: '
   return (
     <div className={`rounded-xl border p-5 mb-6 ${calloutColors[variant]}`}>
       <div className="flex gap-3">
-        <Icon className="h-5 w-5 mt-0.5 flex-shrink-0 text-muted-foreground" />
+        <Icon className="size-5 mt-0.5 flex-shrink-0 text-muted-foreground" />
         <p className="text-base text-muted-foreground leading-relaxed">
-          {renderInlineText(text)}
+          <InlineText text={text} />
         </p>
       </div>
     </div>
@@ -91,22 +125,37 @@ interface BlogContentRendererProps {
 export function BlogContentRenderer({ content, className }: BlogContentRendererProps) {
   return (
     <div className={className}>
-      {content.map((block, i) => {
+      {content.map((block) => {
+        const blockKey = getContentBlockKey(block)
+
         switch (block.type) {
           case 'paragraph':
-            return <ParagraphBlock key={i} text={block.text} />
+            return <ParagraphBlock key={blockKey} text={block.text} />
           case 'heading':
-            return <HeadingBlock key={i} text={block.text} level={block.level} />
+            return <HeadingBlock key={blockKey} text={block.text} level={block.level} />
           case 'list':
-            return <ListBlock key={i} style={block.style} items={block.items} />
+            return <ListBlock key={blockKey} style={block.style} items={block.items} />
           case 'callout':
-            return <CalloutBlock key={i} text={block.text} variant={block.variant} />
+            return <CalloutBlock key={blockKey} text={block.text} variant={block.variant} />
           case 'divider':
-            return <DividerBlock key={i} />
+            return <DividerBlock key={blockKey} />
           default:
             return null
         }
       })}
     </div>
   )
+}
+
+function getContentBlockKey(block: ContentBlock) {
+  switch (block.type) {
+    case 'paragraph':
+    case 'heading':
+    case 'callout':
+      return `${block.type}-${block.text}`
+    case 'list':
+      return `${block.type}-${block.style}-${block.items.join('|')}`
+    case 'divider':
+      return 'divider'
+  }
 }

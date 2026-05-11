@@ -33,15 +33,18 @@ export function BlogPostCard({ post, featured = false, viewMode = 'grid', classN
                   src={post.featured_image_url}
                   alt={post.title}
                   fill
+                  sizes="(max-width: 640px) 100vw, 25vw"
                   className="object-cover transition-transform duration-300 group-hover:scale-105"
                 />
               ) : (
                 <div className="bg-gradient-to-br from-lilac to-orchid w-full h-full flex items-center justify-center">
-                  <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                    <img
+                  <div className="size-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                    <Image
                       src="/assets/images/JS-Logo-white.png"
                       alt="JS"
-                      className="w-10 h-10 object-contain"
+                      width={40}
+                      height={40}
+                      className="object-contain"
                     />
                   </div>
                 </div>
@@ -70,7 +73,7 @@ export function BlogPostCard({ post, featured = false, viewMode = 'grid', classN
               </div>
               
               <Link href={`/insights/blog/${post.slug}`}>
-                <h3 className="font-signal font-bold text-xl leading-tight transition-colors group-hover:text-lilac mb-2">
+                <h3 className="font-signal font-semibold text-xl leading-tight transition-colors group-hover:text-lilac mb-2">
                   {post.title}
                 </h3>
               </Link>
@@ -81,14 +84,14 @@ export function BlogPostCard({ post, featured = false, viewMode = 'grid', classN
             </div>
             
             <div className="flex items-center justify-between text-sm text-muted-foreground">
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-1">
-                  <Clock className="w-4 h-4" />
+              <div className="flex items-center gap-x-4">
+                <div className="flex items-center gap-x-1">
+                  <Clock className="size-4" />
                   <span>{post.read_time_minutes} min read</span>
                 </div>
                 {post.view_count !== undefined && (
-                  <div className="flex items-center space-x-1">
-                    <Eye className="w-4 h-4" />
+                  <div className="flex items-center gap-x-1">
+                    <Eye className="size-4" />
                     <span>{post.view_count} views</span>
                   </div>
                 )}
@@ -116,22 +119,25 @@ export function BlogPostCard({ post, featured = false, viewMode = 'grid', classN
               src={post.featured_image_url}
               alt={post.title}
               fill
+              sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover transition-transform duration-300 group-hover:scale-105"
             />
           ) : (
             <div className="bg-gradient-to-br from-lilac to-orchid w-full h-full flex items-center justify-center">
-              <div className="w-16 h-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
-                <img
+              <div className="size-16 bg-white/10 rounded-full flex items-center justify-center backdrop-blur-sm">
+                <Image
                   src="/assets/images/JS-Logo-white.png"
                   alt="Jarrett Stanley Logo"
-                  className="w-10 h-10 object-contain"
+                  width={40}
+                  height={40}
+                  className="object-contain"
                   onError={(e) => {
                     console.error('Logo failed to load:', e);
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     const fallback = document.createElement('span');
                     fallback.textContent = 'JS';
-                    fallback.className = 'text-white text-lg font-bold';
+                    fallback.className = 'text-white text-lg font-semibold';
                     target.parentNode?.appendChild(fallback);
                   }}
                   onLoad={() => console.log('Logo loaded successfully')}
@@ -163,7 +169,7 @@ export function BlogPostCard({ post, featured = false, viewMode = 'grid', classN
         
         <Link href={`/insights/blog/${post.slug}`}>
           <h3 className={cn(
-            "font-signal font-bold leading-tight transition-colors group-hover:text-lilac",
+            "font-signal font-semibold leading-tight transition-colors group-hover:text-lilac",
             featured ? "text-2xl" : "text-xl"
           )}>
             {post.title}
@@ -181,14 +187,14 @@ export function BlogPostCard({ post, featured = false, viewMode = 'grid', classN
       </CardContent>
       
       <CardFooter className="pt-0 flex items-center justify-between text-sm text-muted-foreground">
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-1">
-            <Clock className="w-4 h-4" />
+        <div className="flex items-center gap-x-4">
+          <div className="flex items-center gap-x-1">
+            <Clock className="size-4" />
             <span>{post.read_time_minutes} min read</span>
           </div>
           {post.view_count !== undefined && (
-            <div className="flex items-center space-x-1">
-              <Eye className="w-4 h-4" />
+            <div className="flex items-center gap-x-1">
+              <Eye className="size-4" />
               <span>{post.view_count} views</span>
             </div>
           )}

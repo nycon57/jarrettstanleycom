@@ -10,7 +10,6 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Download } from 'lucide-react'
 import { Resource } from '@/lib/supabase'
-import { trackResourceDownload } from '@/app/actions/blog'
 
 const downloadFormSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -72,13 +71,17 @@ export function DownloadModal({ isOpen, resource, onClose }: DownloadModalProps)
     setDownloadLoading(true)
     setDownloadError(null)
     try {
-      await trackResourceDownload(
-        resource.id,
-        data.email,
-        data.firstName,
-        data.lastName,
-        data.company
-      )
+      await fetch('/api/resources/track-download', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          resourceId: resource.id,
+          email: data.email,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          company: data.company,
+        }),
+      })
 
       window.open(resource.file_url, '_blank')
       reset()
@@ -102,7 +105,7 @@ export function DownloadModal({ isOpen, resource, onClose }: DownloadModalProps)
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={handleSubmit(onDownloadSubmit)} className="space-y-4">
+        <form onSubmit={handleSubmit(onDownloadSubmit)} className="gap-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="firstName">First Name *</Label>
@@ -152,7 +155,7 @@ export function DownloadModal({ isOpen, resource, onClose }: DownloadModalProps)
             <p className="text-sm text-red-600">{downloadError}</p>
           )}
 
-          <div className="flex justify-end space-x-2 pt-4">
+          <div className="flex justify-end gap-x-2 pt-4">
             <Button
               type="button"
               variant="outline"
@@ -168,12 +171,12 @@ export function DownloadModal({ isOpen, resource, onClose }: DownloadModalProps)
             >
               {downloadLoading ? (
                 <>
-                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
-                  Downloading...
+                  <div className="animate-spin rounded-full size-4 border-b-2 border-white mr-2" />
+                  Downloading…
                 </>
               ) : (
                 <>
-                  <Download className="w-4 h-4 mr-2" />
+                  <Download className="size-4 mr-2" />
                   Download Now
                 </>
               )}

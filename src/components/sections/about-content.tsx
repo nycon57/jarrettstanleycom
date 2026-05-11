@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Briefcase, Brain, Lightbulb, Users } from 'lucide-react'
@@ -113,14 +113,14 @@ export function AboutContent() {
         <div className="container relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Content */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <h1 className="text-4xl lg:text-6xl font-bold mb-6">
+              <h1 className="text-4xl lg:text-6xl font-semibold mb-6">
                 Hi, I'm{' '}
-                <span className="bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent">
+                <span className="text-lilac">
                   Jarrett Stanley
                 </span>
               </h1>
@@ -132,7 +132,7 @@ export function AboutContent() {
                 <Button size="lg" asChild>
                   <Link href="/contact">
                     Book a Consultation
-                    <ArrowRight className="ml-2 h-4 w-4" />
+                    <ArrowRight className="ml-2 size-4" />
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" asChild>
@@ -141,10 +141,10 @@ export function AboutContent() {
                   </Link>
                 </Button>
               </div>
-            </motion.div>
+            </m.div>
             
             {/* Image */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -160,7 +160,7 @@ export function AboutContent() {
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 />
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -168,16 +168,16 @@ export function AboutContent() {
       {/* Professional Summary */}
       <section className="py-20 bg-muted/30">
         <div className="container">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-4xl mx-auto text-center"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-8">
+            <h2 className="text-3xl lg:text-4xl font-semibold mb-8">
               Bridging Innovation and Tradition
             </h2>
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+            <div className="gap-y-6 text-lg text-muted-foreground leading-relaxed">
               <p>
                 With over 15 years in mortgage marketing, I've witnessed the industry's evolution from 
                 traditional methods to digital-first strategies. My journey has been defined by a constant 
@@ -196,26 +196,26 @@ export function AboutContent() {
                 consulting, or mentorship, I'm committed to elevating our industry's marketing standards.
               </p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
       
       {/* Career Timeline */}
       <section className="py-20">
         <div className="container">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="text-3xl lg:text-4xl font-semibold mb-4">
               Professional Journey
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               A timeline of key positions and achievements that shaped my career
             </p>
-          </motion.div>
+          </m.div>
           
           <Timeline items={timelineItems} className="max-w-4xl mx-auto" />
         </div>
@@ -224,19 +224,19 @@ export function AboutContent() {
       {/* Expertise Grid */}
       <section className="py-20 bg-muted/30">
         <div className="container">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+            <h2 className="text-3xl lg:text-4xl font-semibold mb-4">
               Areas of Expertise
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
               Combining deep industry knowledge with cutting-edge technology
             </p>
-          </motion.div>
+          </m.div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {expertiseAreas.map((area, index) => (
@@ -250,14 +250,14 @@ export function AboutContent() {
       {/* Personal Mission */}
       <section className="bg-muted/30 py-20">
         <div className="container">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-4xl mx-auto"
           >
             <div className="text-center mb-12">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4">
+              <h2 className="text-3xl lg:text-4xl font-semibold mb-4">
                 My Mission
               </h2>
             </div>
@@ -267,7 +267,7 @@ export function AboutContent() {
               <div className="relative text-center">
                 <p className="text-xl lg:text-2xl leading-relaxed mb-6">
                   I believe the future of mortgage marketing lies at the intersection of human 
-                  creativity and artificial intelligence. <span className="bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent font-bold">My mission is to empower mortgage professionals 
+                  creativity and artificial intelligence. <span className="font-semibold text-lilac">My mission is to empower mortgage professionals 
                   with the tools and knowledge they need to thrive in this new era.</span> Every day, I work to bridge the gap between cutting-edge technology and practical 
                   application. Whether it's through AI innovation, speaking at industry events, or 
                   consulting with forward-thinking companies, I'm committed to elevating our industry's 
@@ -275,7 +275,7 @@ export function AboutContent() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </section>
       

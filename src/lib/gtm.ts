@@ -9,13 +9,13 @@ export const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID || '';
 /**
  * Push an event to the GTM dataLayer
  */
-export function pushToDataLayer(event: string, data?: Record<string, unknown>) {
+function pushToDataLayer(event: string, data?: Record<string, unknown>) {
   if (typeof window === 'undefined') return;
 
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({
     event,
-    ...data,
+    ...data
   });
 }
 
@@ -25,7 +25,7 @@ export function pushToDataLayer(event: string, data?: Record<string, unknown>) {
 export function pushFormConversion(formType: string, formName: string) {
   pushToDataLayer('form_conversion', {
     form_type: formType,
-    form_name: formName,
+    form_name: formName
   });
 }
 
@@ -36,6 +36,6 @@ export function pushFormConversion(formType: string, formName: string) {
 export function pushConversion(conversionType: string, data?: Record<string, unknown>) {
   pushToDataLayer(`${conversionType}_conversion`, {
     conversion_type: conversionType,
-    ...data,
+    ...data
   });
 }

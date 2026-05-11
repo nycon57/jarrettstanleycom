@@ -19,6 +19,7 @@ interface AnalyticsProviderProps {
 function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const pageUrl = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
   const [analyticsConsent, setAnalyticsConsent] = useState(false);
   const [marketingConsent, setMarketingConsent] = useState(false);
 
@@ -30,11 +31,8 @@ function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
 
   // Track page views on route changes
   useEffect(() => {
-    if (pathname) {
-      const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
-      trackPageView(url);
-    }
-  }, [pathname, searchParams]);
+    trackPageView(pageUrl);
+  }, [pageUrl]);
 
   // Store UTM parameters on initial load
   useEffect(() => {
@@ -53,8 +51,8 @@ function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
           <Script
             id="google-analytics"
             strategy="afterInteractive"
-            dangerouslySetInnerHTML={{
-              __html: `
+          >
+            {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
@@ -70,9 +68,8 @@ function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
                     content_group: 'Main Site'
                   }
                 });
-              `,
-            }}
-          />
+              `}
+          </Script>
         </>
       )}
 
@@ -81,12 +78,11 @@ function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
         <Script
           id="google-ads-config"
           strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+        >
+          {`
               window.gtag && gtag('config', '${GOOGLE_ADS_ID}');
-            `,
-          }}
-        />
+            `}
+        </Script>
       )}
 
       {/* Microsoft Clarity — requires analytics consent */}
@@ -94,16 +90,15 @@ function AnalyticsProviderContent({ children }: AnalyticsProviderProps) {
         <Script
           id="microsoft-clarity"
           strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+        >
+          {`
               (function(c,l,a,r,i,t,y){
                 c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                 t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                 y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
               })(window, document, "clarity", "script", "${CLARITY_PROJECT_ID}");
-            `,
-          }}
-        />
+            `}
+        </Script>
       )}
 
       {children}

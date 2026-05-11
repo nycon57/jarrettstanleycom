@@ -57,6 +57,7 @@ async function sendToGoogleAnalytics(data: any) {
   try {
     await fetch(`https://www.google-analytics.com/mp/collect?measurement_id=${GA_MEASUREMENT_ID}&api_secret=${GA_API_SECRET}`, {
       method: 'POST',
+      cache: 'no-store',
       body: JSON.stringify(payload),
       headers: {
         'Content-Type': 'application/json',

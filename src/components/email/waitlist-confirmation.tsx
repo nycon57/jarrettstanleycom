@@ -1,5 +1,14 @@
 import * as React from 'react';
 
+
+const WAITLIST_CONFIRMATION_STYLE_1 = { backgroundColor: '#7c3aed', color: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', marginRight: '15px', flexShrink: 0 
+} satisfies React.CSSProperties;
+
+const WAITLIST_CONFIRMATION_STYLE_2 = { backgroundColor: '#7c3aed', color: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', marginRight: '15px', flexShrink: 0 
+} satisfies React.CSSProperties;
+
+const WAITLIST_CONFIRMATION_STYLE_3 = { backgroundColor: '#7c3aed', color: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', marginRight: '15px', flexShrink: 0 
+} satisfies React.CSSProperties;
 interface WaitlistConfirmationEmailProps {
   firstName: string;
 }
@@ -39,7 +48,7 @@ export const WaitlistConfirmationEmail: React.FC<Readonly<WaitlistConfirmationEm
         
         <div style={{ marginBottom: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ backgroundColor: '#7c3aed', color: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', marginRight: '15px', flexShrink: 0 }}>
+            <div style={WAITLIST_CONFIRMATION_STYLE_1}>
               1
             </div>
             <div>
@@ -53,7 +62,7 @@ export const WaitlistConfirmationEmail: React.FC<Readonly<WaitlistConfirmationEm
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ backgroundColor: '#7c3aed', color: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', marginRight: '15px', flexShrink: 0 }}>
+            <div style={WAITLIST_CONFIRMATION_STYLE_2}>
               2
             </div>
             <div>
@@ -67,7 +76,7 @@ export const WaitlistConfirmationEmail: React.FC<Readonly<WaitlistConfirmationEm
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-            <div style={{ backgroundColor: '#7c3aed', color: 'white', borderRadius: '50%', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '12px', fontWeight: 'bold', marginRight: '15px', flexShrink: 0 }}>
+            <div style={WAITLIST_CONFIRMATION_STYLE_3}>
               3
             </div>
             <div>
@@ -84,7 +93,7 @@ export const WaitlistConfirmationEmail: React.FC<Readonly<WaitlistConfirmationEm
 
       <div style={{ backgroundColor: '#fff3cd', border: '1px solid #ffeaa7', borderRadius: '8px', padding: '20px', marginBottom: '25px' }}>
         <h3 style={{ margin: '0 0 10px 0', color: '#856404', fontSize: '18px' }}>
-          💡 In the meantime...
+          💡 In the meantime…
         </h3>
         <p style={{ margin: '0', color: '#856404', fontSize: '14px', lineHeight: '1.5' }}>
           Follow us on social media for the latest updates, or reach out if you have any questions. 

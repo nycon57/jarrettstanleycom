@@ -1,5 +1,48 @@
 import * as React from 'react';
+import {
+  formatCompactDeadline,
+  formatEmailTimestamp,
+  formatFullDeadline,
+  formatShortDate,
+  isWithinNextDay
+} from './email-date';
 
+
+const MEDIA_NOTIFICATION_STYLE_1 = {
+            backgroundColor: '#1976d2',
+            color: 'white',
+            padding: '12px 20px',
+            borderRadius: '6px',
+            textDecoration: 'none',
+            fontSize: '14px',
+            textAlign: 'center',
+            fontWeight: '500'
+          
+} satisfies React.CSSProperties;
+
+const MEDIA_NOTIFICATION_STYLE_2 = {
+              backgroundColor: '#16a34a',
+              color: 'white',
+              padding: '12px 20px',
+              borderRadius: '6px',
+              textDecoration: 'none',
+              fontSize: '14px',
+              textAlign: 'center',
+              fontWeight: '500'
+            
+} satisfies React.CSSProperties;
+
+const MEDIA_NOTIFICATION_STYLE_3 = {
+              backgroundColor: '#7c3aed',
+              color: 'white',
+              padding: '12px 20px',
+              borderRadius: '6px',
+              textDecoration: 'none',
+              fontSize: '14px',
+              textAlign: 'center',
+              fontWeight: '500'
+            
+} satisfies React.CSSProperties;
 interface MediaNotificationEmailProps {
   first_name: string;
   last_name: string;
@@ -13,7 +56,9 @@ interface MediaNotificationEmailProps {
   message?: string;
 }
 
-export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailProps>> = ({
+export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailProps>> = (props) => renderMediaNotificationEmail(props);
+
+function renderMediaNotificationEmail({
   first_name,
   last_name,
   email,
@@ -24,7 +69,7 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
   topic,
   interview_type,
   message,
-}) => {
+}: Readonly<MediaNotificationEmailProps>) {
   const getInterviewTypeDisplay = () => {
     switch (interview_type) {
       case 'written': return '✍️ Written Q&A';
@@ -35,7 +80,18 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
     }
   };
 
-  const isUrgent = deadline && new Date(deadline) <= new Date(Date.now() + 24 * 60 * 60 * 1000);
+  const isUrgent = Boolean(deadline && isWithinNextDay(deadline));
+  const compactDeadlineLabel = deadline
+    ? formatCompactDeadline(deadline)
+    : null;
+  const fullDeadlineLabel = deadline
+    ? formatFullDeadline(deadline)
+    : null;
+  const shortDeadlineLabel = deadline
+    ? formatShortDate(deadline)
+    : '';
+  const receivedAtLabel = formatEmailTimestamp();
+
   const getOutletTier = () => {
     const majorOutlets = ['Forbes', 'Wall Street Journal', 'Reuters', 'Bloomberg', 'CNN', 'CNBC', 'Fox Business', 'MarketWatch'];
     const industryMedia = ['National Mortgage News', 'Mortgage Professional America', 'HousingWire', 'Mortgage Banker'];
@@ -93,13 +149,7 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
             color: priorityColor, 
             fontSize: '14px'
           }}>
-            Deadline: {new Date(deadline).toLocaleDateString('en-US', {
-              weekday: 'short',
-              month: 'short',
-              day: 'numeric',
-              hour: '2-digit',
-              minute: '2-digit'
-            })}
+            Deadline: {compactDeadlineLabel}
             {isUrgent && ' (URGENT!)'}
           </p>
         )}
@@ -192,14 +242,7 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
                   fontSize: '14px',
                   fontWeight: 'bold'
                 }}>
-                  {new Date(deadline).toLocaleDateString('en-US', {
-                    weekday: 'long',
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                  })}
+                  {fullDeadlineLabel}
                 </span>
                 {isUrgent && (
                   <span style={{ color: '#dc2626', fontSize: '14px', fontWeight: 'bold' }}>
@@ -222,7 +265,7 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
             backgroundColor: '#fef3c7', 
             padding: '20px', 
             borderRadius: '6px', 
-            borderLeft: '4px solid #f59e0b'
+            boxShadow: 'inset 0 0 0 1px #fde68a'
           }}>
             <p style={{ color: '#a16207', fontSize: '16px', lineHeight: '1.6', margin: '0', whiteSpace: 'pre-wrap' }}>
               {message}
@@ -238,45 +281,18 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
         </h3>
         
         <div style={{ display: 'grid', gap: '10px', marginBottom: '20px' }}>
-          <a href={`mailto:${email}?subject=Re: Media Inquiry - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for reaching out to me regarding ${topic}. I'd be happy to contribute to your story for ${outlet}.%0D%0A%0D%0AI'm available for ${interview_type === 'written' ? 'written responses' : interview_type === 'phone' ? 'a phone interview' : interview_type === 'video' ? 'a video interview' : 'an in-person interview'}${deadline ? ` and understand your ${new Date(deadline).toLocaleDateString()} deadline` : ''}.%0D%0A%0D%0AAs CMO at Nationwide Mortgage Bankers and AI marketing innovator, I can provide insights on:%0D%0A- AI implementation in financial services marketing%0D%0A- Current trends in mortgage industry technology%0D%0A- The intersection of artificial intelligence and authentic marketing%0D%0A%0D%0AWould ${interview_type === 'written' ? 'receiving your questions via email work best' : 'scheduling a brief call to discuss the interview details work for you'}?%0D%0A%0D%0AI can also provide additional background information, high-resolution photos, or connect you with other industry experts if needed.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley%0D%0ACMO, Nationwide Mortgage Bankers%0D%0AAI Marketing Pioneer%0D%0Ajarrett@jarrettstanley.com`} style={{
-            backgroundColor: '#1976d2',
-            color: 'white',
-            padding: '12px 20px',
-            borderRadius: '6px',
-            textDecoration: 'none',
-            fontSize: '14px',
-            textAlign: 'center',
-            fontWeight: '500'
-          }}>
+          <a href={`mailto:${email}?subject=Re: Media Inquiry - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for reaching out to me regarding ${topic}. I'd be happy to contribute to your story for ${outlet}.%0D%0A%0D%0AI'm available for ${interview_type === 'written' ? 'written responses' : interview_type === 'phone' ? 'a phone interview' : interview_type === 'video' ? 'a video interview' : 'an in-person interview'}${deadline ? ` and understand your ${shortDeadlineLabel} deadline` : ''}.%0D%0A%0D%0AAs CMO at Nationwide Mortgage Bankers and AI marketing innovator, I can provide insights on:%0D%0A- AI implementation in financial services marketing%0D%0A- Current trends in mortgage industry technology%0D%0A- The intersection of artificial intelligence and authentic marketing%0D%0A%0D%0AWould ${interview_type === 'written' ? 'receiving your questions via email work best' : 'scheduling a brief call to discuss the interview details work for you'}?%0D%0A%0D%0AI can also provide additional background information, high-resolution photos, or connect you with other industry experts if needed.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley%0D%0ACMO, Nationwide Mortgage Bankers%0D%0AAI Marketing Pioneer%0D%0Ajarrett@jarrettstanley.com`} style={MEDIA_NOTIFICATION_STYLE_1}>
             📧 Send Professional Response
           </a>
           
           {interview_type === 'written' && (
-            <a href={`mailto:${email}?subject=Re: Written Interview - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for the interview opportunity. I'm ready to provide written responses for your ${outlet} story on ${topic}.%0D%0A%0D%0APlease send me your questions and I'll provide detailed, quotable responses${deadline ? ` by your ${new Date(deadline).toLocaleDateString()} deadline` : ''}.%0D%0A%0D%0AFor context, here's my background relevant to this topic:%0D%0A- Chief Marketing Officer at Nationwide Mortgage Bankers%0D%0A- Pioneer in AI marketing innovation%0D%0A- Expert in AI-powered marketing for financial services%0D%0A%0D%0AIf you need any additional background information or supporting materials, please let me know.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley`} style={{
-              backgroundColor: '#16a34a',
-              color: 'white',
-              padding: '12px 20px',
-              borderRadius: '6px',
-              textDecoration: 'none',
-              fontSize: '14px',
-              textAlign: 'center',
-              fontWeight: '500'
-            }}>
+            <a href={`mailto:${email}?subject=Re: Written Interview - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for the interview opportunity. I'm ready to provide written responses for your ${outlet} story on ${topic}.%0D%0A%0D%0APlease send me your questions and I'll provide detailed, quotable responses${deadline ? ` by your ${shortDeadlineLabel} deadline` : ''}.%0D%0A%0D%0AFor context, here's my background relevant to this topic:%0D%0A- Chief Marketing Officer at Nationwide Mortgage Bankers%0D%0A- Pioneer in AI marketing innovation%0D%0A- Expert in AI-powered marketing for financial services%0D%0A%0D%0AIf you need any additional background information or supporting materials, please let me know.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley`} style={MEDIA_NOTIFICATION_STYLE_2}>
               ✍️ Written Interview Response
             </a>
           )}
           
           {(interview_type === 'phone' || interview_type === 'video' || interview_type === 'in-person') && (
-            <a href={`mailto:${email}?subject=Re: ${interview_type.charAt(0).toUpperCase() + interview_type.slice(1)} Interview - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for the interview opportunity. I'm available for a ${interview_type === 'phone' ? 'phone interview' : interview_type === 'video' ? 'video interview' : 'in-person interview'} regarding ${topic}.%0D%0A%0D%0AI'm generally available:%0D%0A- Monday-Friday: 9 AM - 5 PM CT%0D%0A- Can accommodate urgent requests outside these hours%0D%0A%0D%0AFor scheduling, here are a few options:%0D%0A1. [Insert your available times]%0D%0A2. Use my calendar link: https://calendly.com/jarrettstanley/media-interview%0D%0A%0D%0AInterview duration: I'm flexible, but typically 15-30 minutes works well for most stories.%0D%0A%0D%0A${interview_type === 'video' ? 'For video interviews, I can use Zoom, Teams, or your preferred platform.' : interview_type === 'in-person' ? 'For in-person interviews, I\'m located in [location] but can travel if needed.' : 'I\'ll call you at the number you provide, or you can call me at [your number].'}%0D%0A%0D%0ALooking forward to contributing to your story!%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley`} style={{
-              backgroundColor: '#7c3aed',
-              color: 'white',
-              padding: '12px 20px',
-              borderRadius: '6px',
-              textDecoration: 'none',
-              fontSize: '14px',
-              textAlign: 'center',
-              fontWeight: '500'
-            }}>
+            <a href={`mailto:${email}?subject=Re: ${interview_type.charAt(0).toUpperCase() + interview_type.slice(1)} Interview - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for the interview opportunity. I'm available for a ${interview_type === 'phone' ? 'phone interview' : interview_type === 'video' ? 'video interview' : 'in-person interview'} regarding ${topic}.%0D%0A%0D%0AI'm generally available:%0D%0A- Monday-Friday: 9 AM - 5 PM CT%0D%0A- Can accommodate urgent requests outside these hours%0D%0A%0D%0AFor scheduling, here are a few options:%0D%0A1. [Insert your available times]%0D%0A2. Use my calendar link: https://calendly.com/jarrettstanley/media-interview%0D%0A%0D%0AInterview duration: I'm flexible, but typically 15-30 minutes works well for most stories.%0D%0A%0D%0A${interview_type === 'video' ? 'For video interviews, I can use Zoom, Teams, or your preferred platform.' : interview_type === 'in-person' ? 'For in-person interviews, I\'m located in [location] but can travel if needed.' : 'I\'ll call you at the number you provide, or you can call me at [your number].'}%0D%0A%0D%0ALooking forward to contributing to your story!%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley`} style={MEDIA_NOTIFICATION_STYLE_3}>
               🎤 Schedule {interview_type.charAt(0).toUpperCase() + interview_type.slice(1)} Interview
             </a>
           )}
@@ -360,17 +376,10 @@ export const MediaNotificationEmail: React.FC<Readonly<MediaNotificationEmailPro
           Media inquiry submitted via jarrettstanley.com
         </p>
         <p style={{ margin: '5px 0 0 0', fontSize: '12px', color: '#9ca3af' }}>
-          Received at {new Date().toLocaleString('en-US', { 
-            timeZone: 'America/Chicago',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZoneName: 'short'
-          })}
+          Received at {receivedAtLabel}
         </p>
       </div>
     </div>
   );
-};
+
+}

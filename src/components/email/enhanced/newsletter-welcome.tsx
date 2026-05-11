@@ -11,9 +11,11 @@ interface NewsletterWelcomeEmailProps {
   firstName: string;
 }
 
-export const NewsletterWelcomeEmail: React.FC<NewsletterWelcomeEmailProps> = ({
+export const NewsletterWelcomeEmail: React.FC<Readonly<NewsletterWelcomeEmailProps>> = (props) => renderNewsletterWelcomeEmail(props);
+
+function renderNewsletterWelcomeEmail({
   firstName,
-}) => {
+}: Readonly<NewsletterWelcomeEmailProps>) {
   const previewText = `Welcome to the AI Marketing Revolution, ${firstName}!`;
 
   return (
@@ -337,4 +339,4 @@ export const NewsletterWelcomeEmail: React.FC<NewsletterWelcomeEmailProps> = ({
       </Section>
     </EmailLayout>
   );
-};
+}

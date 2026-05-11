@@ -38,7 +38,7 @@ export interface EmailConfig {
   bcc?: string | string[];
 }
 
-export interface EmailLogData {
+interface EmailLogData {
   id?: string;
   resend_id?: string;
   template_name?: string;
@@ -95,21 +95,21 @@ export interface MediaInquiryData {
 }
 
 // Template variable substitution helper
-export const substituteTemplateVariables = (template: string, variables: Record<string, any>): string => {
+const substituteTemplateVariables = (template: string, variables: Record<string, any>): string => {
   return template.replace(/\{\{(\w+)\}\}/g, (match, key) => {
     return variables[key] || match;
   });
 };
 
 // Get template from database
-export const getEmailTemplate = async (templateName: string) => {
+const getEmailTemplate = async (templateName: string) => {
   try {
-    const { data, error } = await supabase
-      .from('email_templates')
-      .select('*')
-      .eq('name', templateName)
-      .eq('is_active', true)
-      .single();
+    const { data, error } = await supabase.
+    from('email_templates').
+    select('*').
+    eq('name', templateName).
+    eq('is_active', true).
+    single();
 
     if (error || !data) {
       console.error(`Template '${templateName}' not found:`, error);
@@ -124,23 +124,23 @@ export const getEmailTemplate = async (templateName: string) => {
 };
 
 // Enhanced email sending with database logging
-export const sendEmail = async (config: EmailConfig): Promise<{ id: string; emailLogId: string }> => {
+export const sendEmail = async (config: EmailConfig): Promise<{id: string;emailLogId: string;}> => {
   const primaryRecipient = Array.isArray(config.to) ? config.to[0] : config.to;
-  const ccEmails = config.cc ? (Array.isArray(config.cc) ? config.cc : [config.cc]) : undefined;
-  const bccEmails = config.bcc ? (Array.isArray(config.bcc) ? config.bcc : [config.bcc]) : undefined;
-  
+  const ccEmails = config.cc ? Array.isArray(config.cc) ? config.cc : [config.cc] : undefined;
+  const bccEmails = config.bcc ? Array.isArray(config.bcc) ? config.bcc : [config.bcc] : undefined;
+
   // Determine email type and category based on template name
   const getEmailTypeAndCategory = (templateName?: string) => {
     if (!templateName) return { email_type: 'transactional' as const, category: 'contact_form' as const };
-    
+
     if (templateName.includes('confirmation')) return { email_type: 'confirmation' as const, category: getCategory(templateName) };
     if (templateName.includes('notification')) return { email_type: 'notification' as const, category: getCategory(templateName) };
     if (templateName.includes('welcome') || templateName.includes('newsletter')) return { email_type: 'newsletter' as const, category: 'newsletter_signup' as const };
     if (templateName.includes('resource') || templateName.includes('download')) return { email_type: 'marketing' as const, category: 'resource_download' as const };
-    
+
     return { email_type: 'transactional' as const, category: getCategory(templateName) };
   };
-  
+
   const getCategory = (templateName: string) => {
     if (templateName.includes('speaking')) return 'speaking_inquiry' as const;
     if (templateName.includes('consulting')) return 'consulting_inquiry' as const;
@@ -167,11 +167,11 @@ export const sendEmail = async (config: EmailConfig): Promise<{ id: string; emai
     metadata: config.metadata || {}
   };
 
-  const { data: logEntry, error: logError } = await supabase
-    .from('email_logs')
-    .insert(emailLogData)
-    .select('id')
-    .single();
+  const { data: logEntry, error: logError } = await supabase.
+  from('email_logs').
+  insert(emailLogData).
+  select('id').
+  single();
 
   if (logError) {
     console.error('Failed to create email log:', logError);
@@ -187,47 +187,47 @@ export const sendEmail = async (config: EmailConfig): Promise<{ id: string; emai
       subject: config.subject,
       html: config.html,
       react: config.react,
-      replyTo: config.replyTo,
+      replyTo: config.replyTo
     });
 
     if (error) {
       // Update log with error
-      await supabase
-        .from('email_logs')
-        .update({
-          status: 'failed',
-          error_message: error.message,
-          updated_at: new Date().toISOString()
-        })
-        .eq('id', logEntry.id);
-      
+      await supabase.
+      from('email_logs').
+      update({
+        status: 'failed',
+        error_message: error.message,
+        updated_at: new Date().toISOString()
+      }).
+      eq('id', logEntry.id);
+
       console.error('Resend error:', error);
       throw new Error(`Failed to send email: ${error.message}`);
     }
 
     // Update log with success
-    await supabase
-      .from('email_logs')
-      .update({
-        resend_id: data?.id || null,
-        status: 'sent',
-        sent_at: new Date().toISOString(),
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', logEntry.id);
+    await supabase.
+    from('email_logs').
+    update({
+      resend_id: data?.id || null,
+      status: 'sent',
+      sent_at: new Date().toISOString(),
+      updated_at: new Date().toISOString()
+    }).
+    eq('id', logEntry.id);
 
     return { id: data?.id || '', emailLogId: logEntry.id };
   } catch (error) {
     // Update log with error
-    await supabase
-      .from('email_logs')
-      .update({
-        status: 'failed',
-        error_message: error instanceof Error ? error.message : 'Unknown error',
-        updated_at: new Date().toISOString()
-      })
-      .eq('id', logEntry.id);
-    
+    await supabase.
+    from('email_logs').
+    update({
+      status: 'failed',
+      error_message: error instanceof Error ? error.message : 'Unknown error',
+      updated_at: new Date().toISOString()
+    }).
+    eq('id', logEntry.id);
+
     console.error('Email sending error:', error);
     throw error;
   }
@@ -236,7 +236,7 @@ export const sendEmail = async (config: EmailConfig): Promise<{ id: string; emai
 // Send confirmation email to user
 export const sendContactConfirmation = async (data: ContactFormData) => {
   const subject = getConfirmationSubject(data.type);
-  
+
   return sendEmail({
     to: data.email,
     subject,
@@ -248,19 +248,19 @@ export const sendContactConfirmation = async (data: ContactFormData) => {
     },
     react: React.createElement(
       ContactConfirmationEmail,
-      { 
-        name: data.name, 
+      {
+        name: data.name,
         type: data.type || 'general',
-        message: data.message 
+        message: data.message
       }
-    ),
+    )
   });
 };
 
 // Send notification email to Jarrett
 export const sendContactNotification = async (data: ContactFormData) => {
   const subject = getNotificationSubject(data.type);
-  
+
   return sendEmail({
     to: NOTIFICATION_EMAIL,
     subject,
@@ -276,7 +276,7 @@ export const sendContactNotification = async (data: ContactFormData) => {
     react: React.createElement(
       ContactNotificationEmail,
       data
-    ),
+    )
   });
 };
 
@@ -296,7 +296,7 @@ export const sendSpeakingConfirmation = async (data: SpeakingInquiryData) => {
     react: React.createElement(
       SpeakingConfirmationEmail,
       { firstName: data.first_name, data }
-    ),
+    )
   });
 };
 
@@ -319,7 +319,7 @@ export const sendSpeakingNotification = async (data: SpeakingInquiryData) => {
     react: React.createElement(
       SpeakingNotificationEmail,
       data
-    ),
+    )
   });
 };
 
@@ -339,7 +339,7 @@ export const sendConsultingConfirmation = async (data: any) => {
     react: React.createElement(
       ConsultingConfirmationEmail,
       { firstName: data.first_name, data }
-    ),
+    )
   });
 };
 
@@ -363,7 +363,7 @@ export const sendConsultingNotification = async (data: any) => {
     react: React.createElement(
       ConsultingNotificationEmail,
       data
-    ),
+    )
   });
 };
 
@@ -383,7 +383,7 @@ export const sendMediaConfirmation = async (data: MediaInquiryData) => {
     react: React.createElement(
       MediaConfirmationEmail,
       { firstName: data.first_name, data }
-    ),
+    )
   });
 };
 
@@ -407,7 +407,7 @@ export const sendMediaNotification = async (data: MediaInquiryData) => {
     react: React.createElement(
       MediaNotificationEmail,
       data
-    ),
+    )
   });
 };
 
@@ -424,7 +424,7 @@ export const sendResourceDownloadEmail = async (email: string, firstName: string
     react: React.createElement(
       ResourceDownloadEmail,
       { firstName, resourceTitle, downloadUrl }
-    ),
+    )
   });
 };
 
@@ -441,7 +441,7 @@ export const sendNewsletterWelcome = async (email: string, firstName: string) =>
     react: React.createElement(
       NewsletterWelcomeEmail,
       { firstName }
-    ),
+    )
   });
 };
 
@@ -480,7 +480,7 @@ export const sendNewsletterNotification = async (email: string, firstName: strin
           <a href="mailto:${email}?subject=Welcome%20to%20the%20newsletter!">Reply directly to the subscriber</a>
         </p>
       </div>
-    `,
+    `
   });
 };
 
@@ -518,14 +518,14 @@ export const safeEmailSend = async (emailFunction: () => Promise<any>, retries =
     return true;
   } catch (error) {
     console.error(`Email sending failed (attempt ${retries + 1}):`, error);
-    
+
     if (retries < maxRetries) {
       // Wait before retrying (exponential backoff)
       const delay = Math.pow(2, retries) * 1000;
-      await new Promise(resolve => setTimeout(resolve, delay));
+      await new Promise((resolve) => setTimeout(resolve, delay));
       return safeEmailSend(emailFunction, retries + 1, maxRetries);
     }
-    
+
     // Log final failure to monitoring service in production
     console.error('Email sending failed after all retries:', error);
     return false;
@@ -553,10 +553,10 @@ export const updateEmailStatus = async (resendId: string, status: EmailStatus, e
         break;
     }
 
-    const { error } = await supabase
-      .from('email_logs')
-      .update(updateData)
-      .eq('resend_id', resendId);
+    const { error } = await supabase.
+    from('email_logs').
+    update(updateData).
+    eq('resend_id', resendId);
 
     if (error) {
       console.error('Failed to update email status:', error);
@@ -565,14 +565,14 @@ export const updateEmailStatus = async (resendId: string, status: EmailStatus, e
 
     // Also log the event
     if (eventData) {
-      const { error: eventError } = await supabase
-        .from('email_events')
-        .insert({
-          resend_id: resendId,
-          event_type: status,
-          event_data: eventData,
-          occurred_at: new Date().toISOString()
-        });
+      const { error: eventError } = await supabase.
+      from('email_events').
+      insert({
+        resend_id: resendId,
+        event_type: status,
+        event_data: eventData,
+        occurred_at: new Date().toISOString()
+      });
 
       if (eventError) {
         console.error('Failed to log email event:', eventError);
@@ -589,9 +589,9 @@ export const updateEmailStatus = async (resendId: string, status: EmailStatus, e
 // Function to get email analytics/stats
 export const getEmailStats = async (templateName?: string, dateFrom?: Date, dateTo?: Date) => {
   try {
-    let query = supabase
-      .from('email_logs')
-      .select('status, template_name, created_at, sent_at, delivered_at');
+    let query = supabase.
+    from('email_logs').
+    select('status, template_name, created_at, sent_at, delivered_at');
 
     if (templateName) {
       query = query.eq('template_name', templateName);
@@ -615,18 +615,18 @@ export const getEmailStats = async (templateName?: string, dateFrom?: Date, date
     // Calculate statistics
     const stats = {
       total: data.length,
-      sent: data.filter(email => email.status === 'sent' || email.status === 'delivered').length,
-      delivered: data.filter(email => email.status === 'delivered').length,
-      failed: data.filter(email => email.status === 'failed').length,
-      bounced: data.filter(email => email.status === 'bounced').length,
-      pending: data.filter(email => email.status === 'pending').length,
+      sent: data.filter((email) => email.status === 'sent' || email.status === 'delivered').length,
+      delivered: data.filter((email) => email.status === 'delivered').length,
+      failed: data.filter((email) => email.status === 'failed').length,
+      bounced: data.filter((email) => email.status === 'bounced').length,
+      pending: data.filter((email) => email.status === 'pending').length,
       delivery_rate: 0,
       success_rate: 0
     };
 
     if (stats.total > 0) {
-      stats.delivery_rate = (stats.delivered / stats.total) * 100;
-      stats.success_rate = (stats.sent / stats.total) * 100;
+      stats.delivery_rate = stats.delivered / stats.total * 100;
+      stats.success_rate = stats.sent / stats.total * 100;
     }
 
     return stats;
@@ -640,12 +640,12 @@ export const getEmailStats = async (templateName?: string, dateFrom?: Date, date
 export const retryFailedEmails = async () => {
   try {
     const { data, error } = await supabase.rpc('retry_failed_emails');
-    
+
     if (error) {
       console.error('Failed to retry emails:', error);
       return 0;
     }
-    
+
     return data || 0;
   } catch (error) {
     console.error('Error retrying failed emails:', error);

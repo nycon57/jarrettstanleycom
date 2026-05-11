@@ -9,9 +9,11 @@ interface ScrollDirection {
 }
 
 export function useScrollDirection(threshold: number = 10): ScrollDirection {
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down' | null>(null);
-  const [scrollY, setScrollY] = useState(0);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollState, setScrollState] = useState<ScrollDirection>({
+    scrollDirection: null,
+    scrollY: 0,
+    isScrolled: false,
+  });
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -20,15 +22,21 @@ export function useScrollDirection(threshold: number = 10): ScrollDirection {
     const updateScrollDirection = () => {
       const currentScrollY = window.scrollY;
       
-      setScrollY(currentScrollY);
-      setIsScrolled(currentScrollY > threshold);
-
       if (Math.abs(currentScrollY - lastScrollY) < threshold) {
+        setScrollState((current) => ({
+          ...current,
+          scrollY: currentScrollY,
+          isScrolled: currentScrollY > threshold,
+        }));
         ticking = false;
         return;
       }
 
-      setScrollDirection(currentScrollY > lastScrollY ? 'down' : 'up');
+      setScrollState({
+        scrollDirection: currentScrollY > lastScrollY ? 'down' : 'up',
+        scrollY: currentScrollY,
+        isScrolled: currentScrollY > threshold,
+      });
       lastScrollY = currentScrollY > 0 ? currentScrollY : 0;
       ticking = false;
     };
@@ -40,11 +48,11 @@ export function useScrollDirection(threshold: number = 10): ScrollDirection {
       }
     };
 
-    window.addEventListener('scroll', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
     updateScrollDirection(); // Initial call
 
     return () => window.removeEventListener('scroll', onScroll);
   }, [threshold]);
 
-  return { scrollDirection, scrollY, isScrolled };
+  return scrollState;
 }

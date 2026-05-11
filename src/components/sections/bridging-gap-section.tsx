@@ -19,7 +19,7 @@ const BridgingGapSection = () => {
             </Badge>
             <h2 className="text-center text-3xl font-semibold lg:text-left lg:text-4xl text-foreground">
               What You Get When You{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-lilac to-orchid">
+              <span className="text-lilac">
                 Work With Me
               </span>
             </h2>

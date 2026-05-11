@@ -19,7 +19,7 @@ interface SharedFieldsProps {
 export function NameFields({ formData, onFieldChange }: SharedFieldsProps) {
   return (
     <div className="grid md:grid-cols-2 gap-4">
-      <div className="space-y-2">
+      <div className="gap-y-2">
         <Label htmlFor="firstName">First Name *</Label>
         <Input
           id="firstName"
@@ -30,7 +30,7 @@ export function NameFields({ formData, onFieldChange }: SharedFieldsProps) {
           className="bg-background"
         />
       </div>
-      <div className="space-y-2">
+      <div className="gap-y-2">
         <Label htmlFor="lastName">Last Name *</Label>
         <Input
           id="lastName"
@@ -48,7 +48,7 @@ export function NameFields({ formData, onFieldChange }: SharedFieldsProps) {
 export function ContactFields({ formData, onFieldChange, emailPlaceholder = "you@company.com" }: SharedFieldsProps) {
   return (
     <div className="grid md:grid-cols-2 gap-4">
-      <div className="space-y-2">
+      <div className="gap-y-2">
         <Label htmlFor="email">Email *</Label>
         <Input
           id="email"
@@ -60,7 +60,7 @@ export function ContactFields({ formData, onFieldChange, emailPlaceholder = "you
           className="bg-background"
         />
       </div>
-      <div className="space-y-2">
+      <div className="gap-y-2">
         <Label htmlFor="phone">Phone</Label>
         <Input
           id="phone"

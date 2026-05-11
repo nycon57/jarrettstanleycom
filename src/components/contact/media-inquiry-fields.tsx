@@ -21,7 +21,7 @@ interface MediaInquiryFieldsProps {
 
 export function MediaOutletField({ formData, onFieldChange }: MediaInquiryFieldsProps) {
   return (
-    <div className="space-y-2">
+    <div className="gap-y-2">
       <Label htmlFor="outlet">Media Outlet *</Label>
       <Input
         id="outlet"
@@ -39,7 +39,7 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
   return (
     <>
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="role">Your Role *</Label>
           <Input
             id="role"
@@ -50,7 +50,7 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
             className="bg-background"
           />
         </div>
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="deadline">Deadline</Label>
           <Input
             id="deadline"
@@ -63,7 +63,7 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="topic">Story Topic *</Label>
           <Input
             id="topic"
@@ -74,7 +74,7 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
             className="bg-background"
           />
         </div>
-        <div className="space-y-2">
+        <div className="gap-y-2">
           <Label htmlFor="interviewType">Interview Format *</Label>
           <Select
             value={formData.interviewType}
@@ -98,7 +98,7 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
 
 export function MediaMessageField({ formData, onFieldChange }: MediaInquiryFieldsProps) {
   return (
-    <div className="space-y-2">
+    <div className="gap-y-2">
       <Label htmlFor="message">Additional Details</Label>
       <Textarea
         id="message"

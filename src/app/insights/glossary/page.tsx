@@ -51,17 +51,18 @@ export default async function GlossaryIndexPage() {
     <article className="min-h-screen bg-background">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={structuredData}
-      />
+      >
+        {structuredData}
+      </script>
 
       {/* Hero Section */}
       <section className="pt-32 pb-12">
         <div className="container max-w-6xl">
           <PseoBreadcrumbs items={breadcrumbs} />
 
-          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4">
+          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4">
             AI Mortgage Marketing{' '}
-            <span className="bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent">
+            <span className="text-lilac">
               Glossary
             </span>
           </h1>

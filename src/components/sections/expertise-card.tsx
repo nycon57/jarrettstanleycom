@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -22,7 +22,7 @@ export function ExpertiseCard({
   className
 }: ExpertiseCardProps) {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -38,8 +38,8 @@ export function ExpertiseCard({
       
       {/* Icon */}
       <div className="relative mb-4">
-        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-lilac/10 to-orchid/10 transition-transform group-hover:scale-110">
-          <Icon className="h-7 w-7 text-lilac" />
+        <div className="flex size-14 items-center justify-center rounded-xl bg-gradient-to-br from-lilac/10 to-orchid/10 transition-transform group-hover:scale-110">
+          <Icon className="size-7 text-lilac" />
         </div>
       </div>
       
@@ -60,6 +60,6 @@ export function ExpertiseCard({
           </span>
         ))}
       </div>
-    </motion.div>
+    </m.div>
   )
 }

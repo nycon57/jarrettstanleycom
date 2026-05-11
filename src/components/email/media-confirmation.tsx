@@ -1,5 +1,54 @@
 import * as React from 'react';
+import { formatConfirmationDeadline, isWithinNextDay } from './email-date';
 
+
+const MEDIA_CONFIRMATION_STYLE_1 = { 
+              backgroundColor: '#f59e0b', 
+              color: 'white', 
+              borderRadius: '50%', 
+              width: '24px', 
+              height: '24px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '12px', 
+              fontWeight: 'bold', 
+              marginRight: '15px', 
+              flexShrink: 0 
+            
+} satisfies React.CSSProperties;
+
+const MEDIA_CONFIRMATION_STYLE_2 = { 
+              backgroundColor: '#f59e0b', 
+              color: 'white', 
+              borderRadius: '50%', 
+              width: '24px', 
+              height: '24px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '12px', 
+              fontWeight: 'bold', 
+              marginRight: '15px', 
+              flexShrink: 0 
+            
+} satisfies React.CSSProperties;
+
+const MEDIA_CONFIRMATION_STYLE_3 = { 
+              backgroundColor: '#f59e0b', 
+              color: 'white', 
+              borderRadius: '50%', 
+              width: '24px', 
+              height: '24px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              fontSize: '12px', 
+              fontWeight: 'bold', 
+              marginRight: '15px', 
+              flexShrink: 0 
+            
+} satisfies React.CSSProperties;
 interface MediaConfirmationEmailProps {
   firstName: string;
   data: {
@@ -10,10 +59,12 @@ interface MediaConfirmationEmailProps {
   };
 }
 
-export const MediaConfirmationEmail: React.FC<Readonly<MediaConfirmationEmailProps>> = ({
+export const MediaConfirmationEmail: React.FC<Readonly<MediaConfirmationEmailProps>> = (props) => renderMediaConfirmationEmail(props);
+
+function renderMediaConfirmationEmail({
   firstName,
   data,
-}) => {
+}: Readonly<MediaConfirmationEmailProps>) {
   const getInterviewTypeDisplay = () => {
     switch (data.interview_type) {
       case 'written': return 'Written Q&A';
@@ -24,7 +75,10 @@ export const MediaConfirmationEmail: React.FC<Readonly<MediaConfirmationEmailPro
     }
   };
 
-  const isUrgent = data.deadline && new Date(data.deadline) <= new Date(Date.now() + 24 * 60 * 60 * 1000);
+  const isUrgent = Boolean(data.deadline && isWithinNextDay(data.deadline));
+  const deadlineLabel = data.deadline
+    ? formatConfirmationDeadline(data.deadline)
+    : null;
 
   return (
     <div style={{ fontFamily: 'Arial, sans-serif', maxWidth: '600px', margin: '0 auto', padding: '20px' }}>
@@ -120,12 +174,7 @@ export const MediaConfirmationEmail: React.FC<Readonly<MediaConfirmationEmailPro
                 fontSize: '12px',
                 fontWeight: 'bold'
               }}>
-                {new Date(data.deadline).toLocaleDateString('en-US', {
-                  weekday: 'long',
-                  year: 'numeric',
-                  month: 'long',
-                  day: 'numeric'
-                })}
+                {deadlineLabel}
                 {isUrgent && ' (URGENT)'}
               </span>
             </div>
@@ -141,20 +190,7 @@ export const MediaConfirmationEmail: React.FC<Readonly<MediaConfirmationEmailPro
         
         <div style={{ marginBottom: '20px' }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ 
-              backgroundColor: '#f59e0b', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '24px', 
-              height: '24px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '12px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={MEDIA_CONFIRMATION_STYLE_1}>
               1
             </div>
             <div>
@@ -168,20 +204,7 @@ export const MediaConfirmationEmail: React.FC<Readonly<MediaConfirmationEmailPro
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start', marginBottom: '15px' }}>
-            <div style={{ 
-              backgroundColor: '#f59e0b', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '24px', 
-              height: '24px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '12px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={MEDIA_CONFIRMATION_STYLE_2}>
               2
             </div>
             <div>
@@ -195,20 +218,7 @@ export const MediaConfirmationEmail: React.FC<Readonly<MediaConfirmationEmailPro
           </div>
           
           <div style={{ display: 'flex', alignItems: 'flex-start' }}>
-            <div style={{ 
-              backgroundColor: '#f59e0b', 
-              color: 'white', 
-              borderRadius: '50%', 
-              width: '24px', 
-              height: '24px', 
-              display: 'flex', 
-              alignItems: 'center', 
-              justifyContent: 'center', 
-              fontSize: '12px', 
-              fontWeight: 'bold', 
-              marginRight: '15px', 
-              flexShrink: 0 
-            }}>
+            <div style={MEDIA_CONFIRMATION_STYLE_3}>
               3
             </div>
             <div>
@@ -357,4 +367,5 @@ export const MediaConfirmationEmail: React.FC<Readonly<MediaConfirmationEmailPro
       </div>
     </div>
   );
-};
+
+}

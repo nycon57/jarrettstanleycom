@@ -44,16 +44,16 @@ export function Pagination({
   const showEndEllipsis = visiblePages[visiblePages.length - 1] < totalPages - 1
 
   return (
-    <div className={cn("flex items-center justify-center space-x-2", className)}>
+    <div className={cn("flex items-center justify-center gap-x-2", className)}>
       {/* Previous button */}
       <Button
         variant="outline"
         size="sm"
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage <= 1}
-        className="flex items-center space-x-1"
+        className="flex items-center gap-x-1"
       >
-        <ChevronLeft className="w-4 h-4" />
+        <ChevronLeft className="size-4" />
         <span className="hidden sm:inline">Previous</span>
       </Button>
 
@@ -74,7 +74,7 @@ export function Pagination({
           {/* Start ellipsis */}
           {showStartEllipsis && (
             <div className="flex items-center justify-center w-10 h-8">
-              <MoreHorizontal className="w-4 h-4 text-muted-foreground" />
+              <MoreHorizontal className="size-4 text-muted-foreground" />
             </div>
           )}
 
@@ -97,7 +97,7 @@ export function Pagination({
           {/* End ellipsis */}
           {showEndEllipsis && (
             <div className="flex items-center justify-center w-10 h-8">
-              <MoreHorizontal className="w-4 h-4 text-muted-foreground" />
+              <MoreHorizontal className="size-4 text-muted-foreground" />
             </div>
           )}
 
@@ -121,10 +121,10 @@ export function Pagination({
         size="sm"
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage >= totalPages}
-        className="flex items-center space-x-1"
+        className="flex items-center gap-x-1"
       >
         <span className="hidden sm:inline">Next</span>
-        <ChevronRight className="w-4 h-4" />
+        <ChevronRight className="size-4" />
       </Button>
 
       {/* Page info for mobile */}

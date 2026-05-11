@@ -192,7 +192,7 @@ export const EmailLayout: React.FC<EmailLayoutProps> = ({
             </Text>
             <Text style={{ 
               margin: '15px 0 0 0', 
-              fontSize: '11px',
+              fontSize: '12px',
               color: colors.text.light,
               lineHeight: '1.4' 
             }}>

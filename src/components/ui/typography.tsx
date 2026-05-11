@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 // Heading variants
 const headingVariants = cva(
-  "font-signal font-bold tracking-tight",
+  "font-signal font-semibold tracking-tight",
   {
     variants: {
       variant: {
@@ -13,7 +13,7 @@ const headingVariants = cva(
         h3: "text-2xl md:text-3xl lg:text-4xl leading-tight",
         h4: "text-xl md:text-2xl lg:text-3xl leading-tight",
         h5: "text-lg md:text-xl lg:text-2xl leading-tight",
-        h6: "text-base md:text-lg lg:text-xl leading-tight",
+        h6: "text-base md:text-lg lg:text-xl leading-tight"
       },
       color: {
         default: "text-foreground",
@@ -22,13 +22,13 @@ const headingVariants = cva(
         "gradient-subtle": "bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent",
         lilac: "text-lilac",
         orchid: "text-orchid",
-        skyward: "text-skyward",
-      },
+        skyward: "text-skyward"
+      }
     },
     defaultVariants: {
       variant: "h1",
-      color: "default",
-    },
+      color: "default"
+    }
   }
 );
 
@@ -41,7 +41,7 @@ const textVariants = cva(
         large: "text-xl leading-relaxed",
         base: "text-base leading-relaxed",
         small: "text-sm leading-relaxed",
-        xs: "text-xs leading-relaxed",
+        xs: "text-xs leading-relaxed"
       },
       color: {
         default: "text-foreground",
@@ -49,20 +49,20 @@ const textVariants = cva(
         lilac: "text-lilac",
         orchid: "text-orchid",
         skyward: "text-skyward",
-        gradient: "bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent",
+        gradient: "bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent"
       },
       weight: {
         normal: "font-normal",
         medium: "font-medium",
         semibold: "font-semibold",
-        bold: "font-bold",
-      },
+        bold: "font-semibold"
+      }
     },
     defaultVariants: {
       variant: "base",
       color: "default",
-      weight: "normal",
-    },
+      weight: "normal"
+    }
   }
 );
 
@@ -76,17 +76,17 @@ const labelVariants = cva(
         muted: "text-muted-foreground",
         lilac: "text-lilac",
         orchid: "text-orchid",
-        skyward: "text-skyward",
+        skyward: "text-skyward"
       },
       required: {
         true: "after:content-['*'] after:ml-1 after:text-destructive",
-        false: "",
-      },
+        false: ""
+      }
     },
     defaultVariants: {
       color: "default",
-      required: false,
-    },
+      required: false
+    }
   }
 );
 
@@ -99,150 +99,153 @@ const captionVariants = cva(
         default: "text-muted-foreground",
         lilac: "text-lilac/70",
         orchid: "text-orchid/70",
-        skyward: "text-skyward/70",
-      },
+        skyward: "text-skyward/70"
+      }
     },
     defaultVariants: {
-      color: "default",
-    },
+      color: "default"
+    }
   }
 );
 
 // Heading Component
-export interface HeadingProps
-  extends Omit<React.HTMLAttributes<HTMLHeadingElement>, 'color'>,
-    VariantProps<typeof headingVariants> {
+interface HeadingProps extends
+  Omit<React.HTMLAttributes<HTMLHeadingElement>, 'color'>,
+  VariantProps<typeof headingVariants> {
   as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+}function Heading(
+
+
+{ className, variant = "h1", color, as, ref, ...props }: HeadingProps & {ref?: React.Ref<HTMLHeadingElement>;}) {
+  const Component = as || variant || "h1";
+  return (
+    <Component
+      ref={ref}
+      className={cn(headingVariants({ variant, color }), className)}
+      {...props} />);
+
+
 }
 
-const Heading = React.forwardRef<HTMLHeadingElement, HeadingProps>(
-  ({ className, variant = "h1", color, as, ...props }, ref) => {
-    const Component = as || variant || "h1";
-    return (
-      <Component
-        ref={ref}
-        className={cn(headingVariants({ variant, color }), className)}
-        {...props}
-      />
-    );
-  }
-);
 Heading.displayName = "Heading";
 
 // Text Component
-export interface TextProps
-  extends Omit<React.HTMLAttributes<HTMLParagraphElement>, 'color'>,
-    VariantProps<typeof textVariants> {
+interface TextProps extends
+  Omit<React.HTMLAttributes<HTMLParagraphElement>, 'color'>,
+  VariantProps<typeof textVariants> {
   as?: "p" | "span" | "div";
+}function Text(
+
+
+{ className, variant, color, weight, as = "p", ref, ...props }: TextProps & {ref?: React.Ref<HTMLParagraphElement>;}) {
+  const Component = as;
+  return (
+    <Component
+      ref={ref}
+      className={cn(textVariants({ variant, color, weight }), className)}
+      {...props} />);
+
+
 }
 
-const Text = React.forwardRef<HTMLParagraphElement, TextProps>(
-  ({ className, variant, color, weight, as = "p", ...props }, ref) => {
-    const Component = as;
-    return (
-      <Component
-        ref={ref}
-        className={cn(textVariants({ variant, color, weight }), className)}
-        {...props}
-      />
-    );
-  }
-);
 Text.displayName = "Text";
 
 // Label Component
-export interface LabelProps
-  extends Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'color'>,
-    VariantProps<typeof labelVariants> {}
+interface LabelProps extends
+  Omit<React.LabelHTMLAttributes<HTMLLabelElement>, 'color'>,
+  VariantProps<typeof labelVariants> {
+  htmlFor: string;
+}function Label(
 
-const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
-  ({ className, color, required, ...props }, ref) => {
-    return (
-      <label
-        ref={ref}
-        className={cn(labelVariants({ color, required }), className)}
-        {...props}
-      />
-    );
-  }
-);
+
+{ className, color, required, htmlFor, ref, ...props }: LabelProps & {ref?: React.Ref<HTMLLabelElement>;}) {
+  return (
+    <label
+      ref={ref}
+      htmlFor={htmlFor}
+      className={cn(labelVariants({ color, required }), className)}
+      {...props} />);
+
+
+}
+
 Label.displayName = "Label";
 
 // Caption Component
-export interface CaptionProps
-  extends Omit<React.HTMLAttributes<HTMLParagraphElement>, 'color'>,
-    VariantProps<typeof captionVariants> {}
+interface CaptionProps extends
+  Omit<React.HTMLAttributes<HTMLParagraphElement>, 'color'>,
+  VariantProps<typeof captionVariants> {}function Caption(
 
-const Caption = React.forwardRef<HTMLParagraphElement, CaptionProps>(
-  ({ className, color, ...props }, ref) => {
-    return (
-      <p
-        ref={ref}
-        className={cn(captionVariants({ color }), className)}
-        {...props}
-      />
-    );
-  }
-);
+
+{ className, color, ref, ...props }: CaptionProps & {ref?: React.Ref<HTMLParagraphElement>;}) {
+  return (
+    <p
+      ref={ref}
+      className={cn(captionVariants({ color }), className)}
+      {...props} />);
+
+
+}
+
 Caption.displayName = "Caption";
 
 // Code Component
-export interface CodeProps extends React.HTMLAttributes<HTMLElement> {
+interface CodeProps extends React.HTMLAttributes<HTMLElement> {
   variant?: "inline" | "block";
-}
+}function Code(
 
-const Code = React.forwardRef<HTMLElement, CodeProps>(
-  ({ className, variant = "inline", children, ...props }, ref) => {
-    if (variant === "block") {
-      return (
-        <pre
-          ref={ref as any}
-          className={cn(
-            "rounded-lg bg-shadow/5 dark:bg-shadow/20 border border-border p-4 overflow-x-auto",
-            "font-mono text-sm",
-            className
-          )}
-          {...props}
-        >
-          <code>{children}</code>
-        </pre>
-      );
-    }
 
+{ className, variant = "inline", children, ref, ...props }: CodeProps & {ref?: React.Ref<HTMLElement>;}) {
+  if (variant === "block") {
     return (
-      <code
-        ref={ref}
+      <pre
+        ref={ref as any}
         className={cn(
-          "rounded bg-lilac/10 px-1.5 py-0.5 font-mono text-sm text-lilac",
+          "rounded-lg bg-shadow/5 dark:bg-shadow/20 border border-border p-4 overflow-x-auto",
+          "font-mono text-sm",
           className
         )}
-        {...props}
-      >
-        {children}
-      </code>
-    );
+        {...props}>
+
+          <code>{children}</code>
+        </pre>);
+
   }
-);
+
+  return (
+    <code
+      ref={ref}
+      className={cn(
+        "rounded bg-lilac/10 px-1.5 py-0.5 font-mono text-sm text-lilac",
+        className
+      )}
+      {...props}>
+
+        {children}
+      </code>);
+
+}
+
 Code.displayName = "Code";
 
 // Blockquote Component
-export interface BlockquoteProps
-  extends React.BlockquoteHTMLAttributes<HTMLQuoteElement> {}
+interface BlockquoteProps extends
+  React.BlockquoteHTMLAttributes<HTMLQuoteElement> {}function Blockquote(
 
-const Blockquote = React.forwardRef<HTMLQuoteElement, BlockquoteProps>(
-  ({ className, ...props }, ref) => {
-    return (
-      <blockquote
-        ref={ref}
-        className={cn(
-          "border-l-4 border-lilac/50 pl-4 italic text-muted-foreground",
-          className
-        )}
-        {...props}
-      />
-    );
-  }
-);
+
+{ className, ref, ...props }: BlockquoteProps & {ref?: React.Ref<HTMLQuoteElement>;}) {
+  return (
+    <blockquote
+      ref={ref}
+      className={cn(
+        "border-l-4 border-lilac/50 pl-4 italic text-muted-foreground",
+        className
+      )}
+      {...props} />);
+
+
+}
+
 Blockquote.displayName = "Blockquote";
 
 export {
@@ -251,9 +254,4 @@ export {
   Label,
   Caption,
   Code,
-  Blockquote,
-  headingVariants,
-  textVariants,
-  labelVariants,
-  captionVariants,
-};
+  Blockquote };

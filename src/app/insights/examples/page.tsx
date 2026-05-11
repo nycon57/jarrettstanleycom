@@ -60,17 +60,18 @@ export default async function ExamplesIndexPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={structuredData}
-      />
+      >
+        {structuredData}
+      </script>
 
       <div className="container max-w-6xl pt-24 md:pt-28 pb-12 md:pb-16">
         <PseoBreadcrumbs items={breadcrumbs} />
 
         {/* Hero */}
         <div className="max-w-3xl mb-12">
-          <h1 className="font-signal text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4">
+          <h1 className="font-signal text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4">
             AI Marketing Campaign{' '}
-            <span className="bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent">
+            <span className="text-lilac">
               Examples
             </span>
           </h1>
@@ -125,7 +126,7 @@ export default async function ExamplesIndexPage() {
                   </p>
                   <div className="flex items-center gap-1 mt-4 text-sm font-medium text-lilac">
                     View examples
-                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight className="size-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </CardContent>
               </Card>

@@ -5,16 +5,16 @@ import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Mic, ArrowRight } from 'lucide-react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { m, useReducedMotion } from 'framer-motion'
 
 export function HeroSection() {
   const shouldReduceMotion = useReducedMotion()
   return (
     <section className="relative h-[900px] max-h-[900px] overflow-hidden">
       {/* Theme-aware gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-lilac/5 dark:from-shadow dark:via-indigo dark:to-orchid">
+      <div className="absolute inset-0 bg-gradient-to-br from-neutral-50 via-white to-lilac/5 dark:from-shadow dark:via-indigo dark:to-orchid">
         {/* Additional gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-100/50 via-transparent to-lilac/10 dark:from-shadow/80 dark:via-transparent dark:to-lilac/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-neutral-100/50 via-transparent to-lilac/10 dark:from-shadow/80 dark:via-transparent dark:to-lilac/20"></div>
       </div>
 
       {/* Main Content Container - Add top padding for navigation */}
@@ -25,7 +25,7 @@ export function HeroSection() {
             {/* Left Side - Cutout Image */}
             <div className="relative order-2 lg:order-1 flex items-end justify-center lg:justify-start">
               <div className="relative w-full max-w-md lg:max-w-lg mx-auto lg:mx-0 flex flex-col justify-end">
-                <motion.div
+                <m.div
                   initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, ease: "easeOut" }}
@@ -39,7 +39,7 @@ export function HeroSection() {
                     style={{ marginBottom: '0', display: 'block' }}
                     priority
                   />
-                </motion.div>
+                </m.div>
                 {/* Subtle glow effect behind image */}
                 <div className="absolute inset-0 bg-gradient-to-t from-lilac/20 to-transparent blur-3xl -z-10 scale-110"></div>
               </div>
@@ -49,7 +49,7 @@ export function HeroSection() {
             <div className="order-1 lg:order-2 text-center lg:text-left flex items-center">
               <div className="w-full">
                 {/* Credential badge */}
-                <motion.div
+                <m.div
                   initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1, duration: 0.5 }}
@@ -60,53 +60,53 @@ export function HeroSection() {
                   >
                     CMO, Nationwide Mortgage Bankers &bull; CEO, TrueTone AI
                   </Badge>
-                </motion.div>
+                </m.div>
 
                 {/* Main heading */}
-                <motion.h1
-                  className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-signal font-bold mb-6 lg:mb-8 text-gray-900 dark:text-white leading-[1.1]"
+                <m.h1
+                  className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-signal font-semibold mb-6 lg:mb-8 text-neutral-900 dark:text-white leading-[1.1]"
                   initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8 }}
                 >
-                  <motion.span
+                  <m.span
                     className="block mb-2"
                     initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.2, duration: 0.6 }}
                   >
                     MOST COMPANIES
-                  </motion.span>
-                  <motion.span
+                  </m.span>
+                  <m.span
                     className="block mb-2"
                     initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, x: -30 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4, duration: 0.6 }}
                   >
                     TALK ABOUT AI.
-                  </motion.span>
-                  <motion.span
-                    className="block bg-gradient-to-r from-lilac via-lavender to-skyward bg-clip-text text-transparent"
-                    initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.9 }}
+                  </m.span>
+                  <m.span
+                    className="block text-lilac"
+                    initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.6, duration: 0.8, ease: "easeOut" }}
                   >
                     I BUILD WITH IT.
-                  </motion.span>
-                </motion.h1>
+                  </m.span>
+                </m.h1>
 
                 {/* Subheadline */}
-                <motion.p
-                  className="text-base md:text-lg lg:text-xl text-gray-700 dark:text-gray-200 mb-8 lg:mb-10 leading-relaxed font-hind max-w-2xl mx-auto lg:mx-0"
+                <m.p
+                  className="text-base md:text-lg lg:text-xl text-neutral-700 dark:text-neutral-200 mb-8 lg:mb-10 leading-relaxed font-hind max-w-2xl mx-auto lg:mx-0"
                   initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.8, duration: 0.6 }}
                 >
                   I help mortgage companies use AI to generate more loans, cut wasted spend, and build marketing that actually scales. Speaker, strategic advisor, and the guy who built it at Nationwide.
-                </motion.p>
+                </m.p>
 
                 {/* Action buttons */}
-                <motion.div
+                <m.div
                   className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
                   initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -118,7 +118,7 @@ export function HeroSection() {
                     className="bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 text-white shadow-lg hover:shadow-xl transition-all duration-300 text-base px-8 py-4 h-auto"
                   >
                     <Link href="/speaking">
-                      <Mic className="mr-2 h-5 w-5" />
+                      <Mic className="mr-2 size-5" />
                       Book a Speaking Engagement
                     </Link>
                   </Button>
@@ -126,14 +126,14 @@ export function HeroSection() {
                     asChild
                     size="lg"
                     variant="outline"
-                    className="border-2 border-gray-300 dark:border-white/40 text-gray-700 dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/60 backdrop-blur-sm transition-all duration-300 text-base px-8 py-4 h-auto"
+                    className="border-2 border-neutral-300 dark:border-white/40 text-neutral-700 dark:text-white hover:bg-neutral-100 dark:hover:bg-white/10 hover:border-neutral-400 dark:hover:border-white/60 backdrop-blur-sm transition-all duration-300 text-base px-8 py-4 h-auto"
                   >
                     <Link href="/services/consulting">
-                      <ArrowRight className="mr-2 h-5 w-5" />
+                      <ArrowRight className="mr-2 size-5" />
                       Explore Consulting
                     </Link>
                   </Button>
-                </motion.div>
+                </m.div>
               </div>
             </div>
           </div>
@@ -142,8 +142,8 @@ export function HeroSection() {
 
       {/* Animated background elements for visual interest */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-lilac/5 to-skyward/5 dark:from-lilac/10 dark:to-skyward/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-gradient-to-r from-orchid/5 to-lavender/5 dark:from-orchid/10 dark:to-lavender/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/4 right-1/4 size-96 bg-gradient-to-r from-lilac/5 to-skyward/5 dark:from-lilac/10 dark:to-skyward/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/4 size-64 bg-gradient-to-r from-orchid/5 to-lavender/5 dark:from-orchid/10 dark:to-lavender/10 rounded-full blur-2xl animate-pulse delay-1000"></div>
       </div>
     </section>
   )

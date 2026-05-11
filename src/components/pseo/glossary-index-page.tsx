@@ -70,9 +70,9 @@ export function GlossaryIndexClient({ terms, alphabetMap }: GlossaryIndexPagePro
   return (
     <div>
       {/* Search and Filter Controls */}
-      <div className="mb-8 space-y-4">
+      <div className="mb-8 gap-y-4">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
           <Input
             type="text"
             placeholder="Search glossary terms..."
@@ -119,7 +119,7 @@ export function GlossaryIndexClient({ terms, alphabetMap }: GlossaryIndexPagePro
       />
 
       {/* Terms grouped by letter */}
-      <div className="mt-8 space-y-12">
+      <div className="mt-8 gap-y-12">
         {activeLetters.length === 0 && (
           <p className="text-center text-muted-foreground py-12">
             No glossary terms match your search criteria.
@@ -127,7 +127,7 @@ export function GlossaryIndexClient({ terms, alphabetMap }: GlossaryIndexPagePro
         )}
         {activeLetters.map((letter) => (
           <section key={letter} id={`letter-${letter}`}>
-            <h2 className="font-signal text-3xl font-bold mb-6 text-lilac">
+            <h2 className="font-signal text-3xl font-semibold mb-6 text-lilac">
               {letter}
             </h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

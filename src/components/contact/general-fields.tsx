@@ -16,7 +16,7 @@ interface GeneralFieldsProps {
 
 export function CompanyField({ formData, onFieldChange }: GeneralFieldsProps) {
   return (
-    <div className="space-y-2">
+    <div className="gap-y-2">
       <Label htmlFor="company">Company</Label>
       <Input
         id="company"
@@ -31,7 +31,7 @@ export function CompanyField({ formData, onFieldChange }: GeneralFieldsProps) {
 
 export function GeneralMessageField({ formData, onFieldChange }: GeneralFieldsProps) {
   return (
-    <div className="space-y-2">
+    <div className="gap-y-2">
       <Label htmlFor="message">Message *</Label>
       <Textarea
         id="message"

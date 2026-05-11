@@ -1,5 +1,18 @@
 import * as React from 'react';
+import { formatEmailTimestamp } from './email-date';
 
+
+const SPEAKING_NOTIFICATION_STYLE_1 = {
+                    backgroundColor: '#e0f2fe',
+                    color: '#0277bd',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    fontSize: '12px',
+                    marginRight: '8px',
+                    marginBottom: '4px',
+                    display: 'inline-block'
+                  
+} satisfies React.CSSProperties;
 interface SpeakingNotificationEmailProps {
   first_name: string;
   last_name: string;
@@ -143,7 +156,7 @@ export const SpeakingNotificationEmail: React.FC<Readonly<SpeakingNotificationEm
             </div>
           )}
           
-          {audience_size && (
+          {Boolean(audience_size) && (
             <div>
               <strong style={{ color: '#6b7280', marginRight: '8px' }}>Audience Size:</strong>
               <span style={{ color: '#111827' }}>{audience_size}</span>
@@ -169,17 +182,8 @@ export const SpeakingNotificationEmail: React.FC<Readonly<SpeakingNotificationEm
             <div>
               <strong style={{ color: '#6b7280', marginRight: '8px' }}>Topic Preferences:</strong>
               <div style={{ marginTop: '8px' }}>
-                {topic_preferences.map((topic, index) => (
-                  <span key={index} style={{
-                    backgroundColor: '#e0f2fe',
-                    color: '#0277bd',
-                    padding: '4px 8px',
-                    borderRadius: '4px',
-                    fontSize: '12px',
-                    marginRight: '8px',
-                    marginBottom: '4px',
-                    display: 'inline-block'
-                  }}>
+                {topic_preferences.map((topic) => (
+                  <span key={topic} style={SPEAKING_NOTIFICATION_STYLE_1}>
                     {topic}
                   </span>
                 ))}
@@ -199,7 +203,7 @@ export const SpeakingNotificationEmail: React.FC<Readonly<SpeakingNotificationEm
             backgroundColor: '#f9fafb', 
             padding: '20px', 
             borderRadius: '6px', 
-            borderLeft: '4px solid #22c55e'
+            boxShadow: 'inset 0 0 0 1px #bbf7d0'
           }}>
             <p style={{ color: '#6b7280', fontSize: '16px', lineHeight: '1.6', margin: '0', whiteSpace: 'pre-wrap' }}>
               {message}
@@ -287,15 +291,7 @@ export const SpeakingNotificationEmail: React.FC<Readonly<SpeakingNotificationEm
           Speaking inquiry submitted via jarrettstanley.com
         </p>
         <p style={{ margin: '5px 0 0 0', fontSize: '12px', color: '#9ca3af' }}>
-          Received at {new Date().toLocaleString('en-US', { 
-            timeZone: 'America/Chicago',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZoneName: 'short'
-          })}
+          Received at {formatEmailTimestamp()}
         </p>
       </div>
     </div>

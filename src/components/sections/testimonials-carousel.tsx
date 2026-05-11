@@ -45,9 +45,12 @@ const TESTIMONIALS = [
 
 export function TestimonialsCarousel() {
   const [api, setApi] = useState<CarouselApi>();
-  const [current, setCurrent] = useState(0);
-  const [canScrollPrev, setCanScrollPrev] = useState(false);
-  const [canScrollNext, setCanScrollNext] = useState(false);
+  const [carouselState, setCarouselState] = useState({
+    current: 0,
+    canScrollPrev: false,
+    canScrollNext: false,
+  });
+  const { current, canScrollPrev, canScrollNext } = carouselState;
 
   useEffect(() => {
     if (!api) {
@@ -55,9 +58,11 @@ export function TestimonialsCarousel() {
     }
 
     const updateSelection = () => {
-      setCurrent(api.selectedScrollSnap());
-      setCanScrollPrev(api.canScrollPrev());
-      setCanScrollNext(api.canScrollNext());
+      setCarouselState({
+        current: api.selectedScrollSnap(),
+        canScrollPrev: api.canScrollPrev(),
+        canScrollNext: api.canScrollNext(),
+      });
     };
     
     updateSelection();
@@ -73,9 +78,9 @@ export function TestimonialsCarousel() {
       <div className="absolute inset-0 bg-gradient-to-br from-skyward/5 via-transparent to-lavender/5" />
       <div className="container max-w-4xl relative">
         <div className="mb-16 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-          <div className="space-y-2">
-            <h2 className="text-3xl md:text-4xl font-bold">
-              What <span className="text-transparent bg-clip-text bg-gradient-to-r from-lilac to-orchid">People Are Saying</span>
+          <div className="gap-y-2">
+            <h2 className="text-3xl md:text-4xl font-semibold">
+              What <span className="text-lilac">People Are Saying</span>
             </h2>
             <p className="text-lg text-muted-foreground">
               What colleagues and collaborators say about working with Jarrett
@@ -124,7 +129,7 @@ export function TestimonialsCarousel() {
                   <div className="absolute -bottom-8 -right-4 text-6xl text-lilac/20 font-serif rotate-180">"</div>
                 </div>
                 <div className="flex items-center gap-4 mt-8">
-                  <div className="relative h-12 w-12 rounded-full bg-gradient-to-br from-lilac to-orchid flex items-center justify-center text-white font-bold text-lg">
+                  <div className="relative size-12 rounded-full bg-gradient-to-br from-lilac to-orchid flex items-center justify-center text-white font-semibold text-lg">
                     {testimonial.author.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div className="h-8 w-[1px] bg-border" aria-hidden="true" />
@@ -146,9 +151,9 @@ export function TestimonialsCarousel() {
           role="tablist"
           aria-label="Testimonials navigation"
         >
-          {TESTIMONIALS.map((_, index) => (
+          {TESTIMONIALS.map((testimonial, index) => (
             <button
-              key={index}
+              key={testimonial.author}
               className={cn(
                 "size-3 cursor-pointer rounded-full transition-all duration-300",
                 index === current

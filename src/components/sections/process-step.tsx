@@ -26,18 +26,18 @@ export function ProcessStep({
       
       <div className="relative z-10 text-center">
         {/* Number badge above icon */}
-        <div className="mx-auto mb-4 w-8 h-8 rounded-full border-2 border-lilac/50 bg-background flex items-center justify-center">
-          <span className="text-sm font-bold text-lilac">{number}</span>
+        <div className="mx-auto mb-4 size-8 rounded-full border-2 border-lilac/50 bg-background flex items-center justify-center">
+          <span className="text-sm font-semibold text-lilac">{number}</span>
         </div>
         
         {/* Icon Circle */}
-        <div className="mx-auto mb-6 w-20 h-20 rounded-full bg-gradient-to-br from-lilac/80 to-orchid/80 flex items-center justify-center shadow-lg">
+        <div className="mx-auto mb-6 size-20 rounded-full bg-gradient-to-br from-lilac/80 to-orchid/80 flex items-center justify-center shadow-lg">
           {icon}
         </div>
         
         {/* Content */}
         <h3 className="text-xl font-signal mb-3 uppercase tracking-wide">{title}</h3>
-        <p className="text-gray-700 dark:text-gray-300 text-sm max-w-xs mx-auto">{description}</p>
+        <p className="text-neutral-700 dark:text-neutral-300 text-sm max-w-xs mx-auto">{description}</p>
       </div>
     </div>
   );

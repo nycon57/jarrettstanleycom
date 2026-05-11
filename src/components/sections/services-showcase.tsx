@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "motion/react";
+import { m } from "framer-motion";
 import { Mic, Brain, BookOpen, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
@@ -55,9 +55,9 @@ const ServicesShowcase = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-orchid/5 via-transparent to-lilac/5" />
       <div className="container relative">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-signal font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-signal font-semibold mb-4">
             Three Ways to{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-lilac to-orchid">
+            <span className="text-lilac">
               Work With Me
             </span>
           </h2>
@@ -68,7 +68,7 @@ const ServicesShowcase = () => {
 
         <div className="mx-auto max-w-6xl grid gap-6 md:grid-cols-3">
           {services.map((service, index) => (
-            <motion.div
+            <m.div
               key={service.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -77,8 +77,8 @@ const ServicesShowcase = () => {
             >
               <Card className="relative flex flex-col h-full rounded-3xl border bg-card/50 backdrop-blur-sm hover:shadow-xl transition-shadow">
                 <CardHeader>
-                  <div className="w-14 h-14 bg-gradient-to-br from-lilac/10 to-orchid/10 dark:from-lilac/20 dark:to-orchid/20 rounded-2xl flex items-center justify-center border border-lilac/20 mb-4">
-                    <service.icon className="w-7 h-7 text-lilac" />
+                  <div className="size-14 bg-gradient-to-br from-lilac/10 to-orchid/10 dark:from-lilac/20 dark:to-orchid/20 rounded-2xl flex items-center justify-center border border-lilac/20 mb-4">
+                    <service.icon className="size-7 text-lilac" />
                   </div>
                   <h3 className="text-2xl font-semibold tracking-tight">
                     {service.title}
@@ -88,13 +88,13 @@ const ServicesShowcase = () => {
                   </p>
                 </CardHeader>
                 <CardContent className="flex flex-col flex-1">
-                  <ul className="space-y-3 mb-8 flex-1">
+                  <ul className="gap-y-3 mb-8 flex-1">
                     {service.bullets.map((bullet) => (
                       <li
                         key={bullet}
                         className="flex items-start gap-2 text-sm text-muted-foreground"
                       >
-                        <div className="w-1.5 h-1.5 rounded-full bg-lilac mt-1.5 shrink-0" />
+                        <div className="size-1.5 rounded-full bg-lilac mt-1.5 shrink-0" />
                         {bullet}
                       </li>
                     ))}
@@ -106,12 +106,12 @@ const ServicesShowcase = () => {
                   >
                     <Link href={service.href}>
                       {service.cta}
-                      <ArrowRight className="ml-2 h-4 w-4" />
+                      <ArrowRight className="ml-2 size-4" />
                     </Link>
                   </Button>
                 </CardContent>
               </Card>
-            </motion.div>
+            </m.div>
           ))}
         </div>
       </div>

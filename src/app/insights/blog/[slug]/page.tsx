@@ -95,8 +95,9 @@ export default async function BlogPostDetailPage({ params }: PageProps) {
     <article className="min-h-screen bg-background">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={structuredData}
-      />
+      >
+        {structuredData}
+      </script>
       <BlogPostPage
         post={post}
         relatedPosts={relatedPosts}

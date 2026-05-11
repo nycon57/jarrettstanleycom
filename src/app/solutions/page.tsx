@@ -49,8 +49,9 @@ export default async function SolutionsIndexPage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={generateStructuredData(schemas)}
-      />
+      >
+        {generateStructuredData(schemas)}
+      </script>
 
       <div className="container max-w-6xl pt-24 md:pt-28 pb-12 md:pb-16">
         <PseoBreadcrumbs items={breadcrumbs} />
@@ -78,8 +79,8 @@ export default async function SolutionsIndexPage() {
               <Card variant="interactive" className="h-full">
                 <CardHeader className="pb-3">
                   <div className="flex items-center gap-2 mb-3">
-                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-lilac/10 to-orchid/10 border border-lilac/20 flex items-center justify-center">
-                      <Users className="h-4.5 w-4.5 text-lilac" />
+                    <div className="size-9 rounded-lg bg-gradient-to-br from-lilac/10 to-orchid/10 border border-lilac/20 flex items-center justify-center">
+                      <Users className="size-4.5 text-lilac" />
                     </div>
                     <Badge variant="orchid" size="sm">
                       {persona.painPoints.length} Pain Points
@@ -101,7 +102,7 @@ export default async function SolutionsIndexPage() {
                   </div>
                   <div className="flex items-center gap-1 text-sm font-medium text-lilac">
                     View solutions
-                    <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+                    <ArrowRight className="size-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </CardContent>
               </Card>

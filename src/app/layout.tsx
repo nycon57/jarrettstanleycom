@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import localFont from 'next/font/local'
 import { Providers } from '@/components/providers'
+import { MotionProvider } from '@/components/providers/motion-provider'
 import { cn } from '@/lib/utils'
 import { generateMetadata as generateSEOMetadata, generatePersonSchema, generateOrganizationSchema, generateWebsiteSchema, generateStructuredData } from '@/lib/seo'
 import { Analytics } from '@vercel/analytics/next'
@@ -89,12 +90,11 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/assets/images/TrueToneAI-Icon-Logo-Full-Color.png" />
         <meta name="theme-color" content="#8B5FBF" />
         <meta name="format-detection" content="telephone=no" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={generateStructuredData(structuredData)}
-        />
+        >
+          {generateStructuredData(structuredData)}
+        </script>
       </head>
       <body 
         className={cn(
@@ -105,7 +105,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <Providers>
-          {children}
+          <MotionProvider>{children}</MotionProvider>
         </Providers>
         <Analytics />
       </body>

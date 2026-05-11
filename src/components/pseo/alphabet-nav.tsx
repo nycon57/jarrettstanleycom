@@ -20,7 +20,7 @@ export function AlphabetNav({ activeLetters, onLetterClick }: AlphabetNavProps) 
             onClick={() => isActive && onLetterClick?.(letter)}
             disabled={!isActive}
             className={cn(
-              'w-9 h-9 rounded-lg text-sm font-semibold transition-all duration-200',
+              'size-9 rounded-lg text-sm font-semibold transition-all duration-200',
               isActive
                 ? 'bg-lilac/10 text-lilac border border-lilac/30 hover:bg-lilac/20 hover:border-lilac/50 cursor-pointer'
                 : 'bg-muted/50 text-muted-foreground/40 cursor-default'

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { format } from 'date-fns'
+import { formatDateLabel } from '@/lib/date-format'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
@@ -22,6 +22,7 @@ interface BlogPostPageProps {
 
 export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPageProps) {
   const shareUrl = `https://jarrettstanley.com/insights/blog/${post.slug}`
+  const publishedLabel = formatDateLabel(post.publishedAt, 'MMMM d, yyyy')
 
   return (
     <div>
@@ -37,7 +38,7 @@ export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPagePr
         <div className="container max-w-4xl">
           <Button asChild variant="ghost" className="group">
             <Link href="/insights/blog">
-              <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+              <ArrowLeft className="size-4 mr-2 group-hover:-translate-x-1 transition-transform" />
               Back to Articles
             </Link>
           </Button>
@@ -68,7 +69,7 @@ export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPagePr
           <div className="flex flex-wrap items-center gap-2 mb-4">
             {post.series && (
               <Badge variant="lilac">
-                <Newspaper className="w-3 h-3 mr-1" />
+                <Newspaper className="size-3 mr-1" />
                 {post.series.name} #{post.series.issueNumber}
               </Badge>
             )}
@@ -82,8 +83,8 @@ export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPagePr
             })}
           </div>
 
-          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
-            <span className="bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent">
+          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
+            <span className="text-lilac">
               {post.title}
             </span>
           </h1>
@@ -95,7 +96,7 @@ export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPagePr
           {/* Author + Meta */}
           <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
             <div className="flex items-center gap-2">
-              <Avatar className="h-8 w-8 border">
+              <Avatar className="size-8 border">
                 <AvatarFallback>{post.author.name.charAt(0)}</AvatarFallback>
               </Avatar>
               <div>
@@ -108,10 +109,10 @@ export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPagePr
             </div>
             <div className="flex items-center gap-4 ml-auto">
               <span className="flex items-center gap-1">
-                <Clock className="w-4 h-4" />
+                <Clock className="size-4" />
                 {post.readTimeMinutes} min read
               </span>
-              <span>{format(new Date(post.publishedAt), 'MMMM d, yyyy')}</span>
+              <span>{publishedLabel}</span>
             </div>
           </div>
 
@@ -131,7 +132,7 @@ export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPagePr
       {relatedPosts.length > 0 && (
         <section className="pb-12">
           <div className="container max-w-4xl">
-            <h2 className="font-signal text-2xl md:text-3xl font-bold mb-6">
+            <h2 className="font-signal text-2xl md:text-3xl font-semibold mb-6">
               More from {post.series ? post.series.name : 'the Blog'}
             </h2>
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -165,7 +166,7 @@ export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPagePr
                     {related.excerpt}
                   </p>
                   <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
-                    <Clock className="w-3 h-3" />
+                    <Clock className="size-3" />
                     {related.readTimeMinutes} min read
                   </div>
                   </div>

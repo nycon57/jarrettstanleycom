@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import Image from 'next/image'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Brain, TrendingUp, Users } from 'lucide-react'
@@ -46,7 +46,7 @@ export function SignatureTopics() {
     <section className="py-24 sm:py-32 bg-muted/30">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Speaking Image */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -62,27 +62,27 @@ export function SignatureTopics() {
               className="w-full h-[400px] md:h-[500px] rounded-2xl object-cover shadow-2xl"
             />
           </div>
-        </motion.div>
-        <motion.div
+        </m.div>
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-3xl font-signal font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+          <h2 className="text-3xl font-signal font-semibold tracking-tight text-neutral-900 dark:text-white sm:text-4xl">
             Signature Speaking Topics
           </h2>
-          <p className="mt-4 text-lg text-gray-700 dark:text-gray-300">
+          <p className="mt-4 text-lg text-neutral-700 dark:text-neutral-300">
             Engaging presentations that combine real-world experience with actionable insights
           </p>
-        </motion.div>
+        </m.div>
 
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-8 lg:max-w-none lg:grid-cols-3">
           {topics.map((topic, index) => {
             const Icon = topic.icon
             return (
-              <motion.div
+              <m.div
                 key={topic.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -93,7 +93,7 @@ export function SignatureTopics() {
                   <CardHeader>
                     <div className="flex items-center gap-4">
                       <div className="rounded-lg bg-lilac/10 dark:bg-lilac/20 p-3">
-                        <Icon className="h-6 w-6 text-lilac" />
+                        <Icon className="size-6 text-lilac" />
                       </div>
                       <div>
                         <CardTitle className="text-xl font-signal">{topic.title}</CardTitle>
@@ -104,33 +104,33 @@ export function SignatureTopics() {
                     </CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="font-semibold text-gray-900 dark:text-white mb-3">Key Takeaways:</p>
-                    <ul className="space-y-2">
+                    <p className="font-semibold text-neutral-900 dark:text-white mb-3">Key Takeaways:</p>
+                    <ul className="gap-y-2">
                       {topic.keyPoints.map((point) => (
                         <li key={point} className="flex items-start">
                           <span className="text-lilac mr-2">•</span>
-                          <span className="text-sm text-gray-700 dark:text-gray-300">{point}</span>
+                          <span className="text-sm text-neutral-700 dark:text-neutral-300">{point}</span>
                         </li>
                       ))}
                     </ul>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </m.div>
             )
           })}
         </div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <p className="text-lg text-gray-700 dark:text-gray-300">
+          <p className="text-lg text-neutral-700 dark:text-neutral-300">
             Need a custom presentation? Jarrett can tailor content to your specific audience and event goals.
           </p>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   )

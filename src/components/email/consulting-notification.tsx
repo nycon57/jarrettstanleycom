@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { formatEmailTimestamp } from './email-date';
 
 interface ConsultingNotificationEmailProps {
   first_name: string;
@@ -15,7 +16,9 @@ interface ConsultingNotificationEmailProps {
   preferred_contact_method: string;
 }
 
-export const ConsultingNotificationEmail: React.FC<Readonly<ConsultingNotificationEmailProps>> = ({
+export const ConsultingNotificationEmail: React.FC<Readonly<ConsultingNotificationEmailProps>> = (props) => renderConsultingNotificationEmail(props);
+
+function renderConsultingNotificationEmail({
   first_name,
   last_name,
   email,
@@ -28,7 +31,7 @@ export const ConsultingNotificationEmail: React.FC<Readonly<ConsultingNotificati
   project_description,
   current_challenges,
   preferred_contact_method,
-}) => {
+}: Readonly<ConsultingNotificationEmailProps>) {
   const getBudgetPriority = () => {
     if (budget_range.includes('$500k+') || budget_range.includes('$250k-$500k')) return 'high';
     if (budget_range.includes('$100k-$250k')) return 'medium';
@@ -204,7 +207,7 @@ export const ConsultingNotificationEmail: React.FC<Readonly<ConsultingNotificati
           backgroundColor: '#f9fafb', 
           padding: '20px', 
           borderRadius: '6px', 
-          borderLeft: '4px solid #3b82f6'
+          boxShadow: 'inset 0 0 0 1px #bfdbfe'
         }}>
           <p style={{ color: '#6b7280', fontSize: '16px', lineHeight: '1.6', margin: '0', whiteSpace: 'pre-wrap' }}>
             {project_description}
@@ -221,7 +224,7 @@ export const ConsultingNotificationEmail: React.FC<Readonly<ConsultingNotificati
           backgroundColor: '#fef2f2', 
           padding: '20px', 
           borderRadius: '6px', 
-          borderLeft: '4px solid #ef4444'
+          boxShadow: 'inset 0 0 0 1px #fecaca'
         }}>
           <p style={{ color: '#7f1d1d', fontSize: '16px', lineHeight: '1.6', margin: '0', whiteSpace: 'pre-wrap' }}>
             {current_challenges}
@@ -355,17 +358,10 @@ export const ConsultingNotificationEmail: React.FC<Readonly<ConsultingNotificati
           Consulting inquiry submitted via jarrettstanley.com
         </p>
         <p style={{ margin: '5px 0 0 0', fontSize: '12px', color: '#9ca3af' }}>
-          Received at {new Date().toLocaleString('en-US', { 
-            timeZone: 'America/Chicago',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZoneName: 'short'
-          })}
+          Received at {formatEmailTimestamp()}
         </p>
       </div>
     </div>
   );
-};
+
+}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { trackScrollDepth, debounce } from '@/lib/analytics';
 
@@ -10,12 +10,12 @@ interface ScrollTrackerProps {
 
 export function ScrollTracker({ children }: ScrollTrackerProps) {
   const pathname = usePathname();
-  const [trackedDepths, setTrackedDepths] = useState<Set<number>>(new Set());
+  const trackedDepths = useRef<Set<number>>(new Set());
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Reset tracked depths when pathname changes
-    setTrackedDepths(new Set());
+    trackedDepths.current = new Set();
   }, [pathname]);
 
   useEffect(() => {
@@ -38,16 +38,16 @@ export function ScrollTracker({ children }: ScrollTrackerProps) {
       const milestones = [25, 50, 75, 100];
       
       for (const milestone of milestones) {
-        if (scrollPercent >= milestone && !trackedDepths.has(milestone)) {
+        if (scrollPercent >= milestone && !trackedDepths.current.has(milestone)) {
           trackScrollDepth(milestone, pathname);
-          setTrackedDepths(prev => new Set([...Array.from(prev), milestone]));
+          trackedDepths.current.add(milestone);
         }
       }
     }, 100);
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [pathname, trackedDepths]);
+  }, [pathname]);
 
   return (
     <div ref={contentRef}>
