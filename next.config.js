@@ -1,3 +1,4 @@
+const { withSentryConfig } = require('@sentry/nextjs');
 const { withBotId } = require('botid/next/config');
 
 /** @type {import('next').NextConfig} */
@@ -119,4 +120,11 @@ const nextConfig = {
   turbopack: {},
 };
 
-module.exports = withBotId(nextConfig);
+module.exports = withSentryConfig(withBotId(nextConfig), {
+  org: process.env.SENTRY_ORG,
+  project: process.env.SENTRY_PROJECT,
+  authToken: process.env.SENTRY_AUTH_TOKEN,
+  widenClientFileUpload: true,
+  silent: !process.env.CI,
+  telemetry: false,
+});
