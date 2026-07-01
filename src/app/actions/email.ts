@@ -1,4 +1,5 @@
 import React from 'react';
+import * as Sentry from '@sentry/nextjs';
 import { headers } from 'next/headers';
 import {
   sendContactConfirmation,
@@ -17,6 +18,40 @@ import {
 import { createClient } from '@/lib/supabase-client';
 import { supabase } from '@/lib/supabase';
 import { checkForSpam, isSubmittedTooFast } from '@/lib/spam-protection';
+
+function captureLeadActionException(
+  error: unknown,
+  workflow: string,
+  stage: string,
+  extra: Record<string, unknown> = {}
+) {
+  Sentry.captureException(error, {
+    tags: {
+      workflow,
+      'failure.stage': stage,
+      'site.name': 'jarrettstanleycom',
+    },
+    extra,
+  });
+}
+
+function captureLeadActionMessage(
+  message: string,
+  workflow: string,
+  stage: string,
+  extra: Record<string, unknown> = {},
+  level: 'error' | 'warning' = 'error'
+) {
+  Sentry.captureMessage(message, {
+    level,
+    tags: {
+      workflow,
+      'failure.stage': stage,
+      'site.name': 'jarrettstanleycom',
+    },
+    extra,
+  });
+}
 
 // Helper to get client IP for rate limiting
 async function getClientIP(): Promise<string> {
@@ -120,6 +155,12 @@ export async function submitContactForm(formData: FormData) {
     if (dbError) {
       console.error('❌ Database error:', dbError);
       console.error('❌ Database error details:', JSON.stringify(dbError, null, 2));
+      captureLeadActionException(dbError, 'contact_form', 'database_insert', {
+        contactType: type,
+        hasCompany: !!company,
+        hasPhone: !!phone,
+        messageLength: message?.length || 0,
+      });
       return { error: 'Failed to save contact information' };
     }
 
@@ -139,16 +180,27 @@ export async function submitContactForm(formData: FormData) {
     console.log('📤 Sending confirmation email to user...');
     const confirmationResult = await safeEmailSend(() => sendContactConfirmation(contactData));
     console.log('📧 Confirmation email result:', confirmationResult ? 'SUCCESS' : 'FAILED');
+    if (!confirmationResult) {
+      captureLeadActionMessage('Contact confirmation email failed', 'contact_form', 'confirmation_email', {
+        contactType: type,
+      }, 'warning');
+    }
 
     console.log('📤 Sending notification email to admin...');
     const notificationResult = await safeEmailSend(() => sendContactNotification(contactData));
     console.log('📧 Admin notification email result:', notificationResult ? 'SUCCESS' : 'FAILED');
+    if (!notificationResult) {
+      captureLeadActionMessage('Contact notification email failed', 'contact_form', 'notification_email', {
+        contactType: type,
+      }, 'warning');
+    }
 
     console.log('🟢 Contact form submission completed successfully');
     return { success: true };
   } catch (error) {
     console.error('💥 Contact form error:', error);
     console.error('💥 Error stack:', error instanceof Error ? error.stack : 'No stack available');
+    captureLeadActionException(error, 'contact_form', 'unhandled');
     return { error: 'Failed to submit contact form' };
   }
 }
@@ -225,6 +277,11 @@ export async function submitMediaInquiry(formData: FormData) {
 
     if (dbError) {
       console.error('Database error:', dbError);
+      captureLeadActionException(dbError, 'media_inquiry', 'database_insert', {
+        hasPhone: !!phone,
+        hasDeadline: !!deadline,
+        interviewType,
+      });
       return { error: 'Failed to save media inquiry' };
     }
 
@@ -242,12 +299,24 @@ export async function submitMediaInquiry(formData: FormData) {
       message
     };
 
-    await safeEmailSend(() => sendMediaConfirmation(mediaData));
-    await safeEmailSend(() => sendMediaNotification(mediaData));
+    const confirmationResult = await safeEmailSend(() => sendMediaConfirmation(mediaData));
+    if (!confirmationResult) {
+      captureLeadActionMessage('Media confirmation email failed', 'media_inquiry', 'confirmation_email', {
+        interviewType,
+      }, 'warning');
+    }
+
+    const notificationResult = await safeEmailSend(() => sendMediaNotification(mediaData));
+    if (!notificationResult) {
+      captureLeadActionMessage('Media notification email failed', 'media_inquiry', 'notification_email', {
+        interviewType,
+      }, 'warning');
+    }
 
     return { success: true };
   } catch (error) {
     console.error('Media inquiry error:', error);
+    captureLeadActionException(error, 'media_inquiry', 'unhandled');
     return { error: 'Failed to submit media inquiry' };
   }
 }
@@ -335,6 +404,10 @@ export async function subscribeToNewsletter(formData: FormData) {
     if (dbError) {
       console.error('❌ Database error:', dbError);
       console.error('❌ Database error details:', JSON.stringify(dbError, null, 2));
+      captureLeadActionException(dbError, 'newsletter_signup', 'database_insert', {
+        hasFirstName: !!firstName,
+        hasLastName: !!lastName,
+      });
       return { error: 'Failed to subscribe to newsletter' };
     }
 
@@ -347,16 +420,23 @@ export async function subscribeToNewsletter(formData: FormData) {
     console.log('📤 Sending welcome email to subscriber...');
     const welcomeResult = await safeEmailSend(() => sendNewsletterWelcome(email, fullName));
     console.log('📧 Welcome email result:', welcomeResult ? 'SUCCESS' : 'FAILED');
+    if (!welcomeResult) {
+      captureLeadActionMessage('Newsletter welcome email failed', 'newsletter_signup', 'welcome_email', {}, 'warning');
+    }
 
     console.log('📤 Sending notification email to admin...');
     const notificationResult = await safeEmailSend(() => sendNewsletterNotification(email, fullName, 'website_newsletter'));
     console.log('📧 Admin notification email result:', notificationResult ? 'SUCCESS' : 'FAILED');
+    if (!notificationResult) {
+      captureLeadActionMessage('Newsletter notification email failed', 'newsletter_signup', 'notification_email', {}, 'warning');
+    }
 
     console.log('🟢 Newsletter signup completed successfully');
     return { success: true };
   } catch (error) {
     console.error('💥 Newsletter subscription error:', error);
     console.error('💥 Error stack:', error instanceof Error ? error.stack : 'No stack available');
+    captureLeadActionException(error, 'newsletter_signup', 'unhandled');
     return { error: 'Failed to subscribe to newsletter' };
   }
 }
@@ -419,6 +499,11 @@ async function downloadResource(formData: FormData) {
     single();
 
     if (resourceError || !resource) {
+      if (resourceError) {
+        captureLeadActionException(resourceError, 'resource_download', 'resource_lookup', {
+          resourceId,
+        });
+      }
       return { error: 'Resource not found' };
     }
 
@@ -440,6 +525,10 @@ async function downloadResource(formData: FormData) {
 
     if (dbError) {
       console.error('Database error:', dbError);
+      captureLeadActionException(dbError, 'resource_download', 'database_insert', {
+        resourceId,
+        hasCompany: !!company,
+      });
       return { error: 'Failed to record download' };
     }
 
@@ -450,13 +539,19 @@ async function downloadResource(formData: FormData) {
     eq('id', resourceId);
 
     // Send download email
-    await safeEmailSend(() =>
+    const downloadEmailResult = await safeEmailSend(() =>
     sendResourceDownloadEmail(email, firstName, resource.title, resource.file_url)
     );
+    if (!downloadEmailResult) {
+      captureLeadActionMessage('Resource download email failed', 'resource_download', 'download_email', {
+        resourceId,
+      }, 'warning');
+    }
 
     return { success: true, downloadUrl: resource.file_url };
   } catch (error) {
     console.error('Resource download error:', error);
+    captureLeadActionException(error, 'resource_download', 'unhandled');
     return { error: 'Failed to process download' };
   }
 }
@@ -520,16 +615,35 @@ export async function submitConsultingInquiry(data: any) {
 
     if (dbError) {
       console.error('Database error:', dbError);
+      captureLeadActionException(dbError, 'consulting_inquiry', 'database_insert', {
+        hasCompany: !!data.company,
+        hasBudgetRange: !!data.budget_range,
+        hasTimeline: !!data.timeline,
+      });
       throw new Error('Failed to save consulting inquiry');
     }
 
     // Send emails
-    await safeEmailSend(() => sendConsultingConfirmation(data));
-    await safeEmailSend(() => sendConsultingNotification(data));
+    const confirmationResult = await safeEmailSend(() => sendConsultingConfirmation(data));
+    if (!confirmationResult) {
+      captureLeadActionMessage('Consulting confirmation email failed', 'consulting_inquiry', 'confirmation_email', {
+        hasCompany: !!data.company,
+      }, 'warning');
+    }
+
+    const notificationResult = await safeEmailSend(() => sendConsultingNotification(data));
+    if (!notificationResult) {
+      captureLeadActionMessage('Consulting notification email failed', 'consulting_inquiry', 'notification_email', {
+        hasCompany: !!data.company,
+      }, 'warning');
+    }
 
     return { success: true };
   } catch (error) {
     console.error('Consulting inquiry error:', error);
+    if (!(error instanceof Error && error.message === 'Failed to save consulting inquiry')) {
+      captureLeadActionException(error, 'consulting_inquiry', 'unhandled');
+    }
     throw error;
   }
 }
@@ -587,16 +701,35 @@ async function submitSpeakingInquiry(data: any) {
 
     if (dbError) {
       console.error('Database error:', dbError);
+      captureLeadActionException(dbError, 'speaking_inquiry', 'database_insert', {
+        hasCompany: !!data.company,
+        hasEventDate: !!data.event_date,
+        hasAudienceSize: !!data.audience_size,
+      });
       throw new Error('Failed to save speaking inquiry');
     }
 
     // Send emails
-    await safeEmailSend(() => sendSpeakingConfirmation(data));
-    await safeEmailSend(() => sendSpeakingNotification(data));
+    const confirmationResult = await safeEmailSend(() => sendSpeakingConfirmation(data));
+    if (!confirmationResult) {
+      captureLeadActionMessage('Speaking confirmation email failed', 'speaking_inquiry', 'confirmation_email', {
+        hasEventDate: !!data.event_date,
+      }, 'warning');
+    }
+
+    const notificationResult = await safeEmailSend(() => sendSpeakingNotification(data));
+    if (!notificationResult) {
+      captureLeadActionMessage('Speaking notification email failed', 'speaking_inquiry', 'notification_email', {
+        hasEventDate: !!data.event_date,
+      }, 'warning');
+    }
 
     return { success: true };
   } catch (error) {
     console.error('Speaking inquiry error:', error);
+    if (!(error instanceof Error && error.message === 'Failed to save speaking inquiry')) {
+      captureLeadActionException(error, 'speaking_inquiry', 'unhandled');
+    }
     throw error;
   }
 }
@@ -627,11 +760,15 @@ async function submitWaitlistSignup(data: any) {
 
     if (dbError) {
       console.error('Database error:', dbError);
+      captureLeadActionException(dbError, 'waitlist_signup', 'database_insert', {
+        hasCompany: !!data.company,
+        hasMarketingConsent: !!data.marketing_consent,
+      });
       throw new Error('Failed to save waitlist signup');
     }
 
     // Send confirmation email (you already have this template)
-    await safeEmailSend(async () => {
+    const confirmationResult = await safeEmailSend(async () => {
       const [{ WaitlistConfirmationEmail }, { sendEmail }] = await Promise.all([
         import('@/components/email/waitlist-confirmation'),
         import('@/lib/email')
@@ -643,10 +780,18 @@ async function submitWaitlistSignup(data: any) {
         react: React.createElement(WaitlistConfirmationEmail, { firstName: data.first_name })
       });
     });
+    if (!confirmationResult) {
+      captureLeadActionMessage('Waitlist confirmation email failed', 'waitlist_signup', 'confirmation_email', {
+        hasCompany: !!data.company,
+      }, 'warning');
+    }
 
     return { success: true };
   } catch (error) {
     console.error('Waitlist signup error:', error);
+    if (!(error instanceof Error && error.message === 'Failed to save waitlist signup')) {
+      captureLeadActionException(error, 'waitlist_signup', 'unhandled');
+    }
     throw error;
   }
 }
