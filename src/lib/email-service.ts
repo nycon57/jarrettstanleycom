@@ -1,5 +1,6 @@
 import { Resend } from 'resend';
 import React from 'react';
+import * as Sentry from '@sentry/nextjs';
 import { supabase } from '@/lib/supabase';
 import { ContactConfirmationEmail } from '@/components/email/enhanced/contact-confirmation';
 import { ContactNotificationEmail } from '@/components/email/enhanced/contact-notification';
@@ -21,6 +22,21 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 // Default email configuration
 const DEFAULT_FROM = 'Jarrett Stanley <jarrett@jarrettstanley.com>';
 const NOTIFICATION_EMAIL = 'jarrett@jarrettstanley.com';
+
+function captureEmailException(
+  error: unknown,
+  stage: string,
+  extra: Record<string, unknown> = {}
+) {
+  Sentry.captureException(error, {
+    tags: {
+      workflow: 'email_delivery',
+      'failure.stage': stage,
+      'site.name': 'jarrettstanleycom',
+    },
+    extra,
+  });
+}
 
 // Email logging and status types
 export type EmailStatus = 'pending' | 'sent' | 'delivered' | 'failed' | 'bounced' | 'complained';
@@ -175,6 +191,10 @@ export const sendEmail = async (config: EmailConfig): Promise<{id: string;emailL
 
   if (logError) {
     console.error('Failed to create email log:', logError);
+    captureEmailException(logError, 'email_log_create', {
+      templateName: config.templateName,
+      category,
+    });
     throw new Error(`Failed to log email: ${logError.message}`);
   }
 
@@ -229,6 +249,11 @@ export const sendEmail = async (config: EmailConfig): Promise<{id: string;emailL
     eq('id', logEntry.id);
 
     console.error('Email sending error:', error);
+    captureEmailException(error, 'email_send', {
+      templateName: config.templateName,
+      category,
+      emailLogId: logEntry.id,
+    });
     throw error;
   }
 };
@@ -528,6 +553,10 @@ export const safeEmailSend = async (emailFunction: () => Promise<any>, retries =
 
     // Log final failure to monitoring service in production
     console.error('Email sending failed after all retries:', error);
+    captureEmailException(error, 'email_send_retry_exhausted', {
+      attempts: retries + 1,
+      maxRetries,
+    });
     return false;
   }
 };
