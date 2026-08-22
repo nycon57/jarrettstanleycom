@@ -6,7 +6,12 @@ import { SpeakingTestimonials } from '@/components/sections/speaking/speaking-te
 import { UpcomingEvents } from '@/components/sections/speaking/upcoming-events'
 import { SpeakerKit } from '@/components/sections/speaking/speaker-kit'
 import { BookJarrett } from '@/components/sections/speaking/book-jarrett'
-import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
+import {
+  generateMetadata as generateSEOMetadata,
+  generateServiceSchemas,
+  generateSpeakingEventSchemas,
+  generateStructuredData,
+} from '@/lib/seo'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Speaking Engagements - Mortgage Marketing & AI Expert',
@@ -15,9 +20,15 @@ export const metadata: Metadata = generateSEOMetadata({
   canonical: '/speaking',
 })
 
+const speakingStructuredData = generateStructuredData([
+  generateServiceSchemas()[0],
+  ...generateSpeakingEventSchemas(),
+])
+
 export default function SpeakingPage() {
   return (
     <main className="flex min-h-screen flex-col">
+      <script type="application/ld+json">{speakingStructuredData}</script>
       <SpeakingHero />
       <SignatureTopics />
       <PastEngagements />

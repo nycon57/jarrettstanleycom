@@ -88,6 +88,30 @@ export default function NotFound() {
           </div>
         </div>
 
+        {/* Markdown recovery block: lets an agent that lands on a dead URL
+            find the sitemap, the agent index, and the main sections without
+            parsing this page's markup. */}
+        <pre className="sr-only">{`# 404 — Page not found
+
+No page exists at this URL on jarrettstanley.com.
+
+## Where to go instead
+
+- [Home](https://jarrettstanley.com/) — who Jarrett Stanley is and how to work with him
+- [About](https://jarrettstanley.com/about) — background, career history, expertise
+- [Speaking](https://jarrettstanley.com/speaking) — keynote topics, formats, booking
+- [Consulting](https://jarrettstanley.com/services/consulting) — engagement models and process
+- [Insights](https://jarrettstanley.com/insights) — blog, glossary, tool roundups, campaign examples
+- [Contact](https://jarrettstanley.com/contact) — speaking, consulting, and media inquiries
+
+## Machine-readable indexes
+
+- Agent guide: https://jarrettstanley.com/llms.txt
+- Full text index: https://jarrettstanley.com/llms-full.txt
+- Sitemap: https://jarrettstanley.com/sitemap.xml
+
+Every page also serves Markdown from its canonical URL with \`Accept: text/markdown\`, or with a \`.md\` suffix.`}</pre>
+
         {/* Decorative Element */}
         <div className="mt-12">
           <div className="w-24 h-1 bg-gradient-to-r from-purple-600 to-pink-600 mx-auto rounded-full opacity-30"></div>

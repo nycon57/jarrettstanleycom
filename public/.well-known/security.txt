@@ -1,0 +1,5 @@
+# Security contact for jarrettstanley.com
+Contact: mailto:hello@jarrettstanley.com
+Expires: 2027-08-21T00:00:00.000Z
+Preferred-Languages: en
+Canonical: https://jarrettstanley.com/.well-known/security.txt

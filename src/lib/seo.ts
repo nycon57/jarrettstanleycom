@@ -30,7 +30,12 @@ export const siteConfig = {
   },
   organization: {
     name: 'Jarrett Stanley Strategic Advising',
-    url: 'https://jarrettstanley.com'
+    url: 'https://jarrettstanley.com',
+    address: {
+      locality: 'Virginia Beach',
+      region: 'VA',
+      country: 'US'
+    }
   }
 };
 
@@ -88,7 +93,13 @@ export function generateMetadata({
       'max-video-preview': -1
     },
     alternates: {
-      canonical: pageUrl
+      canonical: pageUrl,
+      // Markdown representation of this page, for agents that would rather not
+      // parse HTML. Also served from the canonical URL via Accept negotiation.
+      types: {
+        'text/markdown': canonical === '/' || !canonical ? `${siteConfig.url}/index.md` : `${pageUrl}.md`,
+        'application/rss+xml': `${siteConfig.url}/feed.xml`
+      }
     },
     openGraph: {
       type: ogType,
@@ -147,8 +158,14 @@ export function generatePersonSchema() {
     email: siteConfig.author.email,
     sameAs: [
     siteConfig.author.linkedin,
-    siteConfig.author.twitter],
+    `https://x.com/${siteConfig.author.twitter.replace('@', '')}`],
 
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: siteConfig.organization.address.locality,
+      addressRegion: siteConfig.organization.address.region,
+      addressCountry: siteConfig.organization.address.country
+    },
     jobTitle: 'Chief Marketing Officer',
     worksFor: {
       '@type': 'Organization',
@@ -185,14 +202,198 @@ export function generateOrganizationSchema() {
     },
     sameAs: [
     siteConfig.author.linkedin,
-    siteConfig.author.twitter],
+    `https://x.com/${siteConfig.author.twitter.replace('@', '')}`],
 
-    contactPoint: {
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: siteConfig.organization.address.locality,
+      addressRegion: siteConfig.organization.address.region,
+      addressCountry: siteConfig.organization.address.country
+    },
+    areaServed: {
+      '@type': 'Country',
+      name: 'United States'
+    },
+    contactPoint: [
+    {
       '@type': 'ContactPoint',
       email: siteConfig.author.email,
       contactType: 'customer service',
+      url: `${siteConfig.url}/contact`,
       availableLanguage: 'English'
+    },
+    {
+      '@type': 'ContactPoint',
+      email: siteConfig.author.email,
+      contactType: 'booking',
+      url: `${siteConfig.url}/speaking`,
+      availableLanguage: 'English'
+    },
+    {
+      '@type': 'ContactPoint',
+      email: siteConfig.author.email,
+      contactType: 'media relations',
+      url: `${siteConfig.url}/contact`,
+      availableLanguage: 'English'
+    }]
+
+  };
+}
+
+/**
+ * ProfilePage schema for the homepage: this site is one person's public record.
+ * `speakable` marks the passages a voice agent should read aloud.
+ */
+export function generateProfilePageSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    '@id': `${siteConfig.url}#profilepage`,
+    url: siteConfig.url,
+    name: `${siteConfig.name} — ${siteConfig.title}`,
+    inLanguage: 'en-US',
+    isPartOf: { '@id': `${siteConfig.url}#website` },
+    mainEntity: { '@id': `${siteConfig.url}#person` },
+    about: { '@id': `${siteConfig.url}#person` },
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['h1', 'h2', 'main p']
     }
+  };
+}
+
+/** The three ways to work with Jarrett, as schema.org Services. */
+export function generateServiceSchemas() {
+  const provider = { '@id': `${siteConfig.url}#person` };
+  const areaServed = { '@type': 'Country', name: 'United States' };
+
+  return [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${siteConfig.url}/speaking#service`,
+    name: 'Keynote speaking on AI in mortgage marketing',
+    serviceType: 'Keynote speaking',
+    url: `${siteConfig.url}/speaking`,
+    description:
+    'Keynotes, workshops, panels, and webinars on AI in mortgage marketing, digital transformation, and building modern marketing teams.',
+    provider,
+    areaServed,
+    audience: {
+      '@type': 'BusinessAudience',
+      name: 'Mortgage lenders, industry conferences, and marketing organizations'
+    }
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${siteConfig.url}/services/consulting#service`,
+    name: 'AI marketing consulting for mortgage lenders',
+    serviceType: 'Marketing consulting',
+    url: `${siteConfig.url}/services/consulting`,
+    description:
+    'Project-based, retainer, and strategic advisory engagements covering AI implementation strategy, marketing transformation, martech stack design, and team enablement.',
+    provider,
+    areaServed,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Consulting engagement models',
+      itemListElement: [
+      { '@type': 'Offer', name: 'Project-based engagement (3–6 months)' },
+      { '@type': 'Offer', name: 'Retainer (ongoing advisory)' },
+      { '@type': 'Offer', name: 'Strategic advisory (12+ months)' }]
+
+    }
+  }];
+
+}
+
+/**
+ * Past speaking engagements as schema.org Events. Only engagements already
+ * listed on /speaking — nothing here is speculative or upcoming.
+ */
+export function generateSpeakingEventSchemas() {
+  const performer = { '@id': `${siteConfig.url}#person` };
+
+  const engagements = [
+  {
+    name: 'NAMMBA Connect 2025 — Mortgage Marketing Executive Summit',
+    startDate: '2025-08-20',
+    organizer: 'National Association of Minority Mortgage Bankers of America',
+    location: 'JW Marriott Bonnet Creek Resort, Orlando, FL',
+    description:
+    'Featured speaker: "Automate to Elevate: AI, No-Code, and Workflow Hacks that 5× Your Marketing Output."'
+  },
+  {
+    name: 'NAIFA Tidewater Chapter Quarterly Meeting',
+    startDate: '2024',
+    organizer: 'National Association of Insurance and Financial Advisors',
+    location: 'Tidewater, VA',
+    description: 'Chapter speaker: "AI Revolution in Business & Marketing."'
+  },
+  {
+    name: 'Nationwide Mortgage Bankers Sales Summit',
+    startDate: '2024',
+    organizer: 'Nationwide Mortgage Bankers',
+    location: 'Company-wide',
+    description: 'Keynote: "AI-Powered Sales & Marketing Excellence."'
+  },
+  {
+    name: 'Southern Trust Mortgage Sales Summit',
+    startDate: '2023',
+    organizer: 'Southern Trust Mortgage',
+    location: 'Regional',
+    description: 'Guest expert: "Building High-Performance Marketing Teams."'
+  },
+  {
+    name: 'Total Expert Accelerate Conference',
+    startDate: '2019',
+    organizer: 'Total Expert',
+    location: 'National Conference',
+    description: 'Marketing expert panelist: "Marketing Strategy for the Industry and Teams."'
+  }];
+
+
+  return engagements.map((engagement) => ({
+    '@context': 'https://schema.org',
+    '@type': 'Event',
+    name: engagement.name,
+    startDate: engagement.startDate,
+    eventStatus: 'https://schema.org/EventScheduled',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    description: engagement.description,
+    url: `${siteConfig.url}/speaking`,
+    performer,
+    organizer: { '@type': 'Organization', name: engagement.organizer },
+    location: { '@type': 'Place', name: engagement.location },
+    about: { '@id': `${siteConfig.url}/speaking#service` }
+  }));
+}
+
+/** The posts rendered in the homepage "Latest Insights" section, as an ItemList. */
+export function generateLatestInsightsSchema(
+posts: Array<{title: string;slug: string;excerpt: string;publishedAt: string;}>)
+{
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${siteConfig.url}#latest-insights`,
+    name: 'Latest insights on AI in mortgage marketing',
+    numberOfItems: posts.length,
+    itemListOrder: 'https://schema.org/ItemListOrderDescending',
+    itemListElement: posts.map((post, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Article',
+        headline: post.title,
+        description: post.excerpt,
+        datePublished: post.publishedAt,
+        url: `${siteConfig.url}/insights/blog/${post.slug}`,
+        author: { '@id': `${siteConfig.url}#person` },
+        publisher: { '@id': `${siteConfig.url}#organization` }
+      }
+    }))
   };
 }
 
@@ -208,14 +409,7 @@ export function generateWebsiteSchema() {
     publisher: {
       '@id': `${siteConfig.url}#person`
     },
-    potentialAction: {
-      '@type': 'SearchAction',
-      target: {
-        '@type': 'EntryPoint',
-        urlTemplate: `${siteConfig.url}/search?q={search_term_string}`
-      },
-      'query-input': 'required name=search_term_string'
-    }
+    inLanguage: 'en-US'
   };
 }
 

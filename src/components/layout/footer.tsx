@@ -21,6 +21,7 @@ const footerLinks = {
   connect: [
     { name: "Contact", href: "/contact" },
     { name: "Book a Call", href: "/contact#book" },
+    { name: "For Developers & Agents", href: "/developers" },
   ],
 };
 
@@ -88,8 +89,8 @@ export function Footer() {
 
           {/* Services Column */}
           <div>
-            <h3 className="font-signal font-semibold text-white mb-4">Services</h3>
-            <ul className="gap-y-3">
+            <p id="footer-services-heading" className="font-signal font-semibold text-white mb-4">Services</p>
+            <ul aria-labelledby="footer-services-heading" className="gap-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -105,8 +106,8 @@ export function Footer() {
 
           {/* Resources Column */}
           <div>
-            <h3 className="font-signal font-semibold text-white mb-4">Resources</h3>
-            <ul className="gap-y-3">
+            <p id="footer-resources-heading" className="font-signal font-semibold text-white mb-4">Resources</p>
+            <ul aria-labelledby="footer-resources-heading" className="gap-y-3">
               {footerLinks.resources.map((link) => (
                 <li key={link.name}>
                   <Link
@@ -122,8 +123,8 @@ export function Footer() {
 
           {/* Connect Column */}
           <div>
-            <h3 className="font-signal font-semibold text-white mb-4">Connect</h3>
-            <ul className="gap-y-3">
+            <p id="footer-connect-heading" className="font-signal font-semibold text-white mb-4">Connect</p>
+            <ul aria-labelledby="footer-connect-heading" className="gap-y-3">
               {footerLinks.connect.map((link) => (
                 <li key={link.name}>
                   <Link

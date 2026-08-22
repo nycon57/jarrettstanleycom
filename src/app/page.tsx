@@ -6,7 +6,16 @@ import { ServicesShowcase } from '@/components/sections/services-showcase'
 import { LatestInsights } from '@/components/sections/latest-insights'
 import { TestimonialsCarousel } from '@/components/sections/testimonials-carousel'
 import { CtaSection } from '@/components/sections/cta-section'
-import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
+import { HomeFaq } from '@/components/sections/home-faq'
+import { homeFaqs } from '@/lib/home-faqs'
+import {
+  generateFAQSchema,
+  generateLatestInsightsSchema,
+  generateMetadata as generateSEOMetadata,
+  generateProfilePageSchema,
+  generateServiceSchemas,
+  generateStructuredData,
+} from '@/lib/seo'
 import { getAllBlogPosts, toTransformedPost } from '@/lib/blog'
 import type { BlogPost } from '@/lib/supabase'
 
@@ -30,8 +39,24 @@ export default async function HomePage() {
     } as BlogPost
   })
 
+  const homeStructuredData = generateStructuredData([
+    generateProfilePageSchema(),
+    ...generateServiceSchemas(),
+    generateFAQSchema(homeFaqs),
+    generateLatestInsightsSchema(
+      allPosts.slice(0, 6).map((post) => ({
+        title: post.title,
+        slug: post.slug,
+        excerpt: post.excerpt,
+        publishedAt: post.publishedAt,
+      })),
+    ),
+  ])
+
   return (
     <main className="flex min-h-screen flex-col overflow-x-hidden">
+      <script type="application/ld+json">{homeStructuredData}</script>
+
       {/* Hero Section with Animated Background */}
       <HeroSection />
 
@@ -46,6 +71,9 @@ export default async function HomePage() {
 
       {/* Testimonials Section */}
       <TestimonialsCarousel />
+
+      {/* Questions people ask */}
+      <HomeFaq />
 
       {/* CTA Section */}
       <CtaSection />

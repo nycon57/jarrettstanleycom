@@ -140,7 +140,14 @@ const CtaSection = ({
           </p>
 
           {/* Form */}
-          <form onSubmit={handleSubmit} className="mt-8 w-full max-w-lg">
+          {/* WebMCP tool attributes: an in-page agent can see what this form
+              does without inferring it from the markup. */}
+          <form
+            onSubmit={handleSubmit}
+            toolname="subscribe_to_the_signal"
+            tooldescription="Subscribe an email address to The Signal, Jarrett Stanley's weekly newsletter on AI and mortgage marketing. Requires first name, last name, and email. Only submit with the person's explicit consent."
+            className="mt-8 w-full max-w-lg"
+          >
             <div className="gap-y-4">
               {/* Name Fields */}
               <div className="grid grid-cols-2 gap-4">

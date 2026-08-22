@@ -5,6 +5,7 @@ import { MotionProvider } from '@/components/providers/motion-provider'
 import { cn } from '@/lib/utils'
 import { generateMetadata as generateSEOMetadata, generatePersonSchema, generateOrganizationSchema, generateWebsiteSchema, generateStructuredData } from '@/lib/seo'
 import { Analytics } from '@vercel/analytics/next'
+import { WebMcpTools } from '@/components/agent/web-mcp'
 import './globals.css'
 
 const signal = localFont({
@@ -107,6 +108,7 @@ export default function RootLayout({
         <Providers>
           <MotionProvider>{children}</MotionProvider>
         </Providers>
+        <WebMcpTools />
         <Analytics />
       </body>
     </html>

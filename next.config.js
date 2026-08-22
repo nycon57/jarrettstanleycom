@@ -100,6 +100,47 @@ const nextConfig = {
     ];
   },
   
+  // Well-known agent discovery documents. Next.js ignores dot-directories in
+  // the app router, so these canonical paths are rewritten to route handlers.
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/.well-known/ai-catalog.json',
+          destination: '/api/well-known/ai-catalog',
+        },
+        {
+          source: '/.well-known/mcp/server-card.json',
+          destination: '/api/well-known/mcp-server-card',
+        },
+        {
+          source: '/.well-known/mcp.json',
+          destination: '/api/well-known/mcp-server-card',
+        },
+        {
+          source: '/mcp/server-card',
+          destination: '/api/well-known/mcp-server-card',
+        },
+        {
+          source: '/.well-known/agent-card.json',
+          destination: '/api/well-known/agent-card',
+        },
+        {
+          source: '/.well-known/api-catalog',
+          destination: '/api/well-known/api-catalog',
+        },
+        {
+          source: '/.well-known/agent-skills/index.json',
+          destination: '/api/well-known/agent-skills-index',
+        },
+        {
+          source: '/.well-known/agent-skills/:skill/SKILL.md',
+          destination: '/api/well-known/skill-md',
+        },
+      ],
+    };
+  },
+
   // Redirects for SEO
   async redirects() {
     return [
