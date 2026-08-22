@@ -1,17 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sendContactConfirmation, sendNewsletterWelcome } from '@/lib/email-service';
+import { isBotIdBotRequest } from '@/lib/botid';
 
 export async function POST(req: NextRequest) {
   try {
-    // Basic authentication for test endpoint
-    const authHeader = req.headers.get('authorization');
-    const testKey = process.env.EMAIL_TEST_KEY || 'test-key-123';
-    
-    if (authHeader !== `Bearer ${testKey}`) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const testKey = process.env.EMAIL_TEST_KEY;
+    if (!testKey) {
+      return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+    }
+
+    if (req.headers.get('authorization') !== `Bearer ${testKey}`) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    if (await isBotIdBotRequest()) {
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
     }
 
     const body = await req.json();
@@ -67,8 +70,8 @@ export async function POST(req: NextRequest) {
 export async function GET(req: NextRequest) {
   return NextResponse.json({
     message: 'Email Test Endpoint',
-    usage: 'POST with Bearer token and { type: "contact"|"newsletter", email: "test@example.com", name: "Test User" }',
+    usage: 'POST with the configured bearer token and { type: "contact"|"newsletter", email: "test@example.com", name: "Test User" }',
     available_types: ['contact', 'newsletter'],
-    note: 'Requires EMAIL_TEST_KEY in environment or Authorization: Bearer test-key-123'
+    note: 'Requires EMAIL_TEST_KEY and a matching Authorization bearer token'
   });
 }

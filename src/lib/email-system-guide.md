@@ -21,10 +21,10 @@ RESEND_API_KEY=re_your_api_key_here
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
 
-# Optional for testing and admin features
-EMAIL_TEST_KEY=test-key-123
-ADMIN_API_KEY=your_admin_key
-RESEND_WEBHOOK_SECRET=your_webhook_secret
+# Required for each corresponding protected feature
+EMAIL_TEST_KEY=<generate-a-strong-random-secret>
+ADMIN_API_KEY=<generate-a-different-strong-random-secret>
+RESEND_WEBHOOK_SECRET=<copy-the-signing-secret-from-resend>
 ```
 
 ## Database Setup
@@ -62,6 +62,7 @@ RESEND_WEBHOOK_SECRET=your_webhook_secret
 ```typescript
 POST /api/email/send
 Content-Type: application/json
+Authorization: Bearer <ADMIN_API_KEY>
 
 {
   "to": "user@example.com",
@@ -78,13 +79,14 @@ Content-Type: application/json
 ### 2. Webhook Handler - `/api/email/webhook`
 ```typescript
 POST /api/email/webhook
-// Processes Resend webhooks automatically
+// Processes only signature-verified Resend webhooks
 // Updates email status: sent, delivered, bounced, complained
 ```
 
 ### 3. Email Statistics - `/api/email/stats`
 ```typescript
 GET /api/email/stats?period=7d&template=contact-confirmation
+Authorization: Bearer <ADMIN_API_KEY>
 
 Response:
 {
@@ -116,7 +118,7 @@ Authorization: Bearer your_admin_key
 ### 5. Test Endpoint - `/api/email/test`
 ```typescript
 POST /api/email/test
-Authorization: Bearer test-key-123
+Authorization: Bearer <EMAIL_TEST_KEY>
 
 {
   "type": "contact", // or "newsletter"
@@ -191,7 +193,7 @@ email_logs (
    - `email.delivered` 
    - `email.bounced`
    - `email.complained`
-3. **Security**: Add `RESEND_WEBHOOK_SECRET` to verify webhook authenticity
+3. **Security**: Copy the webhook signing secret into `RESEND_WEBHOOK_SECRET`; requests fail closed when it is absent or invalid
 
 ## Monitoring & Analytics
 
@@ -224,25 +226,15 @@ const stats = await getEmailStats('contact-confirmation', dateFrom, dateTo);
 ### Test Email Sending
 ```bash
 curl -X POST https://your-domain.com/api/email/test \
-  -H "Authorization: Bearer test-key-123" \
+  -H "Authorization: Bearer $EMAIL_TEST_KEY" \
   -H "Content-Type: application/json" \
   -d '{"type":"contact","email":"test@example.com","name":"Test User"}'
 ```
 
 ### Test Webhook Processing
-```bash
-curl -X POST https://your-domain.com/api/email/webhook \
-  -H "Content-Type: application/json" \
-  -d '{
-    "type": "email.delivered",
-    "created_at": "2023-01-01T00:00:00Z",
-    "data": {
-      "email_id": "test-email-id",
-      "to": ["test@example.com"],
-      "from": "jarrett@jarrettstanley.com",
-      "subject": "Test Email"
-    }
-  }'
+
+Use Resend's dashboard webhook test or replay feature. Hand-written requests are
+intentionally rejected because they do not include a valid Svix signature.
 ```
 
 ## Best Practices
@@ -303,7 +295,8 @@ SELECT * FROM email_logs WHERE status = 'failed';
 SELECT * FROM email_events ORDER BY occurred_at DESC LIMIT 10;
 
 # Retry failed emails via API
-curl -X GET https://your-domain.com/api/email/retry
+curl -X GET https://your-domain.com/api/email/retry \
+  -H "Authorization: Bearer $ADMIN_API_KEY"
 ```
 
 ## Next Steps

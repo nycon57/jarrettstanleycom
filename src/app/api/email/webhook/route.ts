@@ -1,24 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Resend, type WebhookEventPayload } from 'resend';
 import { updateEmailStatus, EmailStatus } from '@/lib/email-service';
 import { supabase } from '@/lib/supabase';
 
-// Resend webhook event types
-interface ResendWebhookEvent {
-  type: string;
-  created_at: string;
-  data: {
-    email_id: string;
-    to: string[];
-    from: string;
-    subject: string;
-    created_at?: string;
-    delivered_at?: string;
-    clicked_at?: string;
-    opened_at?: string;
-    bounced_at?: string;
-    complained_at?: string;
-  };
-}
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+type ResendWebhookEvent = Extract<
+  WebhookEventPayload,
+  { data: { email_id: string } }
+>;
+
+const isEmailWebhookEvent = (
+  event: WebhookEventPayload
+): event is ResendWebhookEvent => 'email_id' in event.data;
 
 // Map Resend event types to our email status
 const mapEventTypeToStatus = (eventType: string): EmailStatus | null => {
@@ -33,6 +27,8 @@ const mapEventTypeToStatus = (eventType: string): EmailStatus | null => {
       return 'complained';
     case 'email.delivery_delayed':
       return 'pending'; // Keep as pending if delayed
+    case 'email.failed':
+      return 'failed';
     default:
       return null; // Unknown event type
   }
@@ -40,28 +36,52 @@ const mapEventTypeToStatus = (eventType: string): EmailStatus | null => {
 
 export async function POST(req: NextRequest) {
   try {
-    // Verify webhook signature if configured
-    const signature = req.headers.get('resend-signature');
     const webhookSecret = process.env.RESEND_WEBHOOK_SECRET;
-    
-    if (webhookSecret && signature) {
-      // In production, you should verify the webhook signature
-      // This is a basic security measure to ensure the webhook is from Resend
-      // Implementation depends on Resend's signing method
+    if (!webhookSecret) {
+      console.error('RESEND_WEBHOOK_SECRET is not configured');
+      return NextResponse.json(
+        { error: 'Webhook service unavailable' },
+        { status: 503 }
+      );
     }
 
-    const body = await req.json();
+    // Signature verification must receive the exact bytes Resend signed.
+    const payload = await req.text();
+    const id = req.headers.get('svix-id');
+    const timestamp = req.headers.get('svix-timestamp');
+    const signature = req.headers.get('svix-signature');
+
+    if (!id || !timestamp || !signature) {
+      return NextResponse.json(
+        { error: 'Missing webhook signature headers' },
+        { status: 400 }
+      );
+    }
+
+    let event: WebhookEventPayload;
+    try {
+      event = resend.webhooks.verify({
+        payload,
+        headers: { id, timestamp, signature },
+        webhookSecret
+      });
+    } catch (error) {
+      console.error('Invalid Resend webhook signature:', error);
+      return NextResponse.json(
+        { error: 'Invalid webhook signature' },
+        { status: 401 }
+      );
+    }
     
     // Validate webhook payload
-    if (!body.type || !body.data || !body.data.email_id) {
-      console.error('Invalid webhook payload:', body);
+    if (!isEmailWebhookEvent(event)) {
+      console.error('Invalid email webhook payload:', event);
       return NextResponse.json(
         { error: 'Invalid webhook payload' },
         { status: 400 }
       );
     }
 
-    const event: ResendWebhookEvent = body;
     const emailStatus = mapEventTypeToStatus(event.type);
     
     if (!emailStatus) {
@@ -188,11 +208,16 @@ async function handleSpamComplaint(event: ResendWebhookEvent) {
 // Handle delivered email events
 async function handleDeliveredEmail(event: ResendWebhookEvent) {
   try {
+    const deliveredAt =
+      'delivered_at' in event.data && typeof event.data.delivered_at === 'string'
+        ? event.data.delivered_at
+        : new Date().toISOString();
+
     // Update delivery timestamp if not already set
     const { error } = await supabase
       .from('email_logs')
       .update({
-        delivered_at: event.data.delivered_at || new Date().toISOString()
+        delivered_at: deliveredAt
       })
       .eq('resend_id', event.data.email_id)
       .is('delivered_at', null);

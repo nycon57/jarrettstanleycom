@@ -54,7 +54,7 @@ interface MediaInquiryData {
 }
 
 // Default email configuration
-const DEFAULT_FROM = 'Jarrett Stanley <hello@jarrettstanley.com>';
+const DEFAULT_FROM = 'Jarrett Stanley <hello@mail.jarrettstanley.com>';
 const NOTIFICATION_EMAIL = 'jarrett@jarrettstanley.com';
 
 export const sendEmail = async (config: EmailConfig) => {

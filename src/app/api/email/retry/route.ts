@@ -1,18 +1,31 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { retryFailedEmails } from '@/lib/email-service';
+import { isBotIdBotRequest } from '@/lib/botid';
 import { supabase } from '@/lib/supabase';
+
+function requireAdminAuthorization(req: NextRequest): NextResponse | null {
+  const adminKey = process.env.ADMIN_API_KEY;
+
+  if (!adminKey) {
+    return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+  }
+
+  if (req.headers.get('authorization') !== `Bearer ${adminKey}`) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  return null;
+}
 
 export async function POST(req: NextRequest) {
   try {
-    // Basic authentication check - in production you'd want proper admin authentication
-    const authHeader = req.headers.get('authorization');
-    const adminKey = process.env.ADMIN_API_KEY;
-    
-    if (adminKey && authHeader !== `Bearer ${adminKey}`) {
-      return NextResponse.json(
-        { error: 'Unauthorized' },
-        { status: 401 }
-      );
+    const authorizationError = requireAdminAuthorization(req);
+    if (authorizationError) {
+      return authorizationError;
+    }
+
+    if (await isBotIdBotRequest()) {
+      return NextResponse.json({ error: 'Access denied' }, { status: 403 });
     }
 
     // Get optional filters from request body
@@ -102,6 +115,11 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
+    const authorizationError = requireAdminAuthorization(req);
+    if (authorizationError) {
+      return authorizationError;
+    }
+
     // Get failed emails summary (no retry, just info)
     const { searchParams } = new URL(req.url);
     const templateName = searchParams.get('template');

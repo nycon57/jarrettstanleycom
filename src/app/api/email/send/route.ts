@@ -4,22 +4,23 @@ import { sendEmail, EmailConfig } from '@/lib/email-service';
 
 export async function POST(req: NextRequest) {
   try {
+    // This endpoint accepts arbitrary email content, so it must never be
+    // reachable without an explicitly configured server-to-server credential.
+    const adminApiKey = process.env.ADMIN_API_KEY;
+    const authorization = req.headers.get('authorization');
+
+    if (!adminApiKey || authorization !== `Bearer ${adminApiKey}`) {
+      return NextResponse.json(
+        { error: 'Unauthorized' },
+        { status: 401 }
+      );
+    }
+
     // Bot ID verification
     const verification = await checkBotId();
     if (verification.isBot) {
       return NextResponse.json(
         { error: 'Access denied' },
-        { status: 403 }
-      );
-    }
-
-    // Verify the request is from the same origin (basic security)
-    const origin = req.headers.get('origin');
-    const host = req.headers.get('host');
-    
-    if (origin && !origin.includes(host || '')) {
-      return NextResponse.json(
-        { error: 'Unauthorized origin' },
         { status: 403 }
       );
     }

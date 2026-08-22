@@ -19,7 +19,7 @@ if (!process.env.RESEND_API_KEY) {
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Default email configuration
-const DEFAULT_FROM = 'Jarrett Stanley <jarrett@jarrettstanley.com>';
+const DEFAULT_FROM = 'Jarrett Stanley <jarrett@mail.jarrettstanley.com>';
 const NOTIFICATION_EMAIL = 'jarrett@jarrettstanley.com';
 
 // Email logging and status types
