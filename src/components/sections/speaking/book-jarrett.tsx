@@ -4,6 +4,7 @@ import { m } from 'framer-motion'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import { Phone, Mail, MessageCircle } from 'lucide-react'
+import { SpeakingInquiryForm } from '@/components/sections/speaking/speaking-inquiry-form'
 export function BookJarrett() {
 
   return (
@@ -152,25 +153,48 @@ export function BookJarrett() {
           </div>
         </m.div>
 
-        {/* CTA */}
+        {/* Inquiry form */}
         <m.div
+          id="speaking-inquiry"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
           viewport={{ once: true }}
+          className="mx-auto mt-16 max-w-5xl"
+        >
+          <div className="rounded-2xl border border-border bg-background p-6 sm:p-10">
+            <h3 className="text-xl font-signal font-semibold text-neutral-900 dark:text-white">
+              Tell me about your event
+            </h3>
+            <p className="mt-2 text-neutral-700 dark:text-neutral-300">
+              The more you share about the date, audience, and format, the more specific the
+              first reply will be.
+            </p>
+            <div className="mt-8">
+              <SpeakingInquiryForm />
+            </div>
+          </div>
+        </m.div>
+
+        {/* Prefer email */}
+        <m.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <Button 
-            size="lg" 
+          <Button
+            variant="outline"
+            size="lg"
             onClick={() => {
               const user = 'jarrett';
               const domain = 'jarrettstanley.com';
               window.location.href = `mailto:${user}@${domain}?subject=Speaking%20Inquiry`;
             }}
-            className="bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90"
           >
             <MessageCircle className="mr-2 size-5" />
-            Start the Conversation
+            Prefer email? Start the conversation
           </Button>
         </m.div>
       </div>

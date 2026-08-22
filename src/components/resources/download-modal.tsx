@@ -10,6 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 import { Download } from 'lucide-react'
 import { Resource } from '@/lib/supabase'
+import { getStoredUTMParameters } from '@/lib/analytics'
 
 const downloadFormSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -35,7 +36,7 @@ export function useDownloadModal() {
     if (resource.requires_email) {
       setState({ isOpen: true, resource })
     } else {
-      window.open(resource.file_url, '_blank')
+      window.open(resource.file_url, '_blank', 'noopener,noreferrer')
     }
   }, [])
 
@@ -55,6 +56,8 @@ interface DownloadModalProps {
 export function DownloadModal({ isOpen, resource, onClose }: DownloadModalProps) {
   const [downloadLoading, setDownloadLoading] = useState(false)
   const [downloadError, setDownloadError] = useState<string | null>(null)
+  const [honeypot, setHoneypot] = useState('')
+  const [formStartTime] = useState(() => Date.now())
 
   const {
     register,
@@ -71,7 +74,7 @@ export function DownloadModal({ isOpen, resource, onClose }: DownloadModalProps)
     setDownloadLoading(true)
     setDownloadError(null)
     try {
-      await fetch('/api/resources/track-download', {
+      const response = await fetch('/api/resources/track-download', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -80,11 +83,25 @@ export function DownloadModal({ isOpen, resource, onClose }: DownloadModalProps)
           firstName: data.firstName,
           lastName: data.lastName,
           company: data.company,
+          // Spam signals checked server-side.
+          website: honeypot,
+          _formStartTime: formStartTime.toString(),
+          // Attribution for the download record.
+          userAgent: navigator.userAgent,
+          referrer: document.referrer,
+          urlParams: getStoredUTMParameters(),
         }),
       })
 
-      window.open(resource.file_url, '_blank')
+      if (!response.ok) {
+        throw new Error(`Download request failed with status ${response.status}`)
+      }
+
+      const result = await response.json()
+
+      window.open(result.downloadUrl ?? resource.file_url, '_blank', 'noopener,noreferrer')
       reset()
+      setHoneypot('')
       onClose()
     } catch (error) {
       console.error('Error tracking download:', error)
@@ -106,6 +123,23 @@ export function DownloadModal({ isOpen, resource, onClose }: DownloadModalProps)
         </DialogHeader>
 
         <form onSubmit={handleSubmit(onDownloadSubmit)} className="gap-y-4">
+          {/* Honeypot: hidden from people, irresistible to bots. */}
+          <div
+            aria-hidden="true"
+            style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, pointerEvents: 'none' }}
+          >
+            <label htmlFor="website-download">Website</label>
+            <input
+              type="text"
+              id="website-download"
+              name="website"
+              value={honeypot}
+              onChange={(event) => setHoneypot(event.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <Label htmlFor="firstName">First Name *</Label>

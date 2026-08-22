@@ -5,6 +5,7 @@ initBotId({
     { path: '/api/contact', method: 'POST' },
     { path: '/api/contact/media', method: 'POST' },
     { path: '/api/consulting', method: 'POST' },
+    { path: '/api/speaking', method: 'POST' },
     { path: '/api/newsletter', method: 'POST' },
     { path: '/api/resources/track-download', method: 'POST' },
     { path: '/api/email/send', method: 'POST' },

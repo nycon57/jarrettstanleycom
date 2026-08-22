@@ -326,6 +326,8 @@ const getUTMParameters = (): UTMParameters => {
 /**
  * Store UTM parameters in sessionStorage for attribution
  */
+const UTM_STORAGE_KEY = 'utm_parameters:v1';
+
 export const storeUTMParameters = () => {
   if (typeof window === 'undefined') return;
 
@@ -333,7 +335,7 @@ export const storeUTMParameters = () => {
   const hasUTMParams = Object.values(utmParams).some((value) => value !== undefined);
 
   if (hasUTMParams) {
-    sessionStorage.setItem('utm_parameters:v1', JSON.stringify(utmParams));
+    sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(utmParams));
 
     // Track campaign attribution
     trackEvent({
@@ -352,7 +354,7 @@ export const getStoredUTMParameters = (): UTMParameters => {
   if (typeof window === 'undefined') return {};
 
   try {
-    const stored = sessionStorage.getItem('utm_parameters');
+    const stored = sessionStorage.getItem(UTM_STORAGE_KEY);
     return stored ? JSON.parse(stored) : {};
   } catch {
     return {};

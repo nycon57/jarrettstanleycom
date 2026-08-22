@@ -613,7 +613,9 @@ function useResourcesPageClientView() {
                 className="bg-lilac text-white hover:bg-lilac/90 transition-colors text-lg font-semibold shadow-md hover:shadow-lg"
                 asChild
               >
-                <Link href="/waitlist">Start Free Trial</Link>
+                <a href="https://truetone.ai" target="_blank" rel="noopener noreferrer">
+                  Start Free Trial
+                </a>
               </Button>
               <Button 
                 size="2xl" 
