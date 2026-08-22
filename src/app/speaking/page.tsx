@@ -2,9 +2,6 @@ import { Metadata } from 'next'
 import { SpeakingHero } from '@/components/sections/speaking/speaking-hero'
 import { SignatureTopics } from '@/components/sections/speaking/signature-topics'
 import { PastEngagements } from '@/components/sections/speaking/past-engagements'
-import { SpeakingTestimonials } from '@/components/sections/speaking/speaking-testimonials'
-import { UpcomingEvents } from '@/components/sections/speaking/upcoming-events'
-import { SpeakerKit } from '@/components/sections/speaking/speaker-kit'
 import { BookJarrett } from '@/components/sections/speaking/book-jarrett'
 import {
   generateMetadata as generateSEOMetadata,

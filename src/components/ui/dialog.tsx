@@ -110,7 +110,8 @@ DialogFooter.displayName = "DialogFooter";
 
 export {
   Dialog,
-
+  DialogTrigger,
+  DialogClose,
   DialogContent,
   DialogHeader,
   DialogTitle,

@@ -230,7 +230,7 @@ async function handleDeliveredEmail(event: ResendWebhookEvent) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   return NextResponse.json(
     { 
       error: 'Method not allowed. This endpoint is for Resend webhooks only.' 

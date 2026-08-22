@@ -14,7 +14,6 @@ import {
   sendNewsletterNotification,
   safeEmailSend } from
 '@/lib/email-service';
-import { createClient } from '@/lib/supabase-client';
 import { supabase } from '@/lib/supabase';
 import { checkForSpam, isSubmittedTooFast } from '@/lib/spam-protection';
 
@@ -362,7 +361,7 @@ export async function subscribeToNewsletter(formData: FormData) {
 }
 
 // Resource download action
-async function downloadResource(formData: FormData) {
+export async function downloadResource(formData: FormData) {
   try {
     const email = formData.get('email') as string;
     const firstName = formData.get('firstName') as string;
@@ -535,7 +534,7 @@ export async function submitConsultingInquiry(data: any) {
 }
 
 // Update speaking inquiry to use email integration
-async function submitSpeakingInquiry(data: any) {
+export async function submitSpeakingInquiry(data: any) {
   try {
     // SPAM PROTECTION CHECK
     const clientIP = await getClientIP();
@@ -602,7 +601,7 @@ async function submitSpeakingInquiry(data: any) {
 }
 
 // Enhanced waitlist action with email integration
-async function submitWaitlistSignup(data: any) {
+export async function submitWaitlistSignup(data: any) {
   try {
     // Get tracking data from the form
     const referrer = data.referrer || null;

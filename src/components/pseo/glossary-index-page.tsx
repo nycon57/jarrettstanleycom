@@ -23,7 +23,7 @@ const categoryBadgeVariant: Record<GlossaryCategory, 'lilac' | 'orchid' | 'skywa
   'compliance-regulation': 'lilac',
 }
 
-export function GlossaryIndexClient({ terms, alphabetMap }: GlossaryIndexPageProps) {
+export function GlossaryIndexClient({ terms, alphabetMap: _alphabetMap }: GlossaryIndexPageProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<GlossaryCategory | null>(null)
 

@@ -19,7 +19,6 @@ import {
   FileText,
   Linkedin,
   ArrowRight,
-  ExternalLink,
   Wrench,
   Lightbulb,
   Users

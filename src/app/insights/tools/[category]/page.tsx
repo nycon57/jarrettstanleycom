@@ -1,7 +1,6 @@
 import type { Metadata } from 'next'
-import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowRight, Calendar, CheckCircle, XCircle, Trophy, ExternalLink, Star } from 'lucide-react'
+import { Calendar, CheckCircle, XCircle, Trophy, ExternalLink, Star } from 'lucide-react'
 import { getAllToolRoundups, getToolRoundup, buildToolBreadcrumbs } from '@/lib/pseo'
 import {
   generateMetadata as genMeta,

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { m } from "framer-motion";
-import { ServiceCard } from "@/components/sections/service-card";
 import { Button } from "@/components/ui/button";
 import { 
   Mic2, 

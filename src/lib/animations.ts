@@ -166,7 +166,6 @@ const createGradientAnimation = (
 colors: string[] = ["lilac", "orchid", "skyward"],
 direction = "to-r") =>
 {
-  const gradientColors = colors.join(" ");
   return cn(
     `bg-gradient-${direction}`,
     `from-${colors[0]}`,

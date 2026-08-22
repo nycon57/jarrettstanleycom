@@ -195,7 +195,7 @@ export function hasConsentFor(type: 'necessary' | 'analytics' | 'marketing'): bo
 }
 
 // Get all consent preferences
-function getConsentPreferences() {
+export function getConsentPreferences() {
   if (typeof window === 'undefined') {
     return { necessary: false, analytics: false, marketing: false };
   }

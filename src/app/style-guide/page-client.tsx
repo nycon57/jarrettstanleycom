@@ -17,7 +17,6 @@ import {
   Home,
   Menu,
   X,
-  ChevronRight,
   AlertCircle,
   CheckCircle,
   XCircle,
@@ -26,7 +25,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -41,8 +40,7 @@ import {
   Text, 
   Label, 
   Caption, 
-  Code, 
-  Blockquote 
+  Code 
 } from "@/components/ui/typography";
 import { 
   Spinner, 
@@ -60,7 +58,6 @@ const GRID_COLUMNS = Array.from({ length: 12 }, (_, position) => ({
 
 function useStyleGuidePageClientView() {
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
-  const [progressValue, setProgressValue] = useState(60);
 
   const copyToClipboard = (text: string, item: string) => {
     navigator.clipboard.writeText(text);

@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname } from 'next/navigation';
 import { useScrollDirection } from './useScrollDirection';
 
 type NavState = 'transparent' | 'blurred' | 'solid' | 'hidden';
@@ -13,7 +12,6 @@ interface NavStateConfig {
 }
 
 export function useNavState(): NavStateConfig {
-  const pathname = usePathname();
   const { scrollDirection, scrollY, isScrolled } = useScrollDirection(10);
   const isVisible = !(scrollY >= 100 && scrollDirection === 'down');
 

@@ -414,7 +414,7 @@ export function generateWebsiteSchema() {
 }
 
 // Generate structured data for articles/blog posts
-function generateArticleSchema({
+export function generateArticleSchema({
   title,
   description,
   publishedTime,
@@ -498,18 +498,18 @@ export function generateStructuredData(schemas: object[]) {
 }
 
 // Generate canonical URL
-function generateCanonicalUrl(path: string = '') {
+export function generateCanonicalUrl(path: string = '') {
   const cleanPath = path.startsWith('/') ? path : `/${path}`;
   return `${siteConfig.url}${cleanPath}`;
 }
 
 // Generate breadcrumb items for navigation
-function generateBreadcrumbs(path: string): Array<{name: string;url: string;}> {
+export function generateBreadcrumbs(path: string): Array<{name: string;url: string;}> {
   const paths = path.split('/').filter(Boolean);
   const breadcrumbs = [{ name: 'Home', url: '/' }];
 
   let currentPath = '';
-  paths.forEach((segment, index) => {
+  paths.forEach((segment) => {
     currentPath += `/${segment}`;
     const name = segment.
     split('-').
@@ -526,7 +526,7 @@ function generateBreadcrumbs(path: string): Array<{name: string;url: string;}> {
 }
 
 // SEO-friendly URL slug generator
-function generateSlug(title: string): string {
+export function generateSlug(title: string): string {
   return title.
   toLowerCase().
   replace(/[^\w\s-]/g, '') // Remove special characters
@@ -536,7 +536,7 @@ function generateSlug(title: string): string {
 }
 
 // Generate page-specific keywords
-function generatePageKeywords(baseKeywords: string[], pageSpecific: string[] = []): string[] {
+export function generatePageKeywords(baseKeywords: string[], pageSpecific: string[] = []): string[] {
   return [...Array.from(new Set([...siteConfig.keywords, ...baseKeywords, ...pageSpecific]))];
 }
 

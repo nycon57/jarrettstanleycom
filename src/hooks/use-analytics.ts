@@ -179,7 +179,7 @@ export function useAnalytics() {
     trackForm('consulting_form', 'consulting', formData);
   }, [trackConversionStep, trackConsulting, trackForm]);
 
-  const trackNewsletterStart = useCallback((location: string) => {
+  const trackNewsletterStart = useCallback((_location: string) => {
     trackConversionStep('signup_start', 'newsletter_conversion', 1);
   }, [trackConversionStep]);
 
@@ -188,7 +188,7 @@ export function useAnalytics() {
     trackNewsletter(location, leadMagnet);
   }, [trackConversionStep, trackNewsletter]);
 
-  const trackResourceRequestStart = useCallback((resourceName: string) => {
+  const trackResourceRequestStart = useCallback((_resourceName: string) => {
     trackConversionStep('request_start', 'resource_conversion', 1);
   }, [trackConversionStep]);
 

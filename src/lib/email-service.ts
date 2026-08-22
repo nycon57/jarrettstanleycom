@@ -95,14 +95,14 @@ export interface MediaInquiryData {
 }
 
 // Template variable substitution helper
-const substituteTemplateVariables = (template: string, variables: Record<string, any>): string => {
+export const substituteTemplateVariables = (template: string, variables: Record<string, any>): string => {
   return template.replace(/\{\{(\w+)\}\}/g, (match, key) => {
     return variables[key] || match;
   });
 };
 
 // Get template from database
-const getEmailTemplate = async (templateName: string) => {
+export const getEmailTemplate = async (templateName: string) => {
   try {
     const { data, error } = await supabase.
     from('email_templates').

@@ -3,11 +3,9 @@
 import React from "react";
 import { m } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Heading, Text } from "@/components/ui/typography";
-import { HOVER_EFFECTS, ANIMATIONS } from "@/lib/animations";
-import { IconBook, IconVideo, IconMicrophone, IconDownload, IconUsers, IconTrendingUp, IconCalendar, IconStar, IconSearch, IconFilter, IconTag } from "@tabler/icons-react";
+import { IconBook, IconVideo, IconDownload, IconUsers, IconCalendar, IconStar, IconSearch } from "@tabler/icons-react";
 import { CheckCircle, ArrowRight, Clock, Eye } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";

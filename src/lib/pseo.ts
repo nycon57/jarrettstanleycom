@@ -99,7 +99,7 @@ export function resolveRelatedLinkUrl(link: RelatedLink): string {
   return `${base}/${link.slug}`;
 }
 
-function resolveRelatedLinkFullUrl(link: RelatedLink): string {
+export function resolveRelatedLinkFullUrl(link: RelatedLink): string {
   return `${siteConfig.url}${resolveRelatedLinkUrl(link)}`;
 }
 
@@ -120,7 +120,7 @@ export async function getRelatedGlossaryTerms(slugs: string[]): Promise<Glossary
   return relatedTerms;
 }
 
-async function getGlossaryTermsByCategory(category: string): Promise<GlossaryTerm[]> {
+export async function getGlossaryTermsByCategory(category: string): Promise<GlossaryTerm[]> {
   const allTerms = await getAllGlossaryTerms();
   return allTerms.filter((t) => t.category === category);
 }

@@ -40,6 +40,29 @@ const eslintConfig = [
       // the SSR-safe way to do it in this app; a lazy initializer would
       // hydrate against server state that does not have the value.
       'react-hooks/set-state-in-effect': 'warn',
+
+      // A leading underscore marks a binding that exists for its position in a
+      // signature — a required handler argument, a discarded destructured
+      // field — and is deliberately not read.
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        {
+          args: 'after-used',
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
+    },
+  },
+  {
+    // Declaration files exist to declare types for other code to use; nothing
+    // in the file itself references them.
+    files: ['**/*.d.ts'],
+    rules: {
+      '@typescript-eslint/no-unused-vars': 'off',
     },
   },
   {

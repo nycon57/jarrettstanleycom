@@ -4,7 +4,6 @@ import { generateMetadata as generateSEOMetadata } from '@/lib/seo'
 import { Button } from '@/components/ui/button'
 import { BlogPostCard } from '@/components/ui/blog-post-card'
 import { ResourceCard } from '@/components/ui/resource-card'
-import { Badge } from '@/components/ui/badge'
 import { getBlogPosts, getResources, getCategories } from '@/app/actions/blog'
 import { ArrowRight, BookOpen, Download, Lightbulb, TrendingUp } from 'lucide-react'
 

@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   return NextResponse.json(
     { 
       error: 'Method not allowed. Use POST to send emails.' 

@@ -2,7 +2,6 @@
 
 import { m } from "framer-motion";
 import { ConsultingInquiryForm } from "@/components/consulting-inquiry-form";
-import { CaseStudyCard } from "@/components/sections/case-study-card";
 import { ProcessStep } from "@/components/sections/process-step";
 import { CtaSection } from "@/components/sections/cta-section";
 import { Button } from "@/components/ui/button";
@@ -85,6 +84,9 @@ const engagementModels = [
   }
 ];
 
+// The Case Studies section is commented out in the JSX below; the content is
+// kept here so it can be switched back on without rewriting it.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const caseStudies = [
   {
     title: "AI-Powered Lead Generation",

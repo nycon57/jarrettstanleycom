@@ -86,7 +86,7 @@ SelectItem.displayName = SelectPrimitive.Item.displayName;
 
 export {
   Select,
-
+  SelectGroup,
   SelectValue,
   SelectTrigger,
   SelectContent,

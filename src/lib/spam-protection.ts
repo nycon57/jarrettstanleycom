@@ -195,7 +195,6 @@ export function checkForSpam(data: {
   identifier?: string; // IP or email for rate limiting
 }): SpamCheckResult {
   let score = 0;
-  let reason: string | undefined;
 
   // Check honeypot (immediate fail)
   if (isHoneypotFilled(data.honeypot)) {

@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET(_req: NextRequest) {
   return NextResponse.json({
     message: 'Email Test Endpoint',
     usage: 'POST with the configured bearer token and { type: "contact"|"newsletter", email: "test@example.com", name: "Test User" }',

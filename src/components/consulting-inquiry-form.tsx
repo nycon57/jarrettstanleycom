@@ -28,7 +28,6 @@ function useConsultingInquiryFormView() {
     handleSubmit,
     formState: { errors },
     setValue,
-    watch,
     reset,
   } = useForm<ConsultingFormData>({
     resolver: zodResolver(consultingFormSchema),

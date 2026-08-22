@@ -60,7 +60,7 @@ const CONVERSION_VALUES: Record<string, {value: number;currency: string;}> = {
 /**
  * Initialize Google Analytics 4
  */
-const initGA = () => {
+export const initGA = () => {
   if (!GA_MEASUREMENT_ID) {
     console.warn('Google Analytics Measurement ID not found');
     return;
@@ -88,7 +88,7 @@ const initGA = () => {
 /**
  * Initialize Microsoft Clarity
  */
-const initClarity = () => {
+export const initClarity = () => {
   if (!CLARITY_PROJECT_ID) {
     console.warn('Microsoft Clarity Project ID not found');
     return;
@@ -241,7 +241,7 @@ export const trackContentEngagement = (contentType: 'blog_post' | 'resource' | '
 /**
  * Reading progress tracking for blog posts
  */
-const trackReadingProgress = (postTitle: string, progress: number) => {
+export const trackReadingProgress = (postTitle: string, progress: number) => {
   // Track at 25%, 50%, 75%, and 100% milestones
   const milestones = [25, 50, 75, 100];
   const milestone = milestones.find((m) => progress >= m && progress < m + 5);
