@@ -58,48 +58,11 @@ const CONVERSION_VALUES: Record<string, {value: number;currency: string;}> = {
 };
 
 /**
- * Initialize Google Analytics 4
+ * gtag.js, Microsoft Clarity, and Google Ads are loaded by AnalyticsProvider
+ * (src/components/analytics/analytics-provider.tsx), behind the cookie-consent
+ * gate. Everything below assumes that has already run and no-ops when it has
+ * not — never bootstrap a tag from here.
  */
-export const initGA = () => {
-  if (!GA_MEASUREMENT_ID) {
-    console.warn('Google Analytics Measurement ID not found');
-    return;
-  }
-
-  // Initialize gtag
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    // gtag reads an arguments-like, not an array, so forward it verbatim.
-    // eslint-disable-next-line prefer-rest-params
-    window.dataLayer.push(arguments);
-  };
-
-  window.gtag('js', new Date());
-  window.gtag('config', GA_MEASUREMENT_ID, {
-    page_title: document.title,
-    page_location: window.location.href,
-    custom_parameters: {
-      site_name: 'JarrettStanley.com',
-      content_group1: 'Main Site'
-    }
-  });
-};
-
-/**
- * Initialize Microsoft Clarity
- */
-export const initClarity = () => {
-  if (!CLARITY_PROJECT_ID) {
-    console.warn('Microsoft Clarity Project ID not found');
-    return;
-  }
-
-  window.clarity = window.clarity || function () {
-    // Clarity's queue expects the raw `arguments` object, as gtag does above.
-    // eslint-disable-next-line prefer-rest-params
-    (window.clarity.q = window.clarity.q || []).push(arguments);
-  };
-};
 
 /**
  * Track page views (gated by analytics consent)
