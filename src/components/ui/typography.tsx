@@ -229,8 +229,8 @@ interface CodeProps extends React.HTMLAttributes<HTMLElement> {
 Code.displayName = "Code";
 
 // Blockquote Component
-interface BlockquoteProps extends
-  React.BlockquoteHTMLAttributes<HTMLQuoteElement> {}function Blockquote(
+type BlockquoteProps = React.BlockquoteHTMLAttributes<HTMLQuoteElement>;
+function Blockquote(
 
 
 { className, ref, ...props }: BlockquoteProps & {ref?: React.Ref<HTMLQuoteElement>;}) {

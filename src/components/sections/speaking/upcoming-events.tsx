@@ -29,10 +29,6 @@ export function UpcomingEvents() {
   })
   const { events, loading } = eventState
 
-  useEffect(() => {
-    fetchUpcomingEvents()
-  }, [])
-
   async function fetchUpcomingEvents() {
     try {
       const supabase = createBrowserClient()
@@ -63,6 +59,11 @@ export function UpcomingEvents() {
       setEventState({ events: placeholderEvents, loading: false })
     }
   }
+
+  useEffect(() => {
+    fetchUpcomingEvents()
+  }, [])
+
 
   const getEventTypeLabel = (type: string) => {
     const labels = {

@@ -32,10 +32,6 @@ export function SpeakingTestimonials() {
   })
   const { testimonials, loading } = testimonialState
 
-  useEffect(() => {
-    fetchTestimonials()
-  }, [])
-
   async function fetchTestimonials() {
     try {
       const supabase = createBrowserClient()
@@ -60,6 +56,11 @@ export function SpeakingTestimonials() {
       setTestimonialState({ testimonials: placeholderTestimonials, loading: false })
     }
   }
+
+  useEffect(() => {
+    fetchTestimonials()
+  }, [])
+
 
   if (loading) {
     return (

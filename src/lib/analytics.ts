@@ -69,6 +69,8 @@ const initGA = () => {
   // Initialize gtag
   window.dataLayer = window.dataLayer || [];
   window.gtag = function gtag() {
+    // gtag reads an arguments-like, not an array, so forward it verbatim.
+    // eslint-disable-next-line prefer-rest-params
     window.dataLayer.push(arguments);
   };
 
@@ -93,6 +95,8 @@ const initClarity = () => {
   }
 
   window.clarity = window.clarity || function () {
+    // Clarity's queue expects the raw `arguments` object, as gtag does above.
+    // eslint-disable-next-line prefer-rest-params
     (window.clarity.q = window.clarity.q || []).push(arguments);
   };
 };
@@ -527,9 +531,12 @@ export const trackScrollDepth = (depth: number, page: string) => {
 };
 
 // Helper function to debounce events
-export const debounce = (func: Function, wait: number) => {
+export const debounce = <TArgs extends unknown[]>(
+func: (...args: TArgs) => void,
+wait: number) =>
+{
   let timeout: NodeJS.Timeout;
-  return function executedFunction(...args: any[]) {
+  return function executedFunction(...args: TArgs) {
     const later = () => {
       clearTimeout(timeout);
       func(...args);
