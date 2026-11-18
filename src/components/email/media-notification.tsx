@@ -281,7 +281,7 @@ function renderMediaNotificationEmail({
         </h3>
         
         <div style={{ display: 'grid', gap: '10px', marginBottom: '20px' }}>
-          <a href={`mailto:${email}?subject=Re: Media Inquiry - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for reaching out to me regarding ${topic}. I'd be happy to contribute to your story for ${outlet}.%0D%0A%0D%0AI'm available for ${interview_type === 'written' ? 'written responses' : interview_type === 'phone' ? 'a phone interview' : interview_type === 'video' ? 'a video interview' : 'an in-person interview'}${deadline ? ` and understand your ${shortDeadlineLabel} deadline` : ''}.%0D%0A%0D%0AAs CMO at Nationwide Mortgage Bankers and AI marketing innovator, I can provide insights on:%0D%0A- AI implementation in financial services marketing%0D%0A- Current trends in mortgage industry technology%0D%0A- The intersection of artificial intelligence and authentic marketing%0D%0A%0D%0AWould ${interview_type === 'written' ? 'receiving your questions via email work best' : 'scheduling a brief call to discuss the interview details work for you'}?%0D%0A%0D%0AI can also provide additional background information, high-resolution photos, or connect you with other industry experts if needed.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley%0D%0ACMO, Nationwide Mortgage Bankers%0D%0AAI Marketing Pioneer%0D%0Ajarrett@jarrettstanley.com`} style={MEDIA_NOTIFICATION_STYLE_1}>
+          <a href={`mailto:${email}?subject=Re: Media Inquiry - ${topic}&body=Hi ${first_name},%0D%0A%0D%0AThank you for reaching out to me regarding ${topic}. I'd be happy to contribute to your story for ${outlet}.%0D%0A%0D%0AI'm available for ${interview_type === 'written' ? 'written responses' : interview_type === 'phone' ? 'a phone interview' : interview_type === 'video' ? 'a video interview' : 'an in-person interview'}${deadline ? ` and understand your ${shortDeadlineLabel} deadline` : ''}.%0D%0A%0D%0AAs CMO at Nationwide Mortgage Bankers and AI marketing innovator, I can provide insights on:%0D%0A- AI implementation in financial services marketing%0D%0A- Current trends in mortgage industry technology%0D%0A- The intersection of artificial intelligence and authentic marketing%0D%0A%0D%0AWould ${interview_type === 'written' ? 'receiving your questions via email work best' : 'scheduling a brief call to discuss the interview details work for you'}?%0D%0A%0D%0AI can also provide additional background information, high-resolution photos, or connect you with other industry experts if needed.%0D%0A%0D%0ABest regards,%0D%0AJarrett Stanley%0D%0ACMO, Nationwide Mortgage Bankers%0D%0AAI Marketing Pioneer%0D%0Ajarrett@truetone.ai`} style={MEDIA_NOTIFICATION_STYLE_1}>
             📧 Send Professional Response
           </a>
           
@@ -323,7 +323,7 @@ function renderMediaNotificationEmail({
             </a>
           )}
           
-          <a href="mailto:jarrett@jarrettstanley.com?subject=Press Kit Request" style={{
+          <a href="mailto:jarrett@truetone.ai?subject=Press Kit Request" style={{
             backgroundColor: '#059669',
             color: 'white',
             padding: '8px 16px',

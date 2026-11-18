@@ -24,7 +24,7 @@ export const siteConfig = {
   author: {
     name: 'Jarrett Stanley',
     url: 'https://jarrettstanley.com',
-    email: 'hello@jarrettstanley.com',
+    email: 'jarrett@truetone.ai',
     twitter: '@jarrettstanley',
     linkedin: 'https://linkedin.com/in/jarrettstanley'
   },

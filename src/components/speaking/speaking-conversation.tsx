@@ -296,7 +296,7 @@ export function SpeakingConversation() {
 
             {status === 'error' ? (
               <p role="alert" className="text-sm text-destructive">
-                That didn&apos;t send. Try again, or email jarrett@jarrettstanley.com.
+                That didn&apos;t send. Try again, or email jarrett@truetone.ai.
               </p>
             ) : null}
           </div>

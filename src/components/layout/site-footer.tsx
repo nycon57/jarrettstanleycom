@@ -42,7 +42,7 @@ const COLUMNS = [
 const SOCIAL = [
   { name: 'LinkedIn', href: 'https://linkedin.com/in/jarrettstanley', Icon: BrandLinkedin },
   { name: 'X', href: 'https://x.com/IAmJarrettS', Icon: BrandX },
-  { name: 'Email', href: 'mailto:jarrett@jarrettstanley.com', Icon: IconMail },
+  { name: 'Email', href: 'mailto:jarrett@truetone.ai', Icon: IconMail },
 ] as const
 
 const linkClass =

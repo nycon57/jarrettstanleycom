@@ -280,7 +280,7 @@ function renderNewsletterWelcomeEmail({
           }}>
             Connect on LinkedIn
           </Link>
-          <Link href="mailto:jarrett@jarrettstanley.com" style={{
+          <Link href="mailto:jarrett@truetone.ai" style={{
             ...styles.buttonSecondary,
             marginBottom: '10px',
           }}>

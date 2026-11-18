@@ -20,7 +20,9 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 // Default email configuration
 const DEFAULT_FROM = 'Jarrett Stanley <jarrett@mail.jarrettstanley.com>';
-const NOTIFICATION_EMAIL = 'jarrett@jarrettstanley.com';
+// Jarrett's inbox: every form notification goes here, and it is the reply-to on everything the site sends.
+// jarrettstanley.com has no MX records, so nothing can be received on that domain (2026-11-18).
+const NOTIFICATION_EMAIL = 'jarrett@truetone.ai';
 
 // Email logging and status types
 export type EmailStatus = 'pending' | 'sent' | 'delivered' | 'failed' | 'bounced' | 'complained';
@@ -159,7 +161,7 @@ export const sendEmail = async (config: EmailConfig): Promise<{id: string;emailL
     to_email: primaryRecipient,
     cc_emails: ccEmails,
     bcc_emails: bccEmails,
-    reply_to: config.replyTo,
+    reply_to: config.replyTo ?? NOTIFICATION_EMAIL,
     subject: config.subject,
     status: 'pending',
     email_type,
@@ -187,7 +189,7 @@ export const sendEmail = async (config: EmailConfig): Promise<{id: string;emailL
       subject: config.subject,
       html: config.html,
       react: config.react,
-      replyTo: config.replyTo
+      replyTo: config.replyTo ?? NOTIFICATION_EMAIL
     });
 
     if (error) {

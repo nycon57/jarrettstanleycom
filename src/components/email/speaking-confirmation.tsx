@@ -209,7 +209,7 @@ export const SpeakingConfirmationEmail: React.FC<Readonly<SpeakingConfirmationEm
           For urgent requests or additional questions:
         </p>
         <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
-          <a href="mailto:jarrett@jarrettstanley.com" style={{
+          <a href="mailto:jarrett@truetone.ai" style={{
             backgroundColor: '#3b82f6',
             color: 'white',
             padding: '8px 16px',

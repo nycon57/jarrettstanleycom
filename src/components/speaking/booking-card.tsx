@@ -186,7 +186,7 @@ function ContactFields({ field, errors, failed }: FieldProps & { failed: boolean
                   </div>
                   {failed ? (
                     <p role="alert" className="text-sm text-destructive">
-                      That didn&apos;t send. Try again, or email jarrett@jarrettstanley.com.
+                      That didn&apos;t send. Try again, or email jarrett@truetone.ai.
                     </p>
                   ) : null}
                 </div>

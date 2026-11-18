@@ -288,8 +288,8 @@ export function ClosingCta() {
             Book Jarrett to speak
             <IconArrowRight className="size-4" />
           </Link>
-          <a href="mailto:jarrett@jarrettstanley.com" className="btn-ghost">
-            jarrett@jarrettstanley.com
+          <a href="mailto:jarrett@truetone.ai" className="btn-ghost">
+            jarrett@truetone.ai
           </a>
         </div>
       </div>

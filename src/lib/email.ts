@@ -18,6 +18,8 @@ export interface EmailConfig {
 
 // Default email configuration
 const DEFAULT_FROM = 'Jarrett Stanley <hello@mail.jarrettstanley.com>';
+// jarrettstanley.com receives no mail, so replies go to Jarrett's inbox.
+const DEFAULT_REPLY_TO = 'jarrett@truetone.ai';
 
 export const sendEmail = async (config: EmailConfig) => {
   try {
@@ -27,7 +29,7 @@ export const sendEmail = async (config: EmailConfig) => {
       subject: config.subject,
       html: config.html,
       react: config.react,
-      replyTo: config.replyTo
+      replyTo: config.replyTo ?? DEFAULT_REPLY_TO
     });
 
     if (error) {

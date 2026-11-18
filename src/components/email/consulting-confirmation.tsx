@@ -254,7 +254,7 @@ export const ConsultingConfirmationEmail: React.FC<Readonly<ConsultingConfirmati
           }}>
             Schedule Discovery Call
           </a>
-          <a href="mailto:jarrett@jarrettstanley.com" style={{
+          <a href="mailto:jarrett@truetone.ai" style={{
             backgroundColor: '#6b7280',
             color: 'white',
             padding: '12px 24px',

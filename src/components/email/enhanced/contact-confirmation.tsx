@@ -212,8 +212,8 @@ export const ContactConfirmationEmail: React.FC<ContactConfirmationEmailProps> =
             lineHeight: '1.5',
           }}>
             For urgent requests or last-minute interviews, you can reach us directly at{' '}
-            <Link href="mailto:jarrett@jarrettstanley.com" style={{ color: colors.primary }}>
-              jarrett@jarrettstanley.com
+            <Link href="mailto:jarrett@truetone.ai" style={{ color: colors.primary }}>
+              jarrett@truetone.ai
             </Link>{' '}
             or call/text for immediate response. Media kit and photos available upon request.
           </Text>
