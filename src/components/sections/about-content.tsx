@@ -9,7 +9,7 @@ const timelineItems = [
     date: 'May 2023 - Present',
     title: 'Chief Marketing Officer',
     company: 'Nationwide Mortgage Bankers',
-    description: 'Leading comprehensive marketing transformation and AI innovation strategy. Managing enterprise-wide digital initiatives that have driven 300% increase in qualified leads and established NMB as an industry innovation leader.',
+    description: 'I lead marketing and AI strategy across the company. The digital programs my team runs have driven a 300% increase in qualified leads.',
     type: 'position' as const,
   },
   {
@@ -17,7 +17,7 @@ const timelineItems = [
     date: 'Jun 2021 - May 2023',
     title: 'EVP & CMO',
     company: 'Nationwide Mortgage Bankers / Southern Trust Mortgage',
-    description: 'Orchestrated the successful marketing integration during merger, unifying brand strategies and scaling operations across multiple states. Elevated from EVP to CMO while pioneering AI-powered marketing automation that revolutionized lead generation and compliance processes.',
+    description: 'I ran the marketing side of the merger, bringing two brands and their operations together across several states. I went from EVP to CMO in that stretch and built AI-powered marketing automation for lead generation and compliance.',
     type: 'position' as const,
   },
   {
@@ -25,7 +25,7 @@ const timelineItems = [
     date: '2023',
     title: 'HousingWire Marketing Leader',
     company: 'HousingWire',
-    description: 'Recognized for revolutionizing the mortgage industry\'s marketing landscape through data-driven strategies, predictive analytics, and fostering a culture of innovation that allows rapid response to market shifts and emerging trends.',
+    description: 'Recognized for data-driven marketing, predictive analytics and a team culture that moves quickly when the market shifts.',
     type: 'achievement' as const,
   },
   {
@@ -33,7 +33,7 @@ const timelineItems = [
     date: '2022',
     title: 'Top 40 Under 40',
     company: 'National Mortgage Professional',
-    description: 'Honored for leveraging technology to create premium user experiences and championing expanded homeownership opportunities for underserved communities through innovative first-time buyer programs.',
+    description: 'Recognized for using technology to build better borrower experiences, and for first-time buyer programs that expand homeownership in underserved communities.',
     type: 'achievement' as const,
   },
   {
@@ -41,7 +41,7 @@ const timelineItems = [
     date: '2020',
     title: 'Digital Innovation Award',
     company: 'Mortgage Bankers Association',
-    description: 'Recognized for pioneering use of AI and machine learning in mortgage marketing compliance and content generation.',
+    description: 'Recognized for early use of AI and machine learning in mortgage marketing compliance and content.',
     type: 'achievement' as const,
   },
   {
@@ -49,7 +49,7 @@ const timelineItems = [
     date: 'Sep 2016 - Jun 2021',
     title: 'VP to SVP of Marketing',
     company: 'Southern Trust Mortgage',
-    description: 'Set the vision for brand representation, recruiting, and marketing support across all channels. Led agile transformation of marketing operations, managing multi-million dollar budgets and building a high-performance team that delivered consistent quarterly growth through data-driven strategies.',
+    description: 'I set the direction for the brand, recruiting and marketing support across every channel. I moved the department to agile, managed multi-million dollar budgets and built a team that delivered steady quarterly growth.',
     type: 'position' as const,
   },
   {
@@ -57,7 +57,7 @@ const timelineItems = [
     date: 'Jul 2011 - Sep 2016',
     title: 'Creative Director',
     company: 'Atlantic Bay Mortgage Group',
-    description: 'Orchestrated complete company rebrand in 2013 that tripled market share and catalyzed expansion to 40+ new locations nationwide. Led creative vision across all mediums, contributing to record $3B+ in annual production and recognition as a top 100 mortgage company nationally.',
+    description: 'I led the 2013 rebrand that tripled market share and helped the company expand to 40+ new locations. I ran creative across every medium as the company reached a record $3B+ in annual production and was named a top 100 mortgage company nationally.',
     type: 'position' as const,
   },
   {
@@ -65,7 +65,7 @@ const timelineItems = [
     date: 'Jun 2007 - Jul 2011',
     title: 'Senior Graphic Designer',
     company: 'Movement Mortgage',
-    description: 'Instrumental in scaling marketing operations during explosive growth from 8 to 500+ employees. Established foundational brand identity and marketing systems that supported multi-state expansion while maintaining consistent brand excellence.',
+    description: 'I helped build the marketing operation while the company grew from 8 to 500+ employees, including the brand identity and marketing systems behind its multi-state expansion.',
     type: 'position' as const,
   },
 ]
@@ -73,22 +73,22 @@ const timelineItems = [
 const expertiseAreas = [
   {
     title: 'Mortgage Marketing',
-    description: 'Deep expertise in compliance-driven marketing strategies that generate results while adhering to industry regulations.',
+    description: 'Marketing that brings in business and stays inside the rules lenders work under.',
     skills: ['Lead Generation', 'Compliance Marketing', 'Brand Strategy', 'Campaign Management'],
   },
   {
     title: 'AI & Technology',
-    description: 'Pioneer in applying artificial intelligence to solve real-world mortgage marketing challenges.',
+    description: 'Putting AI to work on the marketing problems lenders actually have.',
     skills: ['AI Implementation', 'MarTech Stack', 'Automation', 'Data Analytics'],
   },
   {
     title: 'Digital Innovation',
-    description: 'Transforming traditional mortgage marketing through cutting-edge digital strategies and tools.',
+    description: 'Moving traditional mortgage marketing onto digital channels and tools.',
     skills: ['Digital Transformation', 'Innovation Strategy', 'Process Optimization', 'Tech Integration'],
   },
   {
     title: 'Team Leadership',
-    description: 'Building and mentoring high-performance marketing teams that deliver exceptional results.',
+    description: 'Building and coaching marketing teams that do strong work.',
     skills: ['Team Building', 'Talent Development', 'Strategic Planning', 'Culture Development'],
   },
 ]
@@ -103,8 +103,8 @@ export function AboutContent() {
               Hi, I&apos;m Jarrett Stanley.
             </h1>
             <p className="t-lede mt-7" style={{ '--i': 1 } as React.CSSProperties}>
-              Chief Marketing Officer at Nationwide Mortgage Bankers and CEO of TrueTone AI. I&apos;m on a mission to
-              revolutionize mortgage marketing through the power of artificial intelligence.
+              I&apos;m Chief Marketing Officer at Nationwide Mortgage Bankers and CEO of TrueTone AI. I build marketing
+              with AI every day, and I talk about what works and what doesn&apos;t.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-3" style={{ '--i': 2 } as React.CSSProperties}>
               <Link href="/speaking#book" className="btn-primary">
@@ -133,22 +133,21 @@ export function AboutContent() {
 
       <section className="hp-section hp-section--lift" aria-labelledby="summary-title">
         <div className="shell grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)] lg:gap-20">
-          <SectionHead id="summary-title" title="Bridging innovation and tradition." />
+          <SectionHead id="summary-title" title="Fifteen years in, still building." />
           <div className="grid gap-6 text-[1.0625rem] leading-[1.7] text-hp-muted">
             <p>
-              With over 15 years in mortgage marketing, I&apos;ve witnessed the industry&apos;s evolution from traditional
-              methods to digital-first strategies. My journey has been defined by a constant pursuit of innovation while
-              respecting the fundamental principles that make mortgage lending a cornerstone of the American dream.
+              I&apos;ve spent more than 15 years in mortgage marketing, at Movement Mortgage, Atlantic Bay Mortgage Group,
+              Southern Trust Mortgage and Nationwide Mortgage Bankers. I started as a designer, and I still care how the
+              work looks and reads.
             </p>
             <p>
-              As CMO at Nationwide Mortgage Bankers, I lead a team of talented marketers in crafting campaigns that not
-              only generate leads but build lasting relationships. My work in AI innovation stems from a belief that
-              technology should empower mortgage professionals, not replace the human touch that defines our industry.
+              As CMO at Nationwide, I lead a team that brings in leads and builds relationships for our loan officers. I
+              use AI because it lets people who know the work do more of it. It does not replace the person who knows
+              what good looks like.
             </p>
             <p>
-              I&apos;m passionate about sharing knowledge and helping others navigate the intersection of mortgage lending
-              and artificial intelligence. Whether through speaking engagements, consulting, or mentorship, I&apos;m
-              committed to elevating our industry&apos;s marketing standards.
+              I share what I learn on stage, in my newsletter The Signal, on The TrueTone Show with Corey Shelton, and
+              with the companies I advise.
             </p>
           </div>
         </div>
@@ -160,7 +159,7 @@ export function AboutContent() {
             <SectionHead
               id="journey-title"
               title="Professional journey."
-              lede="The positions and recognition that shaped how I work."
+              lede="Where I've worked and what came of it."
             />
           </div>
           <ol className="border-t border-hp-rule">
@@ -183,7 +182,7 @@ export function AboutContent() {
           <SectionHead
             id="expertise-title"
             title="Areas of expertise."
-            step="Industry depth, current tools."
+            step="What I bring to the work."
           />
           <dl className="mt-14 grid gap-x-16 border-t border-hp-rule md:grid-cols-2">
             {expertiseAreas.map((area) => (
@@ -202,21 +201,17 @@ export function AboutContent() {
       <section className="hp-section" aria-labelledby="mission-title">
         <div className="shell">
           <h2 id="mission-title" className="sr-only">
-            My mission
+            What I believe
           </h2>
-          <p className="max-w-5xl font-display text-[clamp(1.5rem,1rem+1.9vw,2.5rem)] font-light leading-[1.25] tracking-[-0.015em] text-hp-muted text-balance">
-            I believe the future of mortgage marketing lies at the intersection of human creativity and artificial
-            intelligence.{' '}
-            <span className="text-hp-text">
-              My mission is to empower mortgage professionals with the tools and knowledge they need to thrive in this
-              new era.
-            </span>
-          </p>
-          <p className="t-lede mt-8 max-w-3xl">
-            Every day, I work to bridge the gap between cutting-edge technology and practical application. Whether
-            it&apos;s through AI innovation, speaking at industry events, or consulting with forward-thinking companies,
-            I&apos;m committed to elevating our industry&apos;s marketing capabilities while maintaining the trust and
-            integrity that borrowers deserve.
+          <figure className="max-w-5xl">
+            <blockquote className="font-display text-[clamp(1.75rem,1.1rem+2.4vw,3rem)] font-light leading-[1.14] tracking-[-0.02em] text-hp-text text-balance">
+              &ldquo;You want experts with power tools. What you don&apos;t want is a monkey with a machine gun.&rdquo;
+            </blockquote>
+            <figcaption className="mt-6 text-[0.9375rem] text-hp-muted">Me, on The TrueTone Show, Episode 2</figcaption>
+          </figure>
+          <p className="t-lede mt-10 max-w-3xl">
+            That&apos;s the idea behind the talks, the newsletter, the show and TrueTone AI. Give people who know the work
+            better tools, and keep the judgment with them.
           </p>
         </div>
       </section>

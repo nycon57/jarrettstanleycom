@@ -92,7 +92,7 @@ function renderMediaConfirmationEmail({
         }}>
           <h1 style={{ margin: '0', fontSize: '28px' }}>📰 Media Request Received</h1>
           <p style={{ margin: '10px 0 0 0', fontSize: '18px', opacity: '0.9' }}>
-            We'll get back to you promptly
+            I'll follow up personally
           </p>
         </div>
       </div>

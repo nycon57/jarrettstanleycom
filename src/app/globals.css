@@ -526,6 +526,54 @@
     to { opacity: 1; filter: blur(0); transform: none; }
   }
 
+  /* Option rows (contact page conversation): one choice per hairline row, mark on the right */
+  .option-row {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.875rem 0.25rem;
+    border-bottom: 1px solid var(--hp-rule);
+    color: var(--hp-muted);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: color 200ms var(--hp-ease), background-color 200ms var(--hp-ease);
+  }
+  .option-row:hover { color: var(--hp-text); background: oklch(0.97 0.008 295 / 0.025); }
+  .option-row input { position: absolute; opacity: 0; pointer-events: none; }
+  .option-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 9999px;
+    border: 1px solid var(--hp-rule-strong);
+    color: transparent;
+    transition: background-color 200ms var(--hp-ease), border-color 200ms var(--hp-ease), color 200ms var(--hp-ease);
+  }
+  .option-mark--square { border-radius: 0.3125rem; }
+  .option-row:has(input:checked) { color: var(--hp-text); }
+  .option-row:has(input:checked) .option-mark {
+    background: var(--hp-lilac-deep);
+    border-color: var(--hp-lilac-deep);
+    color: oklch(0.99 0.005 295);
+  }
+  .option-row:has(input:focus-visible) { outline: 2px solid var(--hp-focus); outline-offset: 2px; border-radius: 0.375rem; }
+
+  /* Multistep forms: direction-aware step change (forward slides in from the right, back from the left) */
+  .step-next { animation: step-next 260ms var(--hp-ease) both; }
+  .step-prev { animation: step-prev 260ms var(--hp-ease) both; }
+  @keyframes step-next {
+    from { opacity: 0; filter: blur(3px); transform: translateX(14px); }
+    to { opacity: 1; filter: blur(0); transform: none; }
+  }
+  @keyframes step-prev {
+    from { opacity: 0; filter: blur(3px); transform: translateX(-14px); }
+    to { opacity: 1; filter: blur(0); transform: none; }
+  }
+
   /* Entrance: one orchestrated hero reveal */
   .stagger > * {
     animation: rise 620ms var(--hp-ease) both;
@@ -534,6 +582,30 @@
   @keyframes rise {
     from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: none; }
+  }
+
+  /* Home hero portrait: the cut-out fades into the next band; a soft glow sits behind it before WebGL loads */
+  .hero-portrait {
+    -webkit-mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 72%, transparent 100%);
+    filter: drop-shadow(0 30px 60px oklch(0.1 0.03 280 / 0.55));
+  }
+  /* The scene never shows a canvas edge: a soft circular fade, so the rings dissolve before the text column */
+  .hero-orb {
+    pointer-events: none;
+    -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+  }
+  .hero-portrait-glow {
+    position: absolute;
+    left: 50%;
+    top: 4%;
+    width: 110%;
+    aspect-ratio: 1;
+    transform: translateX(-50%);
+    border-radius: 9999px;
+    background: radial-gradient(circle at 50% 42%, oklch(0.62 0.165 298 / 0.32) 0%, oklch(0.42 0.12 295 / 0.12) 38%, transparent 66%);
+    pointer-events: none;
   }
 
   /* Founder photography in the brand duotone (DESIGN.md) */
@@ -566,7 +638,9 @@
     .js-field,
     .page-hero::before { animation: none; }
     .stagger > * { animation: fade 200ms linear both; animation-delay: 0ms; }
-    .swap-in { animation: fade 160ms linear both; }
+    .swap-in,
+    .step-next,
+    .step-prev { animation: fade 160ms linear both; }
   }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 }

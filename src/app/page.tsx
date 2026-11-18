@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { HomeHero, WritingAndShow } from '@/components/home/home-sections'
+import { HomeBooking, HomeHero, WritingAndShow } from '@/components/home/home-sections'
 import { AboutStrip, ClosingCta, Colleagues, EngagementLedger, Faq, TalkTopics } from '@/components/speaking/sections'
 import { homeFaqs } from '@/lib/home-faqs'
 import {
@@ -44,6 +44,7 @@ export default async function HomePage() {
     <>
       <script type="application/ld+json">{homeStructuredData}</script>
       <HomeHero />
+      <HomeBooking />
       <EngagementLedger />
       <TalkTopics />
       <WritingAndShow posts={signal} />

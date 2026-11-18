@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { IconArrowRight as ArrowRight, IconCheck as CheckCircle, IconSend as Send, IconCamera as Camera } from '@/components/icons/iconmcp/icons'
+import { SpeakingConversation } from "@/components/speaking/speaking-conversation";
+import { IconArrowRight as ArrowRight, IconSend as Send, IconCamera as Camera } from '@/components/icons/iconmcp/icons'
 import { IconMic as IconMicrophone, IconBriefcase, IconCamera } from '@/components/icons/iconmcp/icons'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -16,10 +16,10 @@ import { CompanyField, GeneralMessageField } from "@/components/contact/general-
 // Contact pathway configurations
 const contactPathways = [
   {
-    title: "Speaking Engagements",
-    description: "Book Jarrett for keynotes, panels, and workshops on AI-powered marketing",
+    title: "Speaking",
+    description: "Keynotes, workshops, panels and firesides on AI, marketing and leadership.",
     icon: IconMicrophone,
-    action: "Request Speaking",
+    action: "Start a speaking inquiry",
     href: "#contact-form",
     color: "bg-lilac",
     type: "speaking",
@@ -31,10 +31,10 @@ const contactPathways = [
     ]
   },
   {
-    title: "Consulting Services",
-    description: "Transform your marketing with AI expertise and strategic guidance",
+    title: "Consulting",
+    description: "Help putting AI to work in your marketing plan, tools and team.",
     icon: IconBriefcase,
-    action: "Explore Consulting",
+    action: "Ask about consulting",
     href: "#contact-form",
     color: "bg-orchid",
     type: "consulting",
@@ -46,10 +46,10 @@ const contactPathways = [
     ]
   },
   {
-    title: "Media Requests",
-    description: "Press interviews, expert commentary, and media appearances",
+    title: "Media",
+    description: "Interviews, quotes and commentary on AI and mortgage marketing.",
     icon: IconCamera,
-    action: "Media Inquiry",
+    action: "Send a media request",
     href: "#contact-form",
     color: "bg-skyward",
     type: "media",
@@ -147,7 +147,7 @@ function useContactPageClientView() {
         if (result.error) {
           toast.error(result.error);
         } else {
-          toast.success("Media inquiry submitted! We'll respond as soon as possible.");
+          toast.success("Media inquiry sent. I'll follow up personally.");
           resetForm();
         }
       } else {
@@ -218,8 +218,7 @@ function useContactPageClientView() {
             Let&apos;s talk.
           </h1>
           <p className="t-lede mt-7" style={{ '--i': 1 } as React.CSSProperties}>
-            Whether you need expert speaking, strategic consulting, or media commentary on AI marketing, I&apos;m here to
-            help. Choose the path that best fits your needs.
+            Pick the reason you&apos;re reaching out. Everything here comes straight to me.
           </p>
         </div>
       </section>
@@ -228,7 +227,6 @@ function useContactPageClientView() {
         <div className="shell">
           <ul className="border-t border-hp-rule">
             {contactPathways.map((pathway) => {
-              const isSpeaking = pathway.type === 'speaking'
               return (
                 <li
                   key={pathway.type}
@@ -236,21 +234,14 @@ function useContactPageClientView() {
                 >
                   <h2 className="t-title">{pathway.title}</h2>
                   <p className="text-[0.9375rem] leading-relaxed text-hp-muted">{pathway.description}</p>
-                  {isSpeaking ? (
-                    <Link href="/speaking#book" className="btn-ghost justify-self-start md:justify-self-end">
-                      Send a speaking inquiry
-                      <ArrowRight className="size-4" />
-                    </Link>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => handlePathwayClick(pathway.type)}
-                      className="btn-ghost justify-self-start md:justify-self-end"
-                    >
-                      {pathway.action}
-                      <ArrowRight className="size-4" />
-                    </button>
-                  )}
+                  <button
+                    type="button"
+                    onClick={() => handlePathwayClick(pathway.type)}
+                    className="btn-ghost justify-self-start md:justify-self-end"
+                  >
+                    {pathway.action}
+                    <ArrowRight className="size-4" />
+                  </button>
                 </li>
               )
             })}
@@ -258,6 +249,23 @@ function useContactPageClientView() {
         </div>
       </section>
 
+      {formData.type === 'speaking' ? (
+        <section id="contact-form" className="hp-section hp-section--lift scroll-mt-20" aria-labelledby="speaking-conversation-title">
+          <div className="shell">
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+              <h2 id="speaking-conversation-title" className="t-headline">
+                Book me to speak. <span className="t-step">A few questions, one at a time.</span>
+              </h2>
+              <button type="button" onClick={() => handleFieldChange('type', 'general')} className="btn-ghost shrink-0 text-sm">
+                Not a speaking request?
+              </button>
+            </div>
+            <div className="mt-12">
+              <SpeakingConversation />
+            </div>
+          </div>
+        </section>
+      ) : (
       <section id="contact-form" className="hp-section hp-section--lift scroll-mt-20" aria-labelledby="contact-form-title">
         <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
@@ -266,17 +274,9 @@ function useContactPageClientView() {
             </h2>
             <p className="t-lede mt-5">
               {isMediaInquiry
-                ? "Looking for expert commentary on AI marketing, mortgage industry trends, or digital transformation? I'm available for interviews, quotes, and media appearances."
-                : "Have a question or want to discuss how AI can transform your marketing? Fill out the form and I'll get back to you as soon as possible."}
+                ? "Working on a story about AI, mortgage marketing or the industry? Tell me about it. I do interviews, quotes and on-air appearances."
+                : "Tell me what's on your mind. It comes straight to my inbox."}
             </p>
-            <ul className="mt-8 grid gap-3 text-[0.9375rem] text-hp-text">
-              {[isMediaInquiry ? 'Response within 4 hours' : 'Quick and personalized response', 'Expert insights and recommendations', 'No sales pitch, just helpful advice'].map((item) => (
-                <li key={item} className="flex gap-3">
-                  <CheckCircle className="mt-0.5 size-4 shrink-0 text-hp-lilac" />
-                  {item}
-                </li>
-              ))}
-            </ul>
           </div>
 
           <div className="hp-card p-6 sm:p-9">
@@ -336,6 +336,7 @@ function useContactPageClientView() {
           </div>
         </div>
       </section>
+      )}
     </>
   );
 

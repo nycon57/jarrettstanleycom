@@ -20,14 +20,15 @@ export const speakingFormSchema = z.object({
   event_location: z.string().optional(),
   event_format: z.enum(
     ["Keynote", "Workshop", "Panel or fireside chat", "Webinar or virtual", "Not sure yet"],
-    { required_error: "Please select a format" }
+    { required_error: "Pick a format", invalid_type_error: "Pick a format" }
   ),
   audience_size: z.enum(["Under 50", "50-150", "150-500", "500+", "Not sure yet"], {
-    required_error: "Please select an audience size",
+    required_error: "Pick an audience size",
+    invalid_type_error: "Pick an audience size",
   }),
   budget_range: z.enum(
     ["Under $5k", "$5k-$10k", "$10k-$25k", "$25k+", "Prefer to discuss"],
-    { required_error: "Please select a budget range" }
+    { required_error: "Pick a budget range", invalid_type_error: "Pick a budget range" }
   ),
   topic_preferences: z.array(z.string()).default([]),
   message: z.string().min(10, "Tell us a little about your audience and goals"),

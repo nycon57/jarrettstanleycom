@@ -25,7 +25,6 @@ export const ContactConfirmationEmail: React.FC<ContactConfirmationEmailProps> =
           title: 'Your Speaking Inquiry Has Been Received',
           emoji: '🎤',
           description: 'Thank you for your interest in having Jarrett speak at your event. We\'ll review your request and get back to you with next steps.',
-          responseTime: 'within 24 hours',
           nextSteps: 'Our team will review your event details and reach out to discuss topics, logistics, and availability. We\'ll also send you Jarrett\'s speaker kit with session topics and bio information.',
           priority: 'high',
         };
@@ -34,7 +33,6 @@ export const ContactConfirmationEmail: React.FC<ContactConfirmationEmailProps> =
           title: 'Your Consulting Inquiry Has Been Received',
           emoji: '💼',
           description: 'Thank you for considering Jarrett for your AI marketing consulting needs. We\'ll review your project requirements and schedule a discovery call.',
-          responseTime: 'within 24 hours',
           nextSteps: 'We\'ll schedule a discovery call to understand your specific needs, current challenges, and discuss how our AI marketing expertise can help achieve your goals.',
           priority: 'high',
         };
@@ -43,7 +41,6 @@ export const ContactConfirmationEmail: React.FC<ContactConfirmationEmailProps> =
           title: 'Your Media Request Has Been Received',
           emoji: '📺',
           description: 'Thank you for your media inquiry. We understand the importance of meeting deadlines and will respond promptly.',
-          responseTime: 'within 4 hours',
           nextSteps: 'We\'ll review your request and provide the information you need or schedule an interview at your convenience. Media kit and high-resolution photos can be sent immediately if needed.',
           priority: 'urgent',
         };
@@ -52,7 +49,6 @@ export const ContactConfirmationEmail: React.FC<ContactConfirmationEmailProps> =
           title: 'Your Message Has Been Received',
           emoji: '✉️',
           description: 'Thank you for reaching out. We\'ve received your message and will get back to you soon.',
-          responseTime: 'within 24 hours',
           nextSteps: 'We\'ll review your message and respond with the information you need or next steps.',
           priority: 'normal',
         };
@@ -60,7 +56,7 @@ export const ContactConfirmationEmail: React.FC<ContactConfirmationEmailProps> =
   };
 
   const content = getTypeSpecificContent();
-  const previewText = `${content.title} - We'll respond ${content.responseTime}`;
+  const previewText = content.title;
 
   return (
     <EmailLayout previewText={previewText}>
@@ -85,27 +81,6 @@ export const ContactConfirmationEmail: React.FC<ContactConfirmationEmailProps> =
           {content.description}
         </Text>
         
-        {/* Response Time Alert */}
-        <Section style={
-          content.priority === 'urgent' 
-            ? styles.alert.warning 
-            : content.priority === 'high' 
-              ? styles.alert.info 
-              : styles.alert.success
-        }>
-          <Text style={{ 
-            margin: '0', 
-            fontSize: '14px', 
-            fontWeight: '600',
-            color: content.priority === 'urgent' 
-              ? '#B7791F' 
-              : content.priority === 'high' 
-                ? '#2B6CB0' 
-                : '#2F855A'
-          }}>
-            ⏱️ Expected Response Time: {content.responseTime}
-          </Text>
-        </Section>
       </Section>
 
       {/* What's Next */}

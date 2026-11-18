@@ -158,3 +158,8 @@ export const COLLEAGUES = [
 export function sessionHref(topic: TopicId, format: FormatId, audience: AudienceId) {
   return `/speaking?topic=${topic}&format=${format}&audience=${audience}#book`
 }
+
+/** Inquiry form choices. These mirror the enums in lib/validations/speaking.ts. */
+export const AUDIENCE_SIZES = ['Under 50', '50-150', '150-500', '500+', 'Not sure yet'] as const
+export const BUDGET_RANGES = ['Under $5k', '$5k-$10k', '$10k-$25k', '$25k+', 'Prefer to discuss'] as const
+export const EVENT_FORMATS = ['Keynote', 'Workshop', 'Panel or fireside chat', 'Webinar or virtual', 'Not sure yet'] as const

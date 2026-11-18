@@ -289,10 +289,9 @@ Confident and quiet: one filled action, everything else a link.
 - **Internal Padding:** 1.25rem to 1.75rem in the session card; 1.5rem to 2.25rem around the inquiry form.
 
 ### Inputs / Fields
-- **Style (as shipped):** the shadcn field, 40px tall, Studio Shadow fill (so it reads as inset inside a lifted panel), opaque hairline border (`--input`), 6px radius, 0.875rem text, Muted placeholder.
-- **Focus:** a 2px Focus Lilac ring with a 2px offset in Studio Shadow.
-- **Error:** a destructive-red line of text under the field; nothing else turns red.
-- **Divergence:** truetone.ai specifies 8px fields with the outline focus; this field has not been retuned.
+- **Style:** 44px tall, Lifted Shadow fill, a 14% lavender-white hairline (24% on hover), 8px radius, 0.9375rem Lavender White text, Soft Orchid placeholder. Select triggers match.
+- **Focus:** the lilac Focus Ring outline (2px, 3px offset) and a lilac-tinted border. No rings, no browser blue.
+- **Error:** a destructive-red line under the field, shown when a step is checked and cleared as soon as the field changes. Nothing re-validates on blur: a message disappearing on blur moves the layout under the pointer and swallows the next click.
 
 ### Navigation
 - **Header:** fixed, 72px, transparent over the hero, then Studio Shadow at 92% with a 12px backdrop blur and a hairline once scrolled. Signature logo 32px tall at left; four Inter 500 links at 0.9375rem in Muted Orchid; a small primary "Book Jarrett" at right.
@@ -300,8 +299,14 @@ Confident and quiet: one filled action, everything else a link.
 - **Mobile:** a 40px menu toggle opens a disclosure of hairline-divided rows at 1.125rem with a trailing soft arrow, and a full-width primary at the bottom.
 - **Footer:** a colophon under a hairline: logo, a one-line role statement, bare LinkedIn, X and mail glyphs in Soft Orchid; four link columns headed in Inter 600 at 0.8125rem; a legal row under a second hairline.
 
-### Session Builder (signature)
-The thesis of the home page in one card: the reader leaves the first viewport with a session they could drop into their program. A 24px frame with the chrome strip, whose status names the chosen format and its length; a speaker row (48px true-color avatar in a hairline ring, name, roles); then the listing: the session title in Headline Small, an audience-and-summary line, and takeaways in a two-column list with lilac checks. The format and length are repeated for screen readers in a visually hidden line, not as a label above the title. Below a hairline, three small choice groups (Topic, Format, Audience); below another, a soft-orchid note and the small primary "Book this session". Each change remounts the listing with a 280ms blurred crossfade (`swap-in`) inside an `aria-live` region.
+### Booking Card (signature, home and /speaking)
+The session builder is step one of the speaking inquiry. A 24px frame with the chrome strip (dots, "session proposal", "1 of 3") over a 1px progress hairline that fills in lilac. Step 1 is the session listing: speaker row (48px avatar), format and length in Soft Orchid, the session title in Headline Small, an audience-and-summary line, takeaways with lilac checks, then three small choice groups (Topic, Format, Audience); each change remounts the listing with the 280ms blurred `swap-in`. "Book this session" moves to step 2 (the event: name, date, location, audience size and budget as choice chips) and step 3 (contact details and a message prefilled with the session line). Steps 2 and 3 open with a clickable summary row of the chosen session ("Change" returns to step 1). Steps change with a direction-aware 260ms slide-and-blur (`step-next` / `step-prev`, a fade under reduced motion) and focus moves to the new step's heading. It sends in place and ends on a "Sent" state; it never promises a reply time.
+
+### Speaking Conversation (signature, /contact)
+The contact page's speaking inquiry, built differently from the card: one question per screen set in the light display face (`clamp(1.875rem, 1.3rem + 1.8vw, 2.75rem)`), a 15rem rail of steps on the left that fills in each answer in Soft Orchid as you go (done steps are buttons that jump back; the current step carries the lilac pip), full-width Option Rows (hairline rows with a round or square mark on the right that fills Deep Lilac when chosen), a review ledger with "Edit" links, and Continue on Enter. Same schema and endpoint as the card.
+
+### Home Hero Portrait and Voice Field
+The home opening pairs the headline with Jarrett's cut-out portrait (true color, bottom-masked into the next band, soft drop shadow). Behind it, a three.js voice field: about 6,000 additive lilac-to-lavender particles on a Fibonacci sphere, displaced by simplex noise on a speech-like envelope, two thin orbit rings, and a spring drift toward the pointer. It loads after the page, pauses off screen and in hidden tabs, caps device pixel ratio, renders one still frame under reduced motion, and dissolves at its edges through a circular mask so no canvas edge ever shows. A CSS glow carries the hero if WebGL is missing. This is the one place the system allows a glowing object, as truetone.ai allows the Voice Orb.
 
 ### Ledgers (signature)
 - **Engagement ledger:** a sticky head with an optional duotone stage photo; an ordered list of events, each row with a lavender mono year in a 5.5rem column, the event in Title, role and organization in Muted Orchid, the talk title in quotes, and date, place and audience in Soft Orchid.

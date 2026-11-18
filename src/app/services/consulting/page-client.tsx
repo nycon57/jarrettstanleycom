@@ -9,22 +9,22 @@ import { IconTarget as Target, IconBolt as Zap, IconUsers as Users, IconBarChart
 const focusAreas = [
   {
     title: "Marketing Strategy",
-    description: "Develop comprehensive AI-powered marketing strategies that align with your business goals and drive measurable results.",
+    description: "A marketing plan built around your business goals, with AI where it helps and numbers you can measure.",
     icon: <Target className="size-6 text-white" />
   },
   {
     title: "AI Implementation",
-    description: "Navigate the complex landscape of AI tools and platforms with expert guidance on selection, integration, and optimization.",
+    description: "Choosing the right AI tools, connecting them to what you already run, and getting them to work.",
     icon: <Zap className="size-6 text-white" />
   },
   {
     title: "Team Development",
-    description: "Build AI-literate teams through training, workshops, and change management strategies that ensure successful adoption.",
+    description: "Training, workshops and change management so your team uses the tools well.",
     icon: <Users className="size-6 text-white" />
   },
   {
     title: "Technology Stack",
-    description: "Optimize your marketing technology stack with AI-first solutions that integrate seamlessly and deliver exponential value.",
+    description: "A cleaner marketing stack, with AI where it earns its place.",
     icon: <BarChart3 className="size-6 text-white" />
   }
 ];
@@ -68,56 +68,17 @@ const engagementModels = [
   }
 ];
 
-// The Case Studies section is commented out in the JSX below; the content is
-// kept here so it can be switched back on without rewriting it.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const caseStudies = [
-  {
-    title: "AI-Powered Lead Generation",
-    company: "Regional Mortgage Lender",
-    description: "Implemented AI-driven lead scoring and nurturing system that transformed their marketing efficiency.",
-    results: [
-      { metric: "Lead Quality", value: "+312%", improvement: "Increase in qualified leads" },
-      { metric: "Cost per Lead", value: "-67%", improvement: "Reduction in acquisition cost" },
-      { metric: "Conversion Rate", value: "2.8x", improvement: "Improvement in close rate" }
-    ],
-    services: ["AI Strategy", "Technology Implementation", "Team Training"],
-    testimonial: {
-      quote: "Jarrett's guidance transformed our entire approach to marketing. The results speak for themselves.",
-      author: "Sarah Chen",
-      role: "CMO, Regional Mortgage Lender"
-    }
-  },
-  {
-    title: "Marketing Automation Transformation",
-    company: "National Mortgage Company",
-    description: "Redesigned marketing operations with AI-first approach, creating scalable systems for growth.",
-    results: [
-      { metric: "Efficiency", value: "70%", improvement: "Time saved on campaigns" },
-      { metric: "Revenue", value: "+$2.3M", improvement: "Additional revenue in 6 months" },
-      { metric: "ROI", value: "428%", improvement: "Return on consulting investment" }
-    ],
-    services: ["Process Optimization", "AI Integration", "Performance Analytics"],
-    testimonial: {
-      quote: "The ROI from our consulting engagement exceeded all expectations. This was game-changing.",
-      author: "Michael Rodriguez",
-      role: "CEO, National Mortgage Company"
-    }
-  }
-];
-
-
 export default function ConsultingPageClient() {
   return (
     <>
       <section className="page-hero">
         <div className="shell relative z-[2] stagger">
           <h1 className="t-hero max-w-[16ch]" style={{ '--i': 0 } as React.CSSProperties}>
-            Transform your marketing with AI-powered strategies.
+            Put AI to work in your marketing.
           </h1>
           <p className="t-lede mt-7" style={{ '--i': 1 } as React.CSSProperties}>
-            Get hands-on guidance from an industry leader who&apos;s built and scaled AI solutions that have transformed
-            mortgage marketing for hundreds of companies.
+            I help mortgage companies use AI well in their marketing: the plan, the tools and the team habits. I&apos;ve
+            built and scaled AI marketing work that changed how hundreds of companies market.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-3" style={{ '--i': 2 } as React.CSSProperties}>
             <Link href="#inquiry-form" className="btn-primary">
@@ -136,7 +97,7 @@ export default function ConsultingPageClient() {
           <SectionHead
             id="focus-title"
             title="Consulting focus areas."
-            step="Everything AI touches in mortgage marketing."
+            step="Where AI changes the work."
           />
           <dl className="mt-14 border-t border-hp-rule">
             {focusAreas.map((area) => (
@@ -151,7 +112,7 @@ export default function ConsultingPageClient() {
 
       <section className="hp-section" aria-labelledby="models-title">
         <div className="shell">
-          <SectionHead id="models-title" title="Engagement models." lede="Choose the consulting approach that best fits your needs and timeline." />
+          <SectionHead id="models-title" title="Engagement models." lede="Three ways to work together, depending on how much help you want." />
           <div className="mt-14 border-t border-hp-rule">
             {engagementModels.map((model) => (
               <article
@@ -189,11 +150,11 @@ export default function ConsultingPageClient() {
             <SectionHead
               id="inquiry-title"
               title="Start the conversation."
-              lede="Tell us about your challenges and goals. We'll respond as soon as possible with insights and next steps for your AI journey."
+              lede="Tell me what you're working on and where it's stuck. I read every inquiry myself."
             />
             <dl className="mt-8 grid gap-4 text-[0.9375rem]">
-              <div><dt className="font-semibold text-hp-text">Custom solutions</dt><dd className="text-hp-muted">Every engagement is tailored to your specific needs</dd></div>
-              <div><dt className="font-semibold text-hp-text">Flexible timeline</dt><dd className="text-hp-muted">From quick wins to long-term transformation</dd></div>
+              <div><dt className="font-semibold text-hp-text">Built around you</dt><dd className="text-hp-muted">Every engagement starts from your goals and your team.</dd></div>
+              <div><dt className="font-semibold text-hp-text">Any size</dt><dd className="text-hp-muted">From a focused project to ongoing advisory.</dd></div>
             </dl>
           </div>
           <div className="hp-card p-6 sm:p-9">

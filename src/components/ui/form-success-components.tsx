@@ -136,7 +136,7 @@ export function ContactFormSuccess({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  Thank you{name !== "there" ? `, ${name}` : ""}! I've received your message and will get back to you within 24 hours.
+                  Thank you{name !== "there" ? `, ${name}` : ""}! I've received your message and will follow up personally.
                 </m.p>
 
                 {/* Next Steps */}
@@ -201,20 +201,17 @@ export function ConsultingInquirySuccess({
     {
       icon: MessageCircle,
       title: "Initial Review",
-      description: "I'll review your inquiry within 24 hours",
-      timing: "24 hours"
+      description: "I read every inquiry myself"
     },
     {
       icon: Calendar,
       title: "Strategy Call",
-      description: "We'll schedule a consultation call",
-      timing: "2-3 days"
+      description: "We'll schedule a consultation call"
     },
     {
       icon: Brain,
       title: "Custom Proposal",
-      description: "Receive a tailored AI marketing strategy",
-      timing: "1 week"
+      description: "Receive a tailored AI marketing strategy"
     }
   ];
 
@@ -327,10 +324,6 @@ export function ConsultingInquirySuccess({
                         <div className="flex-1 min-w-0">
                           <h4 className="font-medium text-sm">{step.title}</h4>
                           <p className="text-xs text-muted-foreground">{step.description}</p>
-                        </div>
-                        
-                        <div className="text-xs font-medium text-lilac">
-                          {step.timing}
                         </div>
                       </m.div>
                     );

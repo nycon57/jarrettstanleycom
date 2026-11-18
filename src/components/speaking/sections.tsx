@@ -86,7 +86,7 @@ export function EngagementLedger({ withPhoto = true }: { withPhoto?: boolean }) 
 }
 
 /** The three talks in depth: editorial rows, not a card grid. */
-export function TalkTopics({ buildHref = '#session' }: { buildHref?: string }) {
+export function TalkTopics({ buildHref = '#book' }: { buildHref?: string }) {
   return (
     <section className="hp-section hp-section--lift" aria-labelledby="talks-title">
       <div className="shell">
@@ -141,7 +141,7 @@ export function BookingDetails() {
         <SectionHead
           id="booking-title"
           title="How booking works."
-          lede="Tell me about the event and the audience. I come back with a session plan and a quote, usually within two business days. There's no published rate card: fees depend on the event type, location and how much customization the session needs."
+          lede="Tell me about the event and the audience, and I'll come back with a session plan and a quote. There's no published rate card: fees depend on the event type, location and how much customization the session needs."
         />
         <div className="grid gap-12 sm:grid-cols-2">
           <div>
@@ -281,7 +281,7 @@ export function ClosingCta() {
           Bring it to your stage.
         </h2>
         <p className="t-lede mt-7">
-          Send the event, the date and who&apos;s in the room. You&apos;ll hear back within two business days.
+          Send the event, the date and who&apos;s in the room. I read every inquiry myself.
         </p>
         <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3">
           <Link href="/speaking#book" className="btn-primary">
