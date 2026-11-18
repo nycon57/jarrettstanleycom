@@ -2,12 +2,12 @@ import type { ContentBlock } from '@/types/blog'
 import { Lightbulb, AlertTriangle, Sparkles } from 'lucide-react'
 
 function InlineText({ text }: { text: string }) {
-  const segments: Array<{ key: string; text: string; strong: boolean }> = []
-  const boldPattern = /\*\*(.*?)\*\*/g
+  const segments: Array<{ key: string; text: string; strong: boolean; href?: string }> = []
+  const inlinePattern = /\*\*(.*?)\*\*|\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g
   let lastIndex = 0
   let match: RegExpExecArray | null
 
-  while ((match = boldPattern.exec(text)) !== null) {
+  while ((match = inlinePattern.exec(text)) !== null) {
     if (match.index > lastIndex) {
       segments.push({
         key: `text-${lastIndex}`,
@@ -16,11 +16,11 @@ function InlineText({ text }: { text: string }) {
       })
     }
 
-    segments.push({
-      key: `strong-${match.index}`,
-      text: match[1],
-      strong: true,
-    })
+    segments.push(
+      match[2] !== undefined
+        ? { key: `link-${match.index}`, text: match[2], strong: false, href: match[3] }
+        : { key: `strong-${match.index}`, text: match[1], strong: true }
+    )
     lastIndex = match.index + match[0].length
   }
 
@@ -35,7 +35,17 @@ function InlineText({ text }: { text: string }) {
   return (
     <>
       {segments.map((segment) =>
-        segment.strong ? (
+        segment.href ? (
+          <a
+            key={segment.key}
+            href={segment.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-lilac underline underline-offset-4 hover:text-foreground transition-colors"
+          >
+            {segment.text}
+          </a>
+        ) : segment.strong ? (
           <strong key={segment.key} className="font-semibold text-foreground">
             {segment.text}
           </strong>
