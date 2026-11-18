@@ -12,7 +12,7 @@ export const supabase = createClient(supabaseUrl, supabaseServiceKey, {
 });
 
 // Types for our waitlist table
-interface WaitlistSignup {
+export interface WaitlistSignup {
   id?: string;
   email: string;
   first_name: string;
@@ -30,7 +30,7 @@ interface WaitlistSignup {
 }
 
 // Types for testimonials table
-interface Testimonial {
+export interface Testimonial {
   id: string;
   author_name: string;
   author_title: string;
@@ -45,7 +45,7 @@ interface Testimonial {
 }
 
 // Types for speaking events table
-interface SpeakingEvent {
+export interface SpeakingEvent {
   id: string;
   event_name: string;
   event_date: string;
@@ -92,7 +92,7 @@ export interface BlogPost {
   view_count?: number;
 }
 
-interface PostView {
+export interface PostView {
   id: string;
   post_id: string;
   ip_address?: string;

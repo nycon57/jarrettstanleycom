@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { formatDistanceToNow } from 'date-fns'
 import { Badge } from '@/components/ui/badge'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import { Clock, Eye } from 'lucide-react'
+import { IconClock as Clock, IconEye as Eye } from '@/components/icons/iconmcp/icons'
 import { TransformedPost as BlogPost } from '@/lib/sanity/types'
 import { cn } from '@/lib/utils'
 

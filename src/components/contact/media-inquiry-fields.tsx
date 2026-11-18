@@ -1,6 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { DatePicker } from "@/components/ui/date-picker";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -21,8 +22,8 @@ interface MediaInquiryFieldsProps {
 
 export function MediaOutletField({ formData, onFieldChange }: MediaInquiryFieldsProps) {
   return (
-    <div className="gap-y-2">
-      <Label htmlFor="outlet">Media Outlet *</Label>
+    <div className="grid gap-y-2">
+      <Label htmlFor="outlet">Media outlet *</Label>
       <Input
         id="outlet"
         value={formData.outlet}
@@ -39,8 +40,8 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
   return (
     <>
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="gap-y-2">
-          <Label htmlFor="role">Your Role *</Label>
+        <div className="grid gap-y-2">
+          <Label htmlFor="role">Your role *</Label>
           <Input
             id="role"
             value={formData.role}
@@ -50,21 +51,20 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
             className="bg-background"
           />
         </div>
-        <div className="gap-y-2">
+        <div className="grid gap-y-2">
           <Label htmlFor="deadline">Deadline</Label>
-          <Input
+          <DatePicker
             id="deadline"
-            type="datetime-local"
             value={formData.deadline}
-            onChange={(e) => onFieldChange("deadline", e.target.value)}
-            className="bg-background"
+            onChange={(value) => onFieldChange("deadline", value)}
+            placeholder="Pick a deadline"
           />
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
-        <div className="gap-y-2">
-          <Label htmlFor="topic">Story Topic *</Label>
+        <div className="grid gap-y-2">
+          <Label htmlFor="topic">Story topic *</Label>
           <Input
             id="topic"
             value={formData.topic}
@@ -74,8 +74,8 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
             className="bg-background"
           />
         </div>
-        <div className="gap-y-2">
-          <Label htmlFor="interviewType">Interview Format *</Label>
+        <div className="grid gap-y-2">
+          <Label htmlFor="interviewType">Interview format *</Label>
           <Select
             value={formData.interviewType}
             onValueChange={(value) => onFieldChange("interviewType", value)}
@@ -85,8 +85,8 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="written">Written Q&A</SelectItem>
-              <SelectItem value="phone">Phone Interview</SelectItem>
-              <SelectItem value="video">Video Interview</SelectItem>
+              <SelectItem value="phone">Phone interview</SelectItem>
+              <SelectItem value="video">Video interview</SelectItem>
               <SelectItem value="in-person">In-Person Interview</SelectItem>
             </SelectContent>
           </Select>
@@ -98,8 +98,8 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
 
 export function MediaMessageField({ formData, onFieldChange }: MediaInquiryFieldsProps) {
   return (
-    <div className="gap-y-2">
-      <Label htmlFor="message">Additional Details</Label>
+    <div className="grid gap-y-2">
+      <Label htmlFor="message">Additional details</Label>
       <Textarea
         id="message"
         value={formData.message}

@@ -1,47 +1,30 @@
 "use client";
 
-import { m } from "framer-motion";
 import { ConsultingInquiryForm } from "@/components/consulting-inquiry-form";
-import { CaseStudyCard } from "@/components/sections/case-study-card";
-import { ProcessStep } from "@/components/sections/process-step";
 import { CtaSection } from "@/components/sections/cta-section";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Heading, Text } from "@/components/ui/typography";
 import Link from "next/link";
-import { 
-  Target,
-  Zap,
-  Users,
-  BarChart3,
-  CheckCircle,
-  ArrowRight,
-  Sparkles,
-  Briefcase,
-  Calendar,
-  MessageSquare
-} from "lucide-react";
+import { SectionHead } from "@/components/speaking/sections";
+import { IconTarget as Target, IconBolt as Zap, IconUsers as Users, IconBarChart as BarChart3, IconCheck as CheckCircle, IconArrowRight as ArrowRight } from '@/components/icons/iconmcp/icons'
 
 const focusAreas = [
   {
     title: "Marketing Strategy",
-    description: "Develop comprehensive AI-powered marketing strategies that align with your business goals and drive measurable results.",
+    description: "A marketing plan built around your business goals, with AI where it helps and numbers you can measure.",
     icon: <Target className="size-6 text-white" />
   },
   {
     title: "AI Implementation",
-    description: "Navigate the complex landscape of AI tools and platforms with expert guidance on selection, integration, and optimization.",
+    description: "Choosing the right AI tools, connecting them to what you already run, and getting them to work.",
     icon: <Zap className="size-6 text-white" />
   },
   {
     title: "Team Development",
-    description: "Build AI-literate teams through training, workshops, and change management strategies that ensure successful adoption.",
+    description: "Training, workshops and change management so your team uses the tools well.",
     icon: <Users className="size-6 text-white" />
   },
   {
     title: "Technology Stack",
-    description: "Optimize your marketing technology stack with AI-first solutions that integrate seamlessly and deliver exponential value.",
+    description: "A cleaner marketing stack, with AI where it earns its place.",
     icon: <BarChart3 className="size-6 text-white" />
   }
 ];
@@ -85,362 +68,102 @@ const engagementModels = [
   }
 ];
 
-const caseStudies = [
-  {
-    title: "AI-Powered Lead Generation",
-    company: "Regional Mortgage Lender",
-    description: "Implemented AI-driven lead scoring and nurturing system that transformed their marketing efficiency.",
-    results: [
-      { metric: "Lead Quality", value: "+312%", improvement: "Increase in qualified leads" },
-      { metric: "Cost per Lead", value: "-67%", improvement: "Reduction in acquisition cost" },
-      { metric: "Conversion Rate", value: "2.8x", improvement: "Improvement in close rate" }
-    ],
-    services: ["AI Strategy", "Technology Implementation", "Team Training"],
-    testimonial: {
-      quote: "Jarrett's guidance transformed our entire approach to marketing. The results speak for themselves.",
-      author: "Sarah Chen",
-      role: "CMO, Regional Mortgage Lender"
-    }
-  },
-  {
-    title: "Marketing Automation Transformation",
-    company: "National Mortgage Company",
-    description: "Redesigned marketing operations with AI-first approach, creating scalable systems for growth.",
-    results: [
-      { metric: "Efficiency", value: "70%", improvement: "Time saved on campaigns" },
-      { metric: "Revenue", value: "+$2.3M", improvement: "Additional revenue in 6 months" },
-      { metric: "ROI", value: "428%", improvement: "Return on consulting investment" }
-    ],
-    services: ["Process Optimization", "AI Integration", "Performance Analytics"],
-    testimonial: {
-      quote: "The ROI from our consulting engagement exceeded all expectations. This was game-changing.",
-      author: "Michael Rodriguez",
-      role: "CEO, National Mortgage Company"
-    }
-  }
-];
-
-const processSteps = [
-  {
-    number: 1,
-    title: "Discovery",
-    description: "Deep dive into your current challenges, goals, and opportunities",
-    icon: <MessageSquare className="size-8 text-white" />
-  },
-  {
-    number: 2,
-    title: "Strategy",
-    description: "Develop customized AI roadmap aligned with your business objectives",
-    icon: <Target className="size-8 text-white" />
-  },
-  {
-    number: 3,
-    title: "Implementation",
-    description: "Hands-on guidance through execution with your team",
-    icon: <Zap className="size-8 text-white" />
-  },
-  {
-    number: 4,
-    title: "Optimization",
-    description: "Continuous improvement and scaling of successful initiatives",
-    icon: <Sparkles className="size-8 text-white" />
-  }
-];
-
 export default function ConsultingPageClient() {
   return (
-    <main className="flex min-h-screen flex-col">
-      {/* Hero Section */}
-      <section className="relative py-32 pt-40 overflow-hidden bg-gradient-to-br from-lilac/10 via-background to-orchid/10">
-        <div className="container mx-auto px-4">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-center"
-          >
-            <Badge variant="lilac" size="lg" className="mx-auto mb-6 backdrop-blur">
-              Strategic Consulting
-            </Badge>
-            
-            <Heading variant="h1" className="mx-auto max-w-4xl text-balance text-center mb-6">
-              Transform Your Marketing with{" "}
-              <span className="text-lilac">AI-Powered Strategies</span>
-            </Heading>
-            
-            <Text variant="large" className="mx-auto max-w-3xl text-center text-muted-foreground mb-12">
-              Get hands-on guidance from an industry leader who's built and scaled AI solutions 
-              that have transformed mortgage marketing for hundreds of companies.
-            </Text>
-
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button 
-                size="lg" 
-                variant="gradient"
-                onClick={() => {
-                  document.getElementById('inquiry-form')?.scrollIntoView({ behavior: 'smooth' });
-                }}
-              >
-                Schedule Consultation
-                <ArrowRight className="ml-2 size-4" />
-              </Button>
-              <Button 
-                size="lg" 
-                variant="lilac"
-                asChild
-              >
-                <Link href="/contact">
-                  Ask a Question
-                </Link>
-              </Button>
-            </div>
-          </m.div>
-        </div>
-      </section>
-
-      {/* Focus Areas */}
-      <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Heading variant="h2" className="mb-6 text-center">
-              Consulting <span className="text-lilac">Focus Areas</span>
-            </Heading>
-            <Text variant="large" className="text-muted-foreground max-w-3xl mx-auto text-center">
-              Comprehensive expertise across all aspects of AI-powered mortgage marketing
-            </Text>
-          </m.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-            {focusAreas.map((area, index) => (
-              <m.div
-                key={area.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="h-full"
-              >
-                <Card variant="blur" className="h-full hover:bg-white/10 transition-all duration-300">
-                  <CardContent className="p-6">
-                    <m.div 
-                      className="mb-4 p-3 rounded-full bg-gradient-to-br from-lilac to-orchid w-fit"
-                      whileHover={{ scale: 1.1, rotate: 5 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      {area.icon}
-                    </m.div>
-                    <h3 className="text-xl font-signal mb-3">{area.title}</h3>
-                    <p className="text-neutral-700 dark:text-neutral-300">{area.description}</p>
-                  </CardContent>
-                </Card>
-              </m.div>
-            ))}
+    <>
+      <section className="page-hero">
+        <div className="shell relative z-[2] stagger">
+          <h1 className="t-hero max-w-[16ch]" style={{ '--i': 0 } as React.CSSProperties}>
+            Put AI to work in your marketing.
+          </h1>
+          <p className="t-lede mt-7" style={{ '--i': 1 } as React.CSSProperties}>
+            I help mortgage companies use AI well in their marketing: the plan, the tools and the team habits. I&apos;ve
+            built and scaled AI marketing work that changed how hundreds of companies market.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-3" style={{ '--i': 2 } as React.CSSProperties}>
+            <Link href="#inquiry-form" className="btn-primary">
+              Schedule a consultation
+              <ArrowRight className="size-4" />
+            </Link>
+            <Link href="/contact" className="btn-ghost">
+              Ask a question
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Engagement Models */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Heading variant="h2" className="mb-6 text-center">
-              Flexible <span className="text-lilac">Engagement Models</span>
-            </Heading>
-            <Text variant="large" className="text-muted-foreground max-w-3xl mx-auto text-center">
-              Choose the consulting approach that best fits your needs and timeline
-            </Text>
-          </m.div>
+      <section className="hp-section hp-section--lift" aria-labelledby="focus-title">
+        <div className="shell">
+          <SectionHead
+            id="focus-title"
+            title="Consulting focus areas."
+            step="Where AI changes the work."
+          />
+          <dl className="mt-14 border-t border-hp-rule">
+            {focusAreas.map((area) => (
+              <div key={area.title} className="grid gap-3 border-b border-hp-rule py-7 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] md:gap-12">
+                <dt className="t-title">{area.title}</dt>
+                <dd className="t-body">{area.description}</dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
-          <div className="grid lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {engagementModels.map((model, index) => (
-              <m.div
+      <section className="hp-section" aria-labelledby="models-title">
+        <div className="shell">
+          <SectionHead id="models-title" title="Engagement models." lede="Three ways to work together, depending on how much help you want." />
+          <div className="mt-14 border-t border-hp-rule">
+            {engagementModels.map((model) => (
+              <article
                 key={model.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className="bg-background rounded-2xl p-8 border border-white/10 hover:border-lilac/50 transition-all duration-300"
+                className="grid gap-5 border-b border-hp-rule py-9 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-12"
               >
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="text-2xl font-signal">{model.title}</h3>
-                  <span className="text-sm text-lilac font-medium">{model.duration}</span>
+                <div>
+                  <h3 className="t-title">{model.title}</h3>
+                  <p className="mt-1.5 text-sm text-hp-soft">{model.duration}</p>
+                  <p className="mt-3 text-[0.9375rem] text-hp-muted">{model.description}</p>
                 </div>
-                
-                <p className="text-neutral-700 dark:text-neutral-300 mb-6">{model.description}</p>
-                
-                <ul className="gap-y-3 mb-6">
+                <ul className="grid content-start gap-2.5">
                   {model.features.map((feature) => (
-                    <li key={feature} className="flex items-start gap-3">
-                      <CheckCircle className="size-5 text-lilac mt-0.5" />
-                      <span className="text-neutral-700 dark:text-neutral-300">{feature}</span>
+                    <li key={feature} className="flex gap-3 text-[0.9375rem] text-hp-text">
+                      <CheckCircle className="mt-0.5 size-4 shrink-0 text-hp-lilac" />
+                      {feature}
                     </li>
                   ))}
                 </ul>
-                
-                <div className="pt-6 border-t border-white/10">
-                  <p className="text-sm text-muted-foreground">
-                    <span className="font-medium">Ideal for:</span> {model.ideal}
-                  </p>
-                </div>
-              </m.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies - Hidden */}
-      {/* <section className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Heading variant="h2" className="mb-6 text-center">
-              Proven <span className="text-lilac">Results</span>
-            </Heading>
-            <Text variant="large" className="text-muted-foreground max-w-3xl mx-auto text-center">
-              Real transformations from mortgage companies that embraced AI-powered marketing
-            </Text>
-          </m.div>
-
-          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {caseStudies.map((study, index) => (
-              <m.div
-                key={study.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-              >
-                <CaseStudyCard {...study} />
-              </m.div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
-      {/* Process */}
-      <section className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Heading variant="h2" className="mb-6 text-center">
-              Our Consulting <span className="text-lilac">Process</span>
-            </Heading>
-            <Text variant="large" className="text-muted-foreground max-w-3xl mx-auto text-center">
-              A proven methodology for driving transformational results
-            </Text>
-          </m.div>
-
-          <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
-            {processSteps.map((step, index) => (
-              <m.div
-                key={step.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <ProcessStep 
-                  {...step} 
-                  isLast={index === processSteps.length - 1}
-                />
-              </m.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Inquiry Form */}
-      <section id="inquiry-form" className="py-24 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <m.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <h2 className="text-3xl font-semibold mb-6">
-                  Start Your <span className="text-lilac">Transformation</span>
-                </h2>
-                <p className="text-muted-foreground mb-8">
-                  Tell us about your challenges and goals. We'll respond as soon as possible with 
-                  insights and next steps for your AI journey.
+                <p className="text-[0.9375rem] leading-relaxed text-hp-muted">
+                  <span className="text-hp-text">Ideal for:</span> {model.ideal}
                 </p>
-                
-                <div className="gap-y-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-lilac/10">
-                      <Briefcase className="size-5 text-lilac" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium mb-1">Custom Solutions</h4>
-                      <p className="text-sm text-muted-foreground">
-                        Every engagement is tailored to your specific needs
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-lilac/10">
-                      <Calendar className="size-5 text-lilac" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium mb-1">Flexible Timeline</h4>
-                      <p className="text-sm text-muted-foreground">
-                        From quick wins to long-term transformation
-                      </p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-full bg-lilac/10">
-                      <CheckCircle className="size-5 text-lilac" />
-                    </div>
-                    <div>
-                      <h4 className="font-medium mb-1">Proven Results</h4>
-                      <p className="text-sm text-muted-foreground">
-                        More than 20 years of marketing and AI experience for clients
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </m.div>
-              
-              <m.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-                className="bg-white/5 rounded-2xl p-8 border border-white/10"
-              >
-                <ConsultingInquiryForm />
-              </m.div>
-            </div>
+              </article>
+            ))}
+          </div>
+          <p className="t-lede mt-10">
+            Every engagement follows the same arc: discovery, strategy, implementation, optimization.
+          </p>
+        </div>
+      </section>
+
+      <section id="inquiry-form" className="hp-section scroll-mt-20" aria-labelledby="inquiry-title">
+        <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <SectionHead
+              id="inquiry-title"
+              title="Start the conversation."
+              lede="Tell me what you're working on and where it's stuck. I read every inquiry myself."
+            />
+            <dl className="mt-8 grid gap-4 text-[0.9375rem]">
+              <div><dt className="font-semibold text-hp-text">Built around you</dt><dd className="text-hp-muted">Every engagement starts from your goals and your team.</dd></div>
+              <div><dt className="font-semibold text-hp-text">Any size</dt><dd className="text-hp-muted">From a focused project to ongoing advisory.</dd></div>
+            </dl>
+          </div>
+          <div className="hp-card p-6 sm:p-9">
+            <ConsultingInquiryForm />
           </div>
         </div>
       </section>
 
-      {/* Newsletter CTA Section */}
-      <CtaSection variant="compact" />
-    </main>
-  );
+      <CtaSection />
+    </>
+  )
 }

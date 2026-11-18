@@ -1,57 +1,25 @@
 import type { Metadata, Viewport } from 'next'
-import localFont from 'next/font/local'
+import { Inter, Montserrat } from 'next/font/google'
 import { Providers } from '@/components/providers'
 import { MotionProvider } from '@/components/providers/motion-provider'
 import { cn } from '@/lib/utils'
 import { generateMetadata as generateSEOMetadata, generatePersonSchema, generateOrganizationSchema, generateWebsiteSchema, generateStructuredData } from '@/lib/seo'
 import { Analytics } from '@vercel/analytics/next'
+import { WebMcpTools } from '@/components/agent/web-mcp'
 import './globals.css'
 
-const signal = localFont({
-  src: [
-    {
-      path: '../../public/fonts/Signal-Normal.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/Signal-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-signal',
+// Same faces as truetone.ai: Montserrat (display) and Inter (body), both variable.
+// The font-signal / font-hind Tailwind names still used by older templates resolve to these.
+const display = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  display: 'swap',
 })
 
-const hind = localFont({
-  src: [
-    {
-      path: '../../public/fonts/Hind-Light.ttf',
-      weight: '300',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/Hind-Regular.ttf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/Hind-Medium.ttf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/Hind-SemiBold.ttf',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/Hind-Bold.ttf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-hind',
+const body = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
 })
 
 export const metadata: Metadata = generateSEOMetadata({
@@ -66,10 +34,8 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
-  themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
-    { media: '(prefers-color-scheme: dark)', color: '#000000' },
-  ],
+  themeColor: '#0b0c18',
+  colorScheme: 'dark',
 }
 
 export default function RootLayout({
@@ -84,12 +50,11 @@ export default function RootLayout({
   ]
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={cn("dark", display.variable, body.variable)} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" />
         <link rel="apple-touch-icon" href="/assets/images/TrueToneAI-Icon-Logo-Full-Color.png" />
-        <meta name="theme-color" content="#8B5FBF" />
-        <meta name="format-detection" content="telephone=no" />
+                <meta name="format-detection" content="telephone=no" />
         <script
           type="application/ld+json"
         >
@@ -98,15 +63,14 @@ export default function RootLayout({
       </head>
       <body 
         className={cn(
-          "min-h-screen bg-background font-hind antialiased",
-          hind.variable,
-          signal.variable
+          "min-h-screen bg-background font-body antialiased"
         )}
         suppressHydrationWarning
       >
         <Providers>
           <MotionProvider>{children}</MotionProvider>
         </Providers>
+        <WebMcpTools />
         <Analytics />
       </body>
     </html>

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { ChevronRight } from "lucide-react";
+import { IconChevronRight as ChevronRight } from '@/components/icons/iconmcp/icons'
 import { cn } from "@/lib/utils";
 import Link from "next/link";function Breadcrumb(
 

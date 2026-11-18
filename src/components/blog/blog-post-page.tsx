@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { formatDateLabel } from '@/lib/date-format'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { FAQSection } from '@/components/pseo/faq-section'
 import { RelatedContent } from '@/components/pseo/related-content'
 import { PseoBreadcrumbs } from '@/components/pseo/pseo-breadcrumbs'
@@ -12,7 +11,7 @@ import { ShareButtons } from '@/components/ui/share-buttons'
 import type { BlogPost } from '@/types/blog'
 import type { BreadcrumbItem } from '@/lib/pseo'
 import { blogCategories } from '@/lib/blog'
-import { ArrowLeft, Clock, Newspaper } from 'lucide-react'
+import { IconArrowLeft as ArrowLeft, IconClock as Clock } from '@/components/icons/iconmcp/icons'
 
 interface BlogPostPageProps {
   post: BlogPost
@@ -66,54 +65,55 @@ export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPagePr
       {/* Hero */}
       <section className="pb-8">
         <div className="container max-w-4xl">
-          <div className="flex flex-wrap items-center gap-2 mb-4">
+          <h1 className="mb-6 font-display text-[clamp(2.25rem,1.4rem+3vw,3.75rem)] font-bold leading-[1.02] tracking-[-0.03em] text-hp-text text-balance">
+            {post.title}
+          </h1>
+
+          <p className="t-lede mb-8 max-w-[62ch]">
+            {post.excerpt}
+          </p>
+
+          {/* Author + meta */}
+          <div className="mb-6 flex flex-col gap-3 text-sm text-hp-muted sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <Image
+                src="/assets/images/jarrett-avatar-v2.jpg"
+                alt=""
+                width={32}
+                height={32}
+                className="size-8 rounded-full ring-1 ring-hp-rule"
+              />
+              <p>
+                <Link href="/about" className="font-semibold text-hp-text transition-colors hover:text-hp-lavender">
+                  {post.author.name}
+                </Link>
+                <span className="mx-1">&middot;</span>
+                {post.author.title}, {post.author.company}
+              </p>
+            </div>
+            <p className="flex items-center gap-3 text-hp-soft">
+              <span className="flex items-center gap-1">
+                <Clock className="size-4" />
+                {post.readTimeMinutes} min read
+              </span>
+              <span>{publishedLabel}</span>
+            </p>
+          </div>
+
+          <div className="mb-6 flex flex-wrap items-center gap-2">
             {post.series && (
               <Badge variant="lilac">
-                <Newspaper className="size-3 mr-1" />
                 {post.series.name} #{post.series.issueNumber}
               </Badge>
             )}
             {post.categories.map((catSlug) => {
               const cat = blogCategories.find((c) => c.slug === catSlug)
               return (
-                <Badge key={catSlug} variant={cat?.badgeVariant ?? 'outline'}>
+                <Badge key={catSlug} variant="outline">
                   {cat?.name || catSlug}
                 </Badge>
               )
             })}
-          </div>
-
-          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
-            <span className="text-lilac">
-              {post.title}
-            </span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">
-            {post.excerpt}
-          </p>
-
-          {/* Author + Meta */}
-          <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-            <div className="flex items-center gap-2">
-              <Avatar className="size-8 border">
-                <AvatarFallback>{post.author.name.charAt(0)}</AvatarFallback>
-              </Avatar>
-              <div>
-                <Link href="/about" className="font-semibold text-foreground hover:text-lilac transition-colors">
-                  {post.author.name}
-                </Link>
-                <span className="mx-1">&middot;</span>
-                <span>{post.author.title}, {post.author.company}</span>
-              </div>
-            </div>
-            <div className="flex items-center gap-4 ml-auto">
-              <span className="flex items-center gap-1">
-                <Clock className="size-4" />
-                {post.readTimeMinutes} min read
-              </span>
-              <span>{publishedLabel}</span>
-            </div>
           </div>
 
           {/* Share */}

@@ -63,29 +63,3 @@ export function LogoLoader() {
 }
 
 // Minimal logo loader for inline/component loading
-function MinimalLogoLoader() {
-  return (
-    <div className="flex items-center justify-center p-8">
-      <m.div
-        animate={{
-          opacity: [0.5, 1, 0.5]
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-        className="relative">
-
-        <Image
-          src="/assets/images/JS-Logo.png"
-          alt="Loading..."
-          width={160}
-          height={48}
-          className="h-12 w-auto opacity-50"
-          priority />
-
-      </m.div>
-    </div>);
-
-}

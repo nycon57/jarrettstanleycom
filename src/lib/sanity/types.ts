@@ -65,14 +65,3 @@ export interface TransformedCategory {
   updated_at?: string;
 }
 
-interface TransformedAuthor {
-  id: string;
-  name: string;
-  slug: string;
-  image_url?: string;
-  bio?: string;
-  title?: string;
-  company?: string;
-  linkedin?: string;
-  twitter?: string;
-}

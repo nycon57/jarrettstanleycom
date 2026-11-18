@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react'
+import { IconChevronLeft as ChevronLeft, IconChevronRight as ChevronRight, IconMoreHorizontal as MoreHorizontal } from '@/components/icons/iconmcp/icons'
 import { cn } from '@/lib/utils'
 
 interface PaginationProps {
@@ -30,7 +30,7 @@ export function Pagination({
 
     const half = Math.floor(maxVisiblePages / 2)
     let start = Math.max(currentPage - half, 1)
-    let end = Math.min(start + maxVisiblePages - 1, totalPages)
+    const end = Math.min(start + maxVisiblePages - 1, totalPages)
 
     if (end - start + 1 < maxVisiblePages) {
       start = Math.max(end - maxVisiblePages + 1, 1)
@@ -87,7 +87,7 @@ export function Pagination({
               onClick={() => onPageChange(page)}
               className={cn(
                 "w-10",
-                currentPage === page && "bg-gradient-to-r from-purple-600 to-blue-600 text-white"
+                currentPage === page && "bg-[oklch(0.42_0.13_298/0.24)] border-[oklch(0.72_0.155_298/0.65)] text-hp-text border"
               )}
             >
               {page}

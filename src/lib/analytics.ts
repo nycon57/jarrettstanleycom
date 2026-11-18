@@ -4,7 +4,7 @@
  * Google Ads conversions, and GTM dataLayer integration.
  */
 
-import { hasConsentFor } from '@/components/analytics/cookie-consent';
+import { hasConsentFor } from '@/lib/consent';
 import { pushFormConversion, pushConversion } from '@/lib/gtm';
 
 // Google Analytics 4 types
@@ -58,44 +58,11 @@ const CONVERSION_VALUES: Record<string, {value: number;currency: string;}> = {
 };
 
 /**
- * Initialize Google Analytics 4
+ * gtag.js, Microsoft Clarity, and Google Ads are loaded by AnalyticsProvider
+ * (src/components/analytics/analytics-provider.tsx), behind the cookie-consent
+ * gate. Everything below assumes that has already run and no-ops when it has
+ * not — never bootstrap a tag from here.
  */
-const initGA = () => {
-  if (!GA_MEASUREMENT_ID) {
-    console.warn('Google Analytics Measurement ID not found');
-    return;
-  }
-
-  // Initialize gtag
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function gtag() {
-    window.dataLayer.push(arguments);
-  };
-
-  window.gtag('js', new Date());
-  window.gtag('config', GA_MEASUREMENT_ID, {
-    page_title: document.title,
-    page_location: window.location.href,
-    custom_parameters: {
-      site_name: 'JarrettStanley.com',
-      content_group1: 'Main Site'
-    }
-  });
-};
-
-/**
- * Initialize Microsoft Clarity
- */
-const initClarity = () => {
-  if (!CLARITY_PROJECT_ID) {
-    console.warn('Microsoft Clarity Project ID not found');
-    return;
-  }
-
-  window.clarity = window.clarity || function () {
-    (window.clarity.q = window.clarity.q || []).push(arguments);
-  };
-};
 
 /**
  * Track page views (gated by analytics consent)
@@ -237,7 +204,7 @@ export const trackContentEngagement = (contentType: 'blog_post' | 'resource' | '
 /**
  * Reading progress tracking for blog posts
  */
-const trackReadingProgress = (postTitle: string, progress: number) => {
+export const trackReadingProgress = (postTitle: string, progress: number) => {
   // Track at 25%, 50%, 75%, and 100% milestones
   const milestones = [25, 50, 75, 100];
   const milestone = milestones.find((m) => progress >= m && progress < m + 5);
@@ -359,6 +326,8 @@ const getUTMParameters = (): UTMParameters => {
 /**
  * Store UTM parameters in sessionStorage for attribution
  */
+const UTM_STORAGE_KEY = 'utm_parameters:v1';
+
 export const storeUTMParameters = () => {
   if (typeof window === 'undefined') return;
 
@@ -366,7 +335,7 @@ export const storeUTMParameters = () => {
   const hasUTMParams = Object.values(utmParams).some((value) => value !== undefined);
 
   if (hasUTMParams) {
-    sessionStorage.setItem('utm_parameters:v1', JSON.stringify(utmParams));
+    sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(utmParams));
 
     // Track campaign attribution
     trackEvent({
@@ -385,7 +354,7 @@ export const getStoredUTMParameters = (): UTMParameters => {
   if (typeof window === 'undefined') return {};
 
   try {
-    const stored = sessionStorage.getItem('utm_parameters');
+    const stored = sessionStorage.getItem(UTM_STORAGE_KEY);
     return stored ? JSON.parse(stored) : {};
   } catch {
     return {};
@@ -527,9 +496,12 @@ export const trackScrollDepth = (depth: number, page: string) => {
 };
 
 // Helper function to debounce events
-export const debounce = (func: Function, wait: number) => {
+export const debounce = <TArgs extends unknown[]>(
+func: (...args: TArgs) => void,
+wait: number) =>
+{
   let timeout: NodeJS.Timeout;
-  return function executedFunction(...args: any[]) {
+  return function executedFunction(...args: TArgs) {
     const later = () => {
       clearTimeout(timeout);
       func(...args);

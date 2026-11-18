@@ -162,7 +162,7 @@ export const SpeakingConfirmationEmail: React.FC<Readonly<SpeakingConfirmationEm
                 Initial Response
               </h3>
               <p style={{ margin: '0', fontSize: '14px', color: '#6b7280' }}>
-                You'll receive an initial response as soon as possible with availability confirmation.
+                I'll follow up personally to confirm availability and talk through the session.
               </p>
             </div>
           </div>
@@ -209,7 +209,7 @@ export const SpeakingConfirmationEmail: React.FC<Readonly<SpeakingConfirmationEm
           For urgent requests or additional questions:
         </p>
         <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
-          <a href="mailto:jarrett@jarrettstanley.com" style={{
+          <a href="mailto:jarrett@truetone.ai" style={{
             backgroundColor: '#3b82f6',
             color: 'white',
             padding: '8px 16px',

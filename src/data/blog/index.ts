@@ -27,6 +27,7 @@ import yourFunnelIsLyingToYou from './your-funnel-is-lying-to-you.json'
 import ninetyDayAiMarketingSprint from './90-day-ai-marketing-sprint.json'
 import consolidationIsComing from './consolidation-is-coming.json'
 import theFutureBelongsToTranslators from './the-future-belongs-to-translators.json'
+import expertsWithPowerTools from './experts-with-power-tools-not-monkeys-with-machine-guns.json'
 
 export const blogPosts: BlogPost[] = [
   theCostOfNoise as unknown as BlogPost,
@@ -56,4 +57,5 @@ export const blogPosts: BlogPost[] = [
   ninetyDayAiMarketingSprint as unknown as BlogPost,
   consolidationIsComing as unknown as BlogPost,
   theFutureBelongsToTranslators as unknown as BlogPost,
+  expertsWithPowerTools as unknown as BlogPost,
 ]

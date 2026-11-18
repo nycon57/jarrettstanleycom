@@ -8,8 +8,7 @@ import {
   Text,
   Link,
   Hr,
-  Img,
-} from '@react-email/components';
+  } from '@react-email/components';
 
 interface EmailLayoutProps {
   children: React.ReactNode;

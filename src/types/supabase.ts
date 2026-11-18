@@ -1,4 +1,4 @@
-type Json =
+export type Json =
 string |
 number |
 boolean |
@@ -928,7 +928,7 @@ type DatabaseWithoutInternals = Omit<Database, "__InternalSupabase">;
 
 type DefaultSchema = DatabaseWithoutInternals[Extract<keyof Database, "public">];
 
-type Tables<
+export type Tables<
   DefaultSchemaTableNameOrOptions extends
   keyof (DefaultSchema["Tables"] & DefaultSchema["Views"]) |
   {schema: keyof DatabaseWithoutInternals;},
@@ -957,7 +957,7 @@ R :
 never :
 never;
 
-type TablesInsert<
+export type TablesInsert<
   DefaultSchemaTableNameOrOptions extends
   keyof DefaultSchema["Tables"] |
   {schema: keyof DatabaseWithoutInternals;},
@@ -982,7 +982,7 @@ I :
 never :
 never;
 
-type TablesUpdate<
+export type TablesUpdate<
   DefaultSchemaTableNameOrOptions extends
   keyof DefaultSchema["Tables"] |
   {schema: keyof DatabaseWithoutInternals;},
@@ -1007,7 +1007,7 @@ U :
 never :
 never;
 
-type Enums<
+export type Enums<
   DefaultSchemaEnumNameOrOptions extends
   keyof DefaultSchema["Enums"] |
   {schema: keyof DatabaseWithoutInternals;},
@@ -1024,7 +1024,7 @@ DefaultSchemaEnumNameOrOptions extends keyof DefaultSchema["Enums"] ?
 DefaultSchema["Enums"][DefaultSchemaEnumNameOrOptions] :
 never;
 
-type CompositeTypes<
+export type CompositeTypes<
   PublicCompositeTypeNameOrOptions extends
   keyof DefaultSchema["CompositeTypes"] |
   {schema: keyof DatabaseWithoutInternals;},
@@ -1041,7 +1041,7 @@ PublicCompositeTypeNameOrOptions extends keyof DefaultSchema["CompositeTypes"] ?
 DefaultSchema["CompositeTypes"][PublicCompositeTypeNameOrOptions] :
 never;
 
-const Constants = {
+export const Constants = {
   public: {
     Enums: {}
   }

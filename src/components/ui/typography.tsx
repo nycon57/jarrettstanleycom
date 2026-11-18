@@ -18,8 +18,8 @@ const headingVariants = cva(
       color: {
         default: "text-foreground",
         muted: "text-muted-foreground",
-        gradient: "bg-gradient-to-r from-lilac via-orchid to-skyward bg-clip-text text-transparent",
-        "gradient-subtle": "bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent",
+        gradient: "text-hp-text",
+        "gradient-subtle": "text-hp-text",
         lilac: "text-lilac",
         orchid: "text-orchid",
         skyward: "text-skyward"
@@ -49,7 +49,7 @@ const textVariants = cva(
         lilac: "text-lilac",
         orchid: "text-orchid",
         skyward: "text-skyward",
-        gradient: "bg-gradient-to-r from-lilac to-orchid bg-clip-text text-transparent"
+        gradient: "text-hp-text"
       },
       weight: {
         normal: "font-normal",
@@ -229,8 +229,8 @@ interface CodeProps extends React.HTMLAttributes<HTMLElement> {
 Code.displayName = "Code";
 
 // Blockquote Component
-interface BlockquoteProps extends
-  React.BlockquoteHTMLAttributes<HTMLQuoteElement> {}function Blockquote(
+type BlockquoteProps = React.BlockquoteHTMLAttributes<HTMLQuoteElement>;
+function Blockquote(
 
 
 { className, ref, ...props }: BlockquoteProps & {ref?: React.Ref<HTMLQuoteElement>;}) {
@@ -238,7 +238,7 @@ interface BlockquoteProps extends
     <blockquote
       ref={ref}
       className={cn(
-        "border-l-4 border-lilac/50 pl-4 italic text-muted-foreground",
+        "border-l border-[oklch(0.97_0.008_295/0.18)] pl-5 italic text-hp-muted",
         className
       )}
       {...props} />);

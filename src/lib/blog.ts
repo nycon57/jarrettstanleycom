@@ -55,12 +55,12 @@ export async function getBlogPost(slug: string): Promise<BlogPost | undefined> {
   return posts.find((p) => p.slug === slug);
 }
 
-async function getBlogPostsByCategory(categorySlug: string): Promise<BlogPost[]> {
+export async function getBlogPostsByCategory(categorySlug: string): Promise<BlogPost[]> {
   const posts = await getAllBlogPosts();
   return posts.filter((p) => p.categories.includes(categorySlug));
 }
 
-async function getBlogPostsBySeries(seriesSlug: string): Promise<BlogPost[]> {
+export async function getBlogPostsBySeries(seriesSlug: string): Promise<BlogPost[]> {
   const posts = await getAllBlogPosts();
   return posts.
   filter((p) => p.series?.slug === seriesSlug).
@@ -93,7 +93,7 @@ limit: number = 3)
   return scored.slice(0, limit).map((s) => s.post);
 }
 
-function getBlogCategory(slug: string): BlogCategory | undefined {
+export function getBlogCategory(slug: string): BlogCategory | undefined {
   return blogCategories.find((c) => c.slug === slug);
 }
 
@@ -122,7 +122,7 @@ export function toTransformedPost(post: BlogPost): TransformedPost {
   };
 }
 
-function toTransformedCategory(cat: BlogCategory): TransformedCategory {
+export function toTransformedCategory(cat: BlogCategory): TransformedCategory {
   return {
     id: cat.slug,
     name: cat.name,

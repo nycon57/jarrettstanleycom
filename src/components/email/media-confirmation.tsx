@@ -92,7 +92,7 @@ function renderMediaConfirmationEmail({
         }}>
           <h1 style={{ margin: '0', fontSize: '28px' }}>📰 Media Request Received</h1>
           <p style={{ margin: '10px 0 0 0', fontSize: '18px', opacity: '0.9' }}>
-            We'll get back to you promptly
+            I'll follow up personally
           </p>
         </div>
       </div>
@@ -311,7 +311,7 @@ function renderMediaConfirmationEmail({
         <p style={{ margin: '0 0 15px 0', fontSize: '14px', color: '#01579b' }}>
           High-resolution photos, detailed bio, company information, and recent achievements available upon request.
         </p>
-        <a href="mailto:jarrett@jarrettstanley.com?subject=Press Kit Request - ${data.outlet}" style={{
+        <a href="mailto:jarrett@truetone.ai?subject=Press Kit Request - ${data.outlet}" style={{
           backgroundColor: '#0277bd',
           color: 'white',
           padding: '8px 16px',
@@ -332,7 +332,7 @@ function renderMediaConfirmationEmail({
           If you have a breaking news deadline or urgent request:
         </p>
         <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap' }}>
-          <a href="mailto:jarrett@jarrettstanley.com" style={{
+          <a href="mailto:jarrett@truetone.ai" style={{
             backgroundColor: '#dc2626',
             color: 'white',
             padding: '10px 16px',

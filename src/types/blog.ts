@@ -85,7 +85,7 @@ export interface BlogPost {
 
 // --- Display Labels ---
 
-const blogCategoryLabels: Record<string, string> = {
+export const blogCategoryLabels: Record<string, string> = {
   'leadership': 'Leadership & Strategy',
   'data-analytics': 'Data & Analytics',
   'operations': 'Marketing Operations',

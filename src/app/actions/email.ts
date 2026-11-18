@@ -15,7 +15,6 @@ import {
   sendNewsletterNotification,
   safeEmailSend } from
 '@/lib/email-service';
-import { createClient } from '@/lib/supabase-client';
 import { supabase } from '@/lib/supabase';
 import { checkForSpam, isSubmittedTooFast } from '@/lib/spam-protection';
 
@@ -442,7 +441,7 @@ export async function subscribeToNewsletter(formData: FormData) {
 }
 
 // Resource download action
-async function downloadResource(formData: FormData) {
+export async function downloadResource(formData: FormData) {
   try {
     const email = formData.get('email') as string;
     const firstName = formData.get('firstName') as string;
@@ -649,7 +648,7 @@ export async function submitConsultingInquiry(data: any) {
 }
 
 // Update speaking inquiry to use email integration
-async function submitSpeakingInquiry(data: any) {
+export async function submitSpeakingInquiry(data: any) {
   try {
     // SPAM PROTECTION CHECK
     const clientIP = await getClientIP();
@@ -734,64 +733,3 @@ async function submitSpeakingInquiry(data: any) {
   }
 }
 
-// Enhanced waitlist action with email integration
-async function submitWaitlistSignup(data: any) {
-  try {
-    // Get tracking data from the form
-    const referrer = data.referrer || null;
-    const userAgent = data.userAgent;
-    const urlParams = data.urlParams || {};
-
-    // Save to database
-    const { error: dbError } = await supabase.from('waitlist').insert({
-      email: data.email,
-      first_name: data.first_name,
-      last_name: data.last_name || null,
-      company: data.company || null,
-      marketing_consent: data.marketing_consent || false,
-      referrer,
-      user_agent: userAgent,
-      utm_source: urlParams.utm_source,
-      utm_medium: urlParams.utm_medium,
-      utm_campaign: urlParams.utm_campaign,
-      utm_term: urlParams.utm_term,
-      utm_content: urlParams.utm_content
-    });
-
-    if (dbError) {
-      console.error('Database error:', dbError);
-      captureLeadActionException(dbError, 'waitlist_signup', 'database_insert', {
-        hasCompany: !!data.company,
-        hasMarketingConsent: !!data.marketing_consent,
-      });
-      throw new Error('Failed to save waitlist signup');
-    }
-
-    // Send confirmation email (you already have this template)
-    const confirmationResult = await safeEmailSend(async () => {
-      const [{ WaitlistConfirmationEmail }, { sendEmail }] = await Promise.all([
-        import('@/components/email/waitlist-confirmation'),
-        import('@/lib/email')
-      ]);
-
-      return sendEmail({
-        to: data.email,
-        subject: '🎉 Welcome to TrueTone AI Beta Waitlist!',
-        react: React.createElement(WaitlistConfirmationEmail, { firstName: data.first_name })
-      });
-    });
-    if (!confirmationResult) {
-      captureLeadActionMessage('Waitlist confirmation email failed', 'waitlist_signup', 'confirmation_email', {
-        hasCompany: !!data.company,
-      }, 'warning');
-    }
-
-    return { success: true };
-  } catch (error) {
-    console.error('Waitlist signup error:', error);
-    if (!(error instanceof Error && error.message === 'Failed to save waitlist signup')) {
-      captureLeadActionException(error, 'waitlist_signup', 'unhandled');
-    }
-    throw error;
-  }
-}

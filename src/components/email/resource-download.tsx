@@ -225,7 +225,7 @@ export const ResourceDownloadEmail: React.FC<Readonly<ResourceDownloadEmailProps
           strategies could work for your specific situation?
         </p>
         <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
-          <a href="mailto:jarrett@jarrettstanley.com?subject=Question about AI Marketing Resource" style={{
+          <a href="mailto:jarrett@truetone.ai?subject=Question about AI Marketing Resource" style={{
             backgroundColor: '#3b82f6',
             color: 'white',
             padding: '10px 16px',

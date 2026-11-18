@@ -2,11 +2,15 @@
 
 import * as React from "react";
 import * as SelectPrimitive from "@radix-ui/react-select";
-import { Check, ChevronDown } from "lucide-react";
+import { IconCheck as Check, IconChevronDown as ChevronDown } from '@/components/icons/iconmcp/icons'
 
 import { cn } from "@/lib/utils";
 
-const Select = SelectPrimitive.Root;
+// Radix Select can report "" on mount (its hidden native select syncs before the value is set), which
+// silently wipes a controlled selection, e.g. the contact page's ?type=media. Empty is never a real choice here.
+function Select({ onValueChange, ...props }: React.ComponentProps<typeof SelectPrimitive.Root>) {
+  return <SelectPrimitive.Root onValueChange={onValueChange && ((value) => value !== "" && onValueChange(value))} {...props} />;
+}
 
 const SelectGroup = SelectPrimitive.Group;
 
@@ -19,7 +23,7 @@ const SelectValue = SelectPrimitive.Value;function SelectTrigger(
     <SelectPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "flex h-11 w-full items-center justify-between rounded-lg border border-[oklch(0.97_0.008_295/0.14)] bg-hp-lift px-3.5 py-2 text-[0.9375rem] text-hp-text placeholder:text-hp-soft transition-colors duration-200 hover:border-[oklch(0.97_0.008_295/0.24)] data-[placeholder]:text-hp-soft focus-visible:border-[oklch(0.72_0.155_298/0.7)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[oklch(0.85_0.12_298)] disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}>
@@ -86,7 +90,7 @@ SelectItem.displayName = SelectPrimitive.Item.displayName;
 
 export {
   Select,
-
+  SelectGroup,
   SelectValue,
   SelectTrigger,
   SelectContent,

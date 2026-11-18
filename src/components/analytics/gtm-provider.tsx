@@ -3,7 +3,7 @@
 import { useSyncExternalStore } from 'react';
 import Script from 'next/script';
 import { GTM_ID } from '@/lib/gtm';
-import { hasConsentFor } from '@/components/analytics/cookie-consent';
+import { hasConsentFor } from '@/lib/consent';
 
 export function GTMProvider() {
   const hasConsent = useSyncExternalStore(

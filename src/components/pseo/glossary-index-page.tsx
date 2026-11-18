@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from 'react'
-import { Search } from 'lucide-react'
+import { IconSearch as Search } from '@/components/icons/iconmcp/icons'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { ContentCard } from '@/components/pseo/content-card'
@@ -23,7 +23,7 @@ const categoryBadgeVariant: Record<GlossaryCategory, 'lilac' | 'orchid' | 'skywa
   'compliance-regulation': 'lilac',
 }
 
-export function GlossaryIndexClient({ terms, alphabetMap }: GlossaryIndexPageProps) {
+export function GlossaryIndexClient({ terms, alphabetMap: _alphabetMap }: GlossaryIndexPageProps) {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedCategory, setSelectedCategory] = useState<GlossaryCategory | null>(null)
 

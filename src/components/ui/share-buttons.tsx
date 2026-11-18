@@ -2,12 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import { TrackedLink } from '@/components/analytics/tracked-link'
-import { 
-  Twitter,
-  Linkedin,
-  Facebook,
-  Link2
-} from 'lucide-react'
+import { IconLink as Link2 } from '@/components/icons/iconmcp/icons'
+import { BrandX as Twitter, BrandLinkedin as Linkedin, BrandFacebook as Facebook } from '@/components/icons/brands'
 import { useState } from 'react'
 
 interface ShareButtonsProps {
@@ -31,7 +27,7 @@ export function ShareButtons({ shareUrl, title }: ShareButtonsProps) {
   }
 
   return (
-    <div className="flex items-center gap-x-4">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
       <Button asChild variant="outline" size="sm">
         <TrackedLink
           href={shareLinks.twitter}

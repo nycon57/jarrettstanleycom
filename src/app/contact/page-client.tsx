@@ -1,22 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { m } from "framer-motion";
-import {
-  CheckCircle,
-  Send,
-  Camera,
-} from "lucide-react";
-import {
-  IconMicrophone,
-  IconBriefcase,
-  IconCamera,
-} from "@tabler/icons-react";
-import { Button } from "@/components/ui/button";
+import { SpeakingConversation } from "@/components/speaking/speaking-conversation";
+import { IconArrowRight as ArrowRight, IconSend as Send, IconCamera as Camera } from '@/components/icons/iconmcp/icons'
+import { IconMic as IconMicrophone, IconBriefcase, IconCamera } from '@/components/icons/iconmcp/icons'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Heading, Text } from "@/components/ui/typography";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { useFormSuccess } from "@/hooks/use-form-success";
@@ -28,10 +16,10 @@ import { CompanyField, GeneralMessageField } from "@/components/contact/general-
 // Contact pathway configurations
 const contactPathways = [
   {
-    title: "Speaking Engagements",
-    description: "Book Jarrett for keynotes, panels, and workshops on AI-powered marketing",
+    title: "Speaking",
+    description: "Keynotes, workshops, panels and firesides on AI, marketing and leadership.",
     icon: IconMicrophone,
-    action: "Request Speaking",
+    action: "Start a speaking inquiry",
     href: "#contact-form",
     color: "bg-lilac",
     type: "speaking",
@@ -43,10 +31,10 @@ const contactPathways = [
     ]
   },
   {
-    title: "Consulting Services",
-    description: "Transform your marketing with AI expertise and strategic guidance",
+    title: "Consulting",
+    description: "Help putting AI to work in your marketing plan, tools and team.",
     icon: IconBriefcase,
-    action: "Explore Consulting",
+    action: "Ask about consulting",
     href: "#contact-form",
     color: "bg-orchid",
     type: "consulting",
@@ -58,10 +46,10 @@ const contactPathways = [
     ]
   },
   {
-    title: "Media Requests",
-    description: "Press interviews, expert commentary, and media appearances",
+    title: "Media",
+    description: "Interviews, quotes and commentary on AI and mortgage marketing.",
     icon: IconCamera,
-    action: "Media Inquiry",
+    action: "Send a media request",
     href: "#contact-form",
     color: "bg-skyward",
     type: "media",
@@ -159,7 +147,7 @@ function useContactPageClientView() {
         if (result.error) {
           toast.error(result.error);
         } else {
-          toast.success("Media inquiry submitted! We'll respond as soon as possible.");
+          toast.success("Media inquiry sent. I'll follow up personally.");
           resetForm();
         }
       } else {
@@ -224,231 +212,131 @@ function useContactPageClientView() {
         onClose={hideSuccess}
         name={data.name}
       />
-      <main className="flex min-h-screen flex-col">
-      {/* Hero Section */}
-      <section className="relative py-32 pt-40 overflow-hidden bg-gradient-to-br from-lilac/10 via-background to-orchid/10">
-        <div className="container mx-auto px-4 text-center">
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mx-auto mb-6 w-fit"
-          >
-            <Badge variant="lilac" size="lg" className="backdrop-blur">
-              Let's Connect
-            </Badge>
-          </m.div>
-
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="mb-6"
-          >
-            <Heading variant="h1" className="mx-auto max-w-4xl text-balance text-center">
-              Ready to Transform Your <span className="text-lilac">Marketing with AI?</span>
-            </Heading>
-          </m.div>
-
-          <m.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="mb-8"
-          >
-            <Text variant="large" className="mx-auto max-w-3xl text-center text-muted-foreground">
-              Whether you need expert speaking, strategic consulting, or media commentary on AI marketing,
-              I'm here to help. Choose the path that best fits your needs.
-            </Text>
-          </m.div>
+      <section className="page-hero page-hero--tight">
+        <div className="shell relative z-[2] stagger">
+          <h1 className="t-hero max-w-[14ch]" style={{ '--i': 0 } as React.CSSProperties}>
+            Let&apos;s talk.
+          </h1>
+          <p className="t-lede mt-7" style={{ '--i': 1 } as React.CSSProperties}>
+            Pick the reason you&apos;re reaching out. Everything here comes straight to me.
+          </p>
         </div>
       </section>
 
-      {/* Contact Pathways */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <Heading variant="h2" className="mb-4 text-center">How Can I Help You?</Heading>
-            <Text className="text-muted-foreground max-w-2xl mx-auto text-center">
-              Choose the best pathway based on your specific needs and goals
-            </Text>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6 mb-16">
-            {contactPathways.map((pathway, index) => (
-              <m.div
-                key={pathway.type}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group cursor-pointer"
-                onClick={() => handlePathwayClick(pathway.type)}
-              >
-                <Card variant="interactive" className="h-full">
-                  <CardContent className="p-6">
-                <m.div
-                  className={`size-12 rounded-full ${pathway.color} flex items-center justify-center mx-auto mb-4`}
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ duration: 0.2 }}
+      <section className="hp-section !pt-0" aria-label="Ways to work together">
+        <div className="shell">
+          <ul className="border-t border-hp-rule">
+            {contactPathways.map((pathway) => {
+              return (
+                <li
+                  key={pathway.type}
+                  className="grid gap-4 border-b border-hp-rule py-8 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)_15rem] md:items-baseline md:gap-12"
                 >
-                  <pathway.icon className="size-6 text-white" />
-                </m.div>
-                <h3 className="text-lg font-semibold mb-2 text-foreground text-center">{pathway.title}</h3>
-                <p className="text-sm text-muted-foreground mb-4 text-center">{pathway.description}</p>
-
-                <div className="gap-y-2 mb-4">
-                  {pathway.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-2">
-                      <CheckCircle className="size-4 text-lilac" />
-                      <span className="text-xs text-muted-foreground">{feature}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <Button
-                  size="sm"
-                  variant="lilac"
-                  className="w-full"
-                >
-                  {pathway.action}
-                </Button>
-                  </CardContent>
-                </Card>
-              </m.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Unified Contact Form */}
-      <section id="contact-form" className="py-24 bg-muted/30">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 items-start">
-              <m.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.2 }}
-              >
-                <Heading variant="h2" className="mb-6">
-                  {isMediaInquiry ? 'Media Inquiry' : 'Send Me a Message'}
-                </Heading>
-                <Text className="text-muted-foreground mb-8">
-                  {isMediaInquiry
-                    ? "Looking for expert commentary on AI marketing, mortgage industry trends, or digital transformation? I'm available for interviews, quotes, and media appearances."
-                    : "Have a question or want to discuss how AI can transform your marketing? Fill out the form and I'll get back to you as soon as possible."
-                  }
-                </Text>
-
-                <div className="gap-y-6">
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="size-5 text-lilac" />
-                    <span className="text-foreground">
-                      {isMediaInquiry ? 'Response within 4 hours' : 'Quick and Personalized response'}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="size-5 text-lilac" />
-                    <span className="text-foreground">Expert insights and recommendations</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <CheckCircle className="size-5 text-lilac" />
-                    <span className="text-foreground">No sales pitch, just helpful advice</span>
-                  </div>
-                </div>
-              </m.div>
-
-              <m.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.4 }}
-              >
-                <Card variant="elevated">
-                  <CardContent className="p-8">
-                <form onSubmit={handleSubmit} className="gap-y-6">
-                  <HoneypotField
-                    value={formData.website}
-                    onChange={(value) => handleFieldChange("website", value)}
-                  />
-
-                  <NameFields
-                    formData={formData}
-                    onFieldChange={handleFieldChange}
-                  />
-
-                  <ContactFields
-                    formData={formData}
-                    onFieldChange={handleFieldChange}
-                    emailPlaceholder={isMediaInquiry ? "journalist@outlet.com" : "you@company.com"}
-                  />
-
-                  {/* Company/Outlet field — variant-specific */}
-                  {isMediaInquiry ? (
-                    <MediaOutletField formData={formData} onFieldChange={handleFieldChange} />
-                  ) : (
-                    <CompanyField formData={formData} onFieldChange={handleFieldChange} />
-                  )}
-
-                  {/* Inquiry Type */}
-                  <div className="gap-y-2">
-                    <Label htmlFor="type">Inquiry Type</Label>
-                    <Select value={formData.type} onValueChange={(value) => handleFieldChange("type", value)}>
-                      <SelectTrigger className="bg-background">
-                        <SelectValue placeholder="Select inquiry type" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="general">General Question</SelectItem>
-                        <SelectItem value="consulting">Consulting Interest</SelectItem>
-                        <SelectItem value="speaking">Speaking Opportunity</SelectItem>
-                        <SelectItem value="media">Media Inquiry</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  {/* Media-specific fields */}
-                  {isMediaInquiry && (
-                    <>
-                      <MediaDetailFields formData={formData} onFieldChange={handleFieldChange} />
-                      <MediaMessageField formData={formData} onFieldChange={handleFieldChange} />
-                    </>
-                  )}
-
-                  {/* General message field */}
-                  {!isMediaInquiry && (
-                    <GeneralMessageField formData={formData} onFieldChange={handleFieldChange} />
-                  )}
-
-                  <Button
-                    type="submit"
-                    variant={isMediaInquiry ? 'skyward' : 'gradient'}
-                    className="w-full"
-                    disabled={loading}
-                    size="lg"
+                  <h2 className="t-title">{pathway.title}</h2>
+                  <p className="text-[0.9375rem] leading-relaxed text-hp-muted">{pathway.description}</p>
+                  <button
+                    type="button"
+                    onClick={() => handlePathwayClick(pathway.type)}
+                    className="btn-ghost justify-self-start md:justify-self-end"
                   >
-                    {loading ? (
-                      <>
-                        <Send className="mr-2 size-4 animate-pulse" />
-                        {isMediaInquiry ? 'Submitting...' : 'Sending...'}
-                      </>
-                    ) : (
-                      <>
-                        {isMediaInquiry ? <Camera className="mr-2 size-4" /> : <Send className="mr-2 size-4" />}
-                        {isMediaInquiry ? 'Submit Media Inquiry' : 'Send Message'}
-                      </>
-                    )}
-                  </Button>
-                </form>
-                  </CardContent>
-                </Card>
-              </m.div>
+                    {pathway.action}
+                    <ArrowRight className="size-4" />
+                  </button>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      </section>
+
+      {formData.type === 'speaking' ? (
+        <section id="contact-form" className="hp-section hp-section--lift scroll-mt-20" aria-labelledby="speaking-conversation-title">
+          <div className="shell">
+            <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+              <h2 id="speaking-conversation-title" className="t-headline">
+                Book me to speak. <span className="t-step">A few questions, one at a time.</span>
+              </h2>
+              <button type="button" onClick={() => handleFieldChange('type', 'general')} className="btn-ghost shrink-0 text-sm">
+                Not a speaking request?
+              </button>
+            </div>
+            <div className="mt-12">
+              <SpeakingConversation />
             </div>
           </div>
+        </section>
+      ) : (
+      <section id="contact-form" className="hp-section hp-section--lift scroll-mt-20" aria-labelledby="contact-form-title">
+        <div className="shell grid gap-14 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <h2 id="contact-form-title" className="t-headline">
+              {isMediaInquiry ? 'Media inquiry.' : 'Send me a message.'}
+            </h2>
+            <p className="t-lede mt-5">
+              {isMediaInquiry
+                ? "Working on a story about AI, mortgage marketing or the industry? Tell me about it. I do interviews, quotes and on-air appearances."
+                : "Tell me what's on your mind. It comes straight to my inbox."}
+            </p>
+          </div>
+
+          <div className="hp-card p-6 sm:p-9">
+            <form onSubmit={handleSubmit} className="grid gap-6">
+              <HoneypotField
+                value={formData.website}
+                onChange={(value) => handleFieldChange("website", value)}
+              />
+
+              <NameFields formData={formData} onFieldChange={handleFieldChange} />
+
+              <ContactFields
+                formData={formData}
+                onFieldChange={handleFieldChange}
+                emailPlaceholder={isMediaInquiry ? "journalist@outlet.com" : "you@company.com"}
+              />
+
+              {isMediaInquiry ? (
+                <MediaOutletField formData={formData} onFieldChange={handleFieldChange} />
+              ) : (
+                <CompanyField formData={formData} onFieldChange={handleFieldChange} />
+              )}
+
+              <div className="grid gap-2">
+                <Label htmlFor="type">Inquiry type</Label>
+                <Select value={formData.type} onValueChange={(value) => handleFieldChange("type", value)}>
+                  <SelectTrigger id="type">
+                    <SelectValue placeholder="Select inquiry type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="general">General question</SelectItem>
+                    <SelectItem value="consulting">Consulting interest</SelectItem>
+                    <SelectItem value="speaking">Speaking opportunity</SelectItem>
+                    <SelectItem value="media">Media inquiry</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {isMediaInquiry && (
+                <>
+                  <MediaDetailFields formData={formData} onFieldChange={handleFieldChange} />
+                  <MediaMessageField formData={formData} onFieldChange={handleFieldChange} />
+                </>
+              )}
+
+              {!isMediaInquiry && (
+                <GeneralMessageField formData={formData} onFieldChange={handleFieldChange} />
+              )}
+
+              <button type="submit" disabled={loading} className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:justify-self-start">
+                {loading
+                  ? isMediaInquiry ? 'Submitting…' : 'Sending…'
+                  : isMediaInquiry ? 'Submit media inquiry' : 'Send message'}
+                {isMediaInquiry ? <Camera className="size-4" /> : <Send className="size-4" />}
+              </button>
+            </form>
+          </div>
         </div>
       </section>
-      </main>
+      )}
     </>
   );
 

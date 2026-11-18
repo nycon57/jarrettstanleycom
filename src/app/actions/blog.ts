@@ -1,6 +1,5 @@
 import { client, urlFor } from '@/lib/sanity';
 import {
-  filteredPostsQuery,
   postBySlugQuery,
   relatedPostsQuery,
   recentPostsQuery,
@@ -59,7 +58,7 @@ export async function getBlogPosts(options: {
   search?: string;
   featured?: boolean;
 }): Promise<{posts: TransformedPost[];totalCount: number;totalPages: number;}> {
-  const { page = 1, limit = 9 } = options;
+  const { limit = 9 } = options;
 
   // Debug: Log environment variables (redacted for security)
   console.log('=== getBlogPosts SERVER ACTION CALLED ===');
@@ -125,7 +124,7 @@ export async function getBlogPosts(options: {
   }
 }
 
-async function getBlogPostBySlug(slug: string): Promise<TransformedPost | null> {
+export async function getBlogPostBySlug(slug: string): Promise<TransformedPost | null> {
   try {
     if (!client) return null;
     const post = await client.fetch<SanityPost | null>(postBySlugQuery, { slug });
@@ -141,7 +140,7 @@ async function getBlogPostBySlug(slug: string): Promise<TransformedPost | null> 
   }
 }
 
-async function getRelatedPosts(postId: string, categories: string[], limit: number = 3): Promise<TransformedPost[]> {
+export async function getRelatedPosts(postId: string, categories: string[], limit: number = 3): Promise<TransformedPost[]> {
   try {
     if (!client) return [];
 
@@ -179,7 +178,7 @@ async function getRelatedPosts(postId: string, categories: string[], limit: numb
 
 // Placeholder for view tracking (Sanity doesn't have this built-in)
 // You could implement this with a separate analytics service or Supabase
-async function trackPostView(postId: string): Promise<void> {
+export async function trackPostView(postId: string): Promise<void> {
   // View tracking would need to be implemented with an external service
   // For now, this is a no-op
   console.log('View tracked for post:', postId);
@@ -269,7 +268,7 @@ export async function getResources(options: {
   return { resources: transformedResources, totalCount, totalPages };
 }
 
-async function getResourceBySlug(slug: string): Promise<Resource | null> {
+export async function getResourceBySlug(slug: string): Promise<Resource | null> {
   const { data: resource, error } = await supabase.
   from('resources').
   select(`*`).
@@ -298,7 +297,7 @@ async function getResourceBySlug(slug: string): Promise<Resource | null> {
 }
 
 // Search action
-async function searchContent(query: string, type: 'posts' | 'resources' | 'all' = 'all') {
+export async function searchContent(query: string, type: 'posts' | 'resources' | 'all' = 'all') {
   const results: {posts: TransformedPost[];resources: Resource[];} = {
     posts: [],
     resources: []

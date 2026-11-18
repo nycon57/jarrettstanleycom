@@ -31,7 +31,9 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Example function to send to Google Analytics
+// Example function to send to Google Analytics. Kept as the wiring template
+// for the commented-out call site in POST above.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function sendToGoogleAnalytics(data: any) {
   const GA_MEASUREMENT_ID = process.env.GA_MEASUREMENT_ID
   const GA_API_SECRET = process.env.GA_API_SECRET
@@ -69,6 +71,8 @@ async function sendToGoogleAnalytics(data: any) {
 }
 
 // Example function to store in database
+// Kept as the wiring template for the commented-out call site in POST above.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function storeInDatabase(data: any) {
   // This would integrate with your database (Supabase, etc.)
   // Example with Supabase:

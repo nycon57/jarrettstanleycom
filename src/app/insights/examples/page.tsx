@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { IconArrowRight as ArrowRight } from '@/components/icons/iconmcp/icons'
 import { getAllCampaignExamples, buildExampleBreadcrumbs } from '@/lib/pseo'
 import {
   generateMetadata as genMeta,

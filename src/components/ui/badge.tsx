@@ -3,47 +3,36 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "@/lib/utils";
 
+// truetone.ai chips (DESIGN.md "Chips"): small pill, lilac-tinted fill and hairline, uppercase-free
+// sentence labels at 11-13px. Status keeps meaning through muted tints, never gradients.
+const chip = "bg-[oklch(0.42_0.13_298/0.22)] text-[oklch(0.9_0.09_298)] border border-[oklch(0.72_0.155_298/0.3)]";
+const quiet = "bg-transparent text-hp-muted border border-[oklch(0.97_0.008_295/0.14)]";
+
 const badgeVariants = cva(
-  "inline-flex items-center rounded-full font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-lilac focus:ring-offset-2",
+  "inline-flex items-center rounded-full font-semibold transition-colors duration-200",
   {
     variants: {
       variant: {
-        default:
-        "bg-primary text-primary-foreground hover:bg-primary/80",
-        secondary:
-        "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        destructive:
-        "bg-destructive text-destructive-foreground hover:bg-destructive/80",
-        outline: "border text-foreground hover:bg-accent",
-        // Brand color variants
-        lilac:
-        "bg-lilac/10 text-lilac border border-lilac/30 hover:bg-lilac/20 hover:border-lilac/50",
-        orchid:
-        "bg-orchid/10 text-orchid border border-orchid/30 hover:bg-orchid/20 hover:border-orchid/50",
-        skyward:
-        "bg-skyward/10 text-skyward border border-skyward/30 hover:bg-skyward/20 hover:border-skyward/50",
-        lavender:
-        "bg-lavender/10 text-orchid border border-lavender/30 hover:bg-lavender/20 hover:border-lavender/50",
-        // Gradient variants
-        gradient:
-        "bg-gradient-to-r from-lilac to-orchid text-white hover:from-lilac/90 hover:to-orchid/90",
-        "gradient-subtle":
-        "bg-gradient-to-r from-lilac/10 to-orchid/10 text-lilac border border-lilac/30 hover:from-lilac/20 hover:to-orchid/20",
-        // Status variants with brand colors
-        success:
-        "bg-skyward/10 text-skyward border border-skyward/30 hover:bg-skyward/20",
-        warning:
-        "bg-lilac/10 text-lilac border border-lilac/30 hover:bg-lilac/20",
-        error:
-        "bg-orchid/10 text-orchid border border-orchid/30 hover:bg-orchid/20",
-        info:
-        "bg-lavender/10 text-orchid border border-lavender/30 hover:bg-lavender/20"
+        default: chip,
+        secondary: quiet,
+        destructive: "bg-destructive/15 text-destructive border border-destructive/30",
+        outline: quiet,
+        lilac: chip,
+        orchid: chip,
+        skyward: "bg-[oklch(0.85_0.11_215/0.12)] text-[oklch(0.88_0.08_215)] border border-[oklch(0.85_0.11_215/0.3)]",
+        lavender: chip,
+        gradient: chip,
+        "gradient-subtle": chip,
+        success: "bg-[oklch(0.85_0.11_215/0.12)] text-[oklch(0.88_0.08_215)] border border-[oklch(0.85_0.11_215/0.3)]",
+        warning: chip,
+        error: "bg-destructive/15 text-destructive border border-destructive/30",
+        info: quiet
       },
       size: {
         sm: "px-2 py-0.5 text-xs",
-        md: "px-2.5 py-0.5 text-sm",
-        lg: "px-3 py-1 text-base",
-        xl: "px-4 py-1.5 text-lg"
+        md: "px-2.5 py-0.5 text-xs",
+        lg: "px-3 py-1 text-[0.8125rem]",
+        xl: "px-3.5 py-1 text-sm"
       }
     },
     defaultVariants: {

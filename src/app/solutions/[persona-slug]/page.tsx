@@ -1,17 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import {
-  Target,
-  Zap,
-  BarChart3,
-  CheckCircle,
-  ArrowRight,
-  Lightbulb,
-  TrendingUp,
-  Shield,
-  AlertTriangle,
-} from 'lucide-react'
+import { IconTarget as Target, IconBolt as Zap, IconBarChart as BarChart3, IconCircleCheck as CheckCircle, IconArrowRight as ArrowRight, IconLightbulb as Lightbulb, IconTrendingUp as TrendingUp, IconShield as Shield, IconAlert as AlertTriangle } from '@/components/icons/iconmcp/icons'
 import { getAllPersonas, getPersona, buildPersonaBreadcrumbs } from '@/lib/pseo'
 import {
   generateMetadata as genMeta,

@@ -2,8 +2,27 @@ import { NextRequest, NextResponse } from 'next/server';
 import { getEmailStats } from '@/lib/email-service';
 import { supabase } from '@/lib/supabase';
 
+function requireAdminAuthorization(req: NextRequest): NextResponse | null {
+  const adminKey = process.env.ADMIN_API_KEY;
+
+  if (!adminKey) {
+    return NextResponse.json({ error: 'Service unavailable' }, { status: 503 });
+  }
+
+  if (req.headers.get('authorization') !== `Bearer ${adminKey}`) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  return null;
+}
+
 export async function GET(req: NextRequest) {
   try {
+    const authorizationError = requireAdminAuthorization(req);
+    if (authorizationError) {
+      return authorizationError;
+    }
+
     const { searchParams } = new URL(req.url);
     const templateName = searchParams.get('template');
     const dateFromStr = searchParams.get('dateFrom');
