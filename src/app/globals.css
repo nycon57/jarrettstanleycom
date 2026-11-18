@@ -15,6 +15,7 @@
     --font-display: var(--font-montserrat), 'Helvetica Neue', 'Arial Narrow', Helvetica, Arial, sans-serif;
     --font-body: var(--font-inter), 'Helvetica Neue', Helvetica, Arial, sans-serif;
     --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --font-heading: var(--font-display);
 
     --hp-bg: oklch(0.16 0.025 278);
     --hp-bg-lift: oklch(0.185 0.03 278);

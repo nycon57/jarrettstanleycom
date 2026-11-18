@@ -19,7 +19,7 @@ const SelectValue = SelectPrimitive.Value;function SelectTrigger(
     <SelectPrimitive.Trigger
       ref={ref}
       className={cn(
-        "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+        "flex h-11 w-full items-center justify-between rounded-lg border border-[oklch(0.97_0.008_295/0.14)] bg-hp-lift px-3.5 py-2 text-[0.9375rem] text-hp-text placeholder:text-hp-soft transition-colors duration-200 hover:border-[oklch(0.97_0.008_295/0.24)] data-[placeholder]:text-hp-soft focus-visible:border-[oklch(0.72_0.155_298/0.7)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-[oklch(0.85_0.12_298)] disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}>

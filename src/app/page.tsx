@@ -13,7 +13,7 @@ import {
 import { getAllBlogPosts } from '@/lib/blog'
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: 'Jarrett Stanley | AI Mortgage Marketing Speaker & Strategic Advisor',
+  title: 'AI Mortgage Marketing Speaker & Strategic Advisor',
   description: 'CMO at Nationwide Mortgage Bankers and CEO of TrueTone AI. Keynote speaker and strategic advisor helping mortgage companies build AI-powered marketing that scales.',
   keywords: ['AI mortgage marketing expert', 'mortgage marketing consultant', 'mortgage marketing keynote speaker', 'AI lending strategies', 'Jarrett Stanley'],
   canonical: '/',

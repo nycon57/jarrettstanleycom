@@ -48,7 +48,7 @@ export function ResourceCard({ resource, onDownload, className }: ResourceCardPr
       "group overflow-hidden transition-all duration-300 hover:shadow-lg",
       className
     )}>
-      <div className="relative aspect-video overflow-hidden bg-gradient-to-br from-purple-50 to-blue-50">
+      <div className="relative aspect-video overflow-hidden bg-hp-lift">
         {resource.thumbnail_url ? (
           <Image
             src={resource.thumbnail_url}
@@ -88,7 +88,7 @@ export function ResourceCard({ resource, onDownload, className }: ResourceCardPr
           ))}
         </div>
         
-        <h3 className="font-signal font-semibold text-xl leading-tight transition-colors group-hover:text-purple-600">
+        <h3 className="font-signal font-semibold text-xl leading-tight transition-colors group-hover:text-hp-lavender">
           {resource.title}
         </h3>
       </CardHeader>
@@ -109,7 +109,7 @@ export function ResourceCard({ resource, onDownload, className }: ResourceCardPr
       <CardFooter className="pt-0">
         <Button 
           onClick={handleDownload}
-          className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+          className="w-full"
         >
           <Download className="size-4 mr-2" />
           {resource.requires_email ? 'Download (Email Required)' : 'Download'}

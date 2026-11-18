@@ -285,7 +285,7 @@ export function SpeakingInquiryForm() {
                 aria-pressed={isSelected}
                 className="choice aria-pressed:border-[oklch(0.72_0.155_298/0.65)] aria-pressed:bg-[oklch(0.42_0.13_298/0.24)] aria-pressed:text-hp-text"
               >
-                {topic}
+                {TOPICS.find((t) => t.formValue === topic)?.label ?? topic.charAt(0) + topic.slice(1).toLowerCase()}
               </button>
             );
           })}

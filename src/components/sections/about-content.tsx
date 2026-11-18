@@ -191,7 +191,7 @@ export function AboutContent() {
                 <dt className="t-title">{area.title}</dt>
                 <dd className="mt-3">
                   <p className="t-body">{area.description}</p>
-                  <p className="t-meta mt-4 text-[0.8125rem]">{area.skills.join(' · ')}</p>
+                  <p className="mt-4 text-sm text-hp-soft">{area.skills.join(' · ')}</p>
                 </dd>
               </div>
             ))}

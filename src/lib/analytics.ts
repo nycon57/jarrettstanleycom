@@ -4,7 +4,7 @@
  * Google Ads conversions, and GTM dataLayer integration.
  */
 
-import { hasConsentFor } from '@/components/analytics/cookie-consent';
+import { hasConsentFor } from '@/lib/consent';
 import { pushFormConversion, pushConversion } from '@/lib/gtm';
 
 // Google Analytics 4 types

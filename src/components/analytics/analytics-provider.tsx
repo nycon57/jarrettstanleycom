@@ -10,7 +10,7 @@ import {
   CLARITY_PROJECT_ID,
   GOOGLE_ADS_ID,
 } from '@/lib/analytics';
-import { hasConsentFor } from '@/components/analytics/cookie-consent';
+import { hasConsentFor } from '@/lib/consent';
 
 interface AnalyticsProviderProps {
   children: React.ReactNode;

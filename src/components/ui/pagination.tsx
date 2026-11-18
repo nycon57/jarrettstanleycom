@@ -87,7 +87,7 @@ export function Pagination({
               onClick={() => onPageChange(page)}
               className={cn(
                 "w-10",
-                currentPage === page && "bg-gradient-to-r from-purple-600 to-blue-600 text-white"
+                currentPage === page && "bg-[oklch(0.42_0.13_298/0.24)] border-[oklch(0.72_0.155_298/0.65)] text-hp-text border"
               )}
             >
               {page}

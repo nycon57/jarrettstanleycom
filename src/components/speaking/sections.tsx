@@ -103,7 +103,7 @@ export function TalkTopics({ buildHref = '#session' }: { buildHref?: string }) {
               className="grid gap-6 border-b border-hp-rule py-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] lg:gap-16"
             >
               <div>
-                <h3 className="font-display text-[1.625rem] font-bold leading-[1.1] tracking-[-0.025em] text-hp-text sm:text-[2rem]">
+                <h3 className="font-display text-[1.5rem] font-bold leading-[1.1] tracking-[-0.025em] text-hp-text sm:text-[2rem]">
                   {topic.label}
                 </h3>
                 <p className="mt-3 text-[0.9375rem] italic text-hp-muted">{topic.session}</p>

@@ -61,10 +61,10 @@ export function CategoryFilter({
               key={category.id}
               variant={isSelected ? "default" : "secondary"}
               className={cn(
-                "cursor-pointer transition-all duration-200 hover:scale-105",
+                "cursor-pointer transition-colors duration-200",
                 isSelected 
-                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700" 
-                  : "hover:bg-muted-foreground/10"
+                  ? "bg-[oklch(0.42_0.13_298/0.24)] border-[oklch(0.72_0.155_298/0.65)] text-hp-text" 
+                  : "hover:text-hp-text hover:border-[oklch(0.97_0.008_295/0.3)]"
               )}
               style={
                 isSelected 

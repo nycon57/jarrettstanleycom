@@ -77,7 +77,7 @@ export function SessionBuilder() {
         </span>
         <span className="t-meta">session proposal</span>
         <span className="t-meta" aria-hidden="true">
-          {format.label.toLowerCase()}
+          {format.label.toLowerCase()} · {format.length.toLowerCase()}
         </span>
       </div>
 
@@ -85,7 +85,7 @@ export function SessionBuilder() {
         {/* The listing, as it would read in an event program */}
         <div className="flex items-center gap-3.5">
           <Image
-            src="/assets/images/jarrett-avatar.jpg"
+            src="/assets/images/jarrett-avatar-v2.jpg"
             alt=""
             width={48}
             height={48}
@@ -99,10 +99,10 @@ export function SessionBuilder() {
         </div>
 
         <div key={`${topicId}-${formatId}-${audienceId}`} className="swap-in mt-5" aria-live="polite">
-          <p className="t-meta uppercase tracking-[0.14em]">
-            {format.detail} · {format.length}
+          <p className="sr-only">
+            {format.detail}, {format.length}.
           </p>
-          <h2 className="mt-2.5 font-display text-[1.5rem] font-bold leading-[1.12] tracking-[-0.025em] text-hp-text sm:text-[1.75rem]">
+          <h2 className="font-display text-[1.5rem] font-bold leading-[1.12] tracking-[-0.025em] text-hp-text sm:text-[1.75rem]">
             {topic.session}
           </h2>
           <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-hp-muted">

@@ -27,7 +27,7 @@ export function ShareButtons({ shareUrl, title }: ShareButtonsProps) {
   }
 
   return (
-    <div className="flex items-center gap-x-4">
+    <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
       <Button asChild variant="outline" size="sm">
         <TrackedLink
           href={shareLinks.twitter}

@@ -29,7 +29,7 @@ const badgeVariants = cva(
         info: quiet
       },
       size: {
-        sm: "px-2 py-0.5 text-[0.6875rem]",
+        sm: "px-2 py-0.5 text-xs",
         md: "px-2.5 py-0.5 text-xs",
         lg: "px-3 py-1 text-[0.8125rem]",
         xl: "px-3.5 py-1 text-sm"

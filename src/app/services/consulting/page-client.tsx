@@ -4,7 +4,7 @@ import { ConsultingInquiryForm } from "@/components/consulting-inquiry-form";
 import { CtaSection } from "@/components/sections/cta-section";
 import Link from "next/link";
 import { SectionHead } from "@/components/speaking/sections";
-import { IconTarget as Target, IconBolt as Zap, IconUsers as Users, IconBarChart as BarChart3, IconCircleCheck as CheckCircle, IconArrowRight as ArrowRight, IconSparkles as Sparkles, IconMessage as MessageSquare } from '@/components/icons/iconmcp/icons'
+import { IconTarget as Target, IconBolt as Zap, IconUsers as Users, IconBarChart as BarChart3, IconCheck as CheckCircle, IconArrowRight as ArrowRight } from '@/components/icons/iconmcp/icons'
 
 const focusAreas = [
   {
@@ -106,32 +106,6 @@ const caseStudies = [
   }
 ];
 
-const processSteps = [
-  {
-    number: 1,
-    title: "Discovery",
-    description: "Deep dive into your current challenges, goals, and opportunities",
-    icon: <MessageSquare className="size-8 text-white" />
-  },
-  {
-    number: 2,
-    title: "Strategy",
-    description: "Develop customized AI roadmap aligned with your business objectives",
-    icon: <Target className="size-8 text-white" />
-  },
-  {
-    number: 3,
-    title: "Implementation",
-    description: "Hands-on guidance through execution with your team",
-    icon: <Zap className="size-8 text-white" />
-  },
-  {
-    number: 4,
-    title: "Optimization",
-    description: "Continuous improvement and scaling of successful initiatives",
-    icon: <Sparkles className="size-8 text-white" />
-  }
-];
 
 export default function ConsultingPageClient() {
   return (
@@ -164,11 +138,11 @@ export default function ConsultingPageClient() {
             title="Consulting focus areas."
             step="Everything AI touches in mortgage marketing."
           />
-          <dl className="mt-14 grid gap-x-16 border-t border-hp-rule md:grid-cols-2">
+          <dl className="mt-14 border-t border-hp-rule">
             {focusAreas.map((area) => (
-              <div key={area.title} className="border-b border-hp-rule py-8">
+              <div key={area.title} className="grid gap-3 border-b border-hp-rule py-7 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.6fr)] md:gap-12">
                 <dt className="t-title">{area.title}</dt>
-                <dd className="t-body mt-3">{area.description}</dd>
+                <dd className="t-body">{area.description}</dd>
               </div>
             ))}
           </dl>
@@ -178,45 +152,34 @@ export default function ConsultingPageClient() {
       <section className="hp-section" aria-labelledby="models-title">
         <div className="shell">
           <SectionHead id="models-title" title="Engagement models." lede="Choose the consulting approach that best fits your needs and timeline." />
-          <div className="mt-14 grid gap-5 lg:grid-cols-3">
+          <div className="mt-14 border-t border-hp-rule">
             {engagementModels.map((model) => (
-              <article key={model.title} className="hp-card flex flex-col">
-                <div className="hp-chrome">
-                  <span className="hp-chrome-dots" aria-hidden="true"><span /><span /><span /></span>
-                  <span className="t-meta">{model.duration.toLowerCase()}</span>
-                </div>
-                <div className="flex flex-1 flex-col p-6">
+              <article
+                key={model.title}
+                className="grid gap-5 border-b border-hp-rule py-9 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-12"
+              >
+                <div>
                   <h3 className="t-title">{model.title}</h3>
-                  <p className="mt-2 text-[0.9375rem] text-hp-muted">{model.description}</p>
-                  <ul className="mt-6 grid gap-2.5">
-                    {model.features.map((feature) => (
-                      <li key={feature} className="flex gap-3 text-[0.9375rem] text-hp-text">
-                        <CheckCircle className="mt-0.5 size-4 shrink-0 text-hp-lilac" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <p className="mt-auto border-t border-hp-rule pt-5 text-sm text-hp-soft">
-                    <span className="text-hp-muted">Ideal for:</span> {model.ideal}
-                  </p>
+                  <p className="mt-1.5 text-sm text-hp-soft">{model.duration}</p>
+                  <p className="mt-3 text-[0.9375rem] text-hp-muted">{model.description}</p>
                 </div>
+                <ul className="grid content-start gap-2.5">
+                  {model.features.map((feature) => (
+                    <li key={feature} className="flex gap-3 text-[0.9375rem] text-hp-text">
+                      <CheckCircle className="mt-0.5 size-4 shrink-0 text-hp-lilac" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <p className="text-[0.9375rem] leading-relaxed text-hp-muted">
+                  <span className="text-hp-text">Ideal for:</span> {model.ideal}
+                </p>
               </article>
             ))}
           </div>
-        </div>
-      </section>
-
-      <section className="hp-section hp-section--lift" aria-labelledby="process-title">
-        <div className="shell">
-          <SectionHead id="process-title" title="How an engagement runs." lede="Every engagement follows the same arc." />
-          <ol className="mt-14 grid gap-x-10 border-t border-hp-rule sm:grid-cols-2 lg:grid-cols-4">
-            {processSteps.map((step) => (
-              <li key={step.title} className="border-b border-hp-rule py-8 lg:border-b-0">
-                <h3 className="t-title">{step.title}</h3>
-                <p className="t-body mt-3">{step.description}</p>
-              </li>
-            ))}
-          </ol>
+          <p className="t-lede mt-10">
+            Every engagement follows the same arc: discovery, strategy, implementation, optimization.
+          </p>
         </div>
       </section>
 

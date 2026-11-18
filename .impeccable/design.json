@@ -1,0 +1,529 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-18T15:48:22+00:00",
+  "title": "Design System: Jarrett Stanley",
+  "extensions": {
+    "colorMeta": {
+      "shadow-base": {
+        "role": "neutral",
+        "displayName": "Studio Shadow",
+        "canonical": "oklch(0.16 0.025 278)",
+        "tonalRamp": [
+          "oklch(0.15 0.025 278)",
+          "oklch(0.26 0.025 278)",
+          "oklch(0.37 0.025 278)",
+          "oklch(0.48 0.025 278)",
+          "oklch(0.6 0.025 278)",
+          "oklch(0.72 0.025 278)",
+          "oklch(0.84 0.025 278)",
+          "oklch(0.95 0.025 278)"
+        ]
+      },
+      "shadow-lift": {
+        "role": "neutral",
+        "displayName": "Lifted Shadow",
+        "canonical": "oklch(0.185 0.03 278)",
+        "tonalRamp": [
+          "oklch(0.15 0.03 278)",
+          "oklch(0.26 0.03 278)",
+          "oklch(0.37 0.03 278)",
+          "oklch(0.48 0.03 278)",
+          "oklch(0.6 0.03 278)",
+          "oklch(0.72 0.03 278)",
+          "oklch(0.84 0.03 278)",
+          "oklch(0.95 0.03 278)"
+        ]
+      },
+      "elevated-panel": {
+        "role": "neutral",
+        "displayName": "Elevated Panel",
+        "canonical": "oklch(0.225 0.04 280)",
+        "tonalRamp": [
+          "oklch(0.15 0.04 280)",
+          "oklch(0.26 0.04 280)",
+          "oklch(0.37 0.04 280)",
+          "oklch(0.48 0.04 280)",
+          "oklch(0.6 0.04 280)",
+          "oklch(0.72 0.04 280)",
+          "oklch(0.84 0.04 280)",
+          "oklch(0.95 0.04 280)"
+        ]
+      },
+      "text-primary": {
+        "role": "neutral",
+        "displayName": "Lavender White",
+        "canonical": "oklch(0.97 0.008 295)",
+        "tonalRamp": [
+          "oklch(0.15 0.008 295)",
+          "oklch(0.26 0.008 295)",
+          "oklch(0.37 0.008 295)",
+          "oklch(0.48 0.008 295)",
+          "oklch(0.6 0.008 295)",
+          "oklch(0.72 0.008 295)",
+          "oklch(0.84 0.008 295)",
+          "oklch(0.95 0.008 295)"
+        ]
+      },
+      "text-lede": {
+        "role": "neutral",
+        "displayName": "Lede Orchid",
+        "canonical": "oklch(0.78 0.018 295)",
+        "tonalRamp": [
+          "oklch(0.15 0.018 295)",
+          "oklch(0.26 0.018 295)",
+          "oklch(0.37 0.018 295)",
+          "oklch(0.48 0.018 295)",
+          "oklch(0.6 0.018 295)",
+          "oklch(0.72 0.018 295)",
+          "oklch(0.84 0.018 295)",
+          "oklch(0.95 0.018 295)"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Muted Orchid",
+        "canonical": "oklch(0.72 0.022 295)",
+        "tonalRamp": [
+          "oklch(0.15 0.022 295)",
+          "oklch(0.26 0.022 295)",
+          "oklch(0.37 0.022 295)",
+          "oklch(0.48 0.022 295)",
+          "oklch(0.6 0.022 295)",
+          "oklch(0.72 0.022 295)",
+          "oklch(0.84 0.022 295)",
+          "oklch(0.95 0.022 295)"
+        ]
+      },
+      "text-muted-soft": {
+        "role": "neutral",
+        "displayName": "Soft Orchid",
+        "canonical": "oklch(0.58 0.03 282)",
+        "tonalRamp": [
+          "oklch(0.15 0.03 282)",
+          "oklch(0.26 0.03 282)",
+          "oklch(0.37 0.03 282)",
+          "oklch(0.48 0.03 282)",
+          "oklch(0.6 0.03 282)",
+          "oklch(0.72 0.03 282)",
+          "oklch(0.84 0.03 282)",
+          "oklch(0.95 0.03 282)"
+        ]
+      },
+      "ghost-link": {
+        "role": "neutral",
+        "displayName": "Ghost Link White",
+        "canonical": "oklch(0.92 0.012 295 / 0.88)",
+        "tonalRamp": [
+          "oklch(0.15 0.012 295)",
+          "oklch(0.26 0.012 295)",
+          "oklch(0.37 0.012 295)",
+          "oklch(0.48 0.012 295)",
+          "oklch(0.6 0.012 295)",
+          "oklch(0.72 0.012 295)",
+          "oklch(0.84 0.012 295)",
+          "oklch(0.95 0.012 295)"
+        ]
+      },
+      "cta-foreground": {
+        "role": "neutral",
+        "displayName": "CTA White",
+        "canonical": "oklch(0.99 0.005 295)",
+        "tonalRamp": [
+          "oklch(0.15 0.005 295)",
+          "oklch(0.26 0.005 295)",
+          "oklch(0.37 0.005 295)",
+          "oklch(0.48 0.005 295)",
+          "oklch(0.6 0.005 295)",
+          "oklch(0.72 0.005 295)",
+          "oklch(0.84 0.005 295)",
+          "oklch(0.95 0.005 295)"
+        ]
+      },
+      "rule-subtle": {
+        "role": "neutral",
+        "displayName": "Hairline Rule",
+        "canonical": "oklch(0.97 0.008 295 / 0.08)",
+        "tonalRamp": [
+          "oklch(0.15 0.008 295)",
+          "oklch(0.26 0.008 295)",
+          "oklch(0.37 0.008 295)",
+          "oklch(0.48 0.008 295)",
+          "oklch(0.6 0.008 295)",
+          "oklch(0.72 0.008 295)",
+          "oklch(0.84 0.008 295)",
+          "oklch(0.95 0.008 295)"
+        ]
+      },
+      "rule-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "oklch(0.97 0.008 295 / 0.18)",
+        "tonalRamp": [
+          "oklch(0.15 0.008 295)",
+          "oklch(0.26 0.008 295)",
+          "oklch(0.37 0.008 295)",
+          "oklch(0.48 0.008 295)",
+          "oklch(0.6 0.008 295)",
+          "oklch(0.72 0.008 295)",
+          "oklch(0.84 0.008 295)",
+          "oklch(0.95 0.008 295)"
+        ]
+      },
+      "lilac": {
+        "role": "primary",
+        "displayName": "Lilac Signal",
+        "canonical": "oklch(0.72 0.155 298)",
+        "tonalRamp": [
+          "oklch(0.15 0.155 298)",
+          "oklch(0.26 0.155 298)",
+          "oklch(0.37 0.155 298)",
+          "oklch(0.48 0.155 298)",
+          "oklch(0.6 0.155 298)",
+          "oklch(0.72 0.155 298)",
+          "oklch(0.84 0.155 298)",
+          "oklch(0.95 0.155 298)"
+        ]
+      },
+      "lilac-deep": {
+        "role": "primary",
+        "displayName": "Deep Lilac Action",
+        "canonical": "oklch(0.62 0.165 298)",
+        "tonalRamp": [
+          "oklch(0.15 0.165 298)",
+          "oklch(0.26 0.165 298)",
+          "oklch(0.37 0.165 298)",
+          "oklch(0.48 0.165 298)",
+          "oklch(0.6 0.165 298)",
+          "oklch(0.72 0.165 298)",
+          "oklch(0.84 0.165 298)",
+          "oklch(0.95 0.165 298)"
+        ]
+      },
+      "lilac-hover": {
+        "role": "primary",
+        "displayName": "Deep Lilac Hover",
+        "canonical": "oklch(0.66 0.165 298)",
+        "tonalRamp": [
+          "oklch(0.15 0.165 298)",
+          "oklch(0.26 0.165 298)",
+          "oklch(0.37 0.165 298)",
+          "oklch(0.48 0.165 298)",
+          "oklch(0.6 0.165 298)",
+          "oklch(0.72 0.165 298)",
+          "oklch(0.84 0.165 298)",
+          "oklch(0.95 0.165 298)"
+        ]
+      },
+      "lavender": {
+        "role": "secondary",
+        "displayName": "Lavender Date",
+        "canonical": "oklch(0.85 0.08 301)",
+        "tonalRamp": [
+          "oklch(0.15 0.08 301)",
+          "oklch(0.26 0.08 301)",
+          "oklch(0.37 0.08 301)",
+          "oklch(0.48 0.08 301)",
+          "oklch(0.6 0.08 301)",
+          "oklch(0.72 0.08 301)",
+          "oklch(0.84 0.08 301)",
+          "oklch(0.95 0.08 301)"
+        ]
+      },
+      "focus": {
+        "role": "primary",
+        "displayName": "Focus Lilac",
+        "canonical": "oklch(0.85 0.12 298)",
+        "tonalRamp": [
+          "oklch(0.15 0.12 298)",
+          "oklch(0.26 0.12 298)",
+          "oklch(0.37 0.12 298)",
+          "oklch(0.48 0.12 298)",
+          "oklch(0.6 0.12 298)",
+          "oklch(0.72 0.12 298)",
+          "oklch(0.84 0.12 298)",
+          "oklch(0.95 0.12 298)"
+        ]
+      },
+      "skyward": {
+        "role": "secondary",
+        "displayName": "Skyward Exception",
+        "canonical": "oklch(0.85 0.11 215)",
+        "tonalRamp": [
+          "oklch(0.15 0.11 215)",
+          "oklch(0.26 0.11 215)",
+          "oklch(0.37 0.11 215)",
+          "oklch(0.48 0.11 215)",
+          "oklch(0.6 0.11 215)",
+          "oklch(0.72 0.11 215)",
+          "oklch(0.84 0.11 215)",
+          "oklch(0.95 0.11 215)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Page-opening h1 and the closing call; light uppercase Montserrat."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section headlines via SectionHead; bold tight sentence case with an optional muted step."
+      },
+      "headline-sm": {
+        "displayName": "Headline Small",
+        "purpose": "Session title in the session card and talk names in the talks rows."
+      },
+      "quote": {
+        "displayName": "Quote",
+        "purpose": "The lead colleague quote only."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Ledger entries, writing-card titles, FAQ questions, column heads."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Hero and section intros, max 54ch, Lede Orchid."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Paragraphs and FAQ answers, max 68ch, Muted Orchid."
+      },
+      "label": {
+        "displayName": "Meta",
+        "purpose": "Mono tabular facts: dates, issue numbers, format lengths, chrome titles. Never an eyebrow."
+      }
+    },
+    "shadows": [
+      {
+        "name": "panel-depth",
+        "value": "0 1px 0 oklch(0.97 0.008 295 / 0.05) inset, 0 24px 60px -28px oklch(0 0 0 / 0.55), 0 8px 24px -16px oklch(0 0 0 / 0.35)",
+        "purpose": "hp-card: session card, inquiry form panel, cookie notice."
+      },
+      {
+        "name": "card-depth",
+        "value": "0 1px 0 oklch(0.97 0.008 295 / 0.05) inset, 0 24px 60px -28px oklch(0 0 0 / 0.55)",
+        "purpose": "The shadcn Card primitive on template pages."
+      },
+      {
+        "name": "pip-ring",
+        "value": "0 0 0 4px oklch(0.72 0.16 298 / 0.22)",
+        "purpose": "The single lilac pip on the pip rule."
+      },
+      {
+        "name": "focus-outline",
+        "value": "outline: 2px solid oklch(0.85 0.12 298); outline-offset: 3px",
+        "purpose": "Every interactive element."
+      },
+      {
+        "name": "header-scrolled",
+        "value": "background: oklch(0.16 0.025 278 / 0.92); backdrop-filter: blur(12px)",
+        "purpose": "Fixed header once scrolled past 8px; the only backdrop blur."
+      }
+    ],
+    "motion": [
+      {
+        "name": "hp-ease",
+        "value": "cubic-bezier(0.25, 1, 0.5, 1)",
+        "purpose": "The one easing for every transition and entrance."
+      },
+      {
+        "name": "state",
+        "value": "200-240ms hp-ease",
+        "purpose": "Hover and selection color, underline scale-in, FAQ plus rotation (220ms)."
+      },
+      {
+        "name": "press",
+        "value": "transform scale(0.98) 140ms hp-ease",
+        "purpose": "Primary buttons and choice controls on :active."
+      },
+      {
+        "name": "swap-in",
+        "value": "280ms hp-ease; from opacity 0, blur(4px), translateY(4px)",
+        "purpose": "Session listing remount when a choice changes."
+      },
+      {
+        "name": "rise-stagger",
+        "value": "620ms hp-ease; translateY(14px) to none; delay var(--i) * 80ms + 80ms",
+        "purpose": "The one orchestrated page-opening entrance."
+      },
+      {
+        "name": "breathe",
+        "value": "14s ease-in-out infinite; scale 1 to 1.04, translate -1.5%/1%",
+        "purpose": "Ambient hero field and the closing-call field."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "field stops; stagger becomes 200ms linear fade; swap-in becomes 160ms fade",
+        "purpose": "prefers-reduced-motion kill switch, content stays visible."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px",
+        "note": "desktop header nav, four-column footer"
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "note": "two-column compositions split; sticky section heads"
+      },
+      {
+        "name": "shell",
+        "value": "1400px",
+        "note": "max content width"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one deep-lilac action per band: Book Jarrett to speak, Book this session.",
+      "html": "<a href=\"#\" class=\"ds-btn-primary\">Book Jarrett to speak <svg class=\"ds-ico\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"2.75\" y1=\"8\" x2=\"13.25\" y2=\"8\"/><path d=\"M8.5 3.25 L13.25 8 L8.5 12.75\"/></svg></a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-body, Inter, 'Helvetica Neue', sans-serif); font-weight: 600; font-size: 1rem; letter-spacing: -0.005em; color: oklch(0.99 0.005 295); background: var(--hp-lilac-deep, oklch(0.62 0.165 298)); padding: 0.875rem 1.5rem; border-radius: 8px; text-decoration: none; white-space: nowrap; transition: background-color 220ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)), transform 140ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)); } .ds-btn-primary .ds-ico { width: 16px; height: 16px; transition: transform 220ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)); } .ds-btn-primary:hover { background: var(--hp-lilac-hover, oklch(0.66 0.165 298)); } .ds-btn-primary:hover .ds-ico { transform: translateX(2px); } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: 2px solid var(--hp-focus, oklch(0.85 0.12 298)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Ghost Link",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "The secondary action: text with a 1px underline that scales in from the left.",
+      "html": "<a href=\"#\" class=\"ds-btn-ghost\">See past stages and topics <svg class=\"ds-ico\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><line x1=\"2.75\" y1=\"8\" x2=\"13.25\" y2=\"8\"/><path d=\"M8.5 3.25 L13.25 8 L8.5 12.75\"/></svg></a>",
+      "css": ".ds-btn-ghost { position: relative; display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--font-body, Inter, 'Helvetica Neue', sans-serif); font-weight: 500; font-size: 1rem; color: oklch(0.92 0.012 295 / 0.88); padding: 0.625rem 0.125rem; text-decoration: none; transition: color 200ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)); } .ds-btn-ghost::after { content: ''; position: absolute; left: 0.125rem; right: 0.125rem; bottom: 0.5rem; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left center; transition: transform 240ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)); } .ds-btn-ghost .ds-ico { width: 16px; height: 16px; transition: transform 220ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)); } .ds-btn-ghost:hover { color: var(--hp-text, oklch(0.97 0.008 295)); } .ds-btn-ghost:hover::after, .ds-btn-ghost:focus-visible::after { transform: scaleX(1); } .ds-btn-ghost:hover .ds-ico { transform: translateX(2px); } .ds-btn-ghost:focus-visible { outline: 2px solid var(--hp-focus, oklch(0.85 0.12 298)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Choice Group",
+      "kind": "chip",
+      "refersTo": "choice",
+      "description": "Native radios in 8px labelled rectangles; the session builder's Format group.",
+      "html": "<div class=\"ds-choice-group\" role=\"radiogroup\" aria-label=\"Format\"><span class=\"ds-choice-legend\">Format</span><div class=\"ds-choice-row\"><label class=\"ds-choice\"><input type=\"radio\" name=\"ds-format\" checked>Keynote</label><label class=\"ds-choice\"><input type=\"radio\" name=\"ds-format\">Workshop</label><label class=\"ds-choice\"><input type=\"radio\" name=\"ds-format\">Panel or fireside</label><label class=\"ds-choice\"><input type=\"radio\" name=\"ds-format\">Virtual</label></div></div>",
+      "css": ".ds-choice-group { display: grid; grid-template-columns: 4.75rem minmax(0, 1fr); gap: 0.5rem; align-items: start; font-family: var(--font-body, Inter, 'Helvetica Neue', sans-serif); } .ds-choice-legend { font-size: 0.8125rem; font-weight: 500; color: var(--hp-muted-soft, oklch(0.58 0.03 282)); padding-top: 0.5rem; } .ds-choice-row { display: flex; flex-wrap: wrap; gap: 0.375rem; } .ds-choice { position: relative; display: inline-flex; align-items: center; min-height: 2.125rem; padding: 0.375rem 0.75rem; border-radius: 8px; border: 1px solid oklch(0.97 0.008 295 / 0.18); color: var(--hp-muted, oklch(0.72 0.022 295)); font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: color 200ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)), background-color 200ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)), border-color 200ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)), transform 140ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)); } .ds-choice input { position: absolute; opacity: 0; pointer-events: none; } .ds-choice:hover { color: var(--hp-text, oklch(0.97 0.008 295)); border-color: oklch(0.97 0.008 295 / 0.3); } .ds-choice:active { transform: scale(0.98); } .ds-choice:has(input:checked) { color: var(--hp-text, oklch(0.97 0.008 295)); background: oklch(0.42 0.13 298 / 0.24); border-color: oklch(0.72 0.155 298 / 0.65); } .ds-choice:has(input:focus-visible) { outline: 2px solid var(--hp-focus, oklch(0.85 0.12 298)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Session Card",
+      "kind": "card",
+      "refersTo": "card-frame",
+      "description": "Signature: 24px product-chrome frame holding a program-style session listing.",
+      "html": "<div class=\"ds-session\"><div class=\"ds-chrome\"><span class=\"ds-dots\"><i></i><i></i><i></i></span><span class=\"ds-meta\">session proposal</span><span class=\"ds-meta\">keynote · 45 to 60 minutes</span></div><div class=\"ds-session-body\"><h3 class=\"ds-session-title\">Automate to elevate: AI, no-code and workflow hacks for mortgage marketing</h3><p class=\"ds-session-line\">For mortgage executives and leadership teams. How AI is changing mortgage marketing, from the CMO chair.</p><ul class=\"ds-points\"><li><svg class=\"ds-check\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2.75 8.5 L6.25 12 L13.25 4.5\"/></svg>Implementing AI-powered personalization at scale</li><li><svg class=\"ds-check\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M2.75 8.5 L6.25 12 L13.25 4.5\"/></svg>Measuring ROI on AI investments</li></ul></div><div class=\"ds-session-foot\"><span>Every session is tailored on a pre-event call.</span><a href=\"#\" class=\"ds-session-cta\">Book this session</a></div></div>",
+      "css": ".ds-session { max-width: 34rem; background: linear-gradient(180deg, oklch(0.225 0.04 280) 0%, oklch(0.19 0.035 278) 100%); border: 1px solid oklch(0.97 0.008 295 / 0.08); border-radius: 24px; box-shadow: 0 1px 0 oklch(0.97 0.008 295 / 0.05) inset, 0 24px 60px -28px oklch(0 0 0 / 0.55), 0 8px 24px -16px oklch(0 0 0 / 0.35); overflow: hidden; color: oklch(0.97 0.008 295); font-family: var(--font-body, Inter, 'Helvetica Neue', sans-serif); } .ds-chrome { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 0.75rem 1rem; border-bottom: 1px solid oklch(0.97 0.008 295 / 0.06); } .ds-dots { display: inline-flex; gap: 6px; } .ds-dots i { width: 9px; height: 9px; border-radius: 50%; background: oklch(0.97 0.008 295 / 0.08); } .ds-meta { font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 0.75rem; letter-spacing: 0.02em; color: oklch(0.58 0.03 282); font-variant-numeric: tabular-nums; margin: 0; } .ds-session-body { padding: 1.25rem 1.75rem 1.5rem; } .ds-session-title { margin: 0; font-family: var(--font-display, Montserrat, 'Helvetica Neue', sans-serif); font-weight: 700; font-size: 1.5rem; line-height: 1.12; letter-spacing: -0.025em; } .ds-session-line { margin: 0.625rem 0 0; font-size: 0.9375rem; line-height: 1.625; color: oklch(0.72 0.022 295); } .ds-points { list-style: none; margin: 1rem 0 0; padding: 0; display: grid; gap: 0.5rem; } .ds-points li { display: flex; gap: 0.625rem; font-size: 0.875rem; line-height: 1.375; } .ds-check { width: 16px; height: 16px; flex-shrink: 0; margin-top: 2px; color: oklch(0.72 0.155 298); } .ds-session-foot { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; padding: 1rem 1.75rem; border-top: 1px solid oklch(0.97 0.008 295 / 0.08); font-size: 0.875rem; color: oklch(0.58 0.03 282); } .ds-session-cta { font-weight: 600; font-size: 0.9375rem; color: oklch(0.99 0.005 295); background: oklch(0.62 0.165 298); padding: 0.625rem 1.125rem; border-radius: 8px; text-decoration: none; white-space: nowrap; transition: background-color 220ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)); } .ds-session-cta:hover { background: oklch(0.66 0.165 298); } .ds-session-cta:focus-visible { outline: 2px solid var(--hp-focus, oklch(0.85 0.12 298)); outline-offset: 3px; }"
+    },
+    {
+      "name": "Engagement Ledger Row",
+      "kind": "custom",
+      "refersTo": "spacing.row",
+      "description": "Signature: proof as a dated hairline row, lavender mono year in a fixed column.",
+      "html": "<ol class=\"ds-ledger\"><li><p class=\"ds-year\">2025</p><div><h3 class=\"ds-entry\">NAMMBA Connect 2025, Mortgage Marketing Executive Summit</h3><p class=\"ds-role\">Featured speaker · National Association of Minority Mortgage Bankers of America</p><p class=\"ds-talk\">“Automate to Elevate: AI, No-Code, and Workflow Hacks”</p><p class=\"ds-where\">Aug 20, 2025 · Orlando, FL</p></div></li><li><p class=\"ds-year\">2024</p><div><h3 class=\"ds-entry\">Nationwide Mortgage Bankers Sales Summit</h3><p class=\"ds-role\">Keynote · Nationwide Mortgage Bankers</p></div></li></ol>",
+      "css": ".ds-ledger { list-style: none; margin: 0; padding: 0; border-top: 1px solid oklch(0.97 0.008 295 / 0.08); font-family: var(--font-body, Inter, 'Helvetica Neue', sans-serif); } .ds-ledger li { display: grid; grid-template-columns: 5.5rem minmax(0, 1fr); column-gap: 2rem; padding: 1.75rem 0; border-bottom: 1px solid oklch(0.97 0.008 295 / 0.08); } .ds-year { margin: 0; padding-top: 0.25rem; font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; font-size: 0.8125rem; letter-spacing: 0.02em; font-variant-numeric: tabular-nums; color: oklch(0.85 0.08 301); } .ds-entry { margin: 0; font-weight: 700; font-size: 1.1875rem; line-height: 1.2; letter-spacing: -0.018em; color: oklch(0.97 0.008 295); } .ds-role { margin: 0.375rem 0 0; font-size: 0.9375rem; color: oklch(0.72 0.022 295); } .ds-talk { margin: 0.75rem 0 0; font-size: 0.9375rem; line-height: 1.625; color: oklch(0.97 0.008 295); } .ds-where { margin: 0.5rem 0 0; font-size: 0.875rem; color: oklch(0.58 0.03 282); }"
+    },
+    {
+      "name": "Chip",
+      "kind": "chip",
+      "refersTo": "chip",
+      "description": "Sentence-case pill for labels and status; never a button.",
+      "html": "<span class=\"ds-chip\">AI in mortgage marketing</span> <span class=\"ds-chip ds-chip-quiet\">Workshop</span>",
+      "css": ".ds-chip { display: inline-flex; align-items: center; border-radius: 9999px; padding: 0.125rem 0.625rem; font-family: var(--font-body, Inter, 'Helvetica Neue', sans-serif); font-size: 0.75rem; font-weight: 600; background: oklch(0.42 0.13 298 / 0.22); color: oklch(0.9 0.09 298); border: 1px solid oklch(0.72 0.155 298 / 0.3); transition: color 200ms, border-color 200ms; } .ds-chip-quiet { background: transparent; color: oklch(0.72 0.022 295); border-color: oklch(0.97 0.008 295 / 0.14); }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Muted links with a scale-in underline; the active route keeps a lilac underline.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main\"><a href=\"#\" class=\"ds-nav-link\" aria-current=\"page\">Speaking</a><a href=\"#\" class=\"ds-nav-link\">Writing</a><a href=\"#\" class=\"ds-nav-link\">Consulting</a><a href=\"#\" class=\"ds-nav-link\">About</a><a href=\"#\" class=\"ds-nav-cta\">Book Jarrett</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 2rem; height: 72px; padding: 0 2rem; background: oklch(0.16 0.025 278 / 0.92); border-bottom: 1px solid oklch(0.97 0.008 295 / 0.08); font-family: var(--font-body, Inter, 'Helvetica Neue', sans-serif); } .ds-nav-link { position: relative; padding: 0.5rem 0; font-size: 0.9375rem; font-weight: 500; color: oklch(0.72 0.022 295); text-decoration: none; transition: color 200ms; } .ds-nav-link::after { content: ''; position: absolute; left: 0; right: 0; bottom: -1px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform 200ms; } .ds-nav-link:hover { color: oklch(0.97 0.008 295); } .ds-nav-link:hover::after { transform: scaleX(1); } .ds-nav-link[aria-current='page'] { color: oklch(0.97 0.008 295); } .ds-nav-link[aria-current='page']::after { transform: scaleX(1); background: oklch(0.72 0.155 298); } .ds-nav-link:focus-visible, .ds-nav-cta:focus-visible { outline: 2px solid var(--hp-focus, oklch(0.85 0.12 298)); outline-offset: 3px; } .ds-nav-cta { margin-left: auto; font-weight: 600; font-size: 0.9375rem; color: oklch(0.99 0.005 295); background: oklch(0.62 0.165 298); padding: 0.625rem 1.125rem; border-radius: 8px; text-decoration: none; transition: background-color 220ms var(--hp-ease, cubic-bezier(0.25, 1, 0.5, 1)); } .ds-nav-cta:hover { background: oklch(0.66 0.165 298); }"
+    },
+    {
+      "name": "Field (as shipped)",
+      "kind": "input",
+      "refersTo": "colors.shadow-base",
+      "description": "Untuned shadcn field: 6px radius, inset dark fill, lilac ring focus. truetone.ai specifies 8px.",
+      "html": "<label class=\"ds-field-wrap\"><span class=\"ds-label\">Event name</span><input class=\"ds-field\" type=\"text\" placeholder=\"NAMMBA Connect 2026\"></label>",
+      "css": ".ds-field-wrap { display: grid; gap: 0.5rem; max-width: 22rem; font-family: var(--font-body, Inter, 'Helvetica Neue', sans-serif); } .ds-label { font-size: 0.875rem; font-weight: 500; color: oklch(0.97 0.008 295); } .ds-field { height: 2.5rem; padding: 0.5rem 0.75rem; border-radius: 6px; border: 1px solid hsl(235.3 22.6% 17.7%); background: oklch(0.16 0.025 278); color: oklch(0.97 0.008 295); font-size: 0.875rem; } .ds-field::placeholder { color: hsl(252 8.9% 66.6%); } .ds-field:focus-visible { outline: none; box-shadow: 0 0 0 2px oklch(0.16 0.025 278), 0 0 0 4px oklch(0.85 0.12 298); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Voice Studio, Booking Desk",
+    "overview": "jarrettstanley.com is a sibling property of truetone.ai and runs on its design system by owner ruling (\"same family\", 2026-11-18). The tokens keep truetone.ai's names (`--hp-*` in `src/app/globals.css`) and values: an indigo shadow ground, an ambient field with film grain behind every page opening, lilac used as punctuation, deep lilac as the one action color, Montserrat display and Inter body. The studio is the same; the desk is Jarrett's. Every surface is arranged so an event organizer can read who he is, shape a session and book it.\n\nThe mood is calm, dark and exact. Proof is set as dated hairline ledgers, the way a program committee reads a speaker record, not as tiles, badges or stat bands. The one product-style card on the site is the session proposal: truetone.ai's mockup chrome framing a program listing that the reader rewrites with three radio groups. Portraits of Jarrett at section scale ship in the brand duotone; nothing ships in stock color.\n\n### Inherited, and where this site differs\n\nSource of truth for the family is `TrueToneAI-FrontEnd/DESIGN.md` and the live truetone.ai. Where that file and this site's code disagree, this file records the code.\n\n- **Personal content.** Jarrett's name and signature logo (`JS-Logo-white.png`) identify the site; TrueTone AI appears as his company, never as this site's brand. No Voice Orb, no TrueTone product mockups, no product-in-use imagery.\n- **The session builder.** A signature component truetone.ai does not have: the first-viewport card where topic, format and audience radios rewrite a program-style listing, and \"Book this session\" carries the choice into the inquiry form. It introduces the choice control to the family.\n- **Ledgers for proof.** Past stages, recognition, formats, inclusions and FAQ are hairline-ruled rows. Card grids are not used to explain or prove anything.\n- **Montserrat and Inter.** Loaded with `next/font/google` as `--font-montserrat` and `--font-inter`, exactly as truetone.ai ships them now. Signal, Hind and Metropolis are retired here; `font-signal`, `font-hind` and `font-serif` remain as utility aliases that resolve to the same two faces.\n- **Measured in the code:** section headlines are Montserrat Bold (700), not light; the hero tops out at 4.25rem instead of 4.75rem; there are no lilac eyebrows and no section-index masthead; chips are sentence case, not uppercase.",
+    "keyCharacteristics": [
+      "Dark-committed: `<html>` and `<body>` are both painted Studio Shadow; `color-scheme: dark`; there is no light theme.",
+      "Two display registers: light uppercase for page openings and the closing call, bold tight sentence case for section headlines. Inter Bold owns every smaller heading.",
+      "Deep lilac fills actions only; bright lilac marks state.",
+      "Proof as dated ledgers; the session proposal as the single product-chrome card in a viewport.",
+      "One orchestrated entrance per page, a breathing ambient field, a blurred crossfade when the session listing changes; everything else is a 200 to 280ms state change."
+    ],
+    "rules": [
+      {
+        "name": "The Action Owns Deep Lilac Rule",
+        "body": "Deep lilac fills a primary action and nothing else. Bright lilac marks a state and never fills a surface. Selection highlight is deep lilac at 45% alpha.",
+        "section": "colors"
+      },
+      {
+        "name": "The No Pure Neutral Rule",
+        "body": "No pure black or white anywhere. Every neutral is tinted toward hue 278 to 301; even the CTA text is `oklch(0.99 0.005 295)`.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two Registers Rule",
+        "body": "Light uppercase belongs to the page opening and the closing call; bold tight sentence case belongs to section headlines; Inter Bold owns every heading below about 1.3rem. Never mix registers inside one block.",
+        "section": "typography"
+      },
+      {
+        "name": "The Muted Step Rule",
+        "body": "A section headline gets its hierarchy from color, not from a second size: the first clause in Lavender White, the step (\"before you book.\", \"tuned to your room.\") in Muted Orchid.",
+        "section": "typography"
+      },
+      {
+        "name": "The Data-Only Meta Rule",
+        "body": "A mono meta line states a fact: a year, a date, a format length, a chrome title. It never labels a section or sits above a headline as an eyebrow.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ledger Over Grid Rule",
+        "body": "Lists of proof and options are hairline rows: a rule above the list, a rule under each row, a mono or lavender date in a fixed left column. The only tiled grid is the writing grid, and it is drawn with 1px gaps on the rule color inside one 14px frame, not as separate cards.",
+        "section": "layout"
+      },
+      {
+        "name": "The Flat Until Useful Rule",
+        "body": "Ledger rows, bands and links are flat. A shadow appears only under a panel that holds a working object: the session proposal, the inquiry form, the cookie notice.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Pill Is Not a Button Rule",
+        "body": "A pill means a label or a status. Anything you press is an 8px rectangle.",
+        "section": "shapes"
+      },
+      {
+        "name": "The Bare Icon Rule",
+        "body": "No tinted square, disc or tile behind a glyph, and no icon in a section header. `tests/design/no-icon-chips.test.ts` enforces it.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "**Do** paint `<html>` and `<body>` Studio Shadow and keep `color-scheme: dark`.",
+      "**Do** open every page with `page-hero` (field, grain, `stagger` entrance) and alternate `hp-section` bands between Studio Shadow and Lifted Shadow.",
+      "**Do** head sections with `SectionHead`: bold tight headline, optional Muted Orchid step, lede beneath.",
+      "**Do** give each band at most one deep-lilac primary, paired with at most one ghost link.",
+      "**Do** set proof as ledger rows with dates in lavender mono tabular figures.",
+      "**Do** use native controls: radio inputs for single choices, `aria-pressed` buttons for multi-select, `<details>` for FAQ, links for navigation.",
+      "**Do** animate transform, opacity and (for `swap-in` only) a 4px blur with `--hp-ease` (`cubic-bezier(0.25, 1, 0.5, 1)`): 200 to 280ms for state, one 620ms entrance staggered by 80ms per page, 14s for the ambient field.",
+      "**Do** keep the reduced-motion kill switches: the field stops breathing, entrances and swaps become short fades, content stays visible.",
+      "**Do** grade section-scale photography of Jarrett into the duotone."
+    ],
+    "donts": [
+      "**Don't** put eyebrows, kickers or section-index labels above headings; a mono meta line carries a fact or nothing.",
+      "**Don't** put icons in chips, tiles or discs, or in section headers; don't import Lucide, Heroicons, Tabler or react-icons.",
+      "**Don't** make buttons pills; pills are for chips, the avatar, chrome dots and the pip.",
+      "**Don't** present proof as card grids, stat bands or logo walls.",
+      "**Don't** use glows, gradient text or glass cards; the scrolled header is the only blur.",
+      "**Don't** use the legacy hex palettes in `tailwind.config.ts` (`shadow`, `indigo`, `orchid`, `lilac`, `lavender`, `skyward`, `website`) or the alias variant names for new work; use the `hp-*` tokens.",
+      "**Don't** set Montserrat below about 1.3rem; hand smaller headings to Inter Bold.",
+      "**Don't** use pure black or pure white.",
+      "**Don't** brand the site as TrueTone AI; the signature logo and Jarrett's name identify it."
+    ]
+  }
+}

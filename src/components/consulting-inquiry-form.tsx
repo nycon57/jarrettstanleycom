@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { ConsultingFormData, consultingFormSchema } from "@/lib/validations/consulting";
@@ -101,7 +100,7 @@ function useConsultingInquiryFormView() {
         name={data.name}
         company={data.company}
       />
-      <form onSubmit={handleSubmit(onSubmit)} className="gap-y-6">
+      <form onSubmit={handleSubmit(onSubmit)} className="grid gap-6">
       {/* Honeypot field - hidden from real users */}
       <div
         aria-hidden="true"
@@ -120,94 +119,83 @@ function useConsultingInquiryFormView() {
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="gap-y-2">
-          <Label htmlFor="first_name">First Name *</Label>
+        <div className="grid gap-2">
+          <Label htmlFor="first_name">First name *</Label>
           <Input
             id="first_name"
             {...register("first_name")}
-            placeholder="John"
-            className="bg-background"
             onFocus={handleFormStart}
           />
           {errors.first_name && (
-            <p className="text-sm text-red-500">{errors.first_name.message}</p>
+            <p className="text-sm text-destructive">{errors.first_name.message}</p>
           )}
         </div>
 
-        <div className="gap-y-2">
-          <Label htmlFor="last_name">Last Name *</Label>
+        <div className="grid gap-2">
+          <Label htmlFor="last_name">Last name *</Label>
           <Input
             id="last_name"
             {...register("last_name")}
-            placeholder="Doe"
-            className="bg-background"
           />
           {errors.last_name && (
-            <p className="text-sm text-red-500">{errors.last_name.message}</p>
+            <p className="text-sm text-destructive">{errors.last_name.message}</p>
           )}
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="gap-y-2">
+        <div className="grid gap-2">
           <Label htmlFor="email">Email *</Label>
           <Input
             id="email"
             type="email"
             {...register("email")}
-            placeholder="john@company.com"
-            className="bg-background"
+            placeholder="you@company.com"
           />
           {errors.email && (
-            <p className="text-sm text-red-500">{errors.email.message}</p>
+            <p className="text-sm text-destructive">{errors.email.message}</p>
           )}
         </div>
 
-        <div className="gap-y-2">
+        <div className="grid gap-2">
           <Label htmlFor="phone">Phone</Label>
           <Input
             id="phone"
             type="tel"
             {...register("phone")}
-            placeholder="+1 (555) 123-4567"
-            className="bg-background"
           />
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="gap-y-2">
+        <div className="grid gap-2">
           <Label htmlFor="company">Company *</Label>
           <Input
             id="company"
             {...register("company")}
-            placeholder="Acme Mortgage"
-            className="bg-background"
           />
           {errors.company && (
-            <p className="text-sm text-red-500">{errors.company.message}</p>
+            <p className="text-sm text-destructive">{errors.company.message}</p>
           )}
         </div>
 
-        <div className="gap-y-2">
-          <Label htmlFor="role">Your Role *</Label>
+        <div className="grid gap-2">
+          <Label htmlFor="role">Your role *</Label>
           <Input
             id="role"
             {...register("role")}
-            placeholder="Chief Marketing Officer"
-            className="bg-background"
           />
           {errors.role && (
-            <p className="text-sm text-red-500">{errors.role.message}</p>
+            <p className="text-sm text-destructive">{errors.role.message}</p>
           )}
         </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-6">
-        <div className="gap-y-2">
-          <Label htmlFor="company_size">Company Size *</Label>
+        <div className="grid gap-2">
+          <Label htmlFor="company_size">Company size *</Label>
           <Select onValueChange={(value) => setValue("company_size", value as any)}>
-            <SelectTrigger className="bg-background">
+            <SelectTrigger>
               <SelectValue placeholder="Select company size" />
             </SelectTrigger>
             <SelectContent>
@@ -219,14 +207,14 @@ function useConsultingInquiryFormView() {
             </SelectContent>
           </Select>
           {errors.company_size && (
-            <p className="text-sm text-red-500">{errors.company_size.message}</p>
+            <p className="text-sm text-destructive">{errors.company_size.message}</p>
           )}
         </div>
 
-        <div className="gap-y-2">
-          <Label htmlFor="budget_range">Budget Range *</Label>
+        <div className="grid gap-2">
+          <Label htmlFor="budget_range">Budget range *</Label>
           <Select onValueChange={(value) => setValue("budget_range", value as any)}>
-            <SelectTrigger className="bg-background">
+            <SelectTrigger>
               <SelectValue placeholder="Select budget range" />
             </SelectTrigger>
             <SelectContent>
@@ -238,15 +226,15 @@ function useConsultingInquiryFormView() {
             </SelectContent>
           </Select>
           {errors.budget_range && (
-            <p className="text-sm text-red-500">{errors.budget_range.message}</p>
+            <p className="text-sm text-destructive">{errors.budget_range.message}</p>
           )}
         </div>
       </div>
 
-      <div className="gap-y-2">
-        <Label htmlFor="timeline">Project Timeline *</Label>
+      <div className="grid gap-2">
+        <Label htmlFor="timeline">Project timeline *</Label>
         <Select onValueChange={(value) => setValue("timeline", value as any)}>
-          <SelectTrigger className="bg-background">
+          <SelectTrigger>
             <SelectValue placeholder="Select timeline" />
           </SelectTrigger>
           <SelectContent>
@@ -257,71 +245,70 @@ function useConsultingInquiryFormView() {
           </SelectContent>
         </Select>
         {errors.timeline && (
-          <p className="text-sm text-red-500">{errors.timeline.message}</p>
+          <p className="text-sm text-destructive">{errors.timeline.message}</p>
         )}
       </div>
 
-      <div className="gap-y-2">
-        <Label htmlFor="project_description">Project Description *</Label>
+      <div className="grid gap-2">
+        <Label htmlFor="project_description">Project description *</Label>
         <Textarea
           id="project_description"
           {...register("project_description")}
           placeholder="Tell us about your project goals and what you hope to achieve…"
-          className="min-h-[120px] bg-background"
+          className="min-h-[120px]"
         />
         {errors.project_description && (
-          <p className="text-sm text-red-500">{errors.project_description.message}</p>
+          <p className="text-sm text-destructive">{errors.project_description.message}</p>
         )}
       </div>
 
-      <div className="gap-y-2">
-        <Label htmlFor="current_challenges">Current Challenges *</Label>
+      <div className="grid gap-2">
+        <Label htmlFor="current_challenges">Current challenges *</Label>
         <Textarea
           id="current_challenges"
           {...register("current_challenges")}
           placeholder="What challenges are you currently facing that led you to seek consulting services?"
-          className="min-h-[120px] bg-background"
+          className="min-h-[120px]"
         />
         {errors.current_challenges && (
-          <p className="text-sm text-red-500">{errors.current_challenges.message}</p>
+          <p className="text-sm text-destructive">{errors.current_challenges.message}</p>
         )}
       </div>
 
-      <div className="gap-y-2">
-        <Label htmlFor="preferred_contact_method">Preferred Contact Method</Label>
+      <div className="grid gap-2">
+        <Label htmlFor="preferred_contact_method">Preferred contact method</Label>
         <Select 
           defaultValue="email"
           onValueChange={(value) => setValue("preferred_contact_method", value as any)}
         >
-          <SelectTrigger className="bg-background">
+          <SelectTrigger>
             <SelectValue placeholder="Select preferred contact method" />
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="email">Email</SelectItem>
             <SelectItem value="phone">Phone</SelectItem>
-            <SelectItem value="both">Either Email or Phone</SelectItem>
+            <SelectItem value="both">Email or phone</SelectItem>
           </SelectContent>
         </Select>
         {errors.preferred_contact_method && (
-          <p className="text-sm text-red-500">{errors.preferred_contact_method.message}</p>
+          <p className="text-sm text-destructive">{errors.preferred_contact_method.message}</p>
         )}
       </div>
 
-      <Button 
-        type="submit" 
-        className="w-full bg-[#9D7AD6] hover:bg-[#9D7AD6]/90" 
+      <button
+        type="submit"
         disabled={isSubmitting}
-        size="lg"
+        className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:justify-self-start"
       >
         {isSubmitting ? (
           <>
-            <Loader2 className="mr-2 size-4 animate-spin" />
-            Submitting…
+            <Loader2 className="size-4 animate-spin" />
+            Sending…
           </>
         ) : (
-          "Submit Inquiry"
+          "Send consulting inquiry"
         )}
-      </Button>
+      </button>
       </form>
     </>
   );

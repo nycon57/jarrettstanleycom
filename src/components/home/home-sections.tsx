@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { IconArrowRight, IconArrowUpRight } from '@/components/icons/iconmcp/icons'
 import { SessionBuilder } from '@/components/speaking/session-builder'
@@ -65,28 +66,33 @@ export function WritingAndShow({ posts }: { posts: BlogPost[] }) {
               href={`/insights/blog/${post.slug}`}
               className="group flex flex-col bg-hp-bg p-6 transition-colors duration-200 hover:bg-hp-lift sm:p-7"
             >
-              <p className="t-meta">
-                {post.series ? `${post.series.name} #${post.series.issueNumber}` : 'Article'} ·{' '}
-                {formatDateLabel(post.publishedAt, 'MMM d, yyyy')}
-              </p>
-              <h3 className="t-title mt-4 group-hover:text-hp-lavender">{post.title}</h3>
+              <h3 className="t-title group-hover:text-hp-lavender">{post.title}</h3>
               <p className="mt-3 line-clamp-3 text-[0.9375rem] leading-relaxed text-hp-muted">{post.excerpt}</p>
-              <span className="mt-auto pt-6 text-sm text-hp-soft">{post.readTimeMinutes} min read</span>
+              <p className="mt-auto pt-6 text-sm text-hp-soft">
+                {post.series ? `${post.series.name} #${post.series.issueNumber}` : 'Article'} ·{' '}
+                {formatDateLabel(post.publishedAt, 'MMM d, yyyy')} · {post.readTimeMinutes} min
+              </p>
             </Link>
           ))}
           <a
             href="https://www.truetone.ai/show"
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex flex-col justify-between gap-10 bg-hp-lift p-6 transition-colors duration-200 hover:bg-hp-panel sm:p-7"
+            className="group flex flex-col gap-5 bg-hp-lift p-6 transition-colors duration-200 hover:bg-hp-panel sm:p-7"
           >
+            <div className="relative aspect-video overflow-hidden rounded-lg ring-1 ring-hp-rule">
+              <Image
+                src="/images/blog/the-signal-og-image-experts-with-power-tools.jpg"
+                alt="The TrueTone Show, Episode 2 thumbnail: Jarrett holding a cymbal monkey, 'Experts only. No monkeys.'"
+                fill
+                sizes="(min-width: 1024px) 22rem, 90vw"
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
+            </div>
             <div>
-              <p className="t-meta">Video podcast · with Corey Shelton</p>
-              <h3 className="mt-4 font-display text-[1.75rem] font-light uppercase leading-none text-hp-text">
-                The TrueTone Show
-              </h3>
-              <p className="mt-4 text-[0.9375rem] leading-relaxed text-hp-muted">
-                Marketing, AI and leadership, argued out on camera. Episodes on YouTube and truetone.ai.
+              <h3 className="t-title">The TrueTone Show</h3>
+              <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-hp-muted">
+                A video podcast with Corey Shelton on marketing, AI and leadership. Episodes on YouTube and truetone.ai.
               </p>
             </div>
             <span className="inline-flex items-center gap-2 text-sm font-medium text-hp-text">

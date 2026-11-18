@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { IconCircleCheck as CheckCircle, IconSend as Send, IconCamera as Camera } from '@/components/icons/iconmcp/icons'
+import { IconArrowRight as ArrowRight, IconCheck as CheckCircle, IconSend as Send, IconCamera as Camera } from '@/components/icons/iconmcp/icons'
 import { IconMic as IconMicrophone, IconBriefcase, IconCamera } from '@/components/icons/iconmcp/icons'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
@@ -226,33 +226,35 @@ function useContactPageClientView() {
 
       <section className="hp-section !pt-0" aria-label="Ways to work together">
         <div className="shell">
-          <div className="grid border-y border-hp-rule md:grid-cols-3 md:divide-x md:divide-[oklch(0.97_0.008_295/0.08)]">
+          <ul className="border-t border-hp-rule">
             {contactPathways.map((pathway) => {
-              const Icon = pathway.icon
               const isSpeaking = pathway.type === 'speaking'
               return (
-                <div key={pathway.type} className="flex flex-col border-b border-hp-rule py-9 last:border-b-0 md:border-b-0 md:px-8 md:first:pl-0 md:last:pr-0">
-                  <Icon className="size-6 text-hp-muted" />
-                  <h2 className="t-title mt-5">{pathway.title}</h2>
-                  <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-hp-muted">{pathway.description}</p>
-                  <p className="t-meta mt-5 text-[0.8125rem]">{pathway.features.join(' · ')}</p>
-                  <div className="mt-auto pt-7">
-                    {isSpeaking ? (
-                      <Link href="/speaking#book" className="btn-ghost">
-                        Send a speaking inquiry
-                        <Send className="size-4" />
-                      </Link>
-                    ) : (
-                      <button type="button" onClick={() => handlePathwayClick(pathway.type)} className="btn-ghost">
-                        {pathway.action}
-                        <Send className="size-4" />
-                      </button>
-                    )}
-                  </div>
-                </div>
+                <li
+                  key={pathway.type}
+                  className="grid gap-4 border-b border-hp-rule py-8 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.4fr)_15rem] md:items-baseline md:gap-12"
+                >
+                  <h2 className="t-title">{pathway.title}</h2>
+                  <p className="text-[0.9375rem] leading-relaxed text-hp-muted">{pathway.description}</p>
+                  {isSpeaking ? (
+                    <Link href="/speaking#book" className="btn-ghost justify-self-start md:justify-self-end">
+                      Send a speaking inquiry
+                      <ArrowRight className="size-4" />
+                    </Link>
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => handlePathwayClick(pathway.type)}
+                      className="btn-ghost justify-self-start md:justify-self-end"
+                    >
+                      {pathway.action}
+                      <ArrowRight className="size-4" />
+                    </button>
+                  )}
+                </li>
               )
             })}
-          </div>
+          </ul>
         </div>
       </section>
 

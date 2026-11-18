@@ -62,16 +62,16 @@ export default function ServicesPageClient() {
           {services.map((service) => (
             <article
               key={service.title}
-              className="grid gap-6 border-b border-hp-rule py-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)_auto] lg:items-start lg:gap-14"
+              className="grid gap-6 border-b border-hp-rule py-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)_15rem] lg:items-start lg:gap-14"
             >
               <h2 className="font-display text-[1.75rem] font-bold leading-[1.1] tracking-[-0.025em] text-hp-text sm:text-[2rem]">
                 {service.title}
               </h2>
               <div>
                 <p className="t-body">{service.description}</p>
-                <p className="t-meta mt-4 text-[0.8125rem]">{service.features.join(' · ')}</p>
+                <p className="mt-4 text-sm text-hp-soft">{service.features.join(' · ')}</p>
               </div>
-              <Link href={service.href} className={service.href === '/speaking' ? 'btn-primary btn-primary--sm' : 'btn-ghost'}>
+              <Link href={service.href} className={`${service.href === '/speaking' ? 'btn-primary btn-primary--sm' : 'btn-ghost'} justify-self-start lg:justify-self-end`}>
                 {service.cta}
                 <ArrowRight className="size-4" />
               </Link>
