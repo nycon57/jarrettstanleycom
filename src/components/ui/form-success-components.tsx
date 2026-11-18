@@ -2,18 +2,7 @@
 
 import React, { useSyncExternalStore } from "react";
 import { m, AnimatePresence } from "framer-motion";
-import { 
-  CheckCircle, 
-  Mail, 
-  X, 
-  ArrowRight, 
-  Sparkles, 
-  Send, 
-  Users, 
-  Calendar,
-  MessageCircle,
-  Brain
-} from "lucide-react";
+import { IconCircleCheck as CheckCircle, IconMail as Mail, IconClose as X, IconArrowRight as ArrowRight, IconSparkles as Sparkles, IconSend as Send, IconUsers as Users, IconCalendar as Calendar, IconMessageCircle as MessageCircle, IconBrain as Brain } from '@/components/icons/iconmcp/icons'
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 

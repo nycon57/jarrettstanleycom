@@ -12,7 +12,7 @@ import { ShareButtons } from '@/components/ui/share-buttons'
 import type { BlogPost } from '@/types/blog'
 import type { BreadcrumbItem } from '@/lib/pseo'
 import { blogCategories } from '@/lib/blog'
-import { ArrowLeft, Clock, Newspaper } from 'lucide-react'
+import { IconArrowLeft as ArrowLeft, IconClock as Clock, IconNewspaper as Newspaper } from '@/components/icons/iconmcp/icons'
 
 interface BlogPostPageProps {
   post: BlogPost
@@ -83,10 +83,8 @@ export function BlogPostPage({ post, relatedPosts, breadcrumbs }: BlogPostPagePr
             })}
           </div>
 
-          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
-            <span className="text-lilac">
-              {post.title}
-            </span>
+          <h1 className="mb-6 font-display text-[clamp(2.25rem,1.4rem+3vw,3.75rem)] font-bold leading-[1.02] tracking-[-0.03em] text-hp-text text-balance">
+            {post.title}
           </h1>
 
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed mb-6">

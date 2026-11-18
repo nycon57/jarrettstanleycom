@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Users } from 'lucide-react'
+import { IconArrowRight as ArrowRight, IconUsers as Users } from '@/components/icons/iconmcp/icons'
 import { getAllPersonas } from '@/lib/pseo'
 import { PseoBreadcrumbs } from '@/components/pseo/pseo-breadcrumbs'
 import { PseoCtaBanner } from '@/components/pseo/pseo-cta-banner'

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowRight, Wrench } from 'lucide-react'
+import { IconArrowRight as ArrowRight, IconWrench as Wrench } from '@/components/icons/iconmcp/icons'
 import { getAllToolRoundups, buildToolBreadcrumbs } from '@/lib/pseo'
 import { generateMetadata as genMeta, generateCollectionPageSchema, generateBreadcrumbSchema, generateStructuredData, siteConfig } from '@/lib/seo'
 import { toolCategoryLabels } from '@/types/pseo'

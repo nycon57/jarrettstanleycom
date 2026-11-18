@@ -34,7 +34,7 @@ npm run lint
 - **Database**: Supabase (for waitlist signups)
 - **Email**: Resend API for transactional emails
 - **Forms**: React Hook Form with Zod validation
-- **Fonts**: Custom local fonts (Signal, Hind, Metropolis)
+- **Fonts**: Montserrat (display) and Inter (body) via next/font/google, same as truetone.ai
 
 ### Project Structure
 
@@ -96,10 +96,11 @@ The project uses Supabase with a `waitlist` table for collecting email signups. 
 6. **AI Innovation Showcase**: Dedicated section highlighting proven AI marketing results
 
 ### Design System
-- Leverages professional purple gradient aesthetic
-- Signal font for headings, Hind for body text  
-- Professional photography throughout
-- Animated gradient backgrounds for key sections
+- Same family as truetone.ai (owner ruling 2026-11-18): dark-committed indigo neutrals, lilac as punctuation,
+  Montserrat light uppercase heroes and bold section headlines, Inter body. Tokens (`--hp-*`) and component
+  classes live in `src/app/globals.css`; product truth in `PRODUCT.md`, visual system in `DESIGN.md`.
+- Icons: IconMCP outline set and brand marks only (`docs/icons.md`); never lucide, tabler, heroicons or react-icons.
+- Speaking is the main job: every page leads to `/speaking#book`. Speaking content lives in `src/lib/speaking.ts`.
 
 ### Content Strategy
 The site will feature content pillars around:

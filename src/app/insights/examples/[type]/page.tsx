@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { CheckCircle, BarChart3 } from 'lucide-react'
+import { IconCircleCheck as CheckCircle, IconBarChart as BarChart3 } from '@/components/icons/iconmcp/icons'
 import {
   getAllCampaignExamples,
   getCampaignExample,

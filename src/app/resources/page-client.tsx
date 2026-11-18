@@ -5,8 +5,8 @@ import { m } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Heading, Text } from "@/components/ui/typography";
-import { IconBook, IconVideo, IconDownload, IconUsers, IconCalendar, IconStar, IconSearch } from "@tabler/icons-react";
-import { CheckCircle, ArrowRight, Clock, Eye } from "lucide-react";
+import { IconBook, IconVideo, IconDownload, IconUsers, IconCalendar, IconStar, IconSearch } from '@/components/icons/iconmcp/icons'
+import { IconCircleCheck as CheckCircle, IconArrowRight as ArrowRight, IconClock as Clock, IconEye as Eye } from '@/components/icons/iconmcp/icons'
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";

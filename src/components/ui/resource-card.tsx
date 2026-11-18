@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
-import { Download, FileText, Video, Headphones, CheckSquare, BookOpen, FileCheck } from 'lucide-react'
+import { IconDownload as Download, IconFileText as FileText, IconVideo as Video, IconHeadphones as Headphones, IconCheckboxChecked as CheckSquare, IconBookOpenText as BookOpen, IconFileCheck as FileCheck } from '@/components/icons/iconmcp/icons'
 import { Resource } from '@/lib/supabase'
 import { cn } from '@/lib/utils'
 

@@ -18,29 +18,33 @@ const config: Config = {
   	},
   	extend: {
   		fontFamily: {
-  			sans: [
-  				'var(--font-body)',
-  				'system-ui',
-  				'-apple-system',
-  				'sans-serif'
-  			],
-  			serif: [
-  				'var(--font-heading)',
-  				'Georgia',
-  				'Cambria',
-  				'serif'
-  			],
-  			signal: [
-  				'var(--font-signal)'
-  			],
-  			hind: [
-  				'var(--font-hind)'
-  			]
+  			sans: ['var(--font-body)', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+  			body: ['var(--font-body)', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'],
+  			display: ['var(--font-display)', 'Helvetica Neue', 'Arial Narrow', 'Helvetica', 'Arial', 'sans-serif'],
+  			mono: ['var(--font-mono)'],
+  			// Legacy names: templates still use font-signal / font-hind. They resolve to the
+  			// truetone.ai faces (Montserrat display, Inter body), as on truetone.ai.
+  			signal: ['var(--font-display)', 'Helvetica Neue', 'Arial', 'sans-serif'],
+  			hind: ['var(--font-body)', 'Helvetica Neue', 'Arial', 'sans-serif'],
+  			serif: ['var(--font-display)', 'Helvetica Neue', 'Arial', 'sans-serif']
   		},
   		colors: {
+  			hp: {
+  				bg: 'var(--hp-bg)',
+  				lift: 'var(--hp-bg-lift)',
+  				panel: 'var(--hp-panel)',
+  				text: 'var(--hp-text)',
+  				muted: 'var(--hp-muted)',
+  				soft: 'var(--hp-muted-soft)',
+  				rule: 'var(--hp-rule)',
+  				'rule-strong': 'var(--hp-rule-strong)',
+  				lilac: 'var(--hp-lilac)',
+  				deep: 'var(--hp-lilac-deep)',
+  				lavender: 'var(--hp-lavender)'
+  			},
   			shadow: {
-  				DEFAULT: '#131321',
-  				rgb: '19, 19, 33'
+  				DEFAULT: '#0b0c18',
+  				rgb: '11, 12, 24'
   			},
   			indigo: {
   				DEFAULT: '#2C2A4A',
@@ -51,12 +55,13 @@ const config: Config = {
   				rgb: '79, 81, 140'
   			},
   			lilac: {
-  				DEFAULT: '#907AD6',
-  				rgb: '144, 122, 214'
+  				DEFAULT: '#b18df8',
+  				deep: '#946cdb',
+  				rgb: '177, 141, 248'
   			},
   			lavender: {
-  				DEFAULT: '#DABFFF',
-  				rgb: '218, 191, 255'
+  				DEFAULT: '#d6c2fb',
+  				rgb: '214, 194, 251'
   			},
   			skyward: {
   				DEFAULT: '#7FDEFF',

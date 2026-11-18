@@ -1,28 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { 
-  Check, 
-  Copy, 
-  Mail, 
-  Phone, 
-  ArrowRight, 
-  Search,
-  Star,
-  Heart,
-  Download,
-  Upload,
-  Settings,
-  User,
-  Home,
-  Menu,
-  X,
-  AlertCircle,
-  CheckCircle,
-  XCircle,
-  Info,
-  Loader2,
-} from "lucide-react";
+import { IconCheck as Check, IconCopy as Copy, IconMail as Mail, IconPhone as Phone, IconArrowRight as ArrowRight, IconSearch as Search, IconStar as Star, IconHeart as Heart, IconDownload as Download, IconUpload as Upload, IconSettings as Settings, IconUser as User, IconHome as Home, IconMenu as Menu, IconClose as X, IconAlertCircle as AlertCircle, IconCircleCheck as CheckCircle, IconXCircle as XCircle, IconInfo as Info, IconLoaderCircle as Loader2 } from '@/components/icons/iconmcp/icons'
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -820,7 +799,7 @@ function useStyleGuidePageClientView() {
             <CardHeader>
               <CardTitle>Icon Library</CardTitle>
               <CardDescription>
-                Using Lucide React icons throughout the application
+                IconMCP outline icons, the same set as truetone.ai (docs/icons.md)
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -831,7 +810,7 @@ function useStyleGuidePageClientView() {
                   Star, Heart, AlertCircle, CheckCircle, Info, XCircle,
                 ].map((Icon) => (
                   <div
-                    key={Icon.displayName ?? Icon.name}
+                    key={Icon.name}
                     className="flex items-center justify-center p-3 bg-muted rounded-lg hover:bg-lilac/10 transition-colors"
                   >
                     <Icon className="size-5" />

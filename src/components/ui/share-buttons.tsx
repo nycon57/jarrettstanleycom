@@ -2,12 +2,8 @@
 
 import { Button } from '@/components/ui/button'
 import { TrackedLink } from '@/components/analytics/tracked-link'
-import { 
-  Twitter,
-  Linkedin,
-  Facebook,
-  Link2
-} from 'lucide-react'
+import { IconLink as Link2 } from '@/components/icons/iconmcp/icons'
+import { BrandX as Twitter, BrandLinkedin as Linkedin, BrandFacebook as Facebook } from '@/components/icons/brands'
 import { useState } from 'react'
 
 interface ShareButtonsProps {

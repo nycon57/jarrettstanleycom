@@ -2,17 +2,22 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
+// truetone.ai card surface (DESIGN.md "Cards"): 14px radius, faint vertical gradient, hairline,
+// soft structural shadow. No glass, no hover scale. Old variant names resolve to the same surface.
+const surface =
+  "border border-[oklch(0.97_0.008_295/0.08)] bg-[linear-gradient(180deg,oklch(0.225_0.04_280)_0%,oklch(0.19_0.035_278)_100%)] shadow-[0_1px_0_oklch(0.97_0.008_295/0.05)_inset,0_24px_60px_-28px_oklch(0_0_0/0.55)]";
+
 const cardVariants = cva(
-  "rounded-xl bg-card text-card-foreground transition-all duration-300",
+  "rounded-[14px] text-card-foreground transition-[border-color,background-color] duration-200",
   {
     variants: {
       variant: {
-        default: "border shadow-sm",
-        elevated: "shadow-lg hover:shadow-xl border border-border/50",
-        interactive: "border shadow-sm hover:shadow-lg hover:scale-[1.02] cursor-pointer",
-        "gradient-border": "relative bg-gradient-to-br from-lilac/10 to-orchid/10 p-[1px]",
-        ghost: "border-0 shadow-none",
-        blur: "bg-card/50 backdrop-blur-sm border border-white/10 shadow-xl"
+        default: surface,
+        elevated: surface,
+        interactive: `${surface} cursor-pointer hover:border-[oklch(0.97_0.008_295/0.18)]`,
+        "gradient-border": surface,
+        ghost: "border-0 bg-transparent shadow-none",
+        blur: surface
       }
     },
     defaultVariants: {
@@ -27,20 +32,6 @@ interface CardProps extends
 
 
 { className, variant, children, ref, ...props }: CardProps & {ref?: React.Ref<HTMLDivElement>;}) {
-  if (variant === "gradient-border") {
-    return (
-      <div
-        ref={ref}
-        className={cn(cardVariants({ variant }), className)}
-        {...props}>
-
-          <div className="relative bg-card rounded-xl h-full">
-            {children}
-          </div>
-        </div>);
-
-  }
-
   return (
     <div
       ref={ref}

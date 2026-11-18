@@ -1,5 +1,5 @@
 import type { ContentBlock } from '@/types/blog'
-import { Lightbulb, AlertTriangle, Sparkles } from 'lucide-react'
+import { IconLightbulb as Lightbulb, IconAlert as AlertTriangle, IconSparkles as Sparkles } from '@/components/icons/iconmcp/icons'
 
 function InlineText({ text }: { text: string }) {
   const segments: Array<{ key: string; text: string; strong: boolean; href?: string }> = []

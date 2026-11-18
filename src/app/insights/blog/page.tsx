@@ -62,13 +62,8 @@ export default async function BlogIndexPage() {
         <div className="container max-w-6xl">
           <PseoBreadcrumbs items={breadcrumbs} />
 
-          <h1 className="font-signal text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-4">
-            Blog &{' '}
-            <span className="text-lilac">
-              Articles
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl leading-relaxed">
+          <h1 className="t-hero mt-6 max-w-[14ch]">Writing.</h1>
+          <p className="t-lede mt-6 max-w-3xl">
             Expert insights on AI in mortgage marketing, operational leadership,
             and building systems that hold up under real pressure. Featuring The
             Signal newsletter series.

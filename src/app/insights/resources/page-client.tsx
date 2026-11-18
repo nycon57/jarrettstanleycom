@@ -13,20 +13,7 @@ import { Resource } from '@/lib/supabase'
 import type { TransformedCategory } from '@/lib/sanity/types'
 import { getResources, getCategories } from '@/app/actions/blog'
 import { DownloadModal, useDownloadModal } from '@/components/resources/download-modal'
-import {
-  Filter,
-  Grid,
-  List,
-  SortAsc,
-  SortDesc,
-  FileText,
-  BookOpen,
-  Video,
-  Headphones,
-  CheckSquare,
-  FileCheck,
-  Star
-} from 'lucide-react'
+import { IconFilter as Filter, IconGrid as Grid, IconListBullet as List, IconSortAsc as SortAsc, IconSortDesc as SortDesc, IconFileText as FileText, IconBookOpenText as BookOpen, IconVideo as Video, IconHeadphones as Headphones, IconCheckboxChecked as CheckSquare, IconFileCheck as FileCheck, IconStar as Star } from '@/components/icons/iconmcp/icons'
 
 const RESOURCES_PER_PAGE = 12
 

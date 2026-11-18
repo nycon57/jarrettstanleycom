@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo } from 'react'
-import { Search } from 'lucide-react'
+import { IconSearch as Search } from '@/components/icons/iconmcp/icons'
 import { Input } from '@/components/ui/input'
 import { Badge } from '@/components/ui/badge'
 import { ContentCard } from '@/components/pseo/content-card'

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Calendar, CheckCircle, XCircle, Trophy, ExternalLink, Star } from 'lucide-react'
+import { IconCalendar as Calendar, IconCircleCheck as CheckCircle, IconXCircle as XCircle, IconTrophy as Trophy, IconExternalLink as ExternalLink, IconStar as Star } from '@/components/icons/iconmcp/icons'
 import { getAllToolRoundups, getToolRoundup, buildToolBreadcrumbs } from '@/lib/pseo'
 import {
   generateMetadata as genMeta,

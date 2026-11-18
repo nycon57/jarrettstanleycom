@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import type { TransformedCategory } from '@/lib/sanity/types'
 import { cn } from '@/lib/utils'
-import { X } from 'lucide-react'
+import { IconClose as X } from '@/components/icons/iconmcp/icons'
 
 interface CategoryFilterProps {
   categories: TransformedCategory[]

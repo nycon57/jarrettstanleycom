@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, Wrench, BarChart3, FileText } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { IconArrowRight as ArrowRight } from '@/components/icons/iconmcp/icons'
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useFormSuccess } from "@/hooks/use-form-success";
@@ -61,7 +60,6 @@ const CtaSection = ({
     }
   };
 
-  const sectionPadding = variant === "compact" ? "py-16" : "py-32";
 
   return (
     <>
@@ -71,151 +69,63 @@ const CtaSection = ({
         email={data.email}
         variant="modal"
       />
-      <section className={cn("relative overflow-hidden", sectionPadding, className)}>
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-lilac/5 via-transparent to-orchid/5" />
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 size-96 bg-gradient-to-br from-lilac/5 to-transparent rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 size-96 bg-gradient-to-br from-skyward/5 to-transparent rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 size-[800px] bg-gradient-to-r from-orchid/3 via-transparent to-lavender/3 rounded-full blur-3xl"></div>
-      </div>
-
-      <div className="container relative">
-        <div className="flex flex-col items-center max-w-4xl mx-auto">
-          {/* Heading */}
-          <h2 className={cn(
-            "font-signal font-semibold text-center tracking-tight",
-            variant === "compact" ? "text-3xl md:text-4xl" : "text-4xl md:text-5xl lg:text-6xl"
-          )}>
-            Cut Through the Noise.
-            <span className="block mt-2 animate-gradient bg-300% bg-gradient-x text-lilac">
-              Subscribe to The Signal.
-            </span>
-          </h2>
-
-          {/* Features */}
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-8 w-full max-w-2xl">
-            <div className="flex items-center justify-center sm:justify-start gap-3 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-lilac to-orchid rounded-lg blur-sm opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
-                <div className="relative size-10 bg-gradient-to-br from-lilac/10 to-orchid/10 dark:from-lilac/20 dark:to-orchid/20 rounded-lg flex items-center justify-center border border-lilac/20 dark:border-lilac/30 group-hover:border-lilac/40 dark:group-hover:border-lilac/50 transition-colors">
-                  <Wrench className="size-5 text-lilac dark:text-lilac" />
-                </div>
-              </div>
-              <div className="text-sm">
-                <div className="font-semibold text-foreground">AI Tool Reviews</div>
-                <div className="text-muted-foreground">Unbiased breakdowns</div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center sm:justify-start gap-3 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-orchid to-skyward rounded-lg blur-sm opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
-                <div className="relative size-10 bg-gradient-to-br from-orchid/10 to-skyward/10 dark:from-orchid/20 dark:to-skyward/20 rounded-lg flex items-center justify-center border border-orchid/20 dark:border-orchid/30 group-hover:border-orchid/40 dark:group-hover:border-orchid/50 transition-colors">
-                  <BarChart3 className="size-5 text-orchid dark:text-orchid" />
-                </div>
-              </div>
-              <div className="text-sm">
-                <div className="font-semibold text-foreground">Industry Strategy</div>
-                <div className="text-muted-foreground">20+ years of frameworks</div>
-              </div>
-            </div>
-
-            <div className="flex items-center justify-center sm:justify-start gap-3 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-skyward to-lavender rounded-lg blur-sm opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
-                <div className="relative size-10 bg-gradient-to-br from-skyward/10 to-lavender/10 dark:from-skyward/20 dark:to-lavender/20 rounded-lg flex items-center justify-center border border-skyward/20 dark:border-skyward/30 group-hover:border-skyward/40 dark:group-hover:border-skyward/50 transition-colors">
-                  <FileText className="size-5 text-skyward dark:text-skyward" />
-                </div>
-              </div>
-              <div className="text-sm">
-                <div className="font-semibold text-foreground">Case Studies</div>
-                <div className="text-muted-foreground">Real AI in mortgage</div>
-              </div>
-            </div>
+      <section className={cn("hp-section hp-section--lift", variant === "compact" && "!py-16", className)} aria-labelledby="signal-cta-title">
+        <div className="shell grid items-end gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
+          <div>
+            <h2 id="signal-cta-title" className="t-headline">
+              Cut through the noise. <span className="t-step">Subscribe to The Signal.</span>
+            </h2>
+            <p className="t-lede mt-5">
+              A weekly newsletter on AI and mortgage marketing, written by a CMO who builds with it every day.
+            </p>
           </div>
 
-          <p className="mt-8 text-lg text-muted-foreground text-center max-w-2xl">
-            A weekly newsletter on AI and mortgage marketing &mdash; written by a CMO who builds with it every day.
-          </p>
-
-          {/* Form */}
           {/* WebMCP tool attributes: an in-page agent can see what this form
               does without inferring it from the markup. */}
           <form
             onSubmit={handleSubmit}
             toolname="subscribe_to_the_signal"
             tooldescription="Subscribe an email address to The Signal, Jarrett Stanley's weekly newsletter on AI and mortgage marketing. Requires first name, last name, and email. Only submit with the person's explicit consent."
-            className="mt-8 w-full max-w-lg"
+            className="grid gap-3"
           >
-            <div className="gap-y-4">
-              {/* Name Fields */}
-              <div className="grid grid-cols-2 gap-4">
-                {/* First Name Input */}
-                <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-30 dark:group-hover:opacity-50 transition duration-300"></div>
-                  <div className="relative bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
-                    <Input
-                      type="text"
-                      required
-                      value={firstName}
-                      onChange={(e) => setFirstName(e.target.value)}
-                      placeholder="First name"
-                      className="border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
-                    />
-                  </div>
-                </div>
-
-                {/* Last Name Input */}
-                <div className="relative group">
-                  <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-30 dark:group-hover:opacity-50 transition duration-300"></div>
-                  <div className="relative bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
-                    <Input
-                      type="text"
-                      required
-                      value={lastName}
-                      onChange={(e) => setLastName(e.target.value)}
-                      placeholder="Last name"
-                      className="border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Email Input with Submit Button */}
-              <div className="relative group">
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-lilac to-orchid rounded-xl blur opacity-0 group-hover:opacity-50 dark:group-hover:opacity-75 transition duration-300"></div>
-
-                <div className="relative flex items-center gap-2 bg-background dark:bg-card border border-border dark:border-border rounded-xl p-1.5 transition-all duration-300 group-hover:border-lilac/30 dark:group-hover:border-lilac/40">
-                  <Input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email..."
-                    className="flex-1 border-0 bg-transparent px-4 py-3 text-base focus:outline-none focus:ring-0 placeholder:text-muted-foreground/60"
-                  />
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="h-11 px-6 bg-gradient-to-r from-lilac to-orchid hover:from-lilac/90 hover:to-orchid/90 text-white font-medium rounded-lg transition-all duration-300 disabled:opacity-50"
-                    aria-label="Subscribe to newsletter"
-                  >
-                    {isSubmitting ? (
-                      "Subscribing..."
-                    ) : (
-                      <>
-                        Subscribe
-                        <ArrowRight className="ml-2 size-4 group-hover:translate-x-0.5 transition-transform" />
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </div>
+            <div className="grid grid-cols-2 gap-3">
+              <Input
+                type="text"
+                required
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                placeholder="First name"
+                aria-label="First name"
+                autoComplete="given-name"
+              />
+              <Input
+                type="text"
+                required
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                placeholder="Last name"
+                aria-label="Last name"
+                autoComplete="family-name"
+              />
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@company.com"
+                aria-label="Email"
+                autoComplete="email"
+                className="flex-1"
+              />
+              <button type="submit" disabled={isSubmitting} className="btn-primary btn-primary--sm disabled:opacity-60">
+                {isSubmitting ? "Subscribing…" : "Subscribe"}
+                {!isSubmitting && <ArrowRight className="size-4" />}
+              </button>
             </div>
           </form>
         </div>
-      </div>
       </section>
     </>
   );

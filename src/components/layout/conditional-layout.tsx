@@ -1,8 +1,8 @@
 "use client";
 
 import { usePathname } from 'next/navigation'
-import { ModernNavigation } from '@/components/layout/modern-navigation'
-import { Footer } from '@/components/layout/footer'
+import { SiteHeader } from '@/components/layout/site-header'
+import { SiteFooter } from '@/components/layout/site-footer'
 
 export function ConditionalLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
@@ -16,9 +16,9 @@ export function ConditionalLayout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="relative flex min-h-screen flex-col">
-      <ModernNavigation />
+      <SiteHeader />
       <main className="flex-1">{children}</main>
-      <Footer />
+      <SiteFooter />
     </div>
   )
 } 

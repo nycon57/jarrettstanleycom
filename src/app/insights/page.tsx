@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button'
 import { BlogPostCard } from '@/components/ui/blog-post-card'
 import { ResourceCard } from '@/components/ui/resource-card'
 import { getBlogPosts, getResources, getCategories } from '@/app/actions/blog'
-import { ArrowRight, BookOpen, Download, Lightbulb, TrendingUp } from 'lucide-react'
+import { IconArrowRight as ArrowRight, IconBookOpenText as BookOpen, IconDownload as Download, IconLightbulb as Lightbulb, IconTrendingUp as TrendingUp } from '@/components/icons/iconmcp/icons'
 
 export const metadata: Metadata = generateSEOMetadata({
   title: 'Insights Hub - Expert Knowledge on AI & Mortgage Marketing',

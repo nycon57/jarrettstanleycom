@@ -7,7 +7,7 @@ import { formatDateLabel } from '@/lib/date-format'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
-import { Search, Clock, Newspaper, X } from 'lucide-react'
+import { IconSearch as Search, IconClock as Clock, IconNewspaper as Newspaper, IconClose as X } from '@/components/icons/iconmcp/icons'
 import type { BlogPost, BlogCategory } from '@/types/blog'
 
 interface BlogIndexClientProps {

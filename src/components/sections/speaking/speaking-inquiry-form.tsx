@@ -1,14 +1,13 @@
 "use client";
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { Controller, useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2 } from "lucide-react";
+import { IconLoaderCircle as Loader2 } from '@/components/icons/iconmcp/icons'
 import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -22,6 +21,7 @@ import {
   type SpeakingFormData,
 } from "@/lib/validations/speaking";
 import { useAnalytics } from "@/hooks/use-analytics";
+import { AUDIENCES, FORMATS, TOPICS } from "@/lib/speaking";
 
 const EVENT_FORMATS = [
   "Keynote",
@@ -48,10 +48,8 @@ function FieldError({ message }: { message?: string }) {
 
 export function SpeakingInquiryForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [hasStarted, setHasStarted] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [formStartTime] = useState(() => Date.now());
-  const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
   const { trackSpeaking, trackApplicationError } = useAnalytics();
 
   const {
@@ -59,24 +57,38 @@ export function SpeakingInquiryForm() {
     handleSubmit,
     formState: { errors },
     setValue,
+    control,
     reset,
   } = useForm<SpeakingFormData>({
     resolver: zodResolver(speakingFormSchema),
     defaultValues: { topic_preferences: [] },
   });
 
-  const handleFormStart = () => {
-    if (!hasStarted) setHasStarted(true);
-  };
+  const selectedTopics = useWatch({ control, name: "topic_preferences" }) ?? [];
+
+  // Runs after the useWatch subscriptions above, so the prefilled values reach them.
+  // "Book this session" (the session builder) arrives as ?topic=&format=&audience=#book.
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const topic = TOPICS.find((t) => t.id === params.get("topic"));
+    const format = FORMATS.find((f) => f.id === params.get("format"));
+    const audience = AUDIENCES.find((a) => a.id === params.get("audience"));
+    if (topic) setValue("topic_preferences", [topic.formValue]);
+    if (format) setValue("event_format", format.formValue);
+    if (topic && format && audience) {
+      setValue(
+        "message",
+        `Session: "${topic.session}" as a ${format.label.toLowerCase()}, for ${audience.line.toLowerCase()}.\n\n`,
+      );
+    }
+  }, [setValue]);
+
 
   const toggleTopic = (topic: string) => {
-    setSelectedTopics((current) => {
-      const next = current.includes(topic)
-        ? current.filter((entry) => entry !== topic)
-        : [...current, topic];
-      setValue("topic_preferences", next);
-      return next;
-    });
+    const next = selectedTopics.includes(topic)
+      ? selectedTopics.filter((entry) => entry !== topic)
+      : [...selectedTopics, topic];
+    setValue("topic_preferences", next);
   };
 
   const onSubmit = async (data: SpeakingFormData) => {
@@ -106,9 +118,7 @@ export function SpeakingInquiryForm() {
       trackSpeaking("form_submit", selectedTopics[0]);
       toast.success("Inquiry sent — you'll hear back within two business days.");
       reset();
-      setSelectedTopics([]);
       setHoneypot("");
-      setHasStarted(false);
     } catch (error) {
       console.error("Error submitting speaking inquiry:", error);
       trackApplicationError(
@@ -124,7 +134,7 @@ export function SpeakingInquiryForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} onChange={handleFormStart} className="gap-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-8">
       {/* Honeypot: hidden from people, irresistible to bots. */}
       <div
         aria-hidden="true"
@@ -206,18 +216,24 @@ export function SpeakingInquiryForm() {
       <div className="grid gap-6 md:grid-cols-3">
         <div>
           <Label htmlFor="event_format">Format *</Label>
-          <Select onValueChange={(value) => setValue("event_format", value as SpeakingFormData["event_format"])}>
-            <SelectTrigger id="event_format" className="mt-2">
-              <SelectValue placeholder="Select a format" />
-            </SelectTrigger>
-            <SelectContent>
-              {EVENT_FORMATS.map((format) => (
-                <SelectItem key={format} value={format}>
-                  {format}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
+          <Controller
+            control={control}
+            name="event_format"
+            render={({ field }) => (
+              <Select value={field.value ?? ""} onValueChange={(value) => value && field.onChange(value)}>
+                <SelectTrigger id="event_format" className="mt-2">
+                  <SelectValue placeholder="Select a format" />
+                </SelectTrigger>
+                <SelectContent>
+                  {EVENT_FORMATS.map((format) => (
+                    <SelectItem key={format} value={format}>
+                      {format}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          />
           <FieldError message={errors.event_format?.message} />
         </div>
         <div>
@@ -255,7 +271,7 @@ export function SpeakingInquiryForm() {
       </div>
 
       <fieldset>
-        <legend className="text-sm font-medium text-foreground">
+        <legend className="text-sm font-medium text-hp-text">
           Topics you are interested in
         </legend>
         <div className="mt-3 flex flex-wrap gap-2">
@@ -267,11 +283,7 @@ export function SpeakingInquiryForm() {
                 key={topic}
                 onClick={() => toggleTopic(topic)}
                 aria-pressed={isSelected}
-                className={
-                  isSelected
-                    ? "rounded-full border border-lilac bg-lilac/15 px-4 py-2 text-sm font-medium text-lilac transition-colors"
-                    : "rounded-full border border-border px-4 py-2 text-sm text-muted-foreground transition-colors hover:border-lilac/50 hover:text-foreground"
-                }
+                className="choice aria-pressed:border-[oklch(0.72_0.155_298/0.65)] aria-pressed:bg-[oklch(0.42_0.13_298/0.24)] aria-pressed:text-hp-text"
               >
                 {topic}
               </button>
@@ -292,7 +304,7 @@ export function SpeakingInquiryForm() {
         <FieldError message={errors.message?.message} />
       </div>
 
-      <Button type="submit" size="lg" disabled={isSubmitting} className="w-full sm:w-auto">
+      <button type="submit" disabled={isSubmitting} className="btn-primary w-full disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:justify-self-start">
         {isSubmitting ? (
           <>
             <Loader2 className="mr-2 size-4 animate-spin" />
@@ -301,9 +313,9 @@ export function SpeakingInquiryForm() {
         ) : (
           "Send speaking inquiry"
         )}
-      </Button>
+      </button>
 
-      <p className="text-sm text-muted-foreground">
+      <p className="text-sm text-hp-soft">
         Fees vary with event type, location, and how much the session is customized. You will get
         a specific quote back, not a rate card.
       </p>

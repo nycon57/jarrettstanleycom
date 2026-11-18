@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { IconArrowRight as ArrowRight } from '@/components/icons/iconmcp/icons'
 import { Badge } from '@/components/ui/badge'
 import type { RelatedLink } from '@/types/pseo'
 import { resolveRelatedLinkUrl } from '@/lib/pseo'

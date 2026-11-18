@@ -13,7 +13,7 @@ import { ConsultingFormData, consultingFormSchema } from "@/lib/validations/cons
 import { useAnalytics } from "@/hooks/use-analytics";
 import { useFormSuccess } from "@/hooks/use-form-success";
 import { ConsultingInquirySuccess } from "@/components/ui/form-success-components";
-import { Loader2 } from "lucide-react";
+import { IconLoaderCircle as Loader2 } from '@/components/icons/iconmcp/icons'
 
 function useConsultingInquiryFormView() {
   const [isSubmitting, setIsSubmitting] = useState(false);

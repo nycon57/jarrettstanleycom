@@ -1,86 +1,92 @@
-@import url("https://fonts.googleapis.com/css2?family=Hind:wght@300;400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Signal";
-  src: url("/fonts/Signal-Normal.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Signal-Bold";
-  src: url("/fonts/Signal-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
+/* ════════════════════════════════════════════════════════════
+   jarrettstanley.com runs on truetone.ai's design system
+   (TrueToneAI-FrontEnd/DESIGN.md, "The Quiet Voice Studio"):
+   dark-committed indigo neutrals, lilac as punctuation, Montserrat
+   display, Inter body, IconMCP icons. Same tokens, same names.
+   ════════════════════════════════════════════════════════════ */
 
 @layer base {
-  body {
-    @apply font-hind;
-  }
-
-  h1, h2 {
-    @apply font-signal font-bold;
-  }
-
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-  }
-
+  :root,
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-  }
-}
+    --font-display: var(--font-montserrat), 'Helvetica Neue', 'Arial Narrow', Helvetica, Arial, sans-serif;
+    --font-body: var(--font-inter), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-@layer base {
+    --hp-bg: oklch(0.16 0.025 278);
+    --hp-bg-lift: oklch(0.185 0.03 278);
+    --hp-panel: oklch(0.225 0.04 280);
+    --hp-text: oklch(0.97 0.008 295);
+    --hp-muted: oklch(0.72 0.022 295);
+    --hp-muted-soft: oklch(0.58 0.03 282);
+    --hp-rule: oklch(0.97 0.008 295 / 0.08);
+    --hp-rule-strong: oklch(0.97 0.008 295 / 0.18);
+    --hp-lilac: oklch(0.72 0.155 298);
+    --hp-lilac-deep: oklch(0.62 0.165 298);
+    --hp-lilac-hover: oklch(0.66 0.165 298);
+    --hp-lavender: oklch(0.85 0.08 301);
+    --hp-skyward: oklch(0.85 0.11 215);
+    --hp-ease: cubic-bezier(0.25, 1, 0.5, 1);
+    --hp-focus: oklch(0.85 0.12 298);
+    --hp-field:
+      radial-gradient(55% 45% at 78% 22%, oklch(0.42 0.12 295 / 0.5) 0%, oklch(0.22 0.06 282 / 0) 78%),
+      radial-gradient(70% 60% at 12% 90%, oklch(0.28 0.06 280 / 0.65) 0%, oklch(0.16 0.025 278 / 0) 82%),
+      radial-gradient(120% 80% at 50% 0%, oklch(0.2 0.04 282 / 0.55) 0%, oklch(0.16 0.025 278 / 0) 72%);
+
+    /* shadcn variables, mapped onto the same palette (HSL triplets) */
+    --background: 233.6 38% 6.8%;
+    --foreground: 251.4 37.7% 96.9%;
+    --card: 236.6 31.2% 13.8%;
+    --card-foreground: 251.4 37.7% 96.9%;
+    --popover: 236.6 31.2% 13.8%;
+    --popover-foreground: 251.4 37.7% 96.9%;
+    --primary: 261.5 60.8% 64%;
+    --primary-foreground: 251.4 37.7% 98.5%;
+    --secondary: 233.8 34.5% 9.3%;
+    --secondary-foreground: 251.4 37.7% 96.9%;
+    --muted: 233.8 34.5% 11%;
+    --muted-foreground: 252 8.9% 66.6%;
+    --accent: 236.6 31.2% 16%;
+    --accent-foreground: 251.4 37.7% 96.9%;
+    --destructive: 0.1 67.7% 55.7%;
+    --destructive-foreground: 251.4 37.7% 98.5%;
+    --border: 235.3 22.6% 17.7%;
+    --input: 235.3 22.6% 17.7%;
+    --ring: 263.9 100% 87%;
+    --radius: 0.5rem;
+    color-scheme: dark;
+  }
+
+  html {
+    background: var(--hp-bg);
+  }
+
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    background: var(--hp-bg);
+    color: var(--hp-text);
+    font-family: var(--font-body);
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-display);
+  }
+
+  ::selection {
+    background: oklch(0.62 0.165 298 / 0.45);
+    color: var(--hp-text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--hp-focus);
+    outline-offset: 3px;
   }
 }
 
@@ -254,4 +260,312 @@
   .animate-spin {
     animation: none !important;
   }
+}
+
+/* ════════════════════════════════════════════════════════════
+   Site components: truetone.ai's grammar (hero field + grain,
+   hp-section bands, hp-card mockup chrome, 8px deep-lilac buttons,
+   underline ghost links, colophon footer) carrying Jarrett's content.
+   ════════════════════════════════════════════════════════════ */
+@layer components {
+  .shell {
+    width: 100%;
+    max-width: 1400px;
+    margin-inline: auto;
+    padding-inline: clamp(1rem, 4vw, 2rem);
+  }
+
+  /* Page hero: the ambient field and grain behind every page opening */
+  .page-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    padding-top: clamp(7rem, 15vh, 10rem);
+    padding-bottom: clamp(4rem, 10vh, 7rem);
+  }
+  .page-hero--tight { padding-bottom: clamp(3rem, 8vh, 5rem); }
+  .page-hero::before,
+  .page-hero::after {
+    content: '';
+    position: absolute;
+    pointer-events: none;
+  }
+  .page-hero::before {
+    inset: -10% -10% -20% -10%;
+    z-index: 0;
+    background: var(--hp-field);
+    animation: js-breathe 14s ease-in-out infinite;
+  }
+  .page-hero::after {
+    inset: 0;
+    z-index: 1;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 180px 180px;
+  }
+
+  /* Ambient field for other bands (the closing CTA) */
+  .js-field {
+    position: absolute;
+    inset: -10% -10% -20% -10%;
+    z-index: 0;
+    pointer-events: none;
+    background: var(--hp-field);
+    animation: js-breathe 14s ease-in-out infinite;
+  }
+  @keyframes js-breathe {
+    0%, 100% { transform: scale(1) translate3d(0, 0, 0); opacity: 0.95; }
+    50% { transform: scale(1.04) translate3d(-1.5%, 1%, 0); opacity: 1; }
+  }
+  .hp-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    background-size: 180px 180px;
+  }
+
+  /* Section bands */
+  .hp-section {
+    position: relative;
+    isolation: isolate;
+    background: var(--hp-bg);
+    color: var(--hp-text);
+    padding-block: clamp(5rem, 12vh, 8.5rem);
+  }
+  .hp-section::before { opacity: 0.035; z-index: 0; }
+  .hp-section--lift { background: var(--hp-bg-lift); }
+  .hp-section > * { position: relative; z-index: 1; }
+
+  /* Type registers (DESIGN.md: Two Registers Rule) */
+  .t-hero {
+    font-family: var(--font-display);
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: clamp(2.5rem, 1.9rem + 3.2vw, 4.25rem);
+    line-height: 0.98;
+    letter-spacing: 0.005em;
+    color: var(--hp-text);
+    text-wrap: balance;
+    margin-left: -0.04em;
+  }
+  .t-headline {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem);
+    line-height: 1;
+    letter-spacing: -0.03em;
+    color: var(--hp-text);
+    text-wrap: balance;
+  }
+  .t-headline .t-step { color: var(--hp-muted); }
+  .t-title {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(1.0625rem, 0.9rem + 0.5vw, 1.3125rem);
+    line-height: 1.2;
+    letter-spacing: -0.018em;
+    color: var(--hp-text);
+  }
+  .t-lede {
+    font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.25rem);
+    line-height: 1.65;
+    color: oklch(0.78 0.018 295);
+    max-width: 54ch;
+  }
+  .t-body {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--hp-muted);
+    max-width: 68ch;
+  }
+  .t-meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.02em;
+    color: var(--hp-muted-soft);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Buttons: 8px rectangle, deep lilac, no glow; ghost = underline link */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: -0.005em;
+    color: oklch(0.99 0.005 295);
+    background: var(--hp-lilac-deep);
+    padding: 0.875rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 220ms var(--hp-ease), transform 140ms var(--hp-ease);
+    white-space: nowrap;
+  }
+  .btn-primary:hover { background: var(--hp-lilac-hover); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-primary svg { transition: transform 220ms var(--hp-ease); }
+  .btn-primary:hover svg { transform: translateX(2px); }
+  .btn-primary--sm { font-size: 0.9375rem; padding: 0.625rem 1.125rem; }
+
+  .btn-ghost {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: oklch(0.92 0.012 295 / 0.88);
+    padding: 0.625rem 0.125rem;
+  }
+  .btn-ghost::after {
+    content: '';
+    position: absolute;
+    left: 0.125rem;
+    right: 0.125rem;
+    bottom: 0.5rem;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 240ms var(--hp-ease);
+  }
+  .btn-ghost:hover { color: var(--hp-text); }
+  .btn-ghost:hover::after,
+  .btn-ghost:focus-visible::after { transform: scaleX(1); }
+  .btn-ghost svg { transition: transform 220ms var(--hp-ease); }
+  .btn-ghost:hover svg { transform: translateX(2px); }
+
+  /* Product-surface card + chrome strip */
+  .hp-card {
+    position: relative;
+    background: linear-gradient(180deg, oklch(0.225 0.04 280) 0%, oklch(0.19 0.035 278) 100%);
+    border: 1px solid var(--hp-rule);
+    border-radius: 14px;
+    box-shadow:
+      0 1px 0 oklch(0.97 0.008 295 / 0.05) inset,
+      0 24px 60px -28px oklch(0 0 0 / 0.55),
+      0 8px 24px -16px oklch(0 0 0 / 0.35);
+    overflow: hidden;
+    color: var(--hp-text);
+  }
+  .hp-card--frame { border-radius: 24px; }
+  .hp-chrome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid oklch(0.97 0.008 295 / 0.06);
+  }
+  .hp-chrome-dots { display: inline-flex; gap: 6px; }
+  .hp-chrome-dots span {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: oklch(0.97 0.008 295 / 0.08);
+  }
+
+  /* Hairline section rule with a single lilac pip */
+  .pip-rule {
+    position: relative;
+    height: 1px;
+    background: var(--hp-rule);
+  }
+  .pip-rule::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background: var(--hp-lilac);
+    box-shadow: 0 0 0 4px oklch(0.72 0.16 298 / 0.22);
+  }
+
+  /* Choice controls (session builder): native radios, 8px rectangles */
+  .choice {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.5rem 0.875rem;
+    border-radius: 0.5rem;
+    border: 1px solid var(--hp-rule-strong);
+    color: var(--hp-muted);
+    font-size: 0.9375rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 200ms var(--hp-ease), background-color 200ms var(--hp-ease), border-color 200ms var(--hp-ease), transform 140ms var(--hp-ease);
+  }
+  .choice--sm { min-height: 2.125rem; padding: 0.375rem 0.75rem; font-size: 0.875rem; }
+  .choice:hover { color: var(--hp-text); border-color: oklch(0.97 0.008 295 / 0.3); }
+  .choice:active { transform: scale(0.98); }
+  .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .choice:has(input:checked) {
+    color: var(--hp-text);
+    background: oklch(0.42 0.13 298 / 0.24);
+    border-color: oklch(0.72 0.155 298 / 0.65);
+  }
+  .choice:has(input:focus-visible) {
+    outline: 2px solid var(--hp-focus);
+    outline-offset: 3px;
+  }
+
+  /* Session card content swap: one authored moment, a blurred crossfade */
+  .swap-in { animation: swap-in 280ms var(--hp-ease) both; }
+  @keyframes swap-in {
+    from { opacity: 0; filter: blur(4px); transform: translateY(4px); }
+    to { opacity: 1; filter: blur(0); transform: none; }
+  }
+
+  /* Entrance: one orchestrated hero reveal */
+  .stagger > * {
+    animation: rise 620ms var(--hp-ease) both;
+    animation-delay: calc(var(--i, 0) * 80ms + 80ms);
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* Founder photography in the brand duotone (DESIGN.md) */
+  .duotone {
+    position: relative;
+    isolation: isolate;
+    background: oklch(0.3 0.08 285);
+    overflow: hidden;
+  }
+  .duotone img { filter: grayscale(1) contrast(1.08) brightness(0.92); mix-blend-mode: luminosity; }
+  .duotone::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, oklch(0.62 0.165 298 / 0.18), oklch(0.16 0.025 278 / 0.55));
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  /* Prose for articles */
+  .js-prose p { margin-bottom: 1.5rem; }
+
+  /* Native disclosure (FAQ) */
+  .faq-item summary { list-style: none; cursor: pointer; }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item[open] .faq-plus { transform: rotate(45deg); }
+  .faq-plus { transition: transform 220ms var(--hp-ease); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .js-field,
+    .page-hero::before { animation: none; }
+    .stagger > * { animation: fade 200ms linear both; animation-delay: 0ms; }
+    .swap-in { animation: fade 160ms linear both; }
+  }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 }

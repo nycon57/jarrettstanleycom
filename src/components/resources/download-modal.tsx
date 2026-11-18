@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Download } from 'lucide-react'
+import { IconDownload as Download } from '@/components/icons/iconmcp/icons'
 import { Resource } from '@/lib/supabase'
 import { getStoredUTMParameters } from '@/lib/analytics'
 
