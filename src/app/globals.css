@@ -526,6 +526,58 @@
     to { opacity: 1; filter: blur(0); transform: none; }
   }
 
+  /* Header dropdown: drops from its trigger, fast and short */
+  .nav-panel:not([hidden]) { animation: nav-drop 180ms var(--hp-ease) both; transform-origin: top center; }
+  @keyframes nav-drop {
+    from { opacity: 0; transform: translate(-50%, -4px) scale(0.98); }
+    to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  }
+
+  /* Option tiles (booking form): big, obvious single choices with a radio mark */
+  .option-tile {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.875rem;
+    padding: 1rem 1.125rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--hp-rule-strong);
+    background: oklch(0.97 0.008 295 / 0.02);
+    cursor: pointer;
+    transition: border-color 200ms var(--hp-ease), background-color 200ms var(--hp-ease), transform 140ms var(--hp-ease);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .option-tile:hover { border-color: oklch(0.97 0.008 295 / 0.34); background: oklch(0.97 0.008 295 / 0.045); }
+  }
+  .option-tile:active { transform: scale(0.99); }
+  .option-tile input { position: absolute; opacity: 0; pointer-events: none; }
+  .option-tile-mark {
+    position: relative;
+    flex-shrink: 0;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.125rem;
+    border-radius: 9999px;
+    border: 1.5px solid oklch(0.97 0.008 295 / 0.35);
+    transition: border-color 200ms var(--hp-ease), background-color 200ms var(--hp-ease);
+  }
+  .option-tile-mark::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border-radius: 9999px;
+    background: oklch(0.99 0.005 295);
+    transform: scale(0);
+    transition: transform 200ms var(--hp-ease);
+  }
+  .option-tile:has(input:checked) {
+    border-color: oklch(0.72 0.155 298 / 0.8);
+    background: oklch(0.42 0.13 298 / 0.2);
+  }
+  .option-tile:has(input:checked) .option-tile-mark { border-color: var(--hp-lilac-deep); background: var(--hp-lilac-deep); }
+  .option-tile:has(input:checked) .option-tile-mark::after { transform: scale(1); }
+  .option-tile:has(input:focus-visible) { outline: 2px solid var(--hp-focus); outline-offset: 3px; }
+
   /* Option rows (contact page conversation): one choice per hairline row, mark on the right */
   .option-row {
     position: relative;
@@ -641,6 +693,7 @@
     .swap-in,
     .step-next,
     .step-prev { animation: fade 160ms linear both; }
+    .nav-panel:not([hidden]) { animation: none; }
   }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 }

@@ -35,11 +35,11 @@ export default function SpeakingPage() {
             </h1>
             <p className="t-lede mt-7" style={{ '--i': 1 } as React.CSSProperties}>
               Keynotes, workshops, panels and firesides on AI, marketing and leadership for mortgage and financial
-              services audiences. Shape the session in the card, then send it with your event details.
+              services audiences. Pick the talk, the format and the room, then tell me about your event.
             </p>
             <div className="mt-9 flex flex-wrap items-center gap-x-8 gap-y-3" style={{ '--i': 2 } as React.CSSProperties}>
               <Link href="#book" className="btn-primary lg:hidden">
-                Shape a session
+                Start booking
                 <IconArrowRight className="size-4" />
               </Link>
               <Link href="#talks-title" className="btn-ghost">

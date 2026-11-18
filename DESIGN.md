@@ -294,9 +294,9 @@ Confident and quiet: one filled action, everything else a link.
 - **Error:** a destructive-red line under the field, shown when a step is checked and cleared as soon as the field changes. Nothing re-validates on blur: a message disappearing on blur moves the layout under the pointer and swallows the next click.
 
 ### Navigation
-- **Header:** fixed, 72px, transparent over the hero, then Studio Shadow at 92% with a 12px backdrop blur and a hairline once scrolled. Signature logo 32px tall at left; four Inter 500 links at 0.9375rem in Muted Orchid; a small primary "Book Jarrett" at right.
+- **Header:** fixed, 72px, transparent over the hero, then Studio Shadow at 94% with a backdrop blur and a hairline once scrolled or open. Signature logo 32px at left; Speaking, Services, Insights, About, Contact in Inter 500 at 0.9375rem (Muted Orchid); a small primary "Book Jarrett" at right. Services and Insights open editorial dropdowns (hover with a 140ms close delay, click, Escape returns focus to the trigger): lead copy in a left column, then each page with a bare 20px icon, an Inter 600 name and a one-line description. They keep every directory page (glossary, tools, examples, solutions) one hover from every page, for search and AI citation.
 - **States:** hover brings the text to Lavender White with a 1px current-color underline from the left; the active route keeps a lilac underline and `aria-current="page"`.
-- **Mobile:** a 40px menu toggle opens a disclosure of hairline-divided rows at 1.125rem with a trailing soft arrow, and a full-width primary at the bottom.
+- **Mobile:** a 40px menu toggle opens a scrollable disclosure of hairline-divided rows at 1.125rem with a trailing soft arrow, each section listing its sub-pages underneath, and a full-width primary at the bottom.
 - **Footer:** a colophon under a hairline: logo, a one-line role statement, bare LinkedIn, X and mail glyphs in Soft Orchid; four link columns headed in Inter 600 at 0.8125rem; a legal row under a second hairline.
 
 ### Booking Card (signature, home and /speaking)

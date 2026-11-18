@@ -58,9 +58,9 @@ export function HomeBooking() {
         <div className="lg:sticky lg:top-28">
           <SectionHead
             id="booking-title"
-            title="Shape the session."
-            step="Then send it to me."
-            lede="Pick a topic, format and audience to see the session as it would read in your program. The same card takes your event details and sends them straight to me."
+            title="Book me to speak."
+            step="Five short steps."
+            lede="Pick the talk, the format and the room, then tell me about your event. It comes straight to me."
           />
           <ul className="mt-8 grid gap-3 text-[0.9375rem] text-hp-text">
             {INCLUDED.map((item) => (

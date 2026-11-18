@@ -198,23 +198,6 @@ export function AboutContent() {
         </div>
       </section>
 
-      <section className="hp-section" aria-labelledby="mission-title">
-        <div className="shell">
-          <h2 id="mission-title" className="sr-only">
-            What I believe
-          </h2>
-          <figure className="max-w-5xl">
-            <blockquote className="font-display text-[clamp(1.75rem,1.1rem+2.4vw,3rem)] font-light leading-[1.14] tracking-[-0.02em] text-hp-text text-balance">
-              &ldquo;You want experts with power tools. What you don&apos;t want is a monkey with a machine gun.&rdquo;
-            </blockquote>
-            <figcaption className="mt-6 text-[0.9375rem] text-hp-muted">Me, on The TrueTone Show, Episode 2</figcaption>
-          </figure>
-          <p className="t-lede mt-10 max-w-3xl">
-            That&apos;s the idea behind the talks, the newsletter, the show and TrueTone AI. Give people who know the work
-            better tools, and keep the judgment with them.
-          </p>
-        </div>
-      </section>
 
       <Colleagues />
       <ClosingCta />

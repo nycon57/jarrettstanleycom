@@ -9,6 +9,8 @@ import { Textarea } from '@/components/ui/textarea'
 import { AUDIENCE_SIZES, BUDGET_RANGES, EVENT_FORMATS, TOPICS } from '@/lib/speaking'
 import { SPEAKING_TOPICS } from '@/lib/validations/speaking'
 import { cn } from '@/lib/utils'
+import type { FieldErrors } from 'react-hook-form'
+import type { SpeakingFormData } from '@/lib/validations/speaking'
 import { useSpeakingInquiry, type InquiryField } from './use-speaking-inquiry'
 import { FieldError } from './field-error'
 
@@ -45,56 +47,9 @@ function OptionRows({ name, options, type = 'radio', field }: { name: InquiryFie
   )
 }
 
-/**
- * Booking, the contact page way: a conversation. One question per screen in the display face, a rail of
- * answered steps on the left, and a review before it sends.
- */
-export function SpeakingConversation() {
-  const [current, setCurrent] = useState<StepId>('event')
-  const [direction, setDirection] = useState<'next' | 'prev'>('next')
-  const headingRef = useRef<HTMLHeadingElement>(null)
-  const moved = useRef(false)
-  const { form, field, send, status, checkStep, honeypot, setHoneypot } = useSpeakingInquiry('contact_conversation')
-  const { formState, control } = form
-  const errors = formState.errors
-  const index = STEPS.findIndex((s) => s.id === current)
-  const step = STEPS[index]
-  const values = useWatch({ control })
-
-  useEffect(() => {
-    if (moved.current) headingRef.current?.focus()
-  }, [current, status])
-
-  const go = (to: StepId) => {
-    moved.current = true
-    setDirection(STEPS.findIndex((s) => s.id === to) > index ? 'next' : 'prev')
-    setCurrent(to)
-  }
-
-  const answers: Record<StepId, string> = {
-    event: [values.event_name, dateLabel(values.event_date)].filter(Boolean).join(' · '),
-    room: [values.audience_size, values.event_format].filter(Boolean).join(' · '),
-    talk: (values.topic_preferences ?? []).map(topicLabel).join(', '),
-    budget: values.budget_range ?? '',
-    you: [values.first_name, values.last_name].filter(Boolean).join(' '),
-    review: '',
-  }
-
-  if (status === 'sent') {
-    return (
-      <div className="step-next max-w-2xl py-6">
-        <IconCheck className="size-7 text-hp-lilac" />
-        <h3 ref={headingRef} tabIndex={-1} className="t-hero mt-6 !text-[clamp(2rem,1.4rem+2vw,3rem)] outline-none">
-          Sent. Thanks, {values.first_name}.
-        </h3>
-        <p className="t-lede mt-5">I&apos;ll follow up personally about {values.event_name || 'your event'}.</p>
-      </div>
-    )
-  }
-
+/** The rail: where you are, and what you've said so far. Finished steps jump back. */
+function Rail({ index, current, answers, onJump }: { index: number; current: StepId; answers: Record<StepId, string>; onJump: (to: StepId) => void }) {
   return (
-    <div className="grid gap-10 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16">
-      {/* The rail: where you are, and what you've said so far */}
       <ol className="hidden border-t border-hp-rule lg:block" aria-label="Steps">
         {STEPS.map((s, i) => {
           const done = i < index
@@ -103,7 +58,7 @@ export function SpeakingConversation() {
               <button
                 type="button"
                 disabled={!done}
-                onClick={() => go(s.id)}
+                onClick={() => onJump(s.id)}
                 aria-current={s.id === current ? 'step' : undefined}
                 className="flex w-full items-start gap-3 py-3.5 text-left disabled:cursor-default"
               >
@@ -124,31 +79,21 @@ export function SpeakingConversation() {
           )
         })}
       </ol>
+  )
+}
 
-      <form
-        noValidate
-        onSubmit={async (e) => {
-          e.preventDefault()
-          if (current === 'review') return send()
-          if (await checkStep([...step.fields])) go(STEPS[index + 1].id)
-        }}
-        className="min-w-0"
-      >
-        <div aria-hidden="true" className="absolute -left-[9999px] top-0 h-px w-px overflow-hidden">
-          <label htmlFor="website-conversation">Website</label>
-          <input id="website-conversation" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
-        </div>
+type StepBodyProps = {
+  current: StepId
+  field: ReturnType<typeof useSpeakingInquiry>['field']
+  errors: FieldErrors<SpeakingFormData>
+  answers: Record<StepId, string>
+  onJump: (to: StepId) => void
+}
 
-        <p className="text-sm text-hp-soft lg:hidden">
-          {index + 1} of {STEPS.length} · {step.rail}
-        </p>
-
-        <div key={current} className={direction === 'next' ? 'step-next' : 'step-prev'}>
-          <h3 ref={headingRef} tabIndex={-1} className="mt-2 font-display text-[clamp(1.875rem,1.3rem+1.8vw,2.75rem)] font-light leading-[1.08] tracking-[-0.02em] text-hp-text outline-none lg:mt-0">
-            {step.question}
-          </h3>
-
-          <div className="mt-8 grid gap-5">
+/** The controls for one question. */
+function StepBody({ current, field, errors, answers, onJump }: StepBodyProps) {
+  return (
+    <>
             {current === 'event' && (
               <>
                 <div className="grid gap-2">
@@ -240,7 +185,7 @@ export function SpeakingConversation() {
                     <dt className="text-sm text-hp-soft">{s.rail}</dt>
                     <dd className="min-w-0 truncate text-[0.9375rem] text-hp-text">{answers[s.id] || 'Not set'}</dd>
                     <dd>
-                      <button type="button" onClick={() => go(s.id)} className="text-sm text-hp-muted underline decoration-hp-rule-strong underline-offset-4 hover:text-hp-text">
+                      <button type="button" onClick={() => onJump(s.id)} className="text-sm text-hp-muted underline decoration-hp-rule-strong underline-offset-4 hover:text-hp-text">
                         Edit
                       </button>
                     </dd>
@@ -248,6 +193,88 @@ export function SpeakingConversation() {
                 ))}
               </dl>
             )}
+    </>
+  )
+}
+
+/**
+ * Booking, the contact page way: a conversation. One question per screen in the display face, a rail of
+ * answered steps on the left, and a review before it sends.
+ */
+export function SpeakingConversation() {
+  const [current, setCurrent] = useState<StepId>('event')
+  const [direction, setDirection] = useState<'next' | 'prev'>('next')
+  const headingRef = useRef<HTMLHeadingElement>(null)
+  const moved = useRef(false)
+  const { form, field, send, status, checkStep, honeypot, setHoneypot } = useSpeakingInquiry('contact_conversation')
+  const { formState, control } = form
+  const errors = formState.errors
+  const index = STEPS.findIndex((s) => s.id === current)
+  const step = STEPS[index]
+  const values = useWatch({ control })
+
+  useEffect(() => {
+    if (moved.current) headingRef.current?.focus()
+  }, [current, status])
+
+  const go = (to: StepId) => {
+    moved.current = true
+    setDirection(STEPS.findIndex((s) => s.id === to) > index ? 'next' : 'prev')
+    setCurrent(to)
+  }
+
+  const answers: Record<StepId, string> = {
+    event: [values.event_name, dateLabel(values.event_date)].filter(Boolean).join(' · '),
+    room: [values.audience_size, values.event_format].filter(Boolean).join(' · '),
+    talk: (values.topic_preferences ?? []).map(topicLabel).join(', '),
+    budget: values.budget_range ?? '',
+    you: [values.first_name, values.last_name].filter(Boolean).join(' '),
+    review: '',
+  }
+
+  if (status === 'sent') {
+    return (
+      <div className="step-next max-w-2xl py-6">
+        <IconCheck className="size-7 text-hp-lilac" />
+        <h3 ref={headingRef} tabIndex={-1} className="t-hero mt-6 !text-[clamp(2rem,1.4rem+2vw,3rem)] outline-none">
+          Sent. Thanks, {values.first_name}.
+        </h3>
+        <p className="t-lede mt-5">I&apos;ll follow up personally about {values.event_name || 'your event'}.</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="grid gap-10 lg:grid-cols-[15rem_minmax(0,1fr)] lg:gap-16">
+      <Rail index={index} current={current} answers={answers} onJump={go} />
+
+      <form
+        noValidate
+        onSubmit={async (e) => {
+          // Stays in the page: steps advance client-side. A function `action` would make React reset the
+          // uncontrolled inputs after every step and wipe the answers.
+          e.preventDefault()
+          if (current === 'review') return send()
+          if (await checkStep([...step.fields])) go(STEPS[index + 1].id)
+        }}
+        className="min-w-0"
+      >
+        <div aria-hidden="true" className="absolute -left-[9999px] top-0 h-px w-px overflow-hidden">
+          <label htmlFor="website-conversation">Website</label>
+          <input id="website-conversation" name="website" tabIndex={-1} autoComplete="off" value={honeypot} onChange={(e) => setHoneypot(e.target.value)} />
+        </div>
+
+        <p className="text-sm text-hp-soft lg:hidden">
+          {index + 1} of {STEPS.length} · {step.rail}
+        </p>
+
+        <div key={current} className={direction === 'next' ? 'step-next' : 'step-prev'}>
+          <h3 ref={headingRef} tabIndex={-1} className="mt-2 font-display text-[clamp(1.875rem,1.3rem+1.8vw,2.75rem)] font-light leading-[1.08] tracking-[-0.02em] text-hp-text outline-none lg:mt-0">
+            {step.question}
+          </h3>
+
+          <div className="mt-8 grid gap-5">
+            <StepBody current={current} field={field} errors={errors} answers={answers} onJump={go} />
 
             {status === 'error' ? (
               <p role="alert" className="text-sm text-destructive">
