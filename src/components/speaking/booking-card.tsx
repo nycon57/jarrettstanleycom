@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { IconArrowLeft, IconArrowRight, IconCheck, IconLoaderCircle } from '@/components/icons/iconmcp/icons'
+import { DatePicker } from '@/components/ui/date-picker'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { AUDIENCES, AUDIENCE_SIZES, BUDGET_RANGES, FORMATS, TOPICS, type AudienceId, type FormatId, type TopicId } from '@/lib/speaking'
 import { cn } from '@/lib/utils'
-import type { FieldErrors } from 'react-hook-form'
+import { Controller, type Control, type FieldErrors, type UseFormClearErrors } from 'react-hook-form'
 import type { SpeakingFormData } from '@/lib/validations/speaking'
 import { useSpeakingInquiry, type InquiryField } from './use-speaking-inquiry'
 import { FieldError } from './field-error'
@@ -89,8 +90,9 @@ function Progress({ index, sent, onJump }: { index: number; sent: boolean; onJum
 }
 
 type FieldProps = { field: ReturnType<typeof useSpeakingInquiry>['field']; errors: FieldErrors<SpeakingFormData> }
+type DateProps = { control: Control<SpeakingFormData>; clearErrors: UseFormClearErrors<SpeakingFormData> }
 
-function EventFields({ field, errors }: FieldProps) {
+function EventFields({ field, errors, control, clearErrors }: FieldProps & DateProps) {
   return (
                 <div className="grid gap-5">
                   <div className="grid gap-4 sm:grid-cols-2">
@@ -101,7 +103,22 @@ function EventFields({ field, errors }: FieldProps) {
                     </div>
                     <div className="grid gap-2">
                       <Label htmlFor="bk-event-date">Date</Label>
-                      <Input id="bk-event-date" type="date" aria-invalid={!!errors.event_date} {...field('event_date')} />
+                      <Controller
+                        control={control}
+                        name="event_date"
+                        render={({ field: f }) => (
+                          <DatePicker
+                            id="bk-event-date"
+                            ref={f.ref}
+                            value={f.value}
+                            invalid={!!errors.event_date}
+                            onChange={(v) => {
+                              f.onChange(v)
+                              clearErrors('event_date')
+                            }}
+                          />
+                        )}
+                      />
                       <FieldError message={errors.event_date?.message} />
                     </div>
                   </div>
@@ -330,7 +347,7 @@ export function BookingCard() {
                 />
               )}
 
-              {step === 'event' && <EventFields field={field} errors={errors} />}
+              {step === 'event' && <EventFields field={field} errors={errors} control={form.control} clearErrors={form.clearErrors} />}
 
               {step === 'you' && <ContactFields field={field} errors={errors} failed={status === 'error'} />}
             </div>

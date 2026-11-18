@@ -6,7 +6,11 @@ import { IconCheck as Check, IconChevronDown as ChevronDown } from '@/components
 
 import { cn } from "@/lib/utils";
 
-const Select = SelectPrimitive.Root;
+// Radix Select can report "" on mount (its hidden native select syncs before the value is set), which
+// silently wipes a controlled selection, e.g. the contact page's ?type=media. Empty is never a real choice here.
+function Select({ onValueChange, ...props }: React.ComponentProps<typeof SelectPrimitive.Root>) {
+  return <SelectPrimitive.Root onValueChange={onValueChange && ((value) => value !== "" && onValueChange(value))} {...props} />;
+}
 
 const SelectGroup = SelectPrimitive.Group;
 

@@ -533,6 +533,13 @@
     to { opacity: 1; transform: translate(-50%, 0) scale(1); }
   }
 
+  /* Popovers (date picker): scale from the trigger, fast in, faster out */
+  .popover-content { transform-origin: var(--radix-popover-content-transform-origin); }
+  .popover-content[data-state='open'] { animation: pop-in 160ms var(--hp-ease) both; }
+  .popover-content[data-state='closed'] { animation: pop-out 110ms ease-in both; }
+  @keyframes pop-in { from { opacity: 0; transform: scale(0.97); } to { opacity: 1; transform: none; } }
+  @keyframes pop-out { from { opacity: 1; } to { opacity: 0; transform: scale(0.98); } }
+
   /* Option tiles (booking form): big, obvious single choices with a radio mark */
   .option-tile {
     position: relative;
@@ -694,6 +701,7 @@
     .step-next,
     .step-prev { animation: fade 160ms linear both; }
     .nav-panel:not([hidden]) { animation: none; }
+    .popover-content[data-state] { animation: fade 120ms linear both; }
   }
   @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 }

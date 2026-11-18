@@ -16,7 +16,7 @@ export const speakingFormSchema = z.object({
   company: z.string().min(1, "Organization is required"),
   role: z.string().optional(),
   event_name: z.string().min(1, "Event name is required"),
-  event_date: z.string().min(1, "Event date is required"),
+  event_date: z.string({ required_error: "Pick the event date" }).min(1, "Pick the event date"),
   event_location: z.string().optional(),
   event_format: z.enum(
     ["Keynote", "Workshop", "Panel or fireside chat", "Webinar or virtual", "Not sure yet"],

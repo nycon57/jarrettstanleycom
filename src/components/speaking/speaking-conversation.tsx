@@ -3,13 +3,14 @@
 import { useEffect, useRef, useState } from 'react'
 import { useWatch } from 'react-hook-form'
 import { IconArrowLeft, IconArrowRight, IconCheck, IconLoaderCircle } from '@/components/icons/iconmcp/icons'
+import { DatePicker } from '@/components/ui/date-picker'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { AUDIENCE_SIZES, BUDGET_RANGES, EVENT_FORMATS, TOPICS } from '@/lib/speaking'
 import { SPEAKING_TOPICS } from '@/lib/validations/speaking'
 import { cn } from '@/lib/utils'
-import type { FieldErrors } from 'react-hook-form'
+import { Controller, type Control, type FieldErrors, type UseFormClearErrors } from 'react-hook-form'
 import type { SpeakingFormData } from '@/lib/validations/speaking'
 import { useSpeakingInquiry, type InquiryField } from './use-speaking-inquiry'
 import { FieldError } from './field-error'
@@ -84,6 +85,8 @@ function Rail({ index, current, answers, onJump }: { index: number; current: Ste
 
 type StepBodyProps = {
   current: StepId
+  control: Control<SpeakingFormData>
+  clearErrors: UseFormClearErrors<SpeakingFormData>
   field: ReturnType<typeof useSpeakingInquiry>['field']
   errors: FieldErrors<SpeakingFormData>
   answers: Record<StepId, string>
@@ -91,7 +94,7 @@ type StepBodyProps = {
 }
 
 /** The controls for one question. */
-function StepBody({ current, field, errors, answers, onJump }: StepBodyProps) {
+function StepBody({ current, control, clearErrors, field, errors, answers, onJump }: StepBodyProps) {
   return (
     <>
             {current === 'event' && (
@@ -104,7 +107,22 @@ function StepBody({ current, field, errors, answers, onJump }: StepBodyProps) {
                 <div className="grid gap-5 sm:grid-cols-2">
                   <div className="grid gap-2">
                     <Label htmlFor="cv-event-date">Date</Label>
-                    <Input id="cv-event-date" type="date" aria-invalid={!!errors.event_date} {...field('event_date')} />
+                    <Controller
+                        control={control}
+                        name="event_date"
+                        render={({ field: f }) => (
+                          <DatePicker
+                            id="cv-event-date"
+                            ref={f.ref}
+                            value={f.value}
+                            invalid={!!errors.event_date}
+                            onChange={(v) => {
+                              f.onChange(v)
+                              clearErrors('event_date')
+                            }}
+                          />
+                        )}
+                      />
                     <FieldError message={errors.event_date?.message} />
                   </div>
                   <div className="grid gap-2">
@@ -274,7 +292,7 @@ export function SpeakingConversation() {
           </h3>
 
           <div className="mt-8 grid gap-5">
-            <StepBody current={current} field={field} errors={errors} answers={answers} onJump={go} />
+            <StepBody current={current} control={form.control} clearErrors={form.clearErrors} field={field} errors={errors} answers={answers} onJump={go} />
 
             {status === 'error' ? (
               <p role="alert" className="text-sm text-destructive">

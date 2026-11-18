@@ -1,6 +1,7 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
+import { DatePicker } from "@/components/ui/date-picker";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -52,12 +53,11 @@ export function MediaDetailFields({ formData, onFieldChange }: MediaInquiryField
         </div>
         <div className="grid gap-y-2">
           <Label htmlFor="deadline">Deadline</Label>
-          <Input
+          <DatePicker
             id="deadline"
-            type="datetime-local"
             value={formData.deadline}
-            onChange={(e) => onFieldChange("deadline", e.target.value)}
-            className="bg-background"
+            onChange={(value) => onFieldChange("deadline", value)}
+            placeholder="Pick a deadline"
           />
         </div>
       </div>

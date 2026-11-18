@@ -291,6 +291,7 @@ Confident and quiet: one filled action, everything else a link.
 ### Inputs / Fields
 - **Style:** 44px tall, Lifted Shadow fill, a 14% lavender-white hairline (24% on hover), 8px radius, 0.9375rem Lavender White text, Soft Orchid placeholder. Select triggers match.
 - **Focus:** the lilac Focus Ring outline (2px, 3px offset) and a lilac-tinted border. No rings, no browser blue.
+- **Dates:** never the browser's native date control. `DatePicker` (`src/components/ui/date-picker.tsx`) is a field-styled button ("Tue, Dec 15, 2026", calendar glyph at right) that opens shadcn's Calendar in a Popover: Lifted panel, 36px day cells, Deep Lilac selected day, a hairline ring on today, past days disabled by default, IconMCP chevrons. The popover scales from its trigger (160ms in, 110ms out). Values stay ISO `yyyy-MM-dd`.
 - **Error:** a destructive-red line under the field, shown when a step is checked and cleared as soon as the field changes. Nothing re-validates on blur: a message disappearing on blur moves the layout under the pointer and swallows the next click.
 
 ### Navigation
